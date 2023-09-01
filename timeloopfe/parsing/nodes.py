@@ -82,7 +82,7 @@ class TypeSpecifier:
             rt = required_type
 
             def callfunc(x, __node_skip_parse=False):
-                if isinstance(x, rt):
+                if isinstance(x, rt) or x is None:
                     return x
                 return rt(x, __node_skip_parse=__node_skip_parse)
 
@@ -317,7 +317,7 @@ class Node(ABC):
         return rval
 
     def _get_all_recognized(self):
-        recognized = lambda x: getattr(x, "Node_all_recognized", 0)
+        def recognized(x): return getattr(x, "Node_all_recognized", 0)
         return any([recognized(c) for c in self.__class__.mro()])
 
     @staticmethod

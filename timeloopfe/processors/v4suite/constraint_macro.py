@@ -46,7 +46,7 @@ class ConstraintMacroProcessor(Processor):
             Iteration.init_elem("factors_only", None, None, factors_only_init)
 
             pds = ProblemDataspaceList
-            pds_constructor = lambda x: pds(x) if x is not None else None
+            def pds_constructor(x): return pds(x) if x is not None else None
 
             Iteration.init_elem("no_reuse", (pds, None), None, pds_constructor)
             Iteration.init_elem(
@@ -109,7 +109,7 @@ class ConstraintMacroProcessor(Processor):
                 ds := constraint.pop("no_iteration_over_dataspaces", None)
             ) is not None:
                 debug_message(ds, "no_iteration_over_dataspaces")
-                dataspaces = [prob_shape.name2dataspaces(d) for d in ds]
+                dataspaces = [prob_shape.name2dataspace(d) for d in ds]
                 constraint.factors.combine(  # type: ignore
                     Factors(
                         list(f"{f}=1" for d in dataspaces for f in d.factors)

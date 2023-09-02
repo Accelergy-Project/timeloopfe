@@ -108,7 +108,7 @@ class Constraint(DictNode):
         flattened = {}
         for a in attrs:
             for k in self.get(a, []):
-                if k in flattened:
+                if k in flattened and flattened[k] != a:
                     raise ValueError(
                         f"Re-specification of {k} found in {attrs} for "
                         f"constraint {self.__class__.__name__}."

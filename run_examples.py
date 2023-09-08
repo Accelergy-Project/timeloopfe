@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
     cinstr = "_split" if SPLIT else ""
     TARGET = [f"{OPTIONS[CHOICE]}/arch{cinstr}", "problem", "mapper"]
-    TARGET = [os.path.join("examples", f"{t}.yaml") for t in TARGET]
+    TARGET = [os.path.join("arch_spec_examples", f"{t}.yaml") for t in TARGET]
 
     alt_prob = f"problem_{OPTIONS[CHOICE]}"
     if os.path.exists(TARGET[1].replace("problem", alt_prob)):

@@ -3,7 +3,7 @@ architecture:
 
   subtree:
     - name: PE
-      required_actions: [read, write, update, idle]
+      required_actions: [read, write, update, leak]
       attributes:
         technology: -1
 
@@ -12,7 +12,7 @@ architecture:
           class: storage
           subclass: regfile_metadata    # compound component with separate data and metadata storages
                                         # definition found in ../components/refile_metadata.yaml
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
           attributes:
             technology: -1
             data_storage_depth: 64      # depth of the data storage only
@@ -28,7 +28,7 @@ architecture:
         - name: MAC
           class: compute
           subclass: intmac
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
           attributes:
             technology: -1
             datawidth: 8

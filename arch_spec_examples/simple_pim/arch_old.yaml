@@ -13,7 +13,7 @@ architecture:
             datawidth: 16            # datawidth in bits
             block_size: 4
             technology: -1
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
       subtree:
         - name: chip                 # all components below this level are on-chip components
           local:
@@ -31,7 +31,7 @@ architecture:
                 network_read: "D2A_NoC"
                 network_update: "A2D_NoC"
                 technology: -1
-              required_actions: [read, write, update, idle]
+              required_actions: [read, write, update, leak]
             - name: dummy_buffer
               class: dummy_storage
               attributes:
@@ -40,7 +40,7 @@ architecture:
                 network_fill: "D2A_NoC"
                 network_drain: "A2D_NoC"
                 technology: -1
-              required_actions: [read, write, update, idle]
+              required_actions: [read, write, update, leak]
             - name: D2A_NoC
               class: SimpleMulticast         # timeloop class
               subclass: DAC_SimpleMulticast  # accelergy class
@@ -54,7 +54,7 @@ architecture:
                 per_datatype_ERT: True
                 multicast_factor_argument: "num_destinations"
                 technology: -1
-              required_actions: [read, write, update, idle]
+              required_actions: [read, write, update, leak]
             - name: A2D_NoC
               class: SimpleMulticast         # timeloop class
               subclass: ADC_SimpleMulticast  # accelergy class
@@ -69,7 +69,7 @@ architecture:
                 per_datatype_ERT: True
                 multicast_factor_argument: "num_destinations"
                 technology: -1
-              required_actions: [read, write, update, idle]
+              required_actions: [read, write, update, leak]
           subtree:
             - name: PE[0..16383]
               local:                 # "local" contains physical instantiations
@@ -81,7 +81,7 @@ architecture:
                     meshX: 128        # number of components in the X dimension (PE rows)
                     meshY: 128        # number of components in the Y dimension (PE cols)
                     technology: -1
-                  required_actions: [read, write, update, idle]
+                  required_actions: [read, write, update, leak]
                 - name: mac
                   class: memcell_compute
                   attributes:
@@ -89,7 +89,7 @@ architecture:
                     meshX: 128        # number of components in the X dimension (PE rows)
                     meshY: 128        # number of components in the Y dimension (PE cols)
                     technology: -1
-                  required_actions: [read, write, update, idle]
+                  required_actions: [read, write, update, leak]
 
 architecture_constraints:
   targets:

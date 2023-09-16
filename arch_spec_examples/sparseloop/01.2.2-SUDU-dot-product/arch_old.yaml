@@ -3,7 +3,7 @@ architecture:
 
   subtree:
     - name: PE
-      required_actions: [read, write, update, idle]
+      required_actions: [read, write, update, leak]
       attributes:
         technology: -1
 
@@ -11,7 +11,7 @@ architecture:
         - name: Buffer
           class: storage
           subclass: regfile
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
           attributes:
             technology: -1
             depth: 64
@@ -24,7 +24,7 @@ architecture:
         - name: MAC
           class: compute
           subclass: intmac
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
           attributes:
             technology: -1
             datawidth: 8

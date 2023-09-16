@@ -14,7 +14,7 @@ architecture:
             block_size: 4
             word_bits: 16
             technology: -1
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
       subtree:
         - name: simple_ws
           attributes:
@@ -31,7 +31,7 @@ architecture:
                 read_bandwidth: 16
                 write_bandwidth: 16
                 technology: -1
-              required_actions: [read, write, update, idle]
+              required_actions: [read, write, update, leak]
           subtree:
           - name: PE[0..255]
             local:
@@ -44,14 +44,14 @@ architecture:
                   word_bits: 16
                   meshX: 16
                   technology: -1
-                required_actions: [read, write, update, idle]
+                required_actions: [read, write, update, leak]
               - name: mac
                 class: intmac
                 attributes:
                   datawidth: 16
                   meshX : 16
                   technology: -1
-                required_actions: [read, write, update, idle]
+                required_actions: [read, write, update, leak]
               # input and output registers for the mac unit
               - name: weight_reg
                 class: reg_storage
@@ -60,7 +60,7 @@ architecture:
                   width: 16           # width in bits
                   meshX: 16
                   technology: -1
-                required_actions: [read, write, update, idle]
+                required_actions: [read, write, update, leak]
               - name: input_activation_reg
                 class: reg_storage
                 attributes:
@@ -68,7 +68,7 @@ architecture:
                   width: 16           # width in bits
                   meshX: 16
                   technology: -1
-                required_actions: [read, write, update, idle]
+                required_actions: [read, write, update, leak]
               - name: output_activation_reg
                 class: reg_storage
                 attributes:
@@ -76,7 +76,7 @@ architecture:
                   width: 16           # width in bits
                   meshX: 16
                   technology: -1
-                required_actions: [read, write, update, idle]
+                required_actions: [read, write, update, leak]
 
 #
 # The following constraints are limitations of the hardware architecture and dataflow

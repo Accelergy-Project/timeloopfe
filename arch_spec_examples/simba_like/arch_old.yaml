@@ -15,7 +15,7 @@ architecture:
             block_size: 8
             word_bits: 8
             technology: -1
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
       subtree:
         - name: ws
           local:
@@ -31,7 +31,7 @@ architecture:
                 nports: 2
                 meshX: 1
                 technology: -1
-              required_actions: [read, write, update, idle]
+              required_actions: [read, write, update, leak]
           subtree:
             - name: PE[0..15]
               local:
@@ -45,7 +45,7 @@ architecture:
                     block_size: 8
                     meshX: 16
                     technology: -1
-                  required_actions: [read, write, update, idle]
+                  required_actions: [read, write, update, leak]
                 - name: PEWeightBuffer[0..3]
                   class: storage
                   subclass: smartbuffer_RF
@@ -56,7 +56,7 @@ architecture:
                     block_size: 8
                     n_banks: 8
                     technology: -1
-                  required_actions: [read, write, update, idle]
+                  required_actions: [read, write, update, leak]
                 - name: PEAccuBuffer[0..3]
                   class: storage
                   subclass: smartbuffer_RF
@@ -66,7 +66,7 @@ architecture:
                     datawidth: 24
                     meshX: 16
                     technology: -1
-                  required_actions: [read, write, update, idle]
+                  required_actions: [read, write, update, leak]
                 - name: PEWeightRegs[0..15]
                   class: storage
                   subclass: reg_storage
@@ -77,7 +77,7 @@ architecture:
                     num_ports: 2
                     meshX: 16
                     technology: -1
-                  required_actions: [read, write, update, idle]
+                  required_actions: [read, write, update, leak]
                 - name: LMAC[0..15]
                   class: compute
                   subclass: lmac
@@ -85,7 +85,7 @@ architecture:
                     datawidth: 8
                     meshX: 16
                     technology: -1
-                  required_actions: [read, write, update, idle]
+                  required_actions: [read, write, update, leak]
 
 #
 # The following constraints are limitations of the hardware architecture and dataflow

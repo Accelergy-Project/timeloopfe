@@ -16,7 +16,7 @@ architecture:
             read_bandwidth: 32
             write_bandwidth: 32
             technology: -1
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
       subtree:
         - name: SM
           local:
@@ -35,7 +35,7 @@ architecture:
                 read_bandwidth: 42
                 write_bandwidth: 42
                 technology: -1
-              required_actions: [read, write, update, idle]
+              required_actions: [read, write, update, leak]
          
           subtree:
             - name: Subpartition[0..3]
@@ -54,7 +54,7 @@ architecture:
                     meshY: 4
                     meshX: 1
                     technology: -1
-                  required_actions: [read, write, update, idle]
+                  required_actions: [read, write, update, leak]
 
               subtree:  
                 - name: PE[0..255]
@@ -72,7 +72,7 @@ architecture:
                       meshY: 64
                       meshX: 16
                       technology: -1
-                    required_actions: [read, write, update, idle]
+                    required_actions: [read, write, update, leak]
 
                   - name: MAC
                     class: compute
@@ -82,7 +82,7 @@ architecture:
                       meshY: 64
                       meshX: 16
                       technology: -1
-                    required_actions: [read, write, update, idle]
+                    required_actions: [read, write, update, leak]
 
 architecture_constraints:
   targets:

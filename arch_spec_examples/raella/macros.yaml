@@ -9,35 +9,8 @@ helpful_macros_ignore:
 - &default_buffer_vars
   class: dummy_storage # Timeloop doesn't care about the buffer class if 
                         # we're using Accelergy. Just use something.
-  required_actions: [read, update, write, idle]
+  required_actions: [read, update, write, leak]
   attributes: {datawidth: 1}
-
-# ASSUMPTION: Environment variable "TIMELOOP_ENABLE_FIRST_READ_ELISION 0" is
-# set. This is NOT the default. It is set to be enabled within the
-# preprocess_config.yaml file.
-#
-# When energy is paid for each action:
-# Read-Only Data:
-#  read: Each time a value is read from the buffer to a lower level
-#  write: Each time a value is written to the buffer from an upper level
-#  update: Never
-#  Idle: FIXME, TODO leakage idle power
-#
-# Read/Write Data:
-#  read: Each time a value is read from the buffer to a lower level and each
-#  time a value is read from the buffer to an upper level.
-#  write: Each time a value is written to the buffer from an upper level
-#  update: Each time a value is written to the buffer from a lower level
-#  idle: FIXME, TODO leakage idle power
-#
-# For read/write data, the number of reads always equals the number of updates.
-# This is because all but the first update require reading the buffer first
-# to update the value, and the last update incurs an extra read to send the
-# value to the upper level.
-#
-# To model processing stages such as the ADC, DAC, and commuincation networks,
-# we model the processing action (e.g. convert for an ADC) as a "read". This is
-# because the read action is uniquely equal for read and read/write dataspaces.
 
 # =============================================================================
 # Helpful constraint macros.

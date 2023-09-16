@@ -7,7 +7,7 @@ architecture:
       local:
         - name: DRAM
           class: DRAM
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
           attributes:
             technology: -1
             width: 64
@@ -20,7 +20,7 @@ architecture:
         - name: shared_glb
           class: storage
           subclass: smartbuffer_metadata
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
           attributes:
             technology: -1
             data_storage_depth: 12800
@@ -43,7 +43,7 @@ architecture:
         - name: DummyBuffer[0..13]
           class: storage
           subclass: SRAM
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
           attributes:
             technology: -1
             width: 16
@@ -59,7 +59,7 @@ architecture:
             - name: ifmap_spad
               class: storage
               subclass: smartbuffer
-              required_actions: [read, write, update, idle]
+              required_actions: [read, write, update, leak]
               attributes:
                 technology: -1
                 data_storage_depth: 12
@@ -73,7 +73,7 @@ architecture:
             - name: weights_spad
               class: storage
               subclass: smartbuffer
-              required_actions: [read, write, update, idle]
+              required_actions: [read, write, update, leak]
               attributes:
                 technology: -1
                 data_storage_depth: 224
@@ -88,7 +88,7 @@ architecture:
             - name: psum_spad
               class: storage
               subclass: smartbuffer
-              required_actions: [read, write, update, idle]
+              required_actions: [read, write, update, leak]
               attributes:
                 technology: -1
                 data_storage_depth: 24

@@ -3,13 +3,13 @@ architecture:
 
   subtree:
     - name: system
-      required_actions: [read, write, update, idle]
+      required_actions: [read, write, update, leak]
       attributes:
         technology: -1
       local:
       - name: BackingStorage
         class: SRAM_metadata
-        required_actions: [read, write, update, idle]
+        required_actions: [read, write, update, leak]
         attributes:
           technology: -1
           data_storage_depth: 512
@@ -26,7 +26,7 @@ architecture:
         - name: Buffer
           class: storage
           subclass: regfile_metadata
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
           attributes:
             technology: -1
             data_storage_depth: 64
@@ -39,7 +39,7 @@ architecture:
 
         - name: MACC
           class: intmac
-          required_actions: [read, write, update, idle]
+          required_actions: [read, write, update, leak]
           attributes:
             technology: -1
             datawidth: 8

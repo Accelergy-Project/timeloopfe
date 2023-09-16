@@ -21,7 +21,7 @@ class ArchNode(Node):
         for element in self if isinstance(self, list) else self.values():
             try:
                 return element.name2leaf(name)
-            except ValueError:
+            except (AttributeError, ValueError):
                 pass
         raise ValueError(f"Leaf {name} not found in {self}")
 
@@ -115,6 +115,7 @@ class Element(Leaf, ABC):
         super().init_elem("subclass", str, None)
         super().init_elem("required_actions", list, [])
         super().init_elem("area_share", Number, None)
+        super().init_elem("enabled", bool, True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -122,6 +123,7 @@ class Element(Leaf, ABC):
         self.subclass: str = self["subclass"]
         self.required_actions: List[str] = self["required_actions"]
         self.area_share: float = self["area_share"]
+        self.enabled: bool = self["enabled"]
 
 
 class Container(Leaf, ABC):
@@ -200,6 +202,7 @@ class Attributes(DictNode):
     @classmethod
     def init_elems(cls, *args, **kwargs):
         super().init_elems(*args, **kwargs)
+        super().init_elem("has_power_gating", (str, bool), False)
         super().init_elem("", part_name_match=True, no_change_key=True)
 
     def __init__(self, *args, **kwargs):

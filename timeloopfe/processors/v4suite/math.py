@@ -1,4 +1,5 @@
 """!@brief Solves equations in the architecture, variables, and problem. """
+import copy
 import re
 from typing import Union
 from ...parsing.nodes import Node
@@ -50,7 +51,7 @@ class MathProcessor(Processor):
     def process(self):
         super().process()
         self.must_run_after(References2CopiesProcessor)
-        variables = self._get_parsed_variables()
+        variables = self._get_parsed_variables() if self.spec.variables else {}
         self._parse_architecture(variables)
         self._parse_problem(variables)
 
@@ -59,15 +60,17 @@ class MathProcessor(Processor):
     ) -> dict:
         context = {} if context is None else context
         variables = self.spec.variables if variables is None else variables
-        return parse_expressions_sequentially_replacing_bindings(
+        variables.update(parse_expressions_sequentially_replacing_bindings(
             expression_dictionary=self.spec.variables,
             binding_dictionary={},
             location="top-level context variables ",
             strings_allowed=True,
-        )
+        ))
+        return variables
 
     def _parse_dictnode(
-        self, context: dict, node: dict, name: str, strings_allowed: bool
+        self, context: dict, node: dict, name: str, strings_allowed: bool,
+        propagate_required_keys: bool = False
     ) -> None:
         node.update(
             parse_expressions_sequentially_replacing_bindings(
@@ -75,8 +78,14 @@ class MathProcessor(Processor):
                 binding_dictionary=context,
                 location=name,
                 strings_allowed=strings_allowed,
+                propagate_keys=propagate_required_keys,
             )
         )
+        context = {**context, **node}
+        for k, v in node.items():
+            if isinstance(v, dict):
+                self._parse_dictnode(
+                    context, v, f"{name}.{k}", strings_allowed)
 
     def try_to_number(self, s: str) -> Union[int, float, str]:
         for totry in [int, float]:
@@ -99,22 +108,28 @@ class MathProcessor(Processor):
         node = self.spec.architecture if node is None else node
 
         if isinstance(node, (Hierarchical, Parallel)):
+            context = {**context}
+            for n in node.nodes:
+                if isinstance(n, Leaf):
+                    context.setdefault(n.name, n)
             for e in node.nodes:
                 self._parse_architecture(context, e)
 
         elif isinstance(node, Leaf):
             self._parse_dictnode(
-                context, node.attributes, f"{node.name} attributes", True
+                context, node.attributes, f"{node.name} attributes", True, True
             )
             new_context = {**context, **node.attributes}
             self._parse_dictnode(
-                context, node.spatial, f"{node.name} spatial", False
+                context, node.spatial, f"{node.name} spatial", False, False
             )
             node.constraints.recursive_apply(
                 lambda c: self.var_replace(c, new_context)
             )
             if isinstance(node, Container):
                 context = new_context
+            if node.name not in context:
+                context[node.name] = node
 
         return context
 

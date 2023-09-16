@@ -57,7 +57,7 @@ class RequiredActionsProcessor(Processor):
             sparse_opts.action_optimization
         )
         read_write_update = [""]
-        required_actions = []
+        required_actions = ["leak"]
         if has_metadata:
             read_write_update.append("metadata_")
         if sparse_action:

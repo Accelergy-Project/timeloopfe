@@ -1,4 +1,5 @@
 import copy
+import ruamel.yaml
 from ..v4spec.specification import Specification
 from ..v4spec import arch, constraints
 from ..v4spec.arch import Attributes, Nothing, Spatial
@@ -25,7 +26,10 @@ def transpile(spec: Specification, for_model: bool = False):
     }
     stack = [(top_node, False)]
     meshX, meshY = 1, 1
+    cur_power_gating = None
+    prev_node = None
     arch_attrs = {}
+    add_power_gate_next = False
 
     next_meshX, next_meshY = 1, 1
 
@@ -35,7 +39,11 @@ def transpile(spec: Specification, for_model: bool = False):
         next_meshX, next_meshY = 1, 1
         local = level["local"]
         node, is_parallel = stack.pop(0)
-        logging.debug(f"Processing node {node.get_name()}")
+        is_container = isinstance(node, arch.Container)
+        if not getattr(node, 'enabled', True):
+            logging.debug('Skipping disabled node %s', node.get_name())
+            continue
+        logging.debug('Processing node %s', node.get_name())
         if isinstance(node, arch.Parallel):
             stack = [(n, True) for n in node.nodes] + stack
             continue
@@ -53,9 +61,14 @@ def transpile(spec: Specification, for_model: bool = False):
             node: arch.Container
             arch_attrs.update(node.attributes)
 
-        if isinstance(node, arch.Container) or has_fanout:
+        attrs = node.get("attributes", {})
+        spatial = node.get("spatial", {})
+
+        has_power_gating = attrs.get('has_power_gating', False)
+
+        if is_container or has_fanout:
             if is_parallel:
-                if isinstance(node, arch.Container):
+                if is_container:
                     raise ValueError(
                         f"Containers under a Parallel are not "
                         f"supported: {node.name}"
@@ -66,8 +79,6 @@ def transpile(spec: Specification, for_model: bool = False):
                         f"are not supported: {node.name}"
                     )
 
-            attrs = node.get("attributes", {})
-            spatial = node.get("spatial", {})
             next_meshX *= spatial.get("meshX", 1)
             next_meshY *= spatial.get("meshY", 1)
             if has_fanout:
@@ -81,6 +92,7 @@ def transpile(spec: Specification, for_model: bool = False):
 
                 # dummy.spatial = node.spatial
                 logging.debug("Dummy name is %s", dummy.get_name())
+                # dummy.attributes = node.attributes
                 node = dummy
 
             node.clean_empties()
@@ -114,6 +126,13 @@ def transpile(spec: Specification, for_model: bool = False):
                     attrs[k] = v
             if not isinstance(node, arch.Network):
                 node.name += f"[1..{meshX*meshY}]"
+
+                if add_power_gate_next:
+                    cur_power_gating = node.name.split('[')[0]
+                add_power_gate_next = has_power_gating
+
+        attrs.setdefault('power_gated_at', ruamel.yaml.scalarstring.DoubleQuotedScalarString(
+            cur_power_gating or node.name.split('[')[0]))
 
     if not level["subtree"]:
         del level["subtree"]

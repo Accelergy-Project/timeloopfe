@@ -25,6 +25,7 @@ class TestLoadExamples(unittest.TestCase):
         problem = None
         start_dir = os.path.join("arch_spec_examples", start_dir)
         mapper = os.path.join("arch_spec_examples", "mapper_quick.yaml")
+        variables = os.path.join("arch_spec_examples", "variables.yaml")
         for f in os.listdir(start_dir):
             if "arch" in f:
                 continue
@@ -43,10 +44,10 @@ class TestLoadExamples(unittest.TestCase):
             files += glob.glob(
                 os.path.join(start_dir, "..", "components/*.yaml")
             )
+        files += [mapper, problem, variables]
         return (
-            [os.path.join(start_dir, "arch_old.yaml"), mapper, problem]
-            + files,
-            [os.path.join(start_dir, "arch.yaml"), mapper, problem] + files,
+            [os.path.join(start_dir, "arch_old.yaml")] + files,
+            [os.path.join(start_dir, "arch.yaml")] + files,
         )
 
     def run_test(self, start_dir: str, new_suffix: str) -> None:

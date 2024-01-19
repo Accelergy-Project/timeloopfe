@@ -7,7 +7,7 @@ architecture:
       datawidth: 8
       technology: "45nm"
   
-  - !Element # DRAM main memory
+  - !Component # DRAM main memory
     name: DRAM
     class: DRAM
     attributes:
@@ -16,7 +16,7 @@ architecture:
       block_size: 8
       datawidth: 8
 
-  - !Element # Global buffer for inputs & outputs
+  - !Component # Global buffer for inputs & outputs
     name: GlobalBuffer
     class: smartbuffer_SRAM
     attributes:
@@ -35,7 +35,7 @@ architecture:
     constraints:
       spatial: {factors: R=1 S=1 P=1 Q=1 N=1, permutation: [M, C, R, S, P, Q, N]}
 
-  - !Element # Input buffer
+  - !Component # Input buffer
     name: PEInputBuffer
     class: storage
     subclass: smartbuffer_RF
@@ -55,7 +55,7 @@ architecture:
 
   - !Parallel # Weight/accumulator buffers
     nodes:
-    - !Element # Weight buffer
+    - !Component # Weight buffer
       name: PEWeightBuffer
       class: storage
       subclass: smartbuffer_RF
@@ -67,7 +67,7 @@ architecture:
       constraints:
         dataspace: {keep: [Weights], bypass: [Inputs, Outputs]}
 
-    - !Element # Accumulator buffer
+    - !Component # Accumulator buffer
       name: PEAccuBuffer
       class: storage
       subclass: smartbuffer_RF
@@ -85,7 +85,7 @@ architecture:
     constraints:
       spatial: {factors: P=1 Q=1 R=1 S=1 M=1 N=1, permutation: [C, M, Q, R, S, P, N]}
 
-  - !Element # Weight registers
+  - !Component # Weight registers
     name: PEWeightRegs
     class: storage
     subclass: reg_storage
@@ -97,7 +97,7 @@ architecture:
     constraints:
       dataspace: {keep: [Weights], bypass: [Inputs, Outputs]}
 
-  - !Element # MAC unit
+  - !Component # MAC unit
     name: LMAC
     class: compute
     subclass: lmac

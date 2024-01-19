@@ -1,4 +1,5 @@
 mapper:
+  version: 0.4
   optimization_metrics: [ edp ]
   live_status: False
   num_threads: 8

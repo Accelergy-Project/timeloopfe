@@ -92,6 +92,7 @@ architecture:
                   required_actions: [read, write, update, leak]
 
 architecture_constraints:
+  version: 0.4
   targets:
     # =======================================
     # DRAM

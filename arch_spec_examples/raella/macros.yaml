@@ -30,7 +30,7 @@ helpful_macros_ignore:
 - &default_spatial_constraints
   permutation: *vars # Spatial permutation usually doesn't matter.
   no_link_transfer: *dataspaces # No link transfers unless explicitly enabled
-  no_multicast_no_reduction: *dataspaces # No networks unless enabled
+  no_reuse: *dataspaces # No networks unless enabled
   split: 999 # Disable spatial XY by splitting at the max value. We're not using
              # Timeloop's 2D model in this architecture.
 

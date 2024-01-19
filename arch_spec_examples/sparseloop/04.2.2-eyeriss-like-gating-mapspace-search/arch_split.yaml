@@ -6,7 +6,7 @@ architecture:
     attributes:
       technology: "45nm"
 
-  - !Element
+  - !Component
     name: DRAM
     class: DRAM
     attributes:
@@ -17,7 +17,7 @@ architecture:
       metadata_datawidth: 5
       metadata_block_size: 12
 
-  - !Element
+  - !Component
     name: shared_glb
     class: storage
     subclass: smartbuffer_metadata
@@ -62,7 +62,7 @@ architecture:
 
   - !Parallel # Input/Output/Weight scratchpads in parallel
     nodes:
-    - !Element
+    - !Component
       name: ifmap_spad
       class: storage
       subclass: smartbuffer
@@ -79,7 +79,7 @@ architecture:
           permutation: [N, M, C, P, Q, R, S]
           factors: [M=1, C=1, P=1, Q=1, R=1, S=1]
 
-    - !Element
+    - !Component
       name: weights_spad
       class: storage
       subclass: smartbuffer
@@ -96,7 +96,7 @@ architecture:
           permutation: [N, M, P, Q, S, C, R]
           factors: [M=1, P=1, Q=1, S=1]
 
-    - !Element
+    - !Component
       name: psum_spad
       class: storage
       subclass: smartbuffer
@@ -111,7 +111,7 @@ architecture:
           permutation: [N, C, P, Q, R, S, M] 
           factors: [C=1, R=1, S=1, P=1, Q=1]
 
-  - !Element
+  - !Component
     name: MACs
     class: compute
     subclass: mac
@@ -126,6 +126,7 @@ architecture:
 #    allow ifmap accesses to be saved, which is what conventionally what metadata will help to achieve, so we model
 #    it as an extra bit in the datawidth instead of as a metadata
 sparse_optimizations:
+  version: 0.4
   targets:
     - target: DRAM
       representation_format:
@@ -157,6 +158,7 @@ sparse_optimizations:
 #
 
 mapspace_constraints:
+  version: 0.4
   targets:
     # intuitive optimization for row stationary
     # -> process a row/col of the output before going to the next one

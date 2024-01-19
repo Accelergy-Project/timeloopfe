@@ -112,6 +112,7 @@ architecture:
 #    allow ifmap accesses to be saved, which is what conventionally what metadata will help to achieve, so we model
 #    it as an extra bit in the datawidth instead of as a metadata
 sparse_optimizations:
+  version: 0.4
   targets:
     - name: DRAM
       representation_format:
@@ -142,6 +143,7 @@ sparse_optimizations:
 #
 
 architecture_constraints:
+  version: 0.4
   targets:
   # certain buffer only stores certain datatypes
   - target: psum_spad
@@ -200,6 +202,7 @@ architecture_constraints:
 #
 
 mapspace_constraints:
+  version: 0.4
   targets:
     # intuitive optimization to reduce map space size
     # the factors of these are 1 anyways, so the order does not really matter

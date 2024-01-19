@@ -7,7 +7,7 @@ architecture:
   - !Container # Top-level system
     name: system
   
-  - !Element # DRAM main memory
+  - !Component # DRAM main memory
     name: DRAM
     class: DRAM
     attributes:
@@ -21,7 +21,7 @@ architecture:
     attributes:
       technology: "32nm"
 
-  - !Element # Global buffer for inputs & outputs
+  - !Component # Global buffer for inputs & outputs
     name: shared_glb
     class: smartbuffer_SRAM
     attributes:
@@ -43,7 +43,7 @@ architecture:
 
   - !Parallel # Input/Output/Weight scratchpads in parallel
     nodes:
-    - !Element # Input scratchpad
+    - !Component # Input scratchpad
       name: ifmap_spad
       class: smartbuffer_RF
       attributes:
@@ -54,7 +54,7 @@ architecture:
         read_bandwidth: 2
         write_bandwidth: 2
 
-    - !Element # Weight scratchpad
+    - !Component # Weight scratchpad
       name: weights_spad
       class: smartbuffer_RF
       attributes:
@@ -65,7 +65,7 @@ architecture:
         read_bandwidth: 2
         write_bandwidth: 2
 
-    - !Element # Output scratchpad
+    - !Component # Output scratchpad
       name: psum_spad
       class: smartbuffer_RF
       attributes:
@@ -77,7 +77,7 @@ architecture:
         read_bandwidth: 2
         write_bandwidth: 2
 
-  - !Element # MAC unit
+  - !Component # MAC unit
     name: mac
     class: intmac
     attributes:
@@ -89,6 +89,7 @@ architecture:
 #
 
 constraints:
+  version: 0.4
   targets:
   # certain buffer only stores certain datatypes
   - target: psum_spad

@@ -49,6 +49,7 @@ architecture:
 
 
 sparse_optimizations:
+  version: 0.4
   targets:
     - name: BackingStorage
       representation_format:

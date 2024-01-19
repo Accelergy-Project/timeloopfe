@@ -17,10 +17,10 @@ variables:
   # list is the probability of a 1 for that bit.
 
   # High probability of 0. Sample 32 points.
-  INPUT_VALUE_DISTRIBUTION: [0.8, 0.2] # 80% 0, 20% 1.
+  INPUTS_VALUE_DISTRIBUTION: [0.8, 0.2] # 80% 0, 20% 1.
   INPUT_BIT_DISTRIBUTION: ([0.2] * INPUT_BITS)
   # High probability of 0. Sample 32 points.
-  WEIGHT_VALUE_DISTRIBUTION: [0.9, 0.1] # 90% 0, 10% 1
+  WEIGHTS_HIST: [0.9, 0.1] # 90% 0, 10% 1
   # High probability of 0. Sample 32 points.
   WEIGHT_BIT_DISTRIBUTION: ([0.2] * WEIGHT_BITS)
   COLUMN_SUM_VALUE_DISTRIBUTION: ([32] + [1] * 31) 
@@ -30,8 +30,8 @@ variables:
   # Derived parameters
   AVG_DIST: > # Place on next line so YAML doesn't complain about the colon
     lambda x: sum(i * v for i, v in enumerate(x)) / sum(x) / (len(x) - 1)
-  AVERAGE_INPUT_VALUE: AVG_DIST(INPUT_VALUE_DISTRIBUTION)
-  AVERAGE_WEIGHT_VALUE: AVG_DIST(WEIGHT_VALUE_DISTRIBUTION)
+  AVERAGE_INPUT_VALUE: AVG_DIST(INPUTS_VALUE_DISTRIBUTION)
+  AVERAGE_WEIGHT_VALUE: AVG_DIST(WEIGHTS_HIST)
   AVERAGE_COLUMN_SUM_VALUE: AVG_DIST(COLUMN_SUM_VALUE_DISTRIBUTION)
 
   # =============================================================================
@@ -90,7 +90,7 @@ variables:
   VOLTAGE: 0.7
   LATENCY: 1.0e-9 # ns per cycle
   ARRAY_LATENCY: LATENCY * 100 # Longer array latency when array is slower than the rest of the chip
-  TECH_NODE: 32 # nm
+  TECHNOLOGY: 32 # nm
   CELL_CONFIG: "../../isca_artifact/isca_artifact/cells/raella.cell"
 
   # ===========================================================================
@@ -99,7 +99,7 @@ variables:
   INF: 2147483647
   # Each cell computes the outer product of DAC_RESOLUTION input bits,
   # ADC_RESOLUTION weight bits, and ADC_RESOLUTION output bits each cycle.
-  N_VIRTUAL_MACS: DAC_RESOLUTION * CIM_UNIT_WIDTH_BITS * OUTPUT_BITS
+  N_VIRTUAL_MACS: DAC_RESOLUTION * CIM_UNIT_UTILIZED_BITS * OUTPUT_BITS
 
 
 

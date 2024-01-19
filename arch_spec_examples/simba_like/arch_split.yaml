@@ -7,7 +7,7 @@ architecture:
       datawidth: 8
       technology: "45nm"
   
-  - !Element # DRAM main memory
+  - !Component # DRAM main memory
     name: DRAM
     class: DRAM
     attributes:
@@ -16,7 +16,7 @@ architecture:
       block_size: 8
       datawidth: 8
 
-  - !Element # Global buffer for inputs & outputs
+  - !Component # Global buffer for inputs & outputs
     name: GlobalBuffer
     class: smartbuffer_SRAM
     attributes:
@@ -31,7 +31,7 @@ architecture:
     name: PE
     spatial: {meshX: 16}
 
-  - !Element # Input buffer
+  - !Component # Input buffer
     name: PEInputBuffer
     class: storage
     subclass: smartbuffer_RF
@@ -47,7 +47,7 @@ architecture:
 
   - !Parallel # Weight/accumulator buffers
     nodes:
-    - !Element # Weight buffer
+    - !Component # Weight buffer
       name: PEWeightBuffer
       class: storage
       subclass: smartbuffer_RF
@@ -57,7 +57,7 @@ architecture:
         block_size: 8
         n_banks: 8
 
-    - !Element # Accumulator buffer
+    - !Component # Accumulator buffer
       name: PEAccuBuffer
       class: storage
       subclass: smartbuffer_RF
@@ -71,7 +71,7 @@ architecture:
     name: reg_mac
     spatial: {meshY: 4}
 
-  - !Element # Weight registers
+  - !Component # Weight registers
     name: PEWeightRegs
     class: storage
     subclass: reg_storage
@@ -81,7 +81,7 @@ architecture:
       cluster_size: 64
       num_ports: 2
 
-  - !Element # MAC unit
+  - !Component # MAC unit
     name: LMAC
     class: compute
     subclass: lmac
@@ -92,6 +92,7 @@ architecture:
 # The following constraints are limitations of the hardware architecture and dataflow
 #
 constraints:
+  version: 0.4
   targets:
     # certain buffer only stores certain datatypes
     - target: PEWeightRegs

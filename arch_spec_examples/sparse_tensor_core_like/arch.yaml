@@ -6,7 +6,7 @@ architecture:
     attributes:
       technology: "45nm"
 
-  - !Element # DRAM main memory
+  - !Component # DRAM main memory
     name: DRAM
     class: DRAM
     attributes:
@@ -20,7 +20,7 @@ architecture:
     constraints:
       temporal: {permutation: [K], factors: K=1}
 
-  - !Element # 256KB data, 32KB metadata
+  - !Component # 256KB data, 32KB metadata
     name: SMEM
     class: storage
     subclass: SRAM_MD
@@ -45,7 +45,7 @@ architecture:
     constraints:
       spatial: {permutation: [N, K, M], factors: K=1 N=1 M=4, split: 0}
 
-  - !Element # Register file
+  - !Component # Register file
     name: RF # Register file
     class: storage
     subclass: SRAM_MD
@@ -67,7 +67,7 @@ architecture:
     constraints:
       spatial: {permutation: [K, M, N], factors: K=32 M=16 N=1, split: 1}
 
-  - !Element # Local register file
+  - !Component # Local register file
     name: LRF 
     class: storage
     subclass: SRAM_MD
@@ -82,7 +82,7 @@ architecture:
       temporal: {permutation: [N, K, M], factors: K=1 M=1 N<=128}
       dataspace: {keep: [A], bypass: [B, Z]}
 
-  - !Element # MAC unit
+  - !Component # MAC unit
     name: MAC
     class: compute
     subclass: Imac

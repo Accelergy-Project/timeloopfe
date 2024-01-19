@@ -96,6 +96,7 @@ architecture:
 #
 
 architecture_constraints:
+  version: 0.4
   targets:
   # certain buffer only stores certain datatypes
   - target: psum_spad

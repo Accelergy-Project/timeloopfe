@@ -7,7 +7,7 @@ architecture:
   - !Container # Top-level system
     name: system
   
-  - !Element # DRAM main memory
+  - !Component # DRAM main memory
     name: DRAM
     class: DRAM
     attributes:
@@ -21,7 +21,7 @@ architecture:
     attributes:
       technology: "32nm"
 
-  - !Element # Global buffer for inputs & outputs
+  - !Component # Global buffer for inputs & outputs
     name: shared_glb
     class: smartbuffer_SRAM
     attributes:
@@ -57,7 +57,7 @@ architecture:
     nodes:
     - !Hierarchical # Input scratchpad and buffer
       nodes:
-      - !Element # Input buffer
+      - !Component # Input buffer
         name: input_buffer
         class: smartbuffer_RF
         attributes:
@@ -68,7 +68,7 @@ architecture:
           read_bandwidth: 2
           write_bandwidth: 2
         constraints: {dataspace: {keep: [Inputs]}}
-      - !Element # Input scratchpad
+      - !Component # Input scratchpad
         name: ifmap_spad
         class: smartbuffer_RF
         attributes:
@@ -84,7 +84,7 @@ architecture:
             permutation: [N, M, C, P, Q, R, S]
             factors: [N=1, M=1, C=1, P=1, Q=1, R=1, S=1]
 
-    - !Element # Weight scratchpad
+    - !Component # Weight scratchpad
       name: weights_spad
       class: smartbuffer_RF
       attributes:
@@ -100,7 +100,7 @@ architecture:
           permutation: [N, M, P, Q, S, C, R]
           factors: [N=1, M=1, P=1, Q=1, S=1]
 
-    - !Element # Output scratchpad
+    - !Component # Output scratchpad
       name: psum_spad
       class: smartbuffer_RF
       attributes:
@@ -117,7 +117,7 @@ architecture:
           permutation: [N, C, P, Q, R, S, M] 
           factors: [N=1, C=1, R=1, S=1, P=1, Q=1]
 
-  - !Element # MAC unit
+  - !Component # MAC unit
     name: mac
     class: intmac
     attributes:

@@ -6,7 +6,7 @@ architecture:
     attributes:
       technology: "45nm"
 
-  - !Element
+  - !Component
     name: BackingStorage              # storage component
     class: SRAM_metadata
     attributes:
@@ -21,7 +21,7 @@ architecture:
   - !Container
     name: PE
 
-  - !Element
+  - !Component
     name: Buffer                  # storage component
     class: storage
     subclass: regfile_metadata
@@ -36,7 +36,7 @@ architecture:
       read_bandwidth: 5
       write_bandwidth: 5
 
-  - !Element
+  - !Component
     name: MAC                    # compute component
     class: compute
     subclass: intmac
@@ -45,6 +45,7 @@ architecture:
 
 
 sparse_optimizations:
+  version: 0.4
   targets:
     - target: BackingStorage
       representation_format:

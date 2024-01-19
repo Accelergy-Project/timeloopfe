@@ -115,6 +115,7 @@ architecture:
 #    allow ifmap accesses to be saved, which is what conventionally what metadata will help to achieve, so we model
 #    it as an extra bit in the datawidth instead of as a metadata
 sparse_optimizations:
+  version: 0.4
   targets:
     - name: DRAM
       representation_format:

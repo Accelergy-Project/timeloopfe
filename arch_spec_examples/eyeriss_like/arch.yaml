@@ -7,7 +7,7 @@ architecture:
   - !Container # Top-level system
     name: system
   
-  - !Element # DRAM main memory
+  - !Component # DRAM main memory
     name: DRAM
     class: DRAM
     attributes:
@@ -15,13 +15,14 @@ architecture:
       width: 64
       block_size: 8
       datawidth: 8
+      global_cycle_seconds: 1e-9
 
   - !Container # Eyeriss accelerator
     name: eyeriss
     attributes:
       technology: "32nm"
 
-  - !Element # Global buffer for inputs & outputs
+  - !Component # Global buffer for inputs & outputs
     name: shared_glb
     class: smartbuffer_SRAM
     attributes:
@@ -55,7 +56,7 @@ architecture:
 
   - !Parallel # Input/Output/Weight scratchpads in parallel
     nodes:
-    - !Element # Input scratchpad
+    - !Component # Input scratchpad
       name: ifmap_spad
       class: smartbuffer_RF
       attributes:
@@ -71,7 +72,7 @@ architecture:
           permutation: [N, M, C, P, Q, R, S]
           factors: [N=1, M=1, C=1, P=1, Q=1, R=1, S=1]
 
-    - !Element # Weight scratchpad
+    - !Component # Weight scratchpad
       name: weights_spad
       class: smartbuffer_RF
       attributes:
@@ -87,7 +88,7 @@ architecture:
           permutation: [N, M, P, Q, S, C, R]
           factors: [N=1, M=1, P=1, Q=1, S=1]
 
-    - !Element # Output scratchpad
+    - !Component # Output scratchpad
       name: psum_spad
       class: smartbuffer_RF
       attributes:
@@ -104,7 +105,7 @@ architecture:
           permutation: [N, C, P, Q, R, S, M] 
           factors: [N=1, C=1, R=1, S=1, P=1, Q=1]
 
-  - !Element # MAC unit
+  - !Component # MAC unit
     name: mac
     class: intmac
     attributes:

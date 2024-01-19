@@ -7,7 +7,7 @@ architecture:
       technology: "32nm"
       latency: "1ns"
 
-  - !Element # DRAM main memory
+  - !Component # DRAM main memory
     name: DRAM
     class: DRAM                # assume DRAM is large enough to store all the data, so no depth specification needed
     attributes:
@@ -15,7 +15,7 @@ architecture:
       datawidth: 16            # datawidth in bits
       block_size: 4
 
-  - !Element # Global buffer for inputs & outputs
+  - !Component # Global buffer for inputs & outputs
     name: shared_glb
     class: smartbuffer_SRAM
     attributes:
@@ -30,7 +30,7 @@ architecture:
       network_read: "D2A_NoC"
       network_update: "A2D_NoC"
 
-  - !Element # Dummy buffer used to connect NoCs
+  - !Component # Dummy buffer used to connect NoCs
     name: dummy_buffer
     class: dummy_storage
     attributes:
@@ -40,7 +40,7 @@ architecture:
       network_drain: "A2D_NoC"
       datawidth: 16
 
-  - !Element # D2A NoC converts digital data to analog values
+  - !Component # D2A NoC converts digital data to analog values
     name: D2A_NoC
     class: SimpleMulticast         # timeloop class
     subclass: DAC_SimpleMulticast  # accelergy class
@@ -54,7 +54,7 @@ architecture:
       per_datatype_ERT: True
       multicast_factor_argument: "num_destinations"
 
-  - !Element # A2D NoC converts analog values to digital data
+  - !Component # A2D NoC converts analog values to digital data
     name: A2D_NoC
     class: SimpleMulticast         # timeloop class
     subclass: ADC_SimpleMulticast  # accelergy class
@@ -73,7 +73,7 @@ architecture:
     name: PE
     spatial: {meshX: 128, meshY: 128}
 
-  - !Element # Memory cell storage for weights
+  - !Component # Memory cell storage for weights
     name: scratchpad
     class: memcell_storage
     attributes:
@@ -81,13 +81,14 @@ architecture:
       depth: 1
       datawidth: 16
 
-  - !Element # Memory cell compute for MACs
+  - !Component # Memory cell compute for MACs
     name: mac
     class: memcell_compute
     attributes:
       datawidth: 16   # datawidth in bits
 
 constraints:
+  version: 0.4
   targets:
     # =======================================
     # DRAM

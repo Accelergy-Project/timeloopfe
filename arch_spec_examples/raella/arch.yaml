@@ -9,11 +9,11 @@ architecture:
     name: system
     <<<: *container_with_default_spatial_constraints
     attributes:
-      technology: TECH_NODE
+      technology: TECHNOLOGY
       latency: 1
       cell_config: CELL_CONFIG
 
-  - !Element # Chip: data that makes it here is residing in other tiles
+  - !Component # Chip: data that makes it here is residing in other tiles
     name: chip 
     <<<: *default_buffer
     attributes: {depth: INF, width: INF, reduction_supported: False}
@@ -30,16 +30,16 @@ architecture:
     <<<: *container_with_default_spatial_constraints
     spatial: {meshX: N_TILES}
 
-  - !Element # On-chip network serves inputs/outputs between tiles
+  - !Component # On-chip network serves inputs/outputs between tiles
     name: on_chip_network
     <<<: *input_output_processing_stage
-    subclass: isaac_router
+    subclass: isaac_router_shared_by_four
     attributes:
       width: 256
       read_bandwidth: width
       write_bandwidth: width
 
-  - !Element # eDRAM buffer serves a set of tiles
+  - !Component # eDRAM buffer serves a set of tiles
     name: eDRAM_buf
     <<<: *default_buffer
     subclass: isaac_edram
@@ -51,7 +51,7 @@ architecture:
     constraints:
       dataspace: {keep_only: [Inputs, Outputs]}
     
-  - !Element # Quantize outputs before sending them to the next tile
+  - !Component # Quantize outputs before sending them to the next tile
     name: output_quantize
     <<<: *output_processing_stage
     subclass: output_quantize_edram
@@ -66,14 +66,14 @@ architecture:
     <<<: *container_with_default_spatial_constraints
     spatial: {meshX: N_MACROS}
 
-  - !Element # Inter-tile network feeds inputs/outputs between tiles
+  - !Component # Inter-tile network feeds inputs/outputs between tiles
     name: inter_tile_network
     <<<: *input_output_processing_stage
     subclass: isaac_eDRAM_bus
     attributes:
       width: 256
 
-  - !Element # Output center+offset correct for outputs
+  - !Component # Output center+offset correct for outputs
     name: output_center_offset_correct
     <<<: *output_processing_stage
     subclass: raella_output_center_offset_correct
@@ -81,7 +81,7 @@ architecture:
       width: OUTPUT_BITS
       center_entries: N_COLUMNS // N_ARRAYS // 2
 
-  - !Element # Input buffer
+  - !Component # Input buffer
     name: input_buffer
     <<<: *default_buffer
     subclass: raella_input_buffer
@@ -102,9 +102,9 @@ architecture:
     <<<: *container_with_default_spatial_constraints
     spatial: {meshX: N_ARRAYS}
     constraints:
-      spatial: {no_multicast_no_reduction: []} # Enable multicast networks
+      spatial: {no_reuse: []} # Enable multicast networks
 
-  - !Element # Output register holds psums in progress
+  - !Component # Output register holds psums in progress
     # We double the output register depth to handle the case where the output
     # is imperfectly factorized and an output register needs to hold more data.
     # We correct the energy/area in the component class and disable temporal 
@@ -127,7 +127,7 @@ architecture:
 
     # Column readout includes ADCs and Shift+Adds
 
-  - !Element # Column readout (ADC)
+  - !Component # Column readout (ADC)
     name: column_readout
     <<<: *output_processing_stage
     subclass: column_readout
@@ -140,7 +140,7 @@ architecture:
 
     # Input drivers + DAC feed inputs onto the rows of the crossbar
 
-  - !Element # Input drivers (DAC)
+  - !Component # Input drivers (DAC)
     name: input_drivers
     <<<: *input_processing_stage
     subclass: raella_dac
@@ -163,9 +163,9 @@ architecture:
     spatial: {meshX: N_COLUMNS}
     constraints:
       # Allow input multicast between columns
-      spatial: {no_multicast_no_reduction: [Outputs, Weights]} 
+      spatial: {no_reuse: [Outputs, Weights]} 
 
-  - !Element # Psubbuf to capture & buffer analog column sums
+  - !Component # Psubbuf to capture & buffer analog column sums
     name: timely_psubbuf
     <<<: *output_processing_stage
     subclass: timely_psubbuf
@@ -177,7 +177,7 @@ architecture:
     <<<: *container_with_default_spatial_constraints
     spatial: {meshX: N_ACCUM_GROUPS}
 
-  - !Element # inter_col_analog_inputs: Dummy to catch analog reads
+  - !Component # inter_col_analog_inputs: Dummy to catch analog reads
     # After inputs are converted, they are analog and read by all columns. This
     # dummy catches all those reads. It also enforces 1-input-per-row with its
     # depth constraint.
@@ -195,10 +195,10 @@ architecture:
     constraints:
       spatial: 
         no_iteration_over_dataspaces: [Outputs]
-        no_multicast_no_reduction: [Inputs, Weights] # Allow output reduction
+        no_reuse: [Inputs, Weights] # Allow output reduction
         factors: [L=1]# Also don't iterate over weight bits
 
-  - !Element # PIM Cell: Base memory in the CIM unit.
+  - !Component # PIM Cell: Base memory in the CIM unit.
     name: pim_cell
     <<<: *default_buffer
     subclass: memory_cell
@@ -228,9 +228,9 @@ architecture:
       spatial:
         factors_only: [I=DAC_RESOLUTION, L=CIM_UNIT_WIDTH_BITS, T=0] # 0 = All
         permutation: *vars
-        no_multicast_no_reduction: []
+        no_reuse: []
         split: 999
 
-  - !Element
+  - !Component
     name: virtual_bitwise_mac
     class: free_mac # free mac

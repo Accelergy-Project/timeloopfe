@@ -91,6 +91,7 @@ architecture:
 # The following constraints are limitations of the hardware architecture and dataflow
 #
 architecture_constraints:
+  version: 0.4
   targets:
     # certain buffer only stores certain datatypes
     - target: PEWeightRegs

@@ -31,6 +31,7 @@ architecture:
 
 
 sparse_optimizations:
+  version: 0.4
   targets:
     - name: Buffer            # component name in architecture
       action_optimization:    # keyword for *explicit* storage level optimization

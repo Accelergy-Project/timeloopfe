@@ -6,7 +6,7 @@ architecture:
     attributes:
       technology: "45nm"
 
-  - !Element
+  - !Component
     name: DRAM
     class: DRAM
     attributes:
@@ -33,7 +33,7 @@ architecture:
               - format: RLE
                 flattened_rankIDs: [ [P, M, N, Q] ]
 
-  - !Element
+  - !Component
     name: shared_glb
     class: storage
     subclass: smartbuffer_metadata
@@ -78,7 +78,7 @@ architecture:
 
   - !Parallel # Input/Output/Weight scratchpads in parallel
     nodes:
-    - !Element
+    - !Component
       name: ifmap_spad
       class: storage
       subclass: smartbuffer
@@ -95,7 +95,7 @@ architecture:
           permutation: [N, M, C, P, Q, R, S]
           factors: [M=1, C=1, P=1, Q=1, R=1, S=1]
 
-    - !Element
+    - !Component
       name: weights_spad
       class: storage
       subclass: smartbuffer
@@ -118,7 +118,7 @@ architecture:
               - target: Weights
                 condition_on: [ Inputs ]
 
-    - !Element
+    - !Component
       name: psum_spad
       class: storage
       subclass: smartbuffer
@@ -133,7 +133,7 @@ architecture:
           permutation: [N, C, P, Q, R, S, M] 
           factors: [C=1, R=1, S=1, P=1, Q=1]
 
-  - !Element
+  - !Component
     name: MACs
     class: compute
     subclass: mac
@@ -147,6 +147,7 @@ architecture:
 #
 
 mapspace_constraints:
+  version: 0.4
   targets:
     # intuitive optimization for row stationary
     # -> process a row/col of the output before going to the next one

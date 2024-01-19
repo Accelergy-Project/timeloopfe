@@ -7,7 +7,7 @@ architecture:
   - !Container # Top-level system
     name: system
 
-  - !Element # DRAM main memory
+  - !Component # DRAM main memory
     name: DRAM
     class: DRAM
     attributes:
@@ -21,7 +21,7 @@ architecture:
     attributes:
       technology: "45nm"
 
-  - !Element # Shared global buffer
+  - !Component # Shared global buffer
     name: shared_glb
     class: smartbuffer_SRAM
     attributes:
@@ -42,7 +42,7 @@ architecture:
         split: 1
         factors: [R=1, S=1, P=1, Q=1]
 
-  - !Element # PE Scratchpad
+  - !Component # PE Scratchpad
     name: pe_spad
     class: smartbuffer_SRAM
     attributes:
@@ -56,7 +56,7 @@ architecture:
 
   - !Parallel # Register for each data type
     nodes:
-    - !Element # Weight register
+    - !Component # Weight register
       name: weight_reg
       class: reg_storage
       attributes:
@@ -67,7 +67,7 @@ architecture:
         dataspace: {keep: [Weights]}
         temporal: {factors: [R=1, S=1, M=1, C=1]}
 
-    - !Element # Input activation register
+    - !Component # Input activation register
       name: input_activation_reg
       class: reg_storage
       attributes:
@@ -78,7 +78,7 @@ architecture:
         dataspace: {keep: [Inputs]}
         temporal: {factors: [P=1, Q=1, C=1, N=1]}
 
-    - !Element # Output activation register
+    - !Component # Output activation register
       name: output_activation_reg
       class: reg_storage
       attributes:
@@ -89,7 +89,7 @@ architecture:
         dataspace: {keep: [Outputs]}
         temporal: {factors: [P=1, Q=1, M=1, N=1]}
 
-  - !Element # MAC unit
+  - !Component # MAC unit
     name: mac
     class: intmac
     attributes:

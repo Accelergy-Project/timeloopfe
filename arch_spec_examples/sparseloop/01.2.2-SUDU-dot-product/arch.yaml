@@ -6,7 +6,7 @@ architecture:
     attributes:           # global attributes shared by entire subtree
       technology: "45nm"
 
-  - !Element
+  - !Component
     name: Buffer
     class: storage    # class is either "storage" or "compute"
     subclass: regfile # detailed hardware implementation class
@@ -27,7 +27,7 @@ architecture:
           options:
           - target: Z
             condition_on: [ A ]
-  - !Element
+  - !Component
     name: MAC
     class: compute
     subclass: intmac

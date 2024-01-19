@@ -1,4 +1,5 @@
 constraints:
+  version: 0.4
   targets:
     - type: dataspace
       target: Hier_A
@@ -8,6 +9,7 @@ constraints:
       keep: [dataspace_B]
 
 constraints_II:
+  version: 0.4
   targets:
     - type: dataspace
       target: Hier_A
@@ -17,6 +19,7 @@ constraints_II:
       bypass: [dataspace_A]
 
 constraints_III:
+  version: 0.4
   targets:
     - type: dataspace
       target: Hier_A

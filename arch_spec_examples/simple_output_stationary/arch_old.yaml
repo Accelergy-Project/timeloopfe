@@ -83,6 +83,7 @@ architecture:
 #
 
 architecture_constraints:
+  version: 0.4
   targets:
     #  pe spad only stored outputs
     - target: pe_spad

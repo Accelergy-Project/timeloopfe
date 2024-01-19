@@ -7,7 +7,7 @@ architecture:
   - !Container # Top-level system
     name: system
 
-  - !Element # DRAM main memory
+  - !Component # DRAM main memory
     name: DRAM
     class: DRAM
     attributes:
@@ -21,7 +21,7 @@ architecture:
     attributes:
       technology: "45nm"
 
-  - !Element # Shared global buffer
+  - !Component # Shared global buffer
     name: shared_glb
     class: smartbuffer_SRAM
     attributes:
@@ -37,7 +37,7 @@ architecture:
     name: PE
     spatial: {meshX: 16, meshY: 16}
 
-  - !Element # PE Scratchpad
+  - !Component # PE Scratchpad
     name: pe_spad
     class: smartbuffer_SRAM
     attributes:
@@ -48,7 +48,7 @@ architecture:
 
   - !Parallel # Register for each data type
     nodes:
-    - !Element # Weight register
+    - !Component # Weight register
       name: weight_reg
       class: reg_storage
       attributes:
@@ -56,7 +56,7 @@ architecture:
         width: 16           # width in bits
         datawidth: 16
 
-    - !Element # Input activation register
+    - !Component # Input activation register
       name: input_activation_reg
       class: reg_storage
       attributes:
@@ -64,7 +64,7 @@ architecture:
         width: 16           # width in bits
         datawidth: 16
 
-    - !Element # Output activation register
+    - !Component # Output activation register
       name: output_activation_reg
       class: reg_storage
       attributes:
@@ -72,7 +72,7 @@ architecture:
         width: 16           # width in bits
         datawidth: 16
 
-  - !Element # MAC unit
+  - !Component # MAC unit
     name: mac
     class: intmac
     attributes:
@@ -83,6 +83,7 @@ architecture:
 #
 
 constraints:
+  version: 0.4
   targets:
     # pe spad only stored weights
     - target: pe_spad

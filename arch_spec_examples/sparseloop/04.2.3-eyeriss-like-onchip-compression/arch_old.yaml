@@ -108,6 +108,7 @@ architecture:
 
 
 sparse_optimizations:
+  version: 0.4
   targets:
     - name: DRAM
       representation_format:
@@ -155,6 +156,7 @@ sparse_optimizations:
                 flattened_rankIDs: [ [R, S, P, C, M, N, Q] ]
 
 architecture_constraints:
+  version: 0.4
   targets:
   # certain buffer only stores certain datatypes
   - target: psum_spad

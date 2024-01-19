@@ -6,7 +6,7 @@ architecture:
     attributes:           # global attributes shared by entire subtree
       technology: "45nm"
 
-  - !Element
+  - !Component
     name: Buffer
     class: storage    # class is either "storage" or "compute"
     subclass: regfile # detailed hardware implementation class
@@ -18,7 +18,7 @@ architecture:
       read_bandwidth: 3
       write_bandwidth: 1
 
-  - !Element
+  - !Component
     name: MAC
     class: compute
     subclass: intmac
@@ -26,6 +26,7 @@ architecture:
       datawidth: 8
 
 sparse_optimizations:
+  version: 0.4
   targets:
     - target: Buffer            # component name in architecture
       action_optimization:    # keyword for *explicit* storage level optimization

@@ -6,7 +6,7 @@ architecture:
     attributes:
       technology: "45nm"
 
-  - !Element
+  - !Component
     name: DRAM
     class: DRAM
     attributes:
@@ -18,7 +18,7 @@ architecture:
       metadata_block_size: 12
 
 
-  - !Element
+  - !Component
     name: shared_glb
     class: storage
     subclass: smartbuffer_metadata
@@ -63,7 +63,7 @@ architecture:
 
   - !Parallel # Input/Output/Weight scratchpads in parallel
     nodes:
-    - !Element
+    - !Component
       name: ifmap_spad
       class: storage
       subclass: smartbuffer
@@ -84,7 +84,7 @@ architecture:
           permutation: [N, M, C, P, Q, R, S]
           factors: [N=1, M=1, C=1, P=1, Q=1, R=1, S=1]
 
-    - !Element
+    - !Component
       name: weights_spad
       class: storage
       subclass: smartbuffer
@@ -101,7 +101,7 @@ architecture:
           permutation: [N, M, P, Q, S, C, R]
           factors: [N=1, M=1, P=1, Q=1, S=1]
 
-    - !Element
+    - !Component
       name: psum_spad
       class: storage
       subclass: smartbuffer
@@ -116,7 +116,7 @@ architecture:
           permutation: [N, C, P, Q, R, S, M] 
           factors: [N=1, C=1, R=1, S=1, P=1, Q=1]
 
-  - !Element
+  - !Component
     name: MACs
     class: compute
     subclass: mac
@@ -125,6 +125,7 @@ architecture:
 
 
 sparse_optimizations:
+  version: 0.4
   targets:
     - target: DRAM
       representation_format:

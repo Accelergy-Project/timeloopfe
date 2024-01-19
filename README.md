@@ -10,8 +10,6 @@ rigorous type-checking and is fully extensible.
 
 
 ## Native Install
-IMPORTANT: Native install currently uses an in-development branch of Timeloop that was created pre-looptree.
-
 This install will:
 - Install timeloop_model and timeloop_mapper on your system. This will NOT
   interfere with the existing timeloop-model and timeloop-mapper installations.

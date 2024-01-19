@@ -1,22 +1,27 @@
 import os
 import unittest
-from timeloopfe.processors.v4suite.constraint_attacher import (
+from timeloopfe.v4.processors.constraint_attacher import (
     ConstraintAttacherProcessor,
 )
-from timeloopfe.processors.processor import Processor
-from timeloopfe.parsing.nodes import NodeException
-from timeloopfe.v4spec.specification import Specification
-from timeloopfe.v4spec.arch import (
-    Element,
+from timeloopfe.common.processor import Processor
+from timeloopfe.common.nodes import ParseError
+from timeloopfe.v4.specification import Specification
+from timeloopfe.v4.arch import (
+    Component,
     Hierarchical,
     Leaf,
     Storage,
     StorageAttributes,
 )
-from timeloopfe.v4spec.constraints import Temporal
-from timeloopfe.processors.v4suite.references2copies import (
+from timeloopfe.v4.constraints import Temporal
+from timeloopfe.v4.processors import (
+    Dataspace2BranchProcessor,
     References2CopiesProcessor,
 )
+
+from timeloopfe.common import ParseError, ProcessorError
+
+import timeloopfe.v4 as tl
 
 
 class NodeTest(unittest.TestCase):
@@ -29,57 +34,103 @@ class NodeTest(unittest.TestCase):
 
     def test_missing_key(self):
         with self.assertRaises((KeyError)):
-            Element({"name": "test"})
+            Component({"name": "test"})
 
     def test_extra_key(self):
-        with self.assertRaises(ValueError):
-            Element({"name": "test", "class": "storage", "extra": "abc"})
+        with self.assertRaises(ParseError):
+            Component(
+                {"name": "test", "class": "storage", "extra": "abc"}
+            ).check_unrecognized()
 
     def test_unrecognized_tag(self):
         class Tagged:
             pass
 
-        with self.assertRaises((KeyError, ValueError, NodeException)):
-            Hierarchical(nodes=[Tagged()])
+        with self.assertRaises((KeyError, ValueError, ParseError)):
+            Hierarchical(nodes=[Tagged()]).check_unrecognized()
 
     def test_unrecognized_type_tag(self):
         class Tagged:
             pass
 
         x = Tagged()
-        x.tag = "!Element"
+        x.tag = "!Component"
         with self.assertRaises(TypeError):
             y = Hierarchical()
             y.nodes.append(x)
             y.check_unrecognized()
 
     def test_unrecognized_type_key(self):
-        with self.assertRaises(((TypeError, NodeException))):
-            Element({"name": 32, "class": "storage"})
+        with self.assertRaises(((TypeError, ParseError))):
+            Component({"name": 32, "class": "storage"}).check_unrecognized()
 
     def test_should_have_been_removed_by(self):
         class Test(Processor):
-            def init_elems(self):
-                with self.responsible_for_removing_elems():
-                    Element.init_elem("for_testing_ignoreme", str, "")
+            def declare_attrs(self):
+                super().add_attr(Component, "for_testing_ignoreme", str, "")
 
-            def process(self):
-                for e in self.spec.get_nodes_of_type(Element):
+            def process(self, spec: Specification):
+                for e in spec.get_nodes_of_type(Component):
+                    print(f"Checking {e.name} {e.__class__.__name__}")
                     e.pop("for_testing_ignoreme", None)
 
         spec = self.get_spec(processors=[Test])
-        spec.architecture.nodes.append(
-            Element(
-                {"name": ".", "class": "storage", "for_testing_ignoreme": "."}
-            )
+        spec.architecture.nodes.insert(
+            0, Component({"name": ".", "class": "storage", "for_testing_ignoreme": "."})
         )
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ProcessorError):
             spec.check_unrecognized()
         spec.process()
+        spec._required_processors.remove(Dataspace2BranchProcessor)
+        spec.process(spec._required_processors)
         spec.check_unrecognized()
 
+    def test_should_have_been_removed_by_multi_spec(self):
+        class Test(Processor):
+            def declare_attrs(self):
+                super().add_attr(Component, "for_testing_ignoreme", str, "")
+
+            def process(self, spec: Specification):
+                for e in spec.get_nodes_of_type(Component):
+                    print(f"Checking {e.name} {e.__class__.__name__}")
+                    e.pop("for_testing_ignoreme", None)
+
+        def setup():
+            spec = self.get_spec(processors=[Test])
+            spec2 = self.get_spec()
+            spec.architecture.nodes.insert(
+                0,
+                Component(
+                    {"name": ".", "class": "storage", "for_testing_ignoreme": "."}
+                ),
+            )
+            spec._required_processors.remove(Dataspace2BranchProcessor)
+            spec2._required_processors.remove(Dataspace2BranchProcessor)
+            spec.process(spec._required_processors)
+            spec2.process(spec2._required_processors)
+            return spec, spec2
+
+        spec1, spec2 = setup()
+        spec2.check_unrecognized()
+        with self.assertRaises(ProcessorError):
+            spec1.check_unrecognized()
+        spec1.process()
+        spec1.check_unrecognized()
+
+        spec1, spec2 = setup()
+        with self.assertRaises(ProcessorError):
+            spec1.check_unrecognized()
+        spec1.process()
+        spec2.check_unrecognized()
+
+        spec1, spec2 = setup()
+        with self.assertRaises(ProcessorError):
+            spec1.check_unrecognized()
+        spec1.process()
+        spec2.check_unrecognized()
+
     def test_repeated_key_error(self):
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ParseError):
             spec = self.get_spec("repeated_key_error.yaml")
 
     def test_multi_list_constraints(self):
@@ -109,12 +160,8 @@ class NodeTest(unittest.TestCase):
                     set(node.constraints.dataspace.keep), set(["dataspace_B"])
                 )
             else:
-                self.assertSetEqual(
-                    set(node.constraints.dataspace.bypass), set()
-                )
-                self.assertSetEqual(
-                    set(node.constraints.dataspace.keep), set()
-                )
+                self.assertSetEqual(set(node.constraints.dataspace.bypass), set())
+                self.assertSetEqual(set(node.constraints.dataspace.keep), set())
 
     def test_repeated_node_init(self):
         t1 = Temporal(factors="A=1 B=2 C=3")
@@ -122,31 +169,25 @@ class NodeTest(unittest.TestCase):
         self.assertEqual(t1, t2)
 
     def test_dash_alias_errors(self):
-        x = Temporal(no_temporal_reuse=[])
+        x = Temporal(no_reuse=[])
         with self.assertRaises(KeyError):
-            x["no-temporal-reuse"] = []
+            x["no-reuse"] = []
         with self.assertRaises(KeyError):
-            x.get("no-temporal-reuse", None)
+            x.get("no-reuse", None)
         with self.assertRaises(KeyError):
-            x.pop("no-temporal_reuse", None)
+            x.pop("no-reuse", None)
         with self.assertRaises(KeyError):
-            x.pop("no_temporal-reuse", None)
-        with self.assertRaises(KeyError):
-            x.setdefault("no-temporal-reuse", [])
+            x.setdefault("no-reuse", [])
 
     def test_multi_require_exactly_one(self):
-        x = StorageAttributes(
-            datawidth=5, depth=5, width=5, block_size=5, technology=5
-        )
+        x = StorageAttributes(datawidth=5, depth=5, width=5, block_size=5, technology=5)
         x.check_unrecognized()
         with self.assertRaises(KeyError):
             x.cluster_size = 5
             x.check_unrecognized()
 
     def test_multi_require_all_or_none_of(self):
-        x = StorageAttributes(
-            datawidth=5, depth=5, width=5, block_size=5, technology=5
-        )
+        x = StorageAttributes(datawidth=5, depth=5, width=5, block_size=5, technology=5)
         x.check_unrecognized()
         x.metadata_block_size = 1
         x.metadata_datawidth = 1
@@ -156,3 +197,11 @@ class NodeTest(unittest.TestCase):
         with self.assertRaises(KeyError):
             x.metadata_block_size = None
             x.check_unrecognized()
+
+    def get_property_table(self):
+        tl.doc.get_property_table(Specification)
+        tl.doc.get_property_table(Component)
+
+    def get_property_tree(self):
+        tl.doc.get_property_table(Specification)
+        tl.doc.get_property_table(Component)

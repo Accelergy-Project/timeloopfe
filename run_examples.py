@@ -3,7 +3,7 @@ import sys
 import logging
 import timeloopfe as tl
 import timeloopfe.v4spec as v4spec
-from timeloopfe.processors.v4_standard_suite import EnableDummyTableProcessor
+from timeloopfe.v4.processors import EnableDummyTableProcessor
 
 
 if __name__ == "__main__":
@@ -32,14 +32,15 @@ if __name__ == "__main__":
     }
 
     CHOICE = 0 if len(sys.argv) < 2 else int(sys.argv[1])
-    SPLIT = True
+    SPLIT = False
 
     assert (
         CHOICE in OPTIONS
     ), f'Invalid choice "{CHOICE}". Choose from {list(OPTIONS.keys())}'
 
     cinstr = "_split" if SPLIT else ""
-    TARGET = [f"{OPTIONS[CHOICE]}/arch{cinstr}", "problem", "mapper"]
+    TARGET = [f"{OPTIONS[CHOICE]}/arch{cinstr}",
+              "problem", "mapper", "variables"]
     TARGET = [os.path.join("arch_spec_examples", f"{t}.yaml") for t in TARGET]
 
     alt_prob = f"problem_{OPTIONS[CHOICE]}"

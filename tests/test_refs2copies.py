@@ -1,20 +1,18 @@
 import os
 import unittest
-from timeloopfe.processors.v4suite.constraint_attacher import (
+from timeloopfe.v4.processors.constraint_attacher import (
     ConstraintAttacherProcessor,
 )
-from timeloopfe.processors.processor import Processor
-from timeloopfe.parsing.nodes import Node, NodeException
-from timeloopfe.v4spec.specification import Specification
-from timeloopfe.v4spec.arch import Element, Hierarchical, Leaf, Parallel
-from timeloopfe.v4spec.constraints import (
+from timeloopfe.common.processor import Processor
+from timeloopfe.common.nodes import Node, ParseError
+from timeloopfe.v4.specification import Specification
+from timeloopfe.v4.arch import Component, Hierarchical, Leaf, Parallel
+from timeloopfe.v4.constraints import (
     ConstraintGroup,
     Temporal,
     Factors,
 )
-from timeloopfe.processors.v4suite.references2copies import (
-    References2CopiesProcessor,
-)
+from timeloopfe.v4.processors import References2CopiesProcessor
 
 
 class Refs2CopiesTest(unittest.TestCase):
@@ -26,7 +24,9 @@ class Refs2CopiesTest(unittest.TestCase):
         )
 
     def test_references(self):
-        spec = self.get_spec(processors=[References2CopiesProcessor])
+        spec = self.get_spec(
+            processors=[References2CopiesProcessor], preserve_references=True
+        )
         self.assertEqual(
             id(spec.architecture.nodes[5].attributes),
             id(spec.architecture.nodes[7].nodes[0].attributes),
@@ -42,7 +42,9 @@ class Refs2CopiesTest(unittest.TestCase):
         )
 
     def test_break_references(self):
-        spec = self.get_spec(processors=[References2CopiesProcessor])
+        spec = self.get_spec(
+            processors=[References2CopiesProcessor], preserve_references=True
+        )
         spec.process()
         self.assertNotEqual(
             id(spec.architecture.nodes[5]),
@@ -54,7 +56,9 @@ class Refs2CopiesTest(unittest.TestCase):
         )
 
     def test_mutate_references(self):
-        spec = self.get_spec(processors=[References2CopiesProcessor])
+        spec = self.get_spec(
+            processors=[References2CopiesProcessor], preserve_references=True
+        )
         spec.architecture.nodes[5]["attributes"]["a"] = "abc"
         p = Parallel()
         spec.architecture.nodes[6].nodes.append(p)
@@ -64,13 +68,13 @@ class Refs2CopiesTest(unittest.TestCase):
         self.assertEqual(spec.architecture.nodes[6].nodes[-1], p)
 
         # Reference
-        self.assertEqual(
-            spec.architecture.nodes[7].nodes[0]["attributes"]["a"], "abc"
-        )
+        self.assertEqual(spec.architecture.nodes[7].nodes[0]["attributes"]["a"], "abc")
         self.assertEqual(spec.architecture.nodes[7].nodes[1].nodes[-1], p)
 
     def test_mutate_broken_references(self):
-        spec = self.get_spec(processors=[References2CopiesProcessor])
+        spec = self.get_spec(
+            processors=[References2CopiesProcessor], preserve_references=True
+        )
         spec.process()
         spec.architecture.nodes[5]["attributes"]["a"] = "abc"
         p = Parallel()
@@ -81,13 +85,13 @@ class Refs2CopiesTest(unittest.TestCase):
         self.assertEqual(spec.architecture.nodes[6].nodes[-1], p)
 
         # Reference
-        self.assertNotIn(
-            "a", spec.architecture.nodes[7].nodes[0]["attributes"]
-        )
+        self.assertNotIn("a", spec.architecture.nodes[7].nodes[0]["attributes"])
         self.assertNotEqual(spec.architecture.nodes[7].nodes[1].nodes[-1], p)
 
     def test_merges(self):
-        spec = self.get_spec(processors=[References2CopiesProcessor])
+        spec = self.get_spec(
+            processors=[References2CopiesProcessor], preserve_references=True
+        )
         a, b, c = tuple(spec.architecture.nodes[x + 8] for x in range(3))
 
         self.assertEqual(a.name, "merge_A")
@@ -115,7 +119,9 @@ class Refs2CopiesTest(unittest.TestCase):
             self.assertNotIn(k, c.attributes)
 
     def test_merges_references_preserved_through_casting(self):
-        spec = self.get_spec(processors=[References2CopiesProcessor])
+        spec = self.get_spec(
+            processors=[References2CopiesProcessor], preserve_references=True
+        )
         a, b, c = tuple(spec.architecture.nodes[x + 8] for x in range(3))
         # Make sure constraints were casted
         self.assertIsInstance(a.constraints, ConstraintGroup)
@@ -125,7 +131,9 @@ class Refs2CopiesTest(unittest.TestCase):
         self.assertEqual(id(c.constraints), id(a.constraints))
 
     def test_casting_break_references(self):
-        spec = self.get_spec(processors=[References2CopiesProcessor])
+        spec = self.get_spec(
+            processors=[References2CopiesProcessor], preserve_references=True
+        )
         a, b, c = tuple(spec.architecture.nodes[x + 8] for x in range(3))
         # Make sure constraints were casted
         self.assertIsInstance(a.constraints, ConstraintGroup)

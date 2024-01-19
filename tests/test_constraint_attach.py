@@ -1,14 +1,12 @@
 import os
 import unittest
-from timeloopfe.v4spec.constraints import Temporal
-from timeloopfe.v4spec.specification import Specification
-from timeloopfe.v4spec.arch import Leaf
-from timeloopfe.processors.v4suite.constraint_attacher import (
+from timeloopfe.v4.constraints import Temporal
+from timeloopfe.v4.specification import Specification
+from timeloopfe.v4.arch import Leaf
+from timeloopfe.v4.processors.constraint_attacher import (
     ConstraintAttacherProcessor,
 )
-from timeloopfe.processors.v4suite.references2copies import (
-    References2CopiesProcessor,
-)
+from timeloopfe.v4.processors import References2CopiesProcessor
 
 
 class TestConstraintAttach(unittest.TestCase):
@@ -32,13 +30,9 @@ class TestConstraintAttach(unittest.TestCase):
         spec.process()
         for node in spec.architecture.get_nodes_of_type(Leaf):
             if node.name == "Peer_Hier_A":
-                self.assertSetEqual(
-                    set(node.constraints.temporal.factors), {"A=1"}
-                )
+                self.assertSetEqual(set(node.constraints.temporal.factors), {"A=1"})
             elif node.name == "Peer_Hier_B":
-                self.assertSetEqual(
-                    set(node.constraints.temporal.factors), {"B=1"}
-                )
+                self.assertSetEqual(set(node.constraints.temporal.factors), {"B=1"})
             else:
                 self.assertEqual(set(node.constraints.temporal.factors), set())
 
@@ -56,6 +50,4 @@ class TestConstraintAttach(unittest.TestCase):
                     set(["A=1", "B=1"]),
                 )
             else:
-                self.assertSetEqual(
-                    set(node.constraints.temporal.factors), set()
-                )
+                self.assertSetEqual(set(node.constraints.temporal.factors), set())

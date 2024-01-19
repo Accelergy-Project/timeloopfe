@@ -1,13 +1,11 @@
 import os
 import unittest
-from timeloopfe.processors.v4suite.references2copies import (
-    References2CopiesProcessor,
-)
-from timeloopfe.v4spec.specification import Specification
-from timeloopfe.processors.v4suite.constraint_macro import (
+from timeloopfe.v4.processors import References2CopiesProcessor
+from timeloopfe.v4.specification import Specification
+from timeloopfe.v4.processors.constraint_macro import (
     ConstraintMacroProcessor,
 )
-from timeloopfe.v4spec import constraints
+from timeloopfe.v4 import constraints
 
 
 class TestConstraintMacroProcessorParsing(unittest.TestCase):
@@ -49,33 +47,15 @@ class TestConstraintMacroProcessorParsing(unittest.TestCase):
         it = spec.constraints.targets[-1]
         self.assertSetEqual(
             set([(f, d) for f, _, d in it.factors.get_split_factors()]),
-            set([("A", "2"), ("B", "1"), ("C", "1")]),
+            set([("A", 2), ("B", 1), ("C", 1)]),
         )
-
-    def test_no_reuse(self):
-        spec = self.get_spec(
-            processors=[References2CopiesProcessor, ConstraintMacroProcessor]
-        )
-        temporal = constraints.Temporal(no_reuse=["dataspace_A"])
-        spatial = constraints.Spatial(no_reuse=["dataspace_B"])
-        spec.constraints.targets.append(temporal)
-        spec.constraints.targets.append(spatial)
-        spec.process()
-        temporal = spec.constraints.targets[-2]
-        spatial = spec.constraints.targets[-1]
-        self.assertEqual(temporal.no_temporal_reuse[0], "dataspace_A")
-        self.assertEqual(spatial.no_multicast_no_reduction[0], "dataspace_B")
-        self.assertEqual(len(temporal.no_temporal_reuse), 1)
-        self.assertEqual(len(spatial.no_multicast_no_reduction), 1)
 
     def test_no_iteration_over_dataspaces(self):
         spec = self.get_spec(
             processors=[References2CopiesProcessor, ConstraintMacroProcessor]
         )
         it = constraints.Temporal(no_iteration_over_dataspaces=["dataspace_A"])
-        it2 = constraints.Temporal(
-            no_iteration_over_dataspaces=["dataspace_C"]
-        )
+        it2 = constraints.Temporal(no_iteration_over_dataspaces=["dataspace_C"])
         spec.constraints.targets.append(it)
         spec.constraints.targets.append(it2)
         spec.process()

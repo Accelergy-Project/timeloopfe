@@ -1,20 +1,14 @@
 import unittest
-from timeloopfe.v4spec import constraints
+from timeloopfe.v4 import constraints
 
 
 class ConstraintTest(unittest.TestCase):
     def test_constraint_combine_dataspaces(self):
-        ds = constraints.Dataspace(
-            keep=["1", "2", "3"], bypass=["a", "b", "c"]
-        )
-        ds2 = constraints.Dataspace(
-            keep=["4", "5", "6"], bypass=["d", "e", "f"]
-        )
+        ds = constraints.Dataspace(keep=["1", "2", "3"], bypass=["a", "b", "c"])
+        ds2 = constraints.Dataspace(keep=["4", "5", "6"], bypass=["d", "e", "f"])
         ds.combine(ds2)
         self.assertSetEqual(set(ds.keep), set(["1", "2", "3", "4", "5", "6"]))
-        self.assertSetEqual(
-            set(ds.bypass), set(["a", "b", "c", "d", "e", "f"])
-        )
+        self.assertSetEqual(set(ds.bypass), set(["a", "b", "c", "d", "e", "f"]))
 
     def test_constraint_combine_factors(self):
         temporal = constraints.Temporal(factors="A=1 B=2 C=3")
@@ -22,7 +16,7 @@ class ConstraintTest(unittest.TestCase):
         temporal.combine(temporal2)
         self.assertSetEqual(
             set([(f, d) for f, _, d in temporal.factors.get_split_factors()]),
-            set([(l, str(int(i) + 1)) for i, l in enumerate("ABCDEF")]),
+            set([(l, int(i) + 1) for i, l in enumerate("ABCDEF")]),
         )
 
     def test_constraint_combine_diffprops(self):

@@ -4,9 +4,7 @@ import unittest
 import os
 
 
-from timeloopfe.v4spec.specification import Specification
-
-from timeloopfe.processors.v4_standard_suite import STANDARD_SUITE
+from timeloopfe.v4.specification import Specification
 
 PROBLEM_FILE = "problem.yaml"
 MAPPER_FILE = "mapper_quick.yaml"
@@ -41,9 +39,7 @@ class TestLoadExamples(unittest.TestCase):
             newcheck = "problem.yaml"
             problem = os.path.join(start_dir, "..", newcheck)
         if os.path.exists(os.path.join(start_dir, "..", "components")):
-            files += glob.glob(
-                os.path.join(start_dir, "..", "components/*.yaml")
-            )
+            files += glob.glob(os.path.join(start_dir, "..", "components/*.yaml"))
         files += [mapper, problem, variables]
         return (
             [os.path.join(start_dir, "arch_old.yaml")] + files,
@@ -55,7 +51,7 @@ class TestLoadExamples(unittest.TestCase):
         if new_suffix:
             f2[0] = f2[0].replace(".yaml", new_suffix + ".yaml")
 
-        spec = Specification.from_yaml_files(*f2, processors=STANDARD_SUITE)
+        spec = Specification.from_yaml_files(*f2)
         spec.process()
 
     def test_eyriss_like(self):

@@ -1,16 +1,13 @@
 import os
 import unittest
-from timeloopfe.v4spec.specification import Specification
-from timeloopfe.v4spec.arch import (
-    Element,
+from timeloopfe.v4.specification import Specification
+from timeloopfe.v4.arch import (
+    Component,
     Hierarchical,
     Parallel,
     Pipelined,
 )
-from timeloopfe.processors.v4suite.math import MathProcessor
-from timeloopfe.processors.v4suite.references2copies import (
-    References2CopiesProcessor,
-)
+from timeloopfe.v4.processors import References2CopiesProcessor
 
 
 class TestMathProcessorParsing(unittest.TestCase):
@@ -21,25 +18,21 @@ class TestMathProcessorParsing(unittest.TestCase):
         )
 
     def test_math_parsing(self):
-        spec = self.get_spec(
-            processors=[References2CopiesProcessor, MathProcessor]
-        )
+        spec = self.get_spec(processors=[References2CopiesProcessor])
         arch = spec.architecture.nodes
         arch[0].attributes["test"] = "1 + 1"
         arch[0].attributes["test2"] = "1 + known_value"
         arch[0].attributes["test3"] = "len('abcd')"
         spec.variables["known_value"] = 2
-        spec.process()
+        spec.parse_expressions()
         arch = spec.architecture.nodes
         self.assertEqual(arch[0].attributes["test"], 2)
         self.assertEqual(arch[0].attributes["test2"], 3)
         self.assertEqual(arch[0].attributes["test3"], 4)
 
     def test_math_parsing_fail(self):
-        spec = self.get_spec(
-            processors=[References2CopiesProcessor, MathProcessor]
-        )
+        spec = self.get_spec(processors=[References2CopiesProcessor])
         arch = spec.architecture.nodes
         arch[0].attributes["test"] = "intentionally invalid math. should fail."
         with self.assertRaises(SystemExit):
-            spec.process()
+            spec.parse_expressions()

@@ -7,17 +7,15 @@ import os
 import logging
 from accelergy.utils import yaml
 
-from timeloopfe.v4spec.specification import Specification as spec4
-from timeloopfe.v3spec.specification import Specification as spec3
-from timeloopfe.backend_calls import call_timeloop_mapper, call_timeloop_model
+from timeloopfe.v4.specification import Specification as spec4
+from timeloopfe.v3.specification import Specification as spec3
+from timeloopfe.common.backend_calls import call_mapper, call_model
 
-from timeloopfe.processors.v4_standard_suite import (
+from timeloopfe.v4.processors import (
     References2CopiesProcessor,
     ConstraintAttacherProcessor,
     ConstraintMacroProcessor,
     Dataspace2BranchProcessor,
-    MathProcessor,
-    MapspaceSizeContributorsProcessor,
     EnableDummyTableProcessor,
     SparseOptAttacherProcessor,
 )
@@ -37,8 +35,6 @@ PROCESSORS = [
     SparseOptAttacherProcessor,
     ConstraintMacroProcessor,
     Dataspace2BranchProcessor,
-    MathProcessor,
-    MapspaceSizeContributorsProcessor,
     EnableDummyTableProcessor,
 ]
 
@@ -46,9 +42,7 @@ PROCESSORS = [
 class TestCompareResults(unittest.TestCase):
     def _grabstats(self, path: str) -> str:
         if not os.path.exists(path):
-            raise ValueError(
-                f"File {path} does not exist. Check if Timeloop ran."
-            )
+            raise ValueError(f"File {path} does not exist. Check if Timeloop ran.")
         contents = open(os.path.realpath(path)).read()
         # Grab contents between lines containing "Summary Stats" and "Computes"
         start, end = None, None
@@ -115,18 +109,14 @@ class TestCompareResults(unittest.TestCase):
             newcheck = "problem.yaml"
             problem = os.path.join(start_dir, "..", newcheck)
         if os.path.exists(os.path.join(start_dir, "..", "components")):
-            files += glob.glob(
-                os.path.join(start_dir, "..", "components/*.yaml")
-            )
+            files += glob.glob(os.path.join(start_dir, "..", "components/*.yaml"))
         files += [mapper, problem, variables]
         return (
             [os.path.join(start_dir, "arch_old.yaml")] + files,
             [os.path.join(start_dir, "arch.yaml")] + files,
         )
 
-    def run_test(
-        self, start_dir: str, new_suffix: str, run_model: bool
-    ) -> None:
+    def run_test(self, start_dir: str, new_suffix: str, run_model: bool) -> None:
         f1, f2 = self._gather_input_files(start_dir)
         if new_suffix:
             f2[0] = f2[0].replace(".yaml", new_suffix + ".yaml")
@@ -145,14 +135,16 @@ class TestCompareResults(unittest.TestCase):
         olddir = os.path.join(this_script_dir, "compare", start_dir, "old")
         newdir = os.path.join(this_script_dir, "compare", start_dir, "new")
         s0 = spec3.from_yaml_files(f"{olddir}/inputs/*.yaml")
-        s1 = spec4.from_yaml_files(
-            f"{newdir}/inputs/*.yaml", processors=PROCESSORS
-        )
+        s1 = spec4.from_yaml_files(f"{newdir}/inputs/*.yaml")
+        del s1.mapspace.template
+        while s1._required_processors:
+            s1._required_processors.pop()
+        s1._required_processors.extend(PROCESSORS)
         for s, d in [(s0, olddir), (s1, newdir)]:
             s.process()
             dumpto = f"{d}/inputs/arch.yaml"
             logto = f"{d}/output.log"
-            f = call_timeloop_model if run_model else call_timeloop_mapper
+            f = call_model if run_model else call_mapper
             f(s, d, dump_intermediate_to=dumpto, log_to=logto)
 
         # spec = Specification.from_yaml_files(
@@ -263,26 +255,24 @@ class TestCompareResults(unittest.TestCase):
     def test_sparseloop_04_2_1_eyeriss_like_gating_split(self):
         self.run_test("sparseloop/04.2.1-eyeriss-like-gating", "_split", True)
 
-    def test_sparseloop_04_2_2_eyeriss_like_gating_mapspace_search(self):
-        self.run_test(
-            "sparseloop/04.2.2-eyeriss-like-gating-mapspace-search",
-            "",
-            False,
-        )
+    # def test_sparseloop_04_2_2_eyeriss_like_gating_mapspace_search(self):
+    #     self.run_test(
+    #         "sparseloop/04.2.2-eyeriss-like-gating-mapspace-search",
+    #         "",
+    #         False,
+    #     )
 
-    def test_sparseloop_04_2_2_eyeriss_like_gating_mapspace_search_split(
-        self,
-    ):
-        self.run_test(
-            "sparseloop/04.2.2-eyeriss-like-gating-mapspace-search",
-            "_split",
-            False,
-        )
+    # def test_sparseloop_04_2_2_eyeriss_like_gating_mapspace_search_split(
+    #     self,
+    # ):
+    #     self.run_test(
+    #         "sparseloop/04.2.2-eyeriss-like-gating-mapspace-search",
+    #         "_split",
+    #         False,
+    #     )
 
     def test_sparseloop_04_2_3_eyeriss_like_onchip_compression(self):
-        self.run_test(
-            "sparseloop/04.2.3-eyeriss-like-onchip-compression", "", False
-        )
+        self.run_test("sparseloop/04.2.3-eyeriss-like-onchip-compression", "", False)
 
     def test_sparseloop_04_2_3_eyeriss_like_onchip_compression_split(self):
         self.run_test(

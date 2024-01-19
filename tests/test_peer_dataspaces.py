@@ -1,25 +1,23 @@
 import logging
 import os
 import unittest
-from timeloopfe.processors.v4suite.constraint_attacher import (
+from timeloopfe.v4.processors.constraint_attacher import (
     ConstraintAttacherProcessor,
 )
-from timeloopfe.processors.v4suite.dataspace2branch import (
+from timeloopfe.v4.processors.dataspace2branch import (
     Dataspace2BranchProcessor,
 )
-from timeloopfe.v4spec.specification import Specification
-from timeloopfe.v4spec.arch import (
+from timeloopfe.v4.specification import Specification
+from timeloopfe.v4.arch import (
     ArchNodes,
     Hierarchical,
     Leaf,
     Parallel,
     Nothing,
 )
-from timeloopfe.v4spec.constraints import Dataspace, ProblemDataspaceList
+from timeloopfe.v4.constraints import Dataspace, ProblemDataspaceList
 from typing import Tuple, Union
-from timeloopfe.processors.v4suite.references2copies import (
-    References2CopiesProcessor,
-)
+from timeloopfe.v4.processors import References2CopiesProcessor
 
 
 class PeerDataspaceTest(unittest.TestCase):

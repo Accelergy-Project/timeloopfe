@@ -4,18 +4,15 @@ import unittest
 import os
 
 from accelergy.utils import yaml
-from timeloopfe.version_transpilers.v4to3 import transpile
+from timeloopfe.version_transpilers.v4_to_v3 import transpile
 
-from timeloopfe.v4spec.specification import Specification
+from timeloopfe.v4.specification import Specification
 
-from timeloopfe.processors.v4_standard_suite import (
+from timeloopfe.v4.processors import (
     References2CopiesProcessor,
-    VariablesFromCLIProcessor,
     ConstraintMacroProcessor,
     ConstraintAttacherProcessor,
     Dataspace2BranchProcessor,
-    MathProcessor,
-    MapspaceSizeContributorsProcessor,
     EnableDummyTableProcessor,
 )
 
@@ -61,9 +58,7 @@ class TestCompareResults(unittest.TestCase):
         if raw_inputs is None:
             raw_inputs = os.path.join(start_dir, "arch.yaml")
         if preproces_inputs is None:
-            preproces_inputs = os.path.join(
-                start_dir, "arch_new_constraints_in.yaml"
-            )
+            preproces_inputs = os.path.join(start_dir, "arch_new_constraints_in.yaml")
         start_dir += extra
 
         if isinstance(raw_inputs, str):
@@ -77,7 +72,6 @@ class TestCompareResults(unittest.TestCase):
             ConstraintAttacherProcessor,
             Dataspace2BranchProcessor,
             MathProcessor,
-            MapspaceSizeContributorsProcessor,
             EnableDummyTableProcessor,
         ]
 
@@ -91,9 +85,7 @@ class TestCompareResults(unittest.TestCase):
             for i in raw_inputs + [problem, MAPPER_FILE]
         ]
 
-        ppdir = os.path.join(
-            this_script_dir, "compare", start_dir, "preprocessed"
-        )
+        ppdir = os.path.join(this_script_dir, "compare", start_dir, "preprocessed")
         rawdir = os.path.join(this_script_dir, "compare", start_dir, "raw")
         ppdir = os.path.abspath(ppdir)
         rawdir = os.path.abspath(rawdir)
@@ -107,13 +99,9 @@ class TestCompareResults(unittest.TestCase):
             shutil.copy(f, os.path.join(rawdir, "inputs"))
 
         # Run the preprocdataspacesor
-        spec = Specification.from_yaml_files(
-            *preproces_inputs, processors=processors
-        )
+        spec = Specification.from_yaml_files(*preproces_inputs, processors=processors)
         spec.process()
-        yaml.write_yaml_file(
-            os.path.join(ppdir, "inputs/arch.yaml"), transpile(spec)
-        )
+        yaml.write_yaml_file(os.path.join(ppdir, "inputs/arch.yaml"), transpile(spec))
 
         t1 = threading.Thread(target=self.run_timeloop, args=(ppdir,))
         t2 = threading.Thread(target=self.run_timeloop, args=(rawdir,))
@@ -129,12 +117,8 @@ class TestCompareResults(unittest.TestCase):
             "Spatial",
             "DatatypeBypass",
         ]
-        o1 = [
-            (i, l) for i, l in enumerate(o1) if any(h in l for h in headings)
-        ]
-        o2 = [
-            (i, l) for i, l in enumerate(o2) if any(h in l for h in headings)
-        ]
+        o1 = [(i, l) for i, l in enumerate(o1) if any(h in l for h in headings)]
+        o2 = [(i, l) for i, l in enumerate(o2) if any(h in l for h in headings)]
         for (i1, l1), (i2, l2) in zip(o1, o2):
             self.assertEqual(
                 l1,

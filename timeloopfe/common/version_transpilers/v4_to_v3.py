@@ -64,6 +64,8 @@ def transpile(spec: Specification, for_model: bool = False):
 
         has_power_gating = attrs.get("has_power_gating", False)
 
+        to_place = [node]
+
         if is_container or has_fanout:
             if is_parallel:
                 if is_container:
@@ -79,6 +81,7 @@ def transpile(spec: Specification, for_model: bool = False):
 
             next_meshX *= spatial.get("meshX", 1)
             next_meshY *= spatial.get("meshY", 1)
+
             if has_fanout:
                 logging.debug("Adding dummy for %s", node.get_name())
                 dummy_name = f"inter_{node.name}_spatial_dummy"
@@ -91,48 +94,61 @@ def transpile(spec: Specification, for_model: bool = False):
                 # dummy.spatial = node.spatial
                 logging.debug("Dummy name is %s", dummy.get_name())
                 # dummy.attributes = node.attributes
-                node = dummy
 
-            node.clean_empties()
-            attrs.clean_empties()
+            if has_fanout:
+                to_place = [dummy]
+            if not is_container:
+                to_place.append(node)
+                node.constraints.spatial = None
+            for n in to_place:
+                n.clean_empties()
+                if n.get("attrs", None) is not None:
+                    n.get("attrs").clean_empties()
 
-        if not (isinstance(node, arch.Container)):
-            node.clean_empties()
-            if "spatial" in node:
-                del node.spatial
-            local.append(node)
-            if "constraints" in node:
-                logging.debug("Adding constraints for %s", node.get_name())
-                for k, v in node.constraints.items():
-                    v["type"] = k
-                    v["target"] = node.name
-                    logging.debug("Adding constraint %s for %s", v["type"], v["target"])
-                    constraint_list.append(v)
-                    if "permutation" in v:
-                        v["permutation"] = "".join(v["permutation"])
-                node.pop("constraints")
-            if "sparse_optimizations" in node:
-                sparse_opt_list.append(node.pop("sparse_optimizations"))
-                sparse_opt_list[-1]["name"] = node.name
-            attrs = node.setdefault("attributes", Attributes())
-            attrs["meshX"] = meshX
-            attrs["meshY"] = meshY
-            for k, v in arch_attrs.items():
-                if k not in attrs:
-                    attrs[k] = v
-            if not isinstance(node, arch.Network):
-                node.name += f"[1..{meshX*meshY}]"
+        for node in to_place:
+            attrs = node.get("attributes", {})
+            if not (isinstance(node, arch.Container)):
+                node.clean_empties()
+                if "spatial" in node:
+                    del node.spatial
+                local.append(node)
+                if "constraints" in node:
+                    logging.debug("Adding constraints for %s", node.get_name())
+                    for k, v in node.constraints.items():
+                        v["type"] = k
+                        v["target"] = node.name
+                        logging.debug(
+                            "Adding constraint %s for %s", v["type"], v["target"]
+                        )
+                        constraint_list.append(v)
+                        if "permutation" in v:
+                            v["permutation"] = "".join(v["permutation"])
+                    node.pop("constraints")
+                if "sparse_optimizations" in node:
+                    sparse_opt_list.append(node.pop("sparse_optimizations"))
+                    sparse_opt_list[-1]["name"] = node.name
+                attrs = node.setdefault("attributes", Attributes())
+                attrs["meshX"] = meshX
+                attrs["meshY"] = meshY
+                for k, v in arch_attrs.items():
+                    if k not in attrs:
+                        attrs[k] = v
+                if not isinstance(node, arch.Network):
+                    node.name += f"[1..{meshX*meshY}]"
 
-                if add_power_gate_next:
-                    cur_power_gating = node.name.split("[")[0]
-                add_power_gate_next = has_power_gating
+                    if add_power_gate_next:
+                        cur_power_gating = node.name.split("[")[0]
+                    add_power_gate_next = has_power_gating
 
-        attrs.setdefault(
-            "power_gated_at",
-            ruamel.yaml.scalarstring.DoubleQuotedScalarString(
-                cur_power_gating or node.name.split("[")[0]
-            ),
-        )
+            attrs.setdefault(
+                "power_gated_at",
+                ruamel.yaml.scalarstring.DoubleQuotedScalarString(
+                    cur_power_gating or node.name.split("[")[0]
+                ),
+            )
+            meshX *= int(next_meshX)
+            meshY *= int(next_meshY)
+            next_meshX, next_meshY = 1, 1
 
     if not level["subtree"]:
         del level["subtree"]

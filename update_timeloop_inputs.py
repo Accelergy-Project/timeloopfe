@@ -81,6 +81,11 @@ CHANGES = [
     "timeloop_unit_tests",
 ]
 
+FILE_NAME_CHANGES = [
+    "timeloop_model.py",
+    "timeloop_mapper.py",
+]
+
 
 def recursive_find_files(path, targets):
     # Change this to glob.glob() if you want to use wildcards
@@ -99,15 +104,23 @@ def replace_in_file(file, changes, write=False):
     changed_lines = []
     for i, l in enumerate(lines):
         for v in changes:
-            regex = r"(?<!-)\b{}\b(?!-)(?!\.hpp)(?!\.cpp)".format(
-                v.replace("_", "-")
-            )
+            regex = r"(?<!-)\b{}\b(?!-)(?!\.hpp)(?!\.cpp)".format(v.replace("_", "-"))
             lines[i] = re.sub(regex, v, lines[i])
         if l != lines[i]:
             changed_lines.append((i, l, lines[i]))
     if write:
         open(file, "w").write("".join(lines))
     return changed_lines
+
+
+def replace_in_file_name(file, changes, write=False):
+    new_file = file
+    for v in changes:
+        regex = r"(?<!-)\b{}\b(?!-)".format(v.replace("_", "-"))
+        new_file = re.sub(regex, v, new_file)
+    if write:
+        os.rename(file, new_file)
+    return new_file
 
 
 if __name__ == "__main__":
@@ -132,6 +145,9 @@ if __name__ == "__main__":
     ]
     files = list(recursive_find_files(start_dir, FILE_TARGETS))
     files_with_changes = [f for f in files if replace_in_file(f, CHANGES)]
+    files_with_name_changes = [
+        f for f in files if replace_in_file_name(f, FILE_NAME_CHANGES) != f
+    ]
 
     def fullpath(x):
         return os.path.abspath(os.path.realpath(os.path.expanduser(x)))
@@ -155,12 +171,20 @@ if __name__ == "__main__":
                 ]
             )
         )
+    for f in files_with_name_changes:
+        print(
+            f"Found file {f} with name change to {replace_in_file_name(f, FILE_NAME_CHANGES)}"
+        )
 
-    print(f"Found {len(files_with_changes)} files with changes.")
+    print(
+        f"Found {len(files_with_changes) + len(files_with_name_changes)} files with changes."
+    )
     print(f'If you want to write changes, enter "YES": ')
     if input() == "YES":
         for f in files_with_changes:
             replace_in_file(f, CHANGES, write=True)
+        for f in files_with_name_changes:
+            replace_in_file_name(f, FILE_NAME_CHANGES, write=True)
         print("Changes written")
     else:
         print(f"Aborted. No changes written.")

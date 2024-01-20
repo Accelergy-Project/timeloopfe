@@ -192,7 +192,14 @@ class ConstraintMacroProcessor(Processor):
                 debug_message(ds, "no_iteration_over_dataspaces")
                 dataspaces = [prob_shape.name2dataspace(d) for d in ds]
                 constraint.factors.combine(  # type: ignore
-                    Factors(list(f"{f}=1" for d in dataspaces for f in d.factors))
+                    Factors(
+                        list(
+                            f"{f}=1"
+                            for d in dataspaces
+                            for f in d.factors
+                            if f in spec.problem.shape.dimensions
+                        )
+                    )
                 )
             if (ds := constraint.pop("must_iterate_over_dataspaces", None)) is not None:
                 debug_message(ds, "must_iterate_over_dataspaces")
@@ -203,7 +210,13 @@ class ConstraintMacroProcessor(Processor):
                 notfactors = set(prob_dimensions) - allfactors
 
                 constraint.factors.combine(  # type: ignore
-                    Factors(list(f"{f}=1" for f in notfactors))
+                    Factors(
+                        list(
+                            f"{f}=1"
+                            for f in notfactors
+                            if f in spec.problem.shape.dimensions
+                        )
+                    )
                 )
 
         for constraint in spec.get_nodes_of_type(Dataspace):

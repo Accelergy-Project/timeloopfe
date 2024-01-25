@@ -33,6 +33,8 @@ def transpile(spec: Specification, for_model: bool = False):
 
     next_meshX, next_meshY = 1, 1
 
+    first_node = True
+
     while stack:
         meshX *= int(next_meshX)
         meshY *= int(next_meshY)
@@ -65,6 +67,13 @@ def transpile(spec: Specification, for_model: bool = False):
         has_power_gating = attrs.get("has_power_gating", False)
 
         to_place = [node]
+
+                    
+        if first_node and is_container:
+            level["name"] = node.name + "_top_level"
+            level["attributes"].update(node.attributes)
+        
+        first_node = False
 
         if is_container or has_fanout:
             if is_parallel:

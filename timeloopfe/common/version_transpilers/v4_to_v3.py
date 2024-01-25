@@ -84,7 +84,7 @@ def transpile(spec: Specification, for_model: bool = False):
 
             if has_fanout:
                 logging.debug("Adding dummy for %s", node.get_name())
-                dummy_name = f"inter_{node.name}_spatial_dummy"
+                dummy_name = f"inter_{node.name}_spatial"
                 dummy = arch.dummy_storage(dummy_name)
                 dummy.constraints.combine(
                     constraints.dummy_constraints(prob, not has_fanout)

@@ -4,7 +4,7 @@ import os
 import signal
 import subprocess
 import sys
-from typing import Any, List, Optional, Dict, Union
+from typing import Any, List, Optional, Dict, Tuple, Union
 import logging
 from accelergy.utils.yaml import to_yaml_string
 import psutil
@@ -30,12 +30,54 @@ def delayed_import():
     v4_to_v3 = current_import
 
 
+def _pre_call(
+    specification: BaseSpecification,
+    output_dir: str,
+    extra_input_files: Optional[List[str]] = None,
+    for_model: bool = False,
+) -> Tuple[List[str], str]:
+    """!@brief Prepare to call Timeloop or Accelergy from Python
+    !@param specification The specification with which to call Timeloop.
+    !@param output_dir The directory to run Timeloop in.
+    !@param extra_input_files A list of extra input files to pass to Timeloop.
+    !@param for_model Whether the result is for Timeloop model or mapper
+    """
+    delayed_import()
+    specification = specification._process()
+    if specification.processors and not specification._processors_run:
+        raise RuntimeError(
+            "Specification has not been processed yet. Please call "
+            "spec.process() before calling Timeloop or Accelergy."
+        )
+
+    if isinstance(specification, v3spec.Specification):
+        input_content = to_yaml_string(specification)
+    elif isinstance(specification, v4spec.Specification):
+        input_content = v4_to_v3.transpile(specification, for_model=for_model)
+        input_content = to_yaml_string(input_content)
+    else:
+        raise TypeError(f"Can not call Timeloop with {type(specification)}")
+
+    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "inputs"), exist_ok=True)
+    with open(os.path.join(output_dir, "inputs", "input.yaml"), "w") as f:
+        f.write(input_content)
+
+    input_paths = [os.path.join(output_dir, "inputs", "input.yaml")] + (
+        extra_input_files or []
+    )
+    input_paths = [os.path.abspath(f) for f in input_paths]
+    return (
+        input_paths,
+        output_dir,
+    )
+
+
 def _call(
     call: str,
-    input_content: str,
+    input_paths: List[str],
     output_dir: str,
     environment: Optional[Dict[str, str]] = None,
-    extra_input_files: Optional[List[str]] = None,
     dump_intermediate_to: Optional[str] = None,
     log_to: Optional[str] = None,
     return_proc: bool = False,
@@ -45,7 +87,6 @@ def _call(
     !@param input_content The content of the input file.
     !@param output_dir The directory to run Timeloop in.
     !@param environment A dictionary of environment variables to pass.
-    !@param extra_input_files A list of extra input files to pass.
     !@param dump_intermediate_to If not None, dump the input content to this
                                  file before calling.
     !@param log_to If not None, log the output of the call to this file or
@@ -58,11 +99,9 @@ def _call(
     os.makedirs(output_dir, exist_ok=True)
     if dump_intermediate_to is None:
         dump_intermediate_to = os.path.join(output_dir, f"input.yaml")
-    logging.info(f"Dumping Timeloop input data to {dump_intermediate_to}")
-    with open(dump_intermediate_to, "w") as f:
-        f.write(input_content)
-    ifiles = [dump_intermediate_to] + (extra_input_files or [])
-    ifiles = [os.path.abspath(x) for x in ifiles]
+    logging.info(f"Calling {call} with input {input_paths} and output {output_dir}")
+
+    ifiles = [os.path.abspath(x) for x in input_paths]
     for i, f in enumerate(ifiles):
         # If not quote enclosed, add quotes
         if not f.startswith('"') and not f.endswith('"'):
@@ -116,28 +155,16 @@ def call_mapper(
     !@return The return code of the call, or the subprocess.Popen object if
              return_proc is True.
     """
-    delayed_import()
-    specification = specification._process()
-    if specification.processors and not specification._processors_run:
-        raise RuntimeError(
-            "Specification has not been processed yet. Please call "
-            "spec.process() before calling Timeloop or Accelergy."
-        )
+    input_paths, output_dir = _pre_call(
+        specification, output_dir, extra_input_files, for_model=False
+    )
 
-    if isinstance(specification, v3spec.Specification):
-        input_content = to_yaml_string(specification)
-    elif isinstance(specification, v4spec.Specification):
-        input_content = v4_to_v3.transpile(specification, False)
-        input_content = to_yaml_string(input_content)
-    else:
-        raise TypeError(f"Can not call Timeloop with {type(specification)}")
     mapper = "timeloop_mapper" if not legacy_timeloop else "timeloop-mapper"
     return _call(
         mapper,
-        input_content=input_content,
+        input_paths=input_paths,
         output_dir=output_dir,
         environment=environment,
-        extra_input_files=extra_input_files,
         dump_intermediate_to=dump_intermediate_to,
         log_to=log_to,
         return_proc=return_proc,
@@ -171,28 +198,16 @@ def call_model(
     !@return The return code of the call, or the subprocess.Popen object if
              return_proc is True.
     """
-    delayed_import()
-    specification = specification._process()
-    if specification.processors and not specification._processors_run:
-        raise RuntimeError(
-            "Specification has not been processed yet. Please call "
-            "spec.process() before calling Timeloop or Accelergy."
-        )
+    input_paths, output_dir = _pre_call(
+        specification, output_dir, extra_input_files, for_model=True
+    )
 
-    if isinstance(specification, v3spec.Specification):
-        input_content = to_yaml_string(specification)
-    elif isinstance(specification, v4spec.Specification):
-        input_content = v4_to_v3.transpile(specification, True)
-        input_content = to_yaml_string(input_content)
-    else:
-        raise TypeError(f"Can not call Timeloop with {type(specification)}")
     model = "timeloop_model" if not legacy_timeloop else "timeloop-model"
     return _call(
         model,
-        input_content=input_content,
+        input_paths=input_paths,
         output_dir=output_dir,
         environment=environment,
-        extra_input_files=extra_input_files,
         dump_intermediate_to=dump_intermediate_to,
         log_to=log_to,
         return_proc=return_proc,
@@ -224,28 +239,15 @@ def call_accelergy_verbose(
     !@return The return code of the call, or the subprocess.Popen object if
              return_proc is True.
     """
-    delayed_import()
-    specification = specification._process()
-    if specification.processors and not specification._processors_run:
-        raise RuntimeError(
-            "Specification has not been processed yet. Please call "
-            "spec.process() before calling Timeloop or Accelergy."
-        )
-
-    if isinstance(specification, v3spec.Specification):
-        input_content = to_yaml_string(specification)
-    elif isinstance(specification, v4spec.Specification):
-        input_content = v4_to_v3.transpile(specification, False)
-        input_content = to_yaml_string(input_content)
-    else:
-        raise TypeError(f"Can not call Timeloop with {type(specification)}")
+    input_paths, output_dir = _pre_call(
+        specification, output_dir, extra_input_files, for_model=False
+    )
 
     return _call(
         "accelergy -v",
-        input_content=input_content,
+        input_paths=input_paths,
         output_dir=output_dir,
         environment=environment,
-        extra_input_files=extra_input_files,
         dump_intermediate_to=dump_intermediate_to,
         log_to=log_to,
         return_proc=return_proc,
@@ -297,3 +299,72 @@ def call_stop(
                 p.wait(None if max_wait_time == 0 else max_wait_time)
             except psutil.NoSuchProcess:
                 pass
+
+
+def accelergy_app(
+    specification: BaseSpecification,
+    output_dir: str,
+    extra_input_files: Optional[List[str]] = None,
+) -> "AccelergyInvocationResult":
+    """!@brief Call Accelergy from Python
+    !@param specification The specification with which to call Accelergy.
+    !@param output_dir The directory to run Accelergy in.
+    !@param extra_input_files A list of extra input files to pass to Accelergy.
+    !@return The AccelergyInvocationResult object.
+    """
+    try:
+        from pytimeloop.accelergy_interface import invoke_accelergy
+    except:
+        raise ImportError(
+            "pytimeloop is not installed. To call accelergy_app, please install pytimeloop. "
+            "Alternatively, you can use the call_accelergy_verbose function directly."
+        )
+
+    input_paths, output_dir = _pre_call(specification, output_dir, extra_input_files)
+    return invoke_accelergy(input_paths, output_dir)
+
+
+def to_mapper_app(
+    specification: BaseSpecification,
+    output_dir: str,
+    extra_input_files: Optional[List[str]] = None,
+):
+    try:
+        from pytimeloop.app import MapperApp
+    except ImportError:
+        raise ImportError(
+            "pytimeloop is not installed. To create a mapper app, please install pytimeloop. "
+            "Alternatively, you can use the call_mapper function directly."
+        )
+
+    input_paths, output_dir = _pre_call(
+        specification, output_dir, extra_input_files, for_model=False
+    )
+    input_agg = "".join(open(i).read() for i in input_paths)
+    return MapperApp(input_agg, default_out_dir=output_dir)
+
+
+def to_model_app(
+    specification: BaseSpecification,
+    output_dir: str,
+    extra_input_files: Optional[List[str]] = None,
+):
+    """!@brief Call Timeloop Model from Python
+    !@param specification The specification with which to call Timeloop.
+    !@param output_dir The directory to run Timeloop in.
+    !@param extra_input_files A list of extra input files to pass to Timeloop.
+    !@return The ModelApp object.
+    """
+    try:
+        from pytimeloop.app import ModelApp
+    except ImportError:
+        raise ImportError(
+            "pytimeloop is not installed. To create a model app, please install pytimeloop. "
+            "Alternatively, you can use the call_model function directly."
+        )
+
+    input_paths, output_dir = _pre_call(
+        specification, output_dir, extra_input_files, for_model=True
+    )
+    input_agg = "".join(open(i).read() for i in input_paths)
+    return ModelApp(input_agg, default_out_dir=output_dir)

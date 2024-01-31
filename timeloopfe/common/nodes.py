@@ -1243,8 +1243,12 @@ class DictNode(Node, dict):
                     to_parse.append(g)
 
         for f in to_parse:
-            if not (f.endswith(".yaml") or f.endswith(".jinja")):
-                continue
+            if not (
+                f.endswith(".yaml") or f.endswith(".jinja") 
+                or f.endswith(".jinja2")):
+                logging.warning(
+                    f"File {f} does not end with .yaml, .jinja, or .jinja2. Skipping."
+                )
             logging.info("Loading yaml file %s", f)
             loaded = yaml.load_yaml(f, data=jinja_parse_data)
             if not isinstance(loaded, dict):

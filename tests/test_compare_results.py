@@ -70,7 +70,7 @@ class TestCompareResults(unittest.TestCase):
             self.assertEqual(l1, l2, diffstr)
 
     def run_timeloop(self, targets: List[str], run_model: bool) -> None:
-        tl_cmd = "timeloop_model" if run_model else "timeloop_mapper"
+        tl_cmd = "timeloop-model" if run_model else "timeloop-mapper"
         log_output = ">> output.log 2>&1"
 
         def cmd(d):

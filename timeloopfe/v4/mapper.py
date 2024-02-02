@@ -8,7 +8,7 @@ class Mapper(DictNode):
         super().declare_attrs(*args, **kwargs)
         super().recognize_all()
         super().add_attr("version", callfunc=assert_version)
-        super().add_attr("out_prefix", str, "timeloop_mapper")
+        super().add_attr("out_prefix", str, "timeloop-mapper")
         super().add_attr("num_threads", int, 8)
         super().add_attr("optimization_metric", OptimizationMetrics, [])
         super().add_attr("search_size", int, None)

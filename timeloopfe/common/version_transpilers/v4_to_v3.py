@@ -10,7 +10,7 @@ def transpile(spec: Specification, for_model: bool = False):
     """!@brief Dump a v4 specification to v3 format.
     !@param spec Specification object to dump.
     !@param for_model If True, dump the specification for timelooop-model.
-                      Else, for timeloop_mapper.
+                      Else, for timeloop-mapper.
     !@return A string containing the dumped specification in V3 YAML format.
     """
     spec = copy.deepcopy(spec)
@@ -68,11 +68,10 @@ def transpile(spec: Specification, for_model: bool = False):
 
         to_place = [node]
 
-                    
         if first_node and is_container:
             level["name"] = node.name + "_top_level"
             level["attributes"].update(node.attributes)
-        
+
         first_node = False
 
         if is_container or has_fanout:

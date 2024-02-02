@@ -9,9 +9,9 @@ automation tools, and a Python interface. The new interface also includes
 rigorous type-checking and is fully extensible.
 
 
-## Native Install
+<!-- ## Native Install
 This install will:
-- Install timeloop_model and timeloop_mapper on your system. This will NOT
+- Install timeloop-model and timeloop-mapper on your system. This will NOT
   interfere with the existing timeloop-model and timeloop-mapper installations.
 - Install the new Accelergy infrastructure, which is backwards compatible with
   the old infrastructure.
@@ -54,7 +54,7 @@ To run ```update_timeloop_inputs.py```, place it in a directory with your input
 files and run it with ```python3 update_timeloop_inputs.py```. It will
 recursively search for all files in the directory and update them in-place.
 Before making any changes, it will print a list of all changes to be made and
-ask for confirmation.
+ask for confirmation. -->
 
 ## Examples
 The ```examples``` directory contains examples of architecture
@@ -232,7 +232,7 @@ functions. Accelergy verbose can be called with ```timeloopfe.accelergy```.
 These functions are called using the following interface:
 
 ```python
-def call_timeloop_mapper(
+def call_timeloop-mapper(
     specification: "Specification",
     output_dir: str,
     environment: Optional[Dict[str, str]] = None,

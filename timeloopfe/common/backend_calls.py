@@ -1,4 +1,5 @@
 """!@brief Call Timeloop from Python"""
+
 import copy
 import os
 import signal
@@ -136,7 +137,6 @@ def call_mapper(
     dump_intermediate_to: Optional[str] = None,
     log_to: Optional[Union[str, Any]] = None,
     return_proc: bool = False,
-    legacy_timeloop: bool = False,
 ) -> Union[int, subprocess.Popen]:
     """!@brief Call Timeloop Mapper from Python
     !@param specification The specification with which to call Timeloop.
@@ -151,7 +151,6 @@ def call_mapper(
                    file or file-like object.
     !@param return_proc If True, return the subprocess.Popen object instead of
                         the return code.
-    !@param legacy_timeloop If True, use the legacy Timeloop command.
     !@return The return code of the call, or the subprocess.Popen object if
              return_proc is True.
     """
@@ -159,9 +158,8 @@ def call_mapper(
         specification, output_dir, extra_input_files, for_model=False
     )
 
-    mapper = "timeloop_mapper" if not legacy_timeloop else "timeloop-mapper"
     return _call(
-        mapper,
+        "timeloop-mapper",
         input_paths=input_paths,
         output_dir=output_dir,
         environment=environment,
@@ -179,7 +177,6 @@ def call_model(
     dump_intermediate_to: Optional[str] = None,
     log_to: Optional[Union[str, Any]] = None,
     return_proc: bool = False,
-    legacy_timeloop: bool = False,
 ) -> Union[int, subprocess.Popen]:
     """!@brief Call Timeloop Model from Python
     !@param specification The specification with which to call Timeloop.
@@ -194,7 +191,6 @@ def call_model(
                    file or file-like object.
     !@param return_proc If True, return the subprocess.Popen object instead of
                         the return code.
-    !@param legacy_timeloop If True, use the legacy Timeloop command.
     !@return The return code of the call, or the subprocess.Popen object if
              return_proc is True.
     """
@@ -202,9 +198,8 @@ def call_model(
         specification, output_dir, extra_input_files, for_model=True
     )
 
-    model = "timeloop_model" if not legacy_timeloop else "timeloop-model"
     return _call(
-        model,
+        "timeloop-model",
         input_paths=input_paths,
         output_dir=output_dir,
         environment=environment,

@@ -312,7 +312,6 @@ class StorageAttributes(Attributes):
         super().require_one_of("entries", "sizeKB", "depth")
         super().require_one_of("block_size", "cluster_size")
         super().require_all_or_none_of(
-            "metadata_block_size",
             "metadata_datawidth",
             "metadata_storage_width",
             "metadata_storage_depth",

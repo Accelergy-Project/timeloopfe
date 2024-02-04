@@ -21,6 +21,6 @@ if __name__ == "__main__":
         author_email="andurlis@mit.edu",
         license="MIT",
         packages=find_packages(),
-        install_requires=["accelergy >= 0.4", "ruamel.yaml", "psutil"],
+        install_requires=["accelergy >= 0.4", "ruamel.yaml", "psutil", "joblib"],
         python_requires=">=3.8",
     )

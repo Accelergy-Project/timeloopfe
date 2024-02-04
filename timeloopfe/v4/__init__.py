@@ -1,3 +1,5 @@
+"""Timeloop v4 Specification. Each piece below (minus processors) corresponds to a top key in the Timeloop specification. """
+
 from .specification import *
 from ..common import *
 

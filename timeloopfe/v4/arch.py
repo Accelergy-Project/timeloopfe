@@ -14,10 +14,37 @@ NOTHING_CLASSES = ("nothing",)
 
 
 class ArchNode(Node):
+    """
+    A node in the architecture hierarchy.
+
+    Methods:
+        name2leaf: Finds a leaf node with the given name.
+        find: Alias for name2leaf method.
+        name2constraints: Retrieves the constraints of a leaf node with the given name.
+
+    Raises:
+        ValueError: If the leaf node with the given name is not found.
+
+    Returns:
+        None
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def name2leaf(self, name: str) -> "Leaf":
+        """
+        Finds a leaf node with the given name.
+
+        Args:
+            name (str): The name of the leaf node to find.
+
+        Returns:
+            Leaf: The leaf node with the given name.
+
+        Raises:
+            ValueError: If the leaf node with the given name is not found.
+        """
         if isinstance(self, Leaf) and getattr(self, "name", None) == name:
             return self
         for element in self if isinstance(self, list) else self.values():
@@ -28,13 +55,42 @@ class ArchNode(Node):
         raise ValueError(f"Leaf {name} not found in {self}")
 
     def find(self, *args, **kwargs) -> "Leaf":
+        """
+        Alias for name2leaf function.
+        """
         return self.name2leaf(*args, **kwargs)
 
     def name2constraints(self, name: str) -> "constraints.ConstraintGroup":
+        """
+        Retrieves the constraints of a leaf node with the given name.
+
+        Args:
+            name (str): The name of the leaf node.
+
+        Returns:
+            constraints.ConstraintGroup: The constraints of the leaf node.
+        """
         return self.name2leaf(name).constraints
 
 
 class ArchNodes(ArchNode, ListNode):
+    """
+    A collection of architectural nodes.
+
+    This class inherits from `ArchNode` and `ListNode` classes.
+
+    Attributes:
+        None
+
+    Methods:
+        declare_attrs: Declares attributes for the architectural nodes.
+        __init__: Initializes an instance of the `ArchNodes` class.
+        combine: Combines two `ArchNodes` instances.
+        __repr__: Returns a string representation of the `ArchNodes` instance.
+        parse_expressions: Parses expressions in the `ArchNodes` instance.
+
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -53,9 +109,26 @@ class ArchNodes(ArchNode, ListNode):
         super().__init__(*args, **kwargs)
 
     def combine(self, other: "ArchNodes") -> "ArchNodes":
+        """
+        Combines two `ArchNodes` instances.
+
+        Args:
+            other: Another `ArchNodes` instance to combine with.
+
+        Returns:
+            A new `ArchNodes` instance that is the combination of self and other.
+
+        """
         return ArchNodes(self + other)
 
     def __repr__(self):
+        """
+        Returns a string representation of the `ArchNodes` instance.
+
+        Returns:
+            A string representation of the `ArchNodes` instance.
+
+        """
         return f"{self.__class__.__name__}({super().__repr__()})"
 
     def parse_expressions(
@@ -63,6 +136,17 @@ class ArchNodes(ArchNode, ListNode):
         symbol_table: Optional[Dict[str, Any]] = None,
         parsed_ids: Optional[set] = None,
     ):
+        """
+        Parses expressions in the `ArchNodes` instance.
+
+        Args:
+            symbol_table: A dictionary representing the symbol table.
+            parsed_ids: A set of parsed IDs.
+
+        Returns:
+            The parsed `ArchNodes` instance.
+
+        """
         n_symbol_table = {} if symbol_table is None else symbol_table.copy()
         for l in self.get_nodes_of_type(Leaf):
             n_symbol_table[l.name] = l
@@ -77,6 +161,13 @@ class ArchNodes(ArchNode, ListNode):
 
 
 class Branch(ArchNode, DictNode, ABC):
+    """
+    A branch in the architecture.
+
+    Attributes:
+        nodes (ArchNodes): List of child nodes in the branch.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -97,18 +188,37 @@ class Branch(ArchNode, DictNode, ABC):
 
 
 class Hierarchical(Branch):
+    """
+    A hierarchical branch in the architecture.
+    """
+
     pass
 
 
 class Parallel(Branch):
+    """
+    A parallel branch in the architecture.
+    """
+
     pass
 
 
 class Pipelined(Branch):
+    """ "
+    A pipelined branch in the architecture.
+    """
+
     pass
 
 
 class Architecture(Hierarchical):
+    """
+    An architecture.
+
+    Attributes:
+        version (Union[str, Number]): The version of the architecture.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -128,6 +238,17 @@ class Architecture(Hierarchical):
 
 
 class Leaf(ArchNode, DictNode, ABC):
+    """
+    A leaf node in the architecture hierarchy.
+
+    Attributes:
+        name (str): The name of the leaf node.
+        attributes (Attributes): The attributes associated with the leaf node.
+        spatial (Spatial): The spatial attributes of the leaf node.
+        constraints (ConstraintGroup): The constraint group associated with the leaf node.
+        sparse_optimizations (SparseOptimizationGroup): The sparse optimization group associated with the leaf node.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -153,6 +274,16 @@ class Leaf(ArchNode, DictNode, ABC):
         symbol_table: Optional[Dict[str, Any]] = None,
         parsed_ids: Optional[set] = None,
     ):
+        """
+        Parse the expressions in the leaf node.
+
+        Args:
+            symbol_table (Optional[Dict[str, Any]]): The symbol table for parsing expressions.
+            parsed_ids (Optional[set]): The set of parsed IDs.
+
+        Returns:
+            Attributes: The parsed attributes.
+        """
         n_symbol_table = {} if symbol_table is None else symbol_table.copy()
 
         def callfunc(x, sym_table):
@@ -169,6 +300,17 @@ class Leaf(ArchNode, DictNode, ABC):
 
 
 class Component(Leaf, ABC):
+    """
+    A component in the architecture.
+
+    Attributes:
+        _class (str): The class of the component.
+        subclass (str): The subclass of the component.
+        required_actions (List[str]): The list of required actions for the component.
+        area_share (float): The area share of the component.
+        enabled (bool): Indicates whether the component is enabled or not.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -191,6 +333,10 @@ class Component(Leaf, ABC):
 
 
 class Container(Leaf, ABC):
+    """
+    A container in the architecture.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -202,6 +348,10 @@ class Container(Leaf, ABC):
 
 
 class Networks(ListNode):
+    """
+    A list of networks in the architecture.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -209,6 +359,10 @@ class Networks(ListNode):
 
 
 class Storage(Component):
+    """
+    A storage component.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -220,6 +374,10 @@ class Storage(Component):
 
 
 class Compute(Component):
+    """
+    A compute component.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -229,6 +387,13 @@ class Compute(Component):
 
 
 class Network(Component):
+    """
+    A network component.
+
+    This class inherits from the Component class and provides additional
+    functionality specific to networks.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -238,6 +403,15 @@ class Network(Component):
 
 
 class Spatial(DictNode):
+    """
+    A spatial configuration in a system architecture.
+
+    Attributes:
+        meshX (int): The number of elements in the X dimension of the mesh.
+        meshY (int): The number of elements in the Y dimension of the mesh.
+        get_fanout (Callable): A function that returns the fanout of the spatial configuration.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -263,6 +437,13 @@ class Spatial(DictNode):
 
 
 class Attributes(DictNode):
+    """
+    A class representing attributes for a node in the architecture.
+
+    Attributes:
+        has_power_gating (bool): Indicates whether the node has power gating.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -272,6 +453,51 @@ class Attributes(DictNode):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._default_parse = True
+
+
+class StorageAttributes(Attributes):
+    """Represents the attributes of a storage element.
+
+    This class provides methods to declare and initialize various attributes
+    related to a storage element, such as datawidth, technology, number of banks,
+    block size, cluster size, etc.
+
+    Attributes:
+        datawidth (Union[str, int]): The datawidth of the storage element.
+        technology (Union[str, int]): The technology used for the storage element.
+        n_banks (Union[str, int]): The number of banks in the storage element.
+        block_size (Union[str, Number]): The block size of the storage element.
+        cluster_size (Union[str, Number]): The cluster size of the storage element.
+        depth (Union[str, Number]): The depth of the storage element.
+        entries (Union[str, Number]): The number of entries in the storage element.
+        sizeKB (Union[str, Number]): The size of the storage element in kilobytes.
+        reduction_supported (Union[str, bool]): Indicates if reduction is supported.
+        multiple_buffering (Union[str, Number]): The level of multiple buffering.
+        min_utilization (Union[str, Number]): The minimum utilization of the storage element.
+        shared_bandwidth (Union[str, Number]): The shared bandwidth of the storage element.
+        read_bandwidth (Union[str, Number]): The read bandwidth of the storage element.
+        write_bandwidth (Union[str, Number]): The write bandwidth of the storage element.
+        network_fill_latency (Union[str, int]): The network fill latency of the storage element.
+        network_drain_latency (Union[str, int]): The network drain latency of the storage element.
+        allow_overbooking (Union[str, bool]): Indicates if overbooking is allowed.
+        metadata_block_size (Union[str, int]): The block size of the metadata storage.
+        metadata_datawidth (Union[str, int]): The datawidth of the metadata storage.
+        metadata_storage_width (Union[str, int]): The storage width of the metadata storage.
+        metadata_storage_depth (Union[str, int]): The storage depth of the metadata storage.
+        concordant_compressed_tile_traversal (Union[str, bool]): Indicates if concordant compressed tile traversal is supported.
+        tile_partition_supported (Union[str, bool]): Indicates if tile partition is supported.
+        decompression_supported (Union[str, bool]): Indicates if decompression is supported.
+        compression_supported (Union[str, bool]): Indicates if compression is supported.
+    """
+
+    @classmethod
+    def declare_attrs(cls, *args, **kwargs):
+        super().declare_attrs(*args, **kwargs)
+        # Attribute declarations...
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Attribute initialization...
 
 
 class StorageAttributes(Attributes):
@@ -351,6 +577,17 @@ class StorageAttributes(Attributes):
 
 
 class Nothing(Component):
+    """
+    A class representing a 'nothing' component.
+
+    This class inherits from the Component class and provides a default implementation
+    for the 'nothing' component.
+
+    Attributes:
+        name (str): The name of the component.
+        class (str): The class of the component.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -364,6 +601,24 @@ class Nothing(Component):
 
 
 def component_factory(*args, **kwargs) -> "Component":
+    """
+    Factory function for creating components based on the provided arguments.
+
+    Args:
+        *args: Variable length arguments. Either a single dictionary or keyword arguments.
+        **kwargs: Keyword arguments. Either a single dictionary or keyword arguments.
+
+    Returns:
+        Component: The created component.
+
+    Raises:
+        TypeError: If both a dictionary and keyword arguments are provided, or if no dictionary is provided.
+        TypeError: If the provided argument is not a dictionary.
+        AssertionError: If the 'class' attribute is missing in the provided dictionary.
+        AssertionError: If the 'class' attribute is not a string.
+        ValueError: If the element class is unknown.
+
+    """
     all_args = list(args) + ([kwargs] if kwargs else [])
     f = "Pass either a dictionary or keyword arguments, but not both."
     if len(all_args) > 1:
@@ -396,6 +651,15 @@ def component_factory(*args, **kwargs) -> "Component":
 
 
 def dummy_storage(name: str) -> "Storage":
+    """
+    Create a dummy storage component.
+
+    Args:
+        name (str): The name of the storage component.
+
+    Returns:
+        Storage: The created dummy storage component.
+    """
     attrs = {"width": 1, "depth": 1, "datawidth": 1, "technology": -1}
     args = {"name": name, "class": "dummy_storage", "attributes": attrs}
     return component_factory(**args)

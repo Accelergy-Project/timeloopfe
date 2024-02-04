@@ -1,4 +1,4 @@
-"""!@brief Call Timeloop from Python"""
+"""Call Timeloop from Python"""
 
 import copy
 import os
@@ -37,7 +37,7 @@ def _pre_call(
     extra_input_files: Optional[List[str]] = None,
     for_model: bool = False,
 ) -> Tuple[List[str], str]:
-    """!@brief Prepare to call Timeloop or Accelergy from Python
+    """Prepare to call Timeloop or Accelergy from Python
     !@param specification The specification with which to call Timeloop.
     !@param output_dir The directory to run Timeloop in.
     !@param extra_input_files A list of extra input files to pass to Timeloop.
@@ -83,19 +83,19 @@ def _call(
     log_to: Optional[str] = None,
     return_proc: bool = False,
 ) -> Union[int, subprocess.Popen]:
-    """!@brief Call a Timeloop or Accelergy command from Python
-    !@param call Which command to call.
-    !@param input_content The content of the input file.
-    !@param output_dir The directory to run Timeloop in.
-    !@param environment A dictionary of environment variables to pass.
-    !@param dump_intermediate_to If not None, dump the input content to this
-                                 file before calling.
-    !@param log_to If not None, log the output of the call to this file or
-                   file-like object.
-    !@param return_proc If True, return the subprocess.Popen object instead of
-                        the return code.
-    !@return The return code of the call, or the subprocess.Popen object if
-             return_proc is True.
+    """Call a Timeloop or Accelergy command from Python
+
+    Args:
+        call (str): Which command to call.
+        input_paths (List[str]): The content of the input file.
+        output_dir (str): The directory to run Timeloop in.
+        environment (Optional[Dict[str, str]]): A dictionary of environment variables to pass.
+        dump_intermediate_to (Optional[str]): If not None, dump the input content to this file before calling.
+        log_to (Optional[str]): If not None, log the output of the call to this file or file-like object.
+        return_proc (bool): If True, return the subprocess.Popen object instead of the return code.
+
+    Returns:
+        Union[int, subprocess.Popen]: The return code of the call, or the subprocess.Popen object if return_proc is True.
     """
     os.makedirs(output_dir, exist_ok=True)
     if dump_intermediate_to is None:
@@ -138,21 +138,19 @@ def call_mapper(
     log_to: Optional[Union[str, Any]] = None,
     return_proc: bool = False,
 ) -> Union[int, subprocess.Popen]:
-    """!@brief Call Timeloop Mapper from Python
-    !@param specification The specification with which to call Timeloop.
-    !@param input_content The content of the input file.
-    !@param output_dir The directory to run Timeloop in.
-    !@param environment A dictionary of environment variables to pass to
-                        Timeloop.
-    !@param extra_input_files A list of extra input files to pass to Timeloop.
-    !@param dump_intermediate_to If not None, dump the input content to this
-                                 file before calling Timeloop.
-    !@param log_to If not None, log the output of the Timeloop call to this
-                   file or file-like object.
-    !@param return_proc If True, return the subprocess.Popen object instead of
-                        the return code.
-    !@return The return code of the call, or the subprocess.Popen object if
-             return_proc is True.
+    """Call Timeloop Mapper from Python
+
+    Args:
+        specification (BaseSpecification): The specification with which to call Timeloop.
+        output_dir (str): The directory to run Timeloop in.
+        environment (Optional[Dict[str, str]]): A dictionary of environment variables to pass to Timeloop.
+        extra_input_files (Optional[List[str]]): A list of extra input files to pass to Timeloop
+        dump_intermediate_to (Optional[str]): If not None, dump the input content to this file before calling Timeloop.
+        log_to (Optional[Union[str, Any]]): If not None, log the output of the Timeloop call to this file or file-like object.
+        return_proc (bool): If True, return the subprocess.Popen object instead of the return code.
+
+    Returns:
+        Union[int, subprocess.Popen]: The return code of the call, or the subprocess.Popen object if return_proc is True.
     """
     input_paths, output_dir = _pre_call(
         specification, output_dir, extra_input_files, for_model=False
@@ -178,21 +176,19 @@ def call_model(
     log_to: Optional[Union[str, Any]] = None,
     return_proc: bool = False,
 ) -> Union[int, subprocess.Popen]:
-    """!@brief Call Timeloop Model from Python
-    !@param specification The specification with which to call Timeloop.
-    !@param input_content The content of the input file.
-    !@param output_dir The directory to run Timeloop in.
-    !@param environment A dictionary of environment variables to pass to
-                        Timeloop.
-    !@param extra_input_files A list of extra input files to pass to Timeloop.
-    !@param dump_intermediate_to If not None, dump the input content to this
-                                 file before calling Timeloop.
-    !@param log_to If not None, log the output of the Timeloop call to this
-                   file or file-like object.
-    !@param return_proc If True, return the subprocess.Popen object instead of
-                        the return code.
-    !@return The return code of the call, or the subprocess.Popen object if
-             return_proc is True.
+    """Call Timeloop Model from Python
+
+    Args:
+        specification (BaseSpecification): The specification with which to call Timeloop.
+        output_dir (str): The directory to run Timeloop in.
+        environment (Optional[Dict[str, str]]): A dictionary of environment variables to pass to Timeloop
+        extra_input_files (Optional[List[str]]): A list of extra input files to pass to Timeloop
+        dump_intermediate_to (Optional[str]): If not None, dump the input content to this file before calling Timeloop.
+        log_to (Optional[Union[str, Any]]): If not None, log the output of the Timeloop call to this file or file-like object.
+        return_proc (bool): If True, return the subprocess.Popen object instead of the return code.
+
+    Returns:
+        Union[int, subprocess.Popen]: The return code of the call, or the subprocess.Popen object if return_proc is True.
     """
     input_paths, output_dir = _pre_call(
         specification, output_dir, extra_input_files, for_model=True
@@ -218,21 +214,16 @@ def call_accelergy_verbose(
     log_to: Optional[Union[str, Any]] = None,
     return_proc: bool = False,
 ) -> Union[int, subprocess.Popen]:
-    """!@brief Call Timeloop Mapper from Python
-    !@param specification The specification with which to call Timeloop.
-    !@param input_content The content of the input file.
-    !@param output_dir The directory to run Timeloop in.
-    !@param environment A dictionary of environment variables to pass to
-                        Timeloop.
-    !@param extra_input_files A list of extra input files to pass to Timeloop.
-    !@param dump_intermediate_to If not None, dump the input content to this
-                                 file before calling Timeloop.
-    !@param log_to If not None, log the output of the Timeloop call to this
-                   file or file-like object.
-    !@param return_proc If True, return the subprocess.Popen object instead of
-                        the return code.
-    !@return The return code of the call, or the subprocess.Popen object if
-             return_proc is True.
+    """Call Accelergy from Python
+
+    Args:
+        specification (BaseSpecification): The specification with which to call Accelergy.
+        output_dir (str): The directory to run Accelergy in.
+        environment (Optional[Dict[str, str]]): A dictionary of environment variables to pass to Accelergy.
+        extra_input_files (Optional[List[str]]): A list of extra input files to pass to Accelergy
+        dump_intermediate_to (Optional[str]): If not None, dump the input content to this file before calling Accelergy.
+        log_to (Optional[Union[str, Any]]): If not None, log the output of the Accelergy call to this file or file-like object.
+        return_proc (bool): If True, return the subprocess.Popen object instead of the return code.
     """
     input_paths, output_dir = _pre_call(
         specification, output_dir, extra_input_files, for_model=False
@@ -254,11 +245,12 @@ def call_stop(
     max_wait_time: Optional[int] = None,
     force: bool = False,
 ):
-    """!@brief Stop Timeloop subprocesses.
-    !@param proc The subprocesses to stop. If None, stop all Timeloop subprocesses.
-    !@param max_wait_time The maximum time to wait for the process to stop.
-                          If None, do not wait. If 0, wait forever.
-    !@param force If True, force kill the process.
+    """Stop Timeloop subprocesses.
+
+    Args:
+        proc (Optional[subprocess.Popen]): The subprocess to stop. If None, stop all Timelojson processes.
+        max_wait_time (Optional[int]): The maximum time to wait for the process to stop. If 0, do not wait.
+        force (bool): If True, force kill the process instead of sending SIGINT.
     """
 
     def stop_single(p, f):
@@ -301,11 +293,15 @@ def accelergy_app(
     output_dir: str,
     extra_input_files: Optional[List[str]] = None,
 ) -> "AccelergyInvocationResult":
-    """!@brief Call Accelergy from Python
-    !@param specification The specification with which to call Accelergy.
-    !@param output_dir The directory to run Accelergy in.
-    !@param extra_input_files A list of extra input files to pass to Accelergy.
-    !@return The AccelergyInvocationResult object.
+    """Call the PyTimeloop Accelergy interface
+
+    Args:
+        specification (BaseSpecification): The specification with which to call Accelergy.
+        output_dir (str): The directory to run Accelergy in.
+        extra_input_files (Optional[List[str]]): A list of extra input files to pass to Accelergy
+
+    Returns:
+        AccelergyInvocationResult: The result of the Accelergy invocation.
     """
     try:
         from pytimeloop.accelergy_interface import invoke_accelergy
@@ -324,6 +320,17 @@ def to_mapper_app(
     output_dir: str,
     extra_input_files: Optional[List[str]] = None,
 ):
+    """
+    Create a PyTimeloop MapperApp object from a specification.
+
+    Args:
+        specification (BaseSpecification): The specification with which to call Timeloop.
+        output_dir (str): The directory to run Timeloop in.
+        extra_input_files (Optional[List[str]]): A list of extra input files to pass to Timeloop
+
+    Returns:
+        MapperApp: The MapperApp object.
+    """
     try:
         from pytimeloop.app import MapperApp
     except ImportError:
@@ -344,11 +351,16 @@ def to_model_app(
     output_dir: str,
     extra_input_files: Optional[List[str]] = None,
 ):
-    """!@brief Call Timeloop Model from Python
-    !@param specification The specification with which to call Timeloop.
-    !@param output_dir The directory to run Timeloop in.
-    !@param extra_input_files A list of extra input files to pass to Timeloop.
-    !@return The ModelApp object.
+    """
+    Create a PyTimeloop ModelApp object from a specification.
+
+    Args:
+        specification (BaseSpecification): The specification with which to call Timeloop.
+        output_dir (str): The directory to run Timeloop in.
+        extra_input_files (Optional[List[str]]): A list of extra input files to pass to Timeloop
+
+    Returns:
+        ModelApp: The ModelApp object.
     """
     try:
         from pytimeloop.app import ModelApp

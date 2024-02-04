@@ -1,4 +1,4 @@
-"""!@brief Takes constraints from constraints lists and attaches them to
+"""Takes constraints from constraints lists and attaches them to
 objects in the architecture.
 """
 from .sparse_opt_attacher import SparseOptAttacherProcessor
@@ -10,14 +10,14 @@ from ...v4 import Specification
 
 
 class RequiredActionsProcessor(Processor):
-    """!@brief Ensures that all components have actions defined for Accelergy
+    """Ensures that all components have actions defined for Accelergy
     Storage:
     - read
     - write
     - update
     # - metadata_update
 
-    DEPRECATED. NOW ALL OF THE FOLLOWIGN ARE NOT REQUIRED.
+    DEPRECATED. NOW ALL OF THE FOLLOWING ARE NOT REQUIRED.
     Deprecated because: Skipped/gated actions can just be no action
     decompression_count/compression_count is not supported in many of the
     plug-ins that Sparseloop uses

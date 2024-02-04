@@ -3,6 +3,10 @@ from .version import assert_version
 
 
 class Variables(DictNode):
+    """
+    A top-level class for variables. These will be available to parsing
+    at all other points in the specification. 
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)

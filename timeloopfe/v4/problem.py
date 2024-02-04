@@ -5,6 +5,14 @@ from .version import assert_version
 
 
 class Problem(DictNode):
+    """
+    The top-level problem object in Timeloop.
+    
+    Attributes:
+        version (str): The version of the problem.
+        instance (Instance): The instance object for the problem.
+        shape (Shape): The shape object for the problem.
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -20,6 +28,16 @@ class Problem(DictNode):
 
 
 class Shape(DictNode):
+    """
+    Problem shape object.
+    
+    Attributes:
+        name (str): The name of the shape.
+        dimensions (ListNode): The dimensions of the shape.
+        data_spaces (ProblemDataspaceList): The data spaces of the shape.
+        coefficients (ListNode): The coefficients of the shape.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -38,6 +56,18 @@ class Shape(DictNode):
     def name2dataspace(
         self, name: Union[str, List[str]]
     ) -> Union["DataSpace", List["DataSpace"]]:
+        """
+        Convert the name of a data space to the corresponding DataSpace object(s).
+
+        Args:
+            name (Union[str, List[str]]): The name(s) of the data space(s) to convert.
+
+        Returns:
+            Union[DataSpace, List[DataSpace]]: The corresponding DataSpace object(s).
+
+        Raises:
+            ValueError: If the data space with the given name is not found.
+        """
         if isinstance(name, List):
             return [self.name2dataspace(n) for n in name]
         if isinstance(name, DataSpace):
@@ -48,6 +78,18 @@ class Shape(DictNode):
         raise ValueError(f"Data space {name} not found")
 
     def dataspace2dims(self, name: Union[str, List[str]]) -> List[str]:
+        """
+        Convert the name(s) of data space(s) to the corresponding dimensions.
+
+        Args:
+            name (Union[str, List[str]]): The name(s) of the data space(s) to convert.
+
+        Returns:
+            List[str]: The corresponding dimensions.
+
+        Raises:
+            ValueError: If the data space with the given name is not found.
+        """
         ds = self.name2dataspace(name)
         factors = set()
         dimensions = set(self.dimensions)
@@ -56,6 +98,15 @@ class Shape(DictNode):
         return list(factors)
 
     def dataspace2unique_dims(self, name: str) -> List[str]:
+        """
+        Get the unique dimensions associated with a specific data space.
+
+        Args:
+            name (str): The name of the data space.
+
+        Returns:
+            List[str]: The unique dimensions associated with the data space.
+        """
         ds = self.name2dataspace(name)
         ds = ds if isinstance(ds, list) else [ds]
         other_ds = [d for d in self.data_spaces if d not in ds]
@@ -63,6 +114,9 @@ class Shape(DictNode):
 
 
 class ProblemDataspaceList(ListNode):
+    """
+    A list of data spaces in the problem.
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -70,6 +124,15 @@ class ProblemDataspaceList(ListNode):
 
 
 class Instance(DictNode):
+    """
+    An problem instance object.
+    
+    Attributes:
+        name (str): The name of the instance.
+        data_spaces (DataSpaceList): The data spaces of the instance.
+        densities (DensityList): The densities of each data space.
+
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -81,6 +144,16 @@ class Instance(DictNode):
 
 
 class DataSpace(DictNode):
+    """
+    A data space object.
+
+    Attributes:
+        name (str): The name of the data space.
+        projection (list): The projection of the data space.
+        read_write (str, bool, int): The read-write attribute of the data space.
+        factors (list): The factors derived from the projection.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -105,6 +178,9 @@ class DataSpace(DictNode):
 
 
 class DensityList(DictNode):
+    """
+    A list of densities for each data space.
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -115,6 +191,16 @@ class DensityList(DictNode):
 
 
 class Density(DictNode):
+    """
+    A Density object represents the density and distribution of a workload tensor.
+
+    Attributes:
+        density (Number or str): The density of the workload tensor.
+        distribution (str): The distribution type of the workload tensor.
+        band_width (int): The band width of the workload tensor (for banded distribution).
+        workload_tensor_size (int): The size of the workload tensor (for hypergeometric distribution).
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)

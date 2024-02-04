@@ -1,4 +1,4 @@
-"""!@brief Takes constraints from constraints lists and attaches them to
+"""Takes constraints from constraints lists and attaches them to
 objects in the architecture.
 """
 from ...common.nodes import DictNode
@@ -8,8 +8,8 @@ from ..specification import Specification
 
 
 class ConstraintAttacherProcessor(Processor):
-    """!@brief Takes constraints from constraints lists and attaches them to
-    objects in the architecture.
+    """
+    Takes constraints from constraints lists and attaches them to objects in the architecture.
     """
 
     def __init__(self, *args, **kwargs):

@@ -1,4 +1,4 @@
-""" !@brief Base class for all processors."""
+""" Base class for all processors."""
 from abc import abstractmethod, ABC
 import copy
 import logging
@@ -7,11 +7,11 @@ from typing import Any, Optional
 
 
 class Processor(ABC):
-    """!@brief Base class for all processors.
-    !@details Processors are used to modify the specification before it is
-              passed to Accelergy/Timeloop.
-    !@var spec: The specification to be processed.
-    !@var _initialized: Whether the processor has been initialized.
+    """Base class for all processors, which are used to modify the specification before it is passed to Accelergy/Timeloop.
+    
+    Attributes:
+        spec: The specification to process.
+        logger: The logger for this processor.
     """
 
     def __init__(self, spec: Optional["Specification"] = None):
@@ -20,20 +20,20 @@ class Processor(ABC):
 
     @abstractmethod
     def process(self, spec: "Specification"):
-        """!@brief Process the specification."""
+        """Process the specification."""
         self.logger.debug(f"Processing...")
         self.spec = spec
 
     def declare_attrs(self):
         """
-        !@brief Initialize the attributes that the processor is responsible for.
+        Initialize the attributes that the processor is responsible for.
         !@note This method is called before process() is called. See the
                SimpleProcessor for an example.
         """
         pass
 
     def get_index(self, processor_type: type, spec: "Specification"):
-        """!@brief Get the index of the processor in the list of processors."""
+        """Get the index of the processor in the list of processors."""
         for i, processor in enumerate(spec._processors_run):
             if isinstance(processor, type):
                 return i
@@ -46,7 +46,7 @@ class Processor(ABC):
     def must_run_after(
         self, other: type, spec: "Specification", ok_if_not_found: bool = False
     ):
-        """!@brief Ensure that this processor runs after another processor.
+        """Ensure that this processor runs after another processor.
         !@param other: The processor that this processor must run after.
 
         !@param ok_if_not_found: If False, OK if the other processor is not
@@ -82,20 +82,20 @@ class Processor(ABC):
 
 
 class SimpleProcessor(Processor):
-    """!@brief An example simple processor."""
+    """An example simple processor."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.logger.info("Initializing SimpleProcessor")
 
     def declare_attrs(self):
-        """!@brief Initialize the attributes that the processor handles."""
+        """Initialize the attributes that the processor handles."""
         from ..v4 import Problem
 
         super().add_attr(Problem, "simple_processor_attr", str, "")
 
     def process(self, spec: "Specification"):
-        """!@brief Process the specification. Remove attributes that this
+        """Process the specification. Remove attributes that this
         processor is responsible for."""
         if "simple_processor_attr" in spec.problem:
             del spec.problem["simple_processor_attr"]
@@ -109,7 +109,7 @@ def set_parents(n: Node):
 
 
 class References2CopiesProcessor(Processor):
-    """!@brief Converts references to copies in the specification."""
+    """Converts references to copies in the specification."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -151,4 +151,4 @@ class References2CopiesProcessor(Processor):
 
 
 class ProcessorError(Exception):
-    """!@brief Exception raised by processors."""
+    """Exception raised by processors."""

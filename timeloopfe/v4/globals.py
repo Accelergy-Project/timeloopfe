@@ -3,6 +3,15 @@ from .version import assert_version
 
 
 class Globals(DictNode):
+    """
+    Top-level Globals key.
+
+    Attributes:
+        version (str): Version of the Timeloop file.
+        environment_variables (EnvironmentVariables): Environment variables to be used.
+        expression_custom_functions (ExpressionCustomFunctions): Paths to Python files containing functions to be used in expressions.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -20,6 +29,10 @@ class Globals(DictNode):
 
 
 class EnvironmentVariables(DictNode):
+    """
+    Dictionary of environment variables.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -30,6 +43,10 @@ class EnvironmentVariables(DictNode):
 
 
 class ExpressionCustomFunctions(CombineableListNode):
+    """
+    A list of paths to Python files containing functions to be used in expressions.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)

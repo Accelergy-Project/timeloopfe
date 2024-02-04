@@ -1,4 +1,4 @@
-"""!@brief Standard suite of processors for timeloopfe."""
+"""Standard suite of processors for timeloopfe."""
 
 from . import (
     constraint_attacher,

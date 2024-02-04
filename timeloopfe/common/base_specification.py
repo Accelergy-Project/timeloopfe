@@ -10,6 +10,21 @@ def class2obj(x):
 
 
 class BaseSpecification(DictNode):
+    """
+    Base class for specifications in the Timeloop framework.
+
+    Attributes:
+        processors (ListNode): List of processors associated with the specification.
+        _required_processors (ListNode): List of required processors.
+        _parsed_expressions (bool): Flag indicating whether expressions have been parsed.
+        _processors_run (List[Processor]): List of processors that have been run.
+        preserve_references (bool): Flag indicating whether to preserve references.
+    """
+
+    @classmethod
+    def declare_attrs(cls, *args, **kwargs):
+        ...
+class BaseSpecification(DictNode):
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -90,69 +105,77 @@ class BaseSpecification(DictNode):
         return False
 
     def process(
-        self,
-        with_processors: Union["Processor", List["Processor"]] = None,
-        check_types: bool = False,
-        check_types_ignore_empty: bool = True,
-        reprocess: bool = True,
-    ):
-        """!@brief Process the specification.
-        !@param with_processors A list of processors to use. If None, use the
-                                processors defined in the specification. If
-                                anything else, use the given processors.
-        !@param check_types Whether to check the types of the specification
-                            after processing.
-        !@param check_types_ignore_empty Whether to ignore empty lists, dicts,
-                                         and None values when checking types.
-        !@param reprocess Whether to reprocess the specification if it has
-                          already been processed.
-        """
-        prev_global_spec = Node.get_global_spec()
-        try:
-            Node.set_global_spec(self)
-            if with_processors is None:
-                processors = self.processors
-            else:
-                if not isinstance(with_processors, (list, tuple)):
-                    with_processors = [with_processors]
-                processors = [p for p in with_processors]
+            self,
+            with_processors: Union["Processor", List["Processor"]] = None,
+            check_types: bool = False,
+            check_types_ignore_empty: bool = True,
+            reprocess: bool = True,
+        ):
+            """
+            Process the specification with the given processors.
 
-            if self.needs_processing([References2CopiesProcessor], processors):
-                self.process(References2CopiesProcessor, check_types=False)
+            Args:
+                with_processors (Union[Processor, List[Processor]], optional): Processors to be used for processing the specification. Defaults to None.
+                check_types (bool, optional): Flag indicating whether to check for unrecognized types. Defaults to False.
+                check_types_ignore_empty (bool, optional): Flag indicating whether to ignore empty types during type checking. Defaults to True.
+                reprocess (bool, optional): Flag indicating whether to reprocess the specification even if it has been processed before. Defaults to True.
+            """
+            prev_global_spec = Node.get_global_spec()
+            try:
+                Node.set_global_spec(self)
+                if with_processors is None:
+                    processors = self.processors
+                else:
+                    if not isinstance(with_processors, (list, tuple)):
+                        with_processors = [with_processors]
+                    processors = [p for p in with_processors]
 
-            overall_start_time = time.time()
-            for i, p in enumerate(processors):
-                if not self.needs_processing([p]) and (
-                    not reprocess
-                    or p == References2CopiesProcessor
-                    or isinstance(p, References2CopiesProcessor)
-                ):
-                    continue
-                # If the processor isn't initialized, initialize it
-                p_cls = p
-                p = class2obj(p)
-                Node.reset_processor_elems(p.__class__)
-                processors[i] = p
-                self.logger.info("Running processor %s", p.__class__.__name__)
-                start_time = time.time()
-                p.process(self)
+                if self.needs_processing([References2CopiesProcessor], processors):
+                    self.process(References2CopiesProcessor, check_types=False)
+
+                overall_start_time = time.time()
+                for i, p in enumerate(processors):
+                    if not self.needs_processing([p]) and (
+                        not reprocess
+                        or p == References2CopiesProcessor
+                        or isinstance(p, References2CopiesProcessor)
+                    ):
+                        continue
+                    # If the processor isn't initialized, initialize it
+                    p_cls = p
+                    p = class2obj(p)
+                    Node.reset_processor_elems(p.__class__)
+                    processors[i] = p
+                    self.logger.info("Running processor %s", p.__class__.__name__)
+                    start_time = time.time()
+                    p.process(self)
+                    self.logger.info(
+                        "Processor %s done after %.2f seconds",
+                        p.__class__.__name__,
+                        time.time() - start_time,
+                    )
+                    self._processors_run.append(p_cls)
+                if check_types:
+                    self.check_unrecognized(ignore_empty=check_types_ignore_empty)
                 self.logger.info(
-                    "Processor %s done after %.2f seconds",
-                    p.__class__.__name__,
-                    time.time() - start_time,
+                    "Specification processed in %.2f seconds",
+                    time.time() - overall_start_time,
                 )
-                self._processors_run.append(p_cls)
-            if check_types:
-                self.check_unrecognized(ignore_empty=check_types_ignore_empty)
-            self.logger.info(
-                "Specification processed in %.2f seconds",
-                time.time() - overall_start_time,
-            )
-        finally:
-            Node.set_global_spec(prev_global_spec)
+            finally:
+                Node.set_global_spec(prev_global_spec)
 
     @classmethod
     def from_yaml_files(cls, *args, **kwargs) -> "Specification":
+        """
+        Create a Specification object from YAML files.
+
+        Args:
+            *args: YAML file paths.
+            jinja_parse_data: Dictionary of data to be used for Jinja parsing.
+
+        Returns:
+            Specification: The created Specification object.
+        """
         return super().from_yaml_files(*args, **kwargs)  # type: ignore
 
     def parse_expressions(
@@ -160,6 +183,13 @@ class BaseSpecification(DictNode):
         symbol_table: Optional[Dict[str, Any]] = None,
         parsed_ids: Optional[set] = None,
     ):
+        """
+        Parse expressions in the specification.
+        
+        Args:
+            symbol_table (Optional[Dict[str, Any]], optional): Symbol table to be used for parsing. Defaults to None.
+            parsed_ids (Optional[set], optional): Set of IDs of specifications that have already been parsed. Defaults to None.
+        """
         if self.needs_processing([References2CopiesProcessor]):
             raise ProcessorError(
                 f"Must run References2CopiesProcessor before "

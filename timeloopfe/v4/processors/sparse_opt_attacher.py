@@ -1,5 +1,4 @@
-"""!@brief Takes sparse optimizations from sparse optimizations lists and
-attaches them to the architecture.
+"""Takes sparse optimizations from sparse optimizations lists and attaches them to the architecture.
 """
 from ...common.processor import References2CopiesProcessor
 from ...common.nodes import DictNode
@@ -8,8 +7,7 @@ from ...v4 import Specification
 
 
 class SparseOptAttacherProcessor(Processor):
-    """!@brief Takes sparse optimizations from sparse optimizations lists and
-    attaches them to the architecture.
+    """Takes sparse optimizations from sparse optimizations lists and attaches them to the architecture.
     """
 
     def __init__(self, *args, **kwargs):

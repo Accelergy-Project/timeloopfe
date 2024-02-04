@@ -1,4 +1,5 @@
-"""!@brief Node classes for parsing and processing specification trees."""
+"""Node classes for parsing and processing specification trees."""
+
 from abc import ABC
 import copy
 import glob
@@ -26,11 +27,11 @@ from accelergy.parsing_utils import parse_expression_for_arithmetic, is_quoted_s
 
 
 class ParseError(Exception):
-    """!@brief Exception for nodes."""
+    """Exception for nodes."""
 
 
 class Unspecified:
-    """!@brief Class to represent an unspecified value."""
+    """Class to represent an unspecified value."""
 
     def __str__(self):
         return "REQUIRED"
@@ -49,19 +50,25 @@ def is_subclass(x: Any, of: Any) -> bool:
 
 
 class TypeSpecifier:
-    """!@brief Class to represent a type specifier.
-    !@var name Name of the type specifier.
-    !@var required_type Required type of the type specifier.
-    !@var default Default value of the type specifier.
-    !@var callfunc Function to call to cast the value to the required type.
-    !@var should_have_been_removed_by The class that should have removed this
-                                      key from the containing node.
-    !@var part_name_match Whether or not the name of the type specifier is
-                          allowed to be a substring of the key.
-    !@var no_change_key Only used with part_name_match=True. If True, the key
-                        will not be changed when the type specifier is casted.
-                        If false, the key will be changed to the name of the
-                        type specifier.
+    """
+    Represents a type specifier for a node in the TimeloopFE library.
+
+    Attributes:
+        name (str): The name of the type specifier.
+        required_type (Type): The required type for the node.
+        default (Any): The default value for the type specifier.
+        callfunc (Union[Callable, None]): The function to call for casting the value.
+        should_have_been_removed_by (Type): The type that should have removed or transformed the node.
+        part_name_match (bool): Flag indicating if the name should be partially matched.
+        no_change_key (bool): Flag indicating if the key should not be changed.
+
+    Methods:
+        get_id2casted(cls): Get the dictionary of casted values.
+        reset_id2casted(cls): Reset the dictionary of casted values.
+        removed_by_str(self): Get the string representation of the type that should have removed or transformed the node.
+        cast_check_type(self, value: Any, node: "Node", key: str) -> Any: Check and cast the value to the required type.
+        cast(self, value: Any, __node_skip_parse: bool = False) -> Any: Cast the value to the required type.
+        check_type(self, value: Any, node: "Node", key: str): Check if the value matches the required type.
     """
 
     @classmethod
@@ -139,9 +146,11 @@ class TypeSpecifier:
             callname = (
                 self.callfunc.__name__
                 if isinstance(self.callfunc, type)
-                else self.callfunc.__name__
-                if isinstance(self.callfunc, Callable)
-                else str(self.callfunc)
+                else (
+                    self.callfunc.__name__
+                    if isinstance(self.callfunc, Callable)
+                    else str(self.callfunc)
+                )
             )
             casted_successfully = False
             try:  # If we can cast without parsing lower-level nodes, then
@@ -253,14 +262,32 @@ _thread_local.top_spec = None
 
 class Node(ABC):
     """
-    !@brief Abstract base class for all nodes in the tree.
-    !@var parent_node The parent node of this node.
-    !@var _param_type_specifiers Dictionary of type specifiers for this class.
-    !@var Node_all_recognized Whether all elements under this node should be
-                              recognized.
-    !@var __currently_parsing_index The index of the element currently being
-                                    parsed in the parse tree.
-    !@var logger The logger for this class.
+    Base class for all nodes in the hierarchy.
+
+    Attributes:
+        parent_node (Node): The parent node of the current node.
+        spec (Specification): The global specification object.
+        _init_args (Tuple): The arguments and keyword arguments used to initialize the node.
+        __currently_parsing_index (Union[int, str]): The index or key currently being parsed.
+        logger (Logger): The logger object for the node's class.
+        _default_parse (bool): Flag indicating whether the node should be parsed using default rules.
+
+    Methods:
+        get_specifiers_from_processors(cls, spec): Get the specifiers from processors.
+        reset_specifiers_from_processors(cls, processor): Reset the specifiers from processors.
+        declare_attrs(cls, *args, **kwargs): Initialize the attributes of this node.
+        reset_processor_elems(cls, processor): Reset the processor elements.
+        recognize_all(cls, recognize_all): Set whether all attributes under this node should be recognized.
+        _get_type_specifiers(cls, spec): Get the type specifiers for this node.
+        _get_all_recognized(self): Check if all attributes under this node are recognized.
+        _get_tag(x): Get the tag of a node.
+        get_global_spec(): Get the global specification object.
+        set_global_spec(spec): Set the global specification object.
+        get_tag(self): Get the tag of this node.
+        _get_index2checker(self, key2elem): Get the index-to-checker mapping.
+        items(self): Get an iterable of (key, value) or (index, value) pairs.
+        combine_index(self, key, value): Combine the value at the given key with the given value.
+        _parse_elem(self, key, check, value_override): Parse an element of the node.
     """
 
     def __init__(self, *args, **kwargs):
@@ -274,9 +301,7 @@ class Node(ABC):
 
     @classmethod
     def get_specifiers_from_processors(cls, spec: "BaseSpecification"):
-        # if not hasattr(_thread_local, "local_specifiers"):
-        #     _thread_local.local_specifiers = {}
-        # return _thread_local.local_specifiers.setdefault(id(cls), {})
+        """Get the specifiers that have been set from processors."""
         if spec is None or not hasattr(spec, "_processor_attributes"):
             result = {}
         else:
@@ -285,6 +310,7 @@ class Node(ABC):
 
     @classmethod
     def reset_specifiers_from_processors(cls, processor: Optional[Type] = None):
+        """Reset the specifiers that have been set from processors."""
         spec = Node.get_global_spec()
         if spec is None or not hasattr(spec, "_processor_attributes"):
             return {}
@@ -300,7 +326,7 @@ class Node(ABC):
 
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
-        """!@brief Initialize the attributes of this node."""
+        """Initialize the attributes of this node."""
         setattr(cls, "_param_type_specifiers", {})
         # cls.reset_specifiers_from_processors()
         setattr(cls, "Node_all_recognized", False)
@@ -321,11 +347,10 @@ class Node(ABC):
     @classmethod
     def recognize_all(cls, recognize_all: bool = True):
         """
-        !@brief Set whether all attributes under this node should be recognized.
-        !@param recognize_all If True, all attributes under this node will be
-                              recognized. If False, only attributes that are
-                              explicitly specified in the class will be
-                              recognized.
+        Set whether all attributes under this node should be recognized.
+
+        Attributes:
+            recognize_all (bool): Flag indicating whether all attributes under this node should be recognized.
         """
         if cls is Node or cls is DictNode or cls is ListNode:
             raise TypeError(
@@ -339,9 +364,13 @@ class Node(ABC):
         cls, spec: "BaseSpecification"
     ) -> Dict[str, TypeSpecifier]:
         """
-        !@brief Get the type specifiers for this node.
-        !@return A dictionary mapping attribute keys or tags to TypeSpecifier
-                 objects.
+        Get the type specifiers for this node.
+
+        Attributes:
+            spec (Specification): The global specification object.
+
+        Returns:
+            Dict[str, TypeSpecifier]: The type specifiers for this node.
         """
         classname = cls.__name__
         if not hasattr(cls, "_param_type_specifiers"):
@@ -381,14 +410,16 @@ class Node(ABC):
 
     @staticmethod
     def get_global_spec() -> "BaseSpecification":
+        """Get the global specification object."""
         return _thread_local.top_spec
 
     @staticmethod
     def set_global_spec(spec: "BaseSpecification"):
+        """Set the global specification object."""
         _thread_local.top_spec = spec
 
     def get_tag(self) -> str:
-        """!@brief Get the tag of this node."""
+        """Get the tag of this node."""
         return Node._get_tag(self)
 
     def _get_index2checker(
@@ -428,18 +459,23 @@ class Node(ABC):
         )
 
     def items(self) -> Iterable[Tuple[Union[str, int], Any]]:
-        """!@brief Get iterable of (key, value) or (index, value) pairs."""
+        """Get iterable of (key, value) or (index, value) pairs."""
         if isinstance(self, dict):
             return super().items()  # type: ignore
         return enumerate(self)  # type: ignore
 
     def combine_index(self, key: Union[str, int], value: T) -> T:
-        """!@brief Combine the value at the given key with the given value.
+        """Combine the value at the given key with the given value.
+
         If there is no value at the given key, sets the value at the given key.
         If there is, attempts to combine the two values.
-        !@param key The key to combine.
-        !@param value The value to combine.
-        !@return The combined value.
+
+        Args:
+            key: The key to combine.
+            value: The value to combine.
+
+        Returns:
+            The combined value.
         """
         # Done to get rid of type warnings
         s: DictNode = self  # type: ignore
@@ -547,6 +583,7 @@ class Node(ABC):
             # self._check_unrecognized(ignore_should_have_been_removed_by=1)
 
     def get_name(self, seen: Union[Set, None] = None) -> str:
+        """Get the name of this node."""
         if seen is None:
             seen = set()
         if id(self) in seen:
@@ -573,12 +610,15 @@ class Node(ABC):
         ignore_empty: bool = False,
         ignore_should_have_been_removed_by=False,
     ):
-        """!@brief Check for unrecognized keys in this node and all subnodes.
+        """Check for unrecognized keys in this node and all subnodes.
         Also checks for correct types.
-        !@param ignore_empty If True, ignore empty nodes.
-        !@param ignore_should_have_been_removed_by If True, ignore nodes that
-                                                   should have been removed by
-                                                   a processor.
+
+        Args:
+            ignore_empty (bool): Flag indicating whether to ignore empty nodes.
+            ignore_should_have_been_removed_by (bool): Flag indicating whether to ignore nodes that should have been removed by a processor.
+
+        Raises:
+            ParseError: If an unrecognized key is found.
         """
         self.recursive_apply(
             lambda x: x._check_unrecognized(
@@ -590,14 +630,15 @@ class Node(ABC):
     def recursive_apply(
         self, func: callable, self_first: bool = False, applied_to: set = None
     ) -> Any:
-        """!@brief Apply a function to this node and all subnodes.
-        !@param func The function to apply.
-        !@param self_first If True, apply the function to this node before
-                           applying it to subnodes. Otherwise, apply the
-                           the function to subnodes before applying it to this
-                           node.
-        !@param applied_to A set of ids of nodes that have already been
-                           visited. Prevents infinite recursion.
+        """Apply a function to this node and all subnodes.
+
+        Args:
+            func (callable): The function to apply.
+            self_first (bool): Flag indicating whether to apply the function to this node before applying it to subnodes.
+            applied_to (set): A set of ids of nodes that have already been visited. Prevents infinite recursion.
+
+        Returns:
+            The return value of the function applied to this node.
         """
         if applied_to is None:
             applied_to = set()
@@ -614,7 +655,7 @@ class Node(ABC):
         return func(self)
 
     def clean_empties(self):
-        """!@brief Remove empty nodes from this node and all subnodes."""
+        """Remove empty nodes from this node and all subnodes."""
 
         def clean(x):
             items = list((x.items()) if isinstance(x, dict) else enumerate(x))
@@ -626,13 +667,13 @@ class Node(ABC):
         clean(self)
 
     def isempty(self) -> bool:
-        """!@brief Return True if this node is empty. Good to override."""
+        """Return True if this node is empty. Good to override."""
         if isinstance(self, (DictNode, ListNode)):
             return len(self) == 0
         return False
 
     def isempty_recursive(self) -> bool:
-        """!@brief Return True if this node or all subnodes are empty."""
+        """Return True if this node or all subnodes are empty."""
 
         empties = set()
 
@@ -670,21 +711,20 @@ class Node(ABC):
         _processor_responsible_for_removing: Any = None,
         _add_checker_to: Optional[Dict[str, TypeSpecifier]] = None,
     ):
-        """!@brief Initialize a type specifier for this class.
-        !@param key_or_tag The key/tag or tag to use for this type specifier.
-        !@param required_type The type of value that this type specifier
-        !@param default The default value to use if the key/tag is not found.
-        !@param callfunc A function to call on the value before returning it.
-        !@param part_name_match If True, the key/tag will match if it is a
-                                substring of the actual key/tag.
-        !@param no_change_key If True, a parsed key will not be changed when
-                              a partial name match is found. Otherwise, the
-                              parsed key will be changed to the actual key.
-        !@param _processor_responsible_for_removing
-            The processor that will be responsible for removing this key from
-            the containing node, if any.
-        !@param _add_checker_to The dictionary to add the checker to. If None,
-                                add the checker to the class's type specifiers.
+        """Initialize a type specifier for this class.
+
+        Args:
+            key_or_tag: The key/tag or tag to use for this type specifier.
+            required_type: The type of value that this type specifier will be
+            default: The default value to use if the key/tag is not found.
+            callfunc: A function to call on the value before returning it.
+            part_name_match: If True, the key/tag will match if it is a substring of the actual key/tag.
+            no_change_key: If True, a parsed key will not be changed when a partial name match is found. Otherwise, the parsed key will be changed to the actual key.
+            _processor_responsible_for_removing: The processor that will be responsible for removing this key from the containing node, if any.
+            _add_checker_to: The dictionary to add the checker to. If None, add the checker to the class's type specifiers.
+
+        Raises:
+            AttributeError: If the class does not have a _param_type_specifiers attribute.
         """
         if not hasattr(cls, "_param_type_specifiers"):
             raise AttributeError(
@@ -790,10 +830,13 @@ class Node(ABC):
                 raise ProcessorError(f"{s} {v.removed_by_str()}")
 
     def get_nodes_of_type(self, node_type: Type[T]) -> List[T]:
-        """!@brief Return a list of all subnodes of a given type.
-        !@param node_type The type of node to search for.
-        !@param found A set of nodes that have already been found. Prevents
-                      infinite recursion.
+        """Return a list of all subnodes of a given type.
+
+        Args:
+            node_type: The type of node to search for.
+
+        Returns:
+            A list of all subnodes of the given type.
         """
         found = []
         found_ids = set()
@@ -809,9 +852,13 @@ class Node(ABC):
         return found
 
     def get_setter_lambda(self, keytag: Union[str, int]) -> Callable:
-        """!@brief Get a function that can be used to set a value in
-        this node. The setter takes one argument, the value to set.
-        !@param keytag The key or tag to set.
+        """Get a function that can be used to set a value in this node. The setter takes one argument, the value to set.
+
+        Args:
+            keytag: The key or tag to set.
+
+        Returns:
+            A function that can be used to set a value in this node.
         """
 
         def setval(x):
@@ -822,20 +869,25 @@ class Node(ABC):
         return setval
 
     def get_combiner_lambda(self, keytag: Union[str, int]) -> Callable:
-        """!@brief Get a function that can be used to combine a value
-        to this node. The combiner takes one argument, the value to combine.
-        !@param keytag The key or tag to combine.
+        """Get a function that can be used to combine a value to this node. The combiner takes one argument, the value to combine.
+
+        Args:
+            keytag: The key or tag to combine.
+
+        Returns:
+            A function that can be used to combine a value to this node.
         """
         return lambda x: self.combine_index(keytag, x)
 
     def get_setters_for_keytag(
         self, keytag: str, recursive: bool = True
     ) -> List[Tuple[Any, Callable]]:
-        """!@brief Get a list of tuples of the form (value, setter) for all
-        keys/tags in this node that match the given key/tag. A setter is a
-        function that can be used to set a value in this node.
-        !@param keytag The key or tag to search for.
-        !@param recursive If True, search recursively.
+        """Get a list of tuples of the form (value, setter) for all keys/tags in this node that match the given key/tag.
+        A setter is a function that can be used to set a value in this node.
+
+        Args:
+            keytag: The key or tag to search for.
+            recursive: If True, search recursively.
         """
         rval = []
 
@@ -853,11 +905,13 @@ class Node(ABC):
     def get_combiners_for_keytag(
         self, keytag: str, recursive: bool = True
     ) -> List[Tuple[Any, Callable]]:
-        """!@brief Get a list of tuples of the form (value, combiner) for all
-        keys/tags in this node that match the given key/tag. A combiner is a
-        function that can be used to combine a value to this node.
-        !@param keytag The key or tag to search for.
-        !@param recursive If True, search recursively.
+        """Get a list of tuples of the form (value, combiner) for all keys/tags in this node that match the given key/tag.
+
+        A combiner is a function that can be used to combine a value to this node.
+
+        Args:
+            keytag: The key or tag to search for.
+            recursive: If True, search recursively.
         """
         rval = []
 
@@ -875,11 +929,16 @@ class Node(ABC):
     def get_setters_for_type(
         self, t: Type, recursive: bool = True
     ) -> List[Tuple[Any, Callable]]:
-        """!@brief Get a list of tuples of the form (value, setter) for all
-        keys/tags in this node that match the given type. A setter is a
-        function that can be used to set a value in this node.
-        !@param t The type to search for.
-        !@param recursive If True, search recursively.
+        """Get a list of tuples of the form (value, setter) for all keys/tags in this node that match the given type.
+
+        A setter is a function that can be used to set a value in this node.
+
+        Args:
+            t: The type to search for.
+            recursive: If True, search recursively.
+
+        Returns:
+            A list of tuples of the form (value, setter) for all keys/tags in this node that match the given type.
         """
         rval = []
 
@@ -897,11 +956,16 @@ class Node(ABC):
     def get_combiners_for_type(
         self, t: Type, recursive: bool = True
     ) -> List[Tuple[Any, Callable]]:
-        """!@brief Get a list of tuples of the form (value, combiner) for all
-        keys/tags in this node that match the given type. A combiner is a
-        function that can be used to combine a value to this node.
-        !@param t The type to search for.
-        !@param recursive If True, search recursively.
+        """Get a list of tuples of the form (value, combiner) for all keys/tags in this node that match the given type.
+
+        A combiner is a function that can be used to combine a value in this node.
+
+        Args:
+            t: The type to search for.
+            recursive: If True, search recursively.
+
+        Returns:
+            A list of tuples of the form (value, combiner) for all keys/tags in this node that match the given type.
         """
         rval = []
 
@@ -917,10 +981,12 @@ class Node(ABC):
         return rval
 
     def __str__(self):
+        """Return the name of this node."""
         return self.get_name()
 
     def __format__(self, format_spec):
-        return str(self)
+        """Formats the name of this node."""
+        return str(self).__format__(format_spec)
 
     @staticmethod
     def try_combine(
@@ -929,11 +995,16 @@ class Node(ABC):
         innonde: Union["Node", None] = None,
         index: Union[int, str, None] = None,
     ) -> Any:
-        """!@brief Try to combine two values.
-        !@param a The first value.
-        !@param b The second value.
-        !@param innonde The node that contains the values. For error messages.
-        !@param index The index of the values in the node. For error messages.
+        """Try to combine two values.
+
+        Args:
+            a: The first value.
+            b: The second value.
+            innonde: The node that contains the values. For error messages.
+            index: The index of the values in the node. For error messages.
+
+        Returns:
+            The combined value.
         """
 
         set_on_fail = isinstance(index, str) and "ignore" in index
@@ -965,8 +1036,7 @@ class Node(ABC):
         )
 
     def is_defined_non_default_non_empty(self, key: str) -> bool:
-        """!@brief Returns True if the given key is defined in this node and
-        is not the default value and is not empty."""
+        """Returns True if the given key is defined in this node and is not the default value and is not empty."""
         idx2checker = self._get_index2checker()
         if key not in idx2checker:
             return False
@@ -980,11 +1050,13 @@ class Node(ABC):
 
     # pylint: disable=useless-super-delegation
     def __getitem__(self, key: Union[str, int]) -> Any:
+        """Get the value at the given key or index."""
         # pylint: disable=no-member
         return super().__getitem__(key)  # type: ignore
 
     # pylint: disable=useless-super-delegation
     def __setitem__(self, key: Union[str, int], value: Any):
+        """Set the value at the given key or index."""
         # pylint: disable=no-member
         super().__setitem__(key, value)  # type: ignore
 
@@ -994,10 +1066,12 @@ class Node(ABC):
         parsed_ids: Optional[set] = None,
         callfunc: Optional[Callable] = None,
     ):
-        """!@brief Parse expressions in this node and all subnodes.
-        !@param symbol_table A dictionary mapping variable names to values.
+        """Parse expressions in this node and all subnodes.
+        Args:
+            symbol_table: A dictionary mapping variable names to values.
+            parsed_ids: A set of IDs of nodes that have already been parsed.
+            callfunc: A function to call on each node after parsing.
         """
-        # print(f'Parsing expressions in "{self.get_name()[:50]}".')
         if symbol_table is None:
             symbol_table = {}
         parsed_ids = parsed_ids or set()
@@ -1013,7 +1087,6 @@ class Node(ABC):
             elif isinstance(x, str) and id(x) not in parsed_ids:
                 self._parse_expression(i, n_symbol_table, index2checker.get(i, None))
             if checker:
-                # print(f'Setting "{str(self.get_name())[:50]}[{i}]" to {str(self[i])[:50]}.')
                 if was_str:
                     try:
                         self[i] = checker.cast_check_type(self[i], self, i)
@@ -1067,11 +1140,12 @@ class Node(ABC):
 
     @classmethod
     def unique_class_name(cls):
+        """Return a unique name for this class."""
         return ".".join(c.__name__ for c in cls.mro()[::-1])
 
 
 class ListNode(Node, list):
-    """!@brief A node that is a list of other nodes."""
+    """A node that is a list of other nodes."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1091,10 +1165,10 @@ class ListNode(Node, list):
 
 
 class CombineableListNode(ListNode):
-    """!@brief A list node that can be combined with others by extending."""
+    """A list node that can be combined with others by extending."""
 
     def combine(self, other: "CombineableListNode") -> "CombineableListNode":
-        """!@brief Extends this list with the contents of another list."""
+        """Extends this list with the contents of another list."""
         if not isinstance(other, self.__class__):
             raise TypeError(
                 f"Can not combine different classes {self.__class__.__name__} "
@@ -1105,7 +1179,7 @@ class CombineableListNode(ListNode):
 
 
 class FlatteningListNode(ListNode):
-    """!@brief A list node that flattens lists of lists."""
+    """A list node that flattens lists of lists."""
 
     def _flatten(self):
         while any(isinstance(x, list) for x in self):
@@ -1119,7 +1193,7 @@ class FlatteningListNode(ListNode):
 
 
 class DictNode(Node, dict):
-    """!@brief A node that is a dictionary of other nodes."""
+    """A node that is a dictionary of other nodes."""
 
     def __init__(self, *args, __node_skip_parse=False, **kwargs):
         __node_skip_parse = kwargs.pop("__node_skip_parse", False)
@@ -1163,7 +1237,7 @@ class DictNode(Node, dict):
 
     @classmethod
     def require_one_of(cls, *args):
-        """!@brief Require that at least one of the given keys is present."""
+        """Require that at least one of the given keys is present."""
         _require_one_of = getattr(cls, "_require_one_of", [])
         if not _require_one_of:
             cls._require_one_of = _require_one_of
@@ -1171,14 +1245,14 @@ class DictNode(Node, dict):
 
     @classmethod
     def require_all_or_none_of(cls, *args):
-        """!@brief Require that all or none of the given keys are present."""
+        """Require that all or none of the given keys are present."""
         _require_all_or_none_of = getattr(cls, "_require_all_or_none_of", [])
         if not _require_all_or_none_of:
             cls._require_all_or_none_of = _require_all_or_none_of
         cls._require_all_or_none_of.append(args)
 
     def combine(self, other: "DictNode") -> "DictNode":
-        """!@brief Combines this dictionary with another dictionary.
+        """Combines this dictionary with another dictionary.
         If a key is present in both dictionaries, the values are combined.
         Otherwise, the key is taken from whichever dictionary has it.
         """
@@ -1212,7 +1286,23 @@ class DictNode(Node, dict):
         jinja_parse_data: Dict[str, Any] = None,
         **kwargs,
     ) -> "DictNode":
-        """!@brief Loads a dictionary from a list of yaml files. Each yaml file
+        """
+        Loads a dictionary from one more more yaml files.
+
+        Each yaml file should contain a dictionary. Dictionaries are combined in the order they are given.
+
+        Keyword arguments are also added to the dictionary.
+
+        Args:
+            files: A list of yaml files to load.
+            jinja_parse_data: A dictionary of data to use when parsing
+            kwargs: Extra keyword arguments to add to the dictionary.
+
+        Returns:
+            A DictNode containing the combined dictionaries.
+        """
+
+        """Loads a dictionary from a list of yaml files. Each yaml file
         should contain a dictionary. Dictionaries are in the given order.
         Keyword arguments are also added to the dictionary.
         !@param files A list of yaml files to load.
@@ -1244,8 +1334,8 @@ class DictNode(Node, dict):
 
         for f in to_parse:
             if not (
-                f.endswith(".yaml") or f.endswith(".jinja") 
-                or f.endswith(".jinja2")):
+                f.endswith(".yaml") or f.endswith(".jinja") or f.endswith(".jinja2")
+            ):
                 logging.warning(
                     f"File {f} does not end with .yaml, .jinja, or .jinja2. Skipping."
                 )
@@ -1300,18 +1390,30 @@ class DictNode(Node, dict):
         super().__setitem__(__key, __value)
 
     def get(self, __key: Any, __default: Any = None) -> Any:
+        """
+        Gets a key from the dictionary.
+        """
         self._check_alias(__key)
         return super().get(__key, __default)
 
     def setdefault(self, __key: Any, __default: Any = None) -> Any:
+        """
+        Sets the default value for a key.
+        """
         self._check_alias(__key)
         return super().setdefault(__key, __default)
 
     def pop(self, __key: Any, __default: Any = None) -> Any:
+        """
+        Pops a key from the dictionary.
+        """
         self._check_alias(__key)
         return super().pop(__key, __default)
 
     def check_unrecognized(self, *args, **kwargs) -> None:
+        """
+        Check for unrecognized keys in this node and all subnodes.
+        """
         super().check_unrecognized(*args, **kwargs)
         checkers = self._get_index2checker()
 
@@ -1337,6 +1439,7 @@ class DictNode(Node, dict):
             check(required_all, (0, len(required_all)), "all or none")
 
     def __getattr__(self, name):
+        """Index into the attributes or the contents of this node."""
         if name in self:
             return self[name]
         try:

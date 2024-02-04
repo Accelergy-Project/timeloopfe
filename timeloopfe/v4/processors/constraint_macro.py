@@ -1,4 +1,4 @@
-"""!@brief Defines constraint macros to be used for simplifying constraint
+"""Defines constraint macros to be used for simplifying constraint
 specification.
 """
 
@@ -75,8 +75,7 @@ def greedy_allocate(
 
 
 class ConstraintMacroProcessor(Processor):
-    """!@brief Defines constraint macros to be used for simplifying constraint
-    specification.
+    """ Defines constraint macros to be used for simplifying constraint specification.
 
     Iteration constraint macros:
     - factors_only: Only the listed factors are allowed. Other factors are

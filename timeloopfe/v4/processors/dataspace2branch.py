@@ -1,4 +1,4 @@
-"""!@brief Resolves which data spaces are kept in which branches."""
+"""Resolves which data spaces are kept in which branches."""
 from typing import Set
 from .constraint_attacher import ConstraintAttacherProcessor
 from .constraint_macro import ConstraintMacroProcessor
@@ -11,7 +11,7 @@ from ...v4 import Specification
 
 
 class Dataspace2BranchProcessor(Processor):
-    """!@brief Resolves which data spaces are kept in which branches."""
+    """Resolves which data spaces are kept in which branches."""
 
     def get_problem_ds_names(self, spec) -> Set[str]:
         return set([x.name for x in spec.problem.shape.data_spaces])

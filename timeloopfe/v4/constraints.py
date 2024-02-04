@@ -9,6 +9,16 @@ from .version import assert_version
 def dummy_constraints(
     prob: problem.Problem, create_spatial_constraint: bool = False
 ) -> "ConstraintGroup":
+    """
+    Creates a dummy constraint group for the given problem.
+
+    Args:
+        prob (problem.Problem): The problem for which the constraints are created.
+        create_spatial_constraint (bool, optional): Whether to create a spatial constraint. Defaults to False.
+
+    Returns:
+        ConstraintGroup: The created constraint group.
+    """
     c = ConstraintGroup()
     c.temporal = Temporal(
         factors=list(f"{x}=1" for x in prob.shape.dimensions),
@@ -24,6 +34,18 @@ def dummy_constraints(
 
 
 def constraint_factory(constraint: dict):
+    """
+    Factory function to create constraint objects based on the provided dictionary.
+
+    Args:
+        constraint (dict): A dictionary containing the constraint information.
+
+    Returns:
+        object: An instance of the appropriate constraint class based on the 'type' field in the dictionary.
+
+    Raises:
+        ValueError: If the 'type' field is missing or not recognized.
+    """
     if "type" not in constraint:
         raise ValueError("Constraint must have a type")
     ctype = constraint["type"]
@@ -33,11 +55,6 @@ def constraint_factory(constraint: dict):
         "dataspace": Dataspace,
         "max_overbooked_proportion": MaxOverbookedProportion,
         "utilization": Utilization,
-        # Legacy
-        # "dataspace": Dataspace,
-        # "bypassing": Dataspace,
-        # "bypass": Dataspace,
-        # "datatype": Dataspace,
     }
     if ctype not in type2class:
         raise ValueError(
@@ -48,6 +65,14 @@ def constraint_factory(constraint: dict):
 
 
 class Constraints(DictNode):
+    """
+    Class representing constraints.
+
+    Attributes:
+        version (str): The version of the constraints.
+        targets (ConstraintsList): The list of targets for the constraints.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -61,6 +86,9 @@ class Constraints(DictNode):
 
 
 class ConstraintsList(CombineableListNode):
+    """
+    A class representing a list of constraints.
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -72,6 +100,18 @@ class ConstraintsList(CombineableListNode):
 
 
 class Constraint(DictNode):
+    """
+    A constraint in the system.
+
+    Args:
+        type (str): The type of the constraint.
+        target (str): The target of the constraint.
+
+    Attributes:
+        type (str): The type of the constraint.
+        target (str): The target of the constraint.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -149,6 +189,16 @@ class Constraint(DictNode):
 
 
 class ConstraintGroup(DictNode):
+    """
+    A group of constraints.
+
+    Attributes:
+        spatial (Spatial): The spatial constraint.
+        temporal (Temporal): The temporal constraint.
+        dataspace (Dataspace): The dataspace constraint.
+        max_overbooked_proportion (MaxOverbookedProportion): The maximum overbooked proportion constraint.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -168,6 +218,17 @@ class ConstraintGroup(DictNode):
 
 
 class Iteration(Constraint):
+    """
+    An iteration (spatial or temporal) constraint.
+
+    Attributes:
+        factors (Factors): The factors associated with the iteration.
+        permutation (Permutation): The permutation associated with the iteration.
+        default_max_factor (int): The default maximum factor value.
+        default_min_factor (int): The default minimum factor value.
+        remainders (int): The remainders associated with the iteration.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -187,6 +248,15 @@ class Iteration(Constraint):
 
 
 class Spatial(Iteration):
+    """
+    A spatial iteration constraint.
+
+    Attributes:
+        no_reuse (List[str]): A list of problem dataspaces that should not be reused.
+        no_link_transfer (List[str]): A list of problem dataspaces that should not have link transfers.
+        split (int): The number of splits for the spatial iteration.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -205,6 +275,14 @@ class Spatial(Iteration):
 
 
 class Temporal(Iteration):
+    """
+    A temporal iteration constraint.
+    
+    Attributes:
+        no_reuse (List[str]): A list of problem dataspaces that should not be reused.
+        rmw_first_update (List[str]): A list of problem dataspaces that should have RMW for the first update (rather than a write only).
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -220,6 +298,15 @@ class Temporal(Iteration):
 
 
 class Dataspace(Constraint):
+    """
+    A constraint class for specifying dataspace properties.
+
+    Attributes:
+        bypass (List[str]): List of bypass dataspace names.
+        keep (List[str]): List of keep dataspace names.
+        no_coalesce (List[str]): List of no_coalesce dataspace names.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -237,6 +324,13 @@ class Dataspace(Constraint):
 
 
 class MaxOverbookedProportion(Constraint):
+    """
+    A constraint that defines the maximum overbooked proportion.
+    
+    Attributes:
+        proportion (float): The maximum overbooked proportion.
+    """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -249,6 +343,13 @@ class MaxOverbookedProportion(Constraint):
 
 
 class Utilization(Constraint):
+    """
+    A constraint that defines the utilization of a component.
+
+    Attributes:
+        min (float or str): The minimum utilization value.
+        type (str): The type of the constraint, which is "utilization".
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -260,6 +361,10 @@ class Utilization(Constraint):
 
 
 class Permutation(ListNode):
+    """
+    A permutation of ranks.
+    """
+
     @staticmethod
     def factory(x: Union[str, list]) -> "Permutation":
         if isinstance(x, str):
@@ -280,10 +385,14 @@ class Permutation(ListNode):
 
 
 class Factor(str):
+    """A loop factor (e.g., P=1)"""
     pass
 
 
 class Factors(CombineableListNode):
+    """
+    A list of factors used to describe loop bounds
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -291,6 +400,22 @@ class Factors(CombineableListNode):
 
     @staticmethod
     def check_valid_factor(f, _allow_invalid: bool = True):
+        """
+        Check if a factor is valid.
+
+        Parameters:
+        - f: The factor to be checked.
+        - _allow_invalid: A flag indicating whether to allow invalid factors.
+
+        Returns:
+        - If _allow_invalid is False, returns a valid factor.
+        - If _allow_invalid is True and the factor is valid, returns a valid factor.
+        - If _allow_invalid is True and the factor is invalid, returns the factor itself.
+
+        Raises:
+        - ValueError: If the factor cannot be split.
+
+        """
         if not _allow_invalid:
             return Factor(f)
         try:
@@ -301,6 +426,19 @@ class Factors(CombineableListNode):
 
     @staticmethod
     def factory(x: Union[str, list]) -> "Factors":
+        """
+        Create a Factors object from a string or a list.
+
+        Args:
+            x (Union[str, list]): The input string or list.
+
+        Returns:
+            Factors: The Factors object created from the input.
+
+        Raises:
+            None
+
+        """
         if isinstance(x, str):
             logging.warning(
                 'Factors given as string "%s". Trying to turn into a list.',
@@ -317,6 +455,21 @@ class Factors(CombineableListNode):
 
     @staticmethod
     def splitfactor(x: str) -> Tuple[str, str, int]:
+        """
+        Split a factor string into its components.
+
+        Args:
+            x (str): The factor string to be split.
+
+        Returns:
+            Tuple[str, str, int]: A tuple containing the factor name, the comparison operator, and the factor value.
+
+        Raises:
+            ValueError: If none of the valid comparison operators are found in the factor string.
+
+        Example:
+            splitfactor("X=123") returns ("X", "=", 123)
+        """
         checks = ["<=", ">=", "="]
         for to_check in checks:
             if to_check not in x:
@@ -331,29 +484,80 @@ class Factors(CombineableListNode):
         )
 
     def get_split_factors(self) -> List[Tuple[str, str, str]]:
+        """
+        Get a list of split factors.
+        
+        Example:
+            get_split_factors() returns [("X", "=", "123"), ("Y", "=", "456"), ("Z", "=", "789")] if the factors are "X=123", "Y=456", and "Z=789".
+
+        """
         return [self.splitfactor(x) for x in self]
 
     def get_factor_names(self) -> List[str]:
+        """
+        Get a list of factor names.
+        
+        Example:
+            get_factor_names() returns ["X", "Y", "Z"] if the factors are "X=123", "Y=456", and "Z=789".
+
+        """
         return [self.splitfactor(x)[0] for x in self]
 
     def remove_factor(self, name: str):
+        """
+        Remove a factor from the list of factors.
+
+        Args:
+            name (str): The name of the factor to be removed.
+
+        Raises:
+            None
+
+        Example:
+            remove_factor("X") removes the factor "X=123" from the list of factors.
+        
+        """
         for i in range(len(self) - 1, -1, -1):
             if name == self.splitfactor(self[i])[0]:
                 self.pop(i)
 
     def add_eq_factor(self, name: str, value: int, overwrite: bool = False):
+        """
+        Adds an equality factor to the constraint.
+
+        Args:
+            name (str): The name of the factor.
+            value (int): The value of the factor.
+            overwrite (bool, optional): If True, removes any existing factor with the same name before adding the new one. Defaults to False.
+        """
         if overwrite:
             self.remove_factor(name)
         self.append(f"{name}={value}")
         self.check_unique_remove_repeat()
 
     def add_leq_factor(self, name: str, value: int, overwrite: bool = False):
+        """
+        Adds a less than or equal to (<=) factor constraint to the list of constraints.
+
+        Args:
+            name (str): The name of the factor.
+            value (int): The value of the factor.
+            overwrite (bool, optional): If True, removes any existing factor with the same name before adding the new one. Defaults to False.
+        """
         if overwrite:
             self.remove_factor(name)
         self.append(f"{name}<={value}")
         self.check_unique_remove_repeat()
 
     def add_geq_factor(self, name: str, value: int, overwrite: bool = False):
+        """
+        Adds a greater-than-or-equal factor constraint to the constraint set.
+
+        Args:
+            name (str): The name of the factor.
+            value (int): The value of the factor.
+            overwrite (bool, optional): If True, removes any existing factor with the same name before adding the new one. Defaults to False.
+        """
         if overwrite:
             self.remove_factor(name)
         self.append(f"{name}>={value}")
@@ -404,7 +608,15 @@ class Factors(CombineableListNode):
         return self
 
     def get_minimum_product(self, problem_instance: problem.Instance):
-        """!@brief Get the product of all factors in this list."""
+        """
+        Calculates the minimum product of all factors in this list.
+
+        Args:
+            problem_instance (problem.Instance): The problem instance.
+
+        Returns:
+            int: The calculated minimum product.
+        """
         allocated = 1
         for f in self:
             dim, comparator, value = self.splitfactor(f)
@@ -416,22 +628,27 @@ class Factors(CombineableListNode):
         return allocated
 
     def add_eq_factor_iff_not_exists(self, name: str, value: int) -> bool:
-        """!@brief Add an "name=value" factor iff "name" is not already in the
-        factor list. Return True if the factor was added."""
+        """
+        Add an "name=value" factor iff "name" is not already in the factor list. Return True if the factor was added.
+        """
         if name not in self.get_factor_names():
             self.add_eq_factor(name, value)
             return True
         return False
 
     def add_leq_factor_iff_not_exists(self, name: str, value: int) -> bool:
-        """!@brief Add an "name<=value" factor iff "name" is not already in the
-        factor list. Return True if the factor was added."""
+        """
+        Add an "name<=value" factor iff "name" is not already in the factor list. Return True if the factor was added.
+        """
         if name not in self.get_factor_names():
             self.add_leq_factor(name, value)
             return True
         return False
 
     def name2factor(self, name: str) -> Optional[str]:
+        """
+        Return the factor with the given name, or None if not found.
+        """
         for f in self:
             if name == self.splitfactor(f)[0]:
                 return f
@@ -443,6 +660,9 @@ class Factors(CombineableListNode):
 
 
 class ProblemDataspaceList(ListNode):
+    """
+    A list of problem dataspaces.
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)

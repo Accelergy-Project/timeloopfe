@@ -3,6 +3,14 @@ from .version import assert_version
 
 
 class Mapspace(DictNode):
+    """
+    Top-level mapspace object
+
+    Attributes:
+        version (str): The version of the mapspace.
+        template (str): The template to use for the mapspace. "ruby" for imperfect factorization, any other string for perfect factorization.
+    
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)

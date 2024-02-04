@@ -1,10 +1,13 @@
-"""!@brief Enables the dummy table for Accelergy to placeholder energy/area."""
+"""Enables the dummy table for Accelergy to placeholder energy/area."""
 from ..arch import Component
 from ...common.processor import Processor
 from ...v4 import Specification
 
 
 class EnableDummyTableProcessor(Processor):
+    """
+    Enable the dummy table for Accelergy to placeholder energy/area.
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

@@ -1,4 +1,4 @@
-"""!@brief Optimizes permutation by pruning superfluous permutations."""
+"""Optimizes permutation by pruning superfluous permutations."""
 from .constraint_attacher import (
     ConstraintAttacherProcessor,
 )
@@ -11,7 +11,7 @@ from ...v4 import Specification
 
 
 class PermutationOptimizerProcessor(Processor):
-    """!@brief Optimizes permutation by pruning superfluous permutations."""
+    """Optimizes permutation by pruning superfluous permutations."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

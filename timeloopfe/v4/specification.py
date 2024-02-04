@@ -18,6 +18,23 @@ from ..common.base_specification import BaseSpecification
 
 
 class Specification(BaseSpecification):
+    """
+    A top-level class for the Timeloop specification.
+    
+    Attributes:
+        architecture: The top-level architecture description.
+        components: List of compound components.
+        constraints: Additional constraints on the architecture and mapping.
+        mapping: Additional constraints on the architecture and mapping.
+        problem: The problem specification.
+        variables: Variables to be used in parsing.
+        mapper: Directives to control the mapping process.
+        sparse_optimizations: Additional sparse optimizations available to the architecture.
+        mapspace: The top-level mapspace description.
+        globals: Global inclusion of extra parsing functions and environment variables.
+        
+    Note: Inherits from BaseSpecification.
+    """
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)

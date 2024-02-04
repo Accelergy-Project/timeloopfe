@@ -7,7 +7,7 @@ import logging
 
 
 def transpile(spec: Specification, for_model: bool = False):
-    """!@brief Dump a v4 specification to v3 format.
+    """Dump a v4 specification to v3 format.
     !@param spec Specification object to dump.
     !@param for_model If True, dump the specification for timelooop-model.
                       Else, for timeloop-mapper.

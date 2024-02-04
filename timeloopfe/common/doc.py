@@ -1,4 +1,4 @@
-"""!@brief Provides information on all node subtypes and their attributes."""
+"""Provides information on all node subtypes and their attributes."""
 from .nodes import (
     Node,
     _subclassed,
@@ -12,7 +12,17 @@ from typing import List, Union
 def get_property_table(
     node: Union[Node, type] = None, col_len: int = 25, trim_cols: bool = False
 ) -> str:
-    """!@brief Returns a table of all Node subclasses and their attributes."""
+    """
+    Returns a table of all Node subclasses and their attributes.
+
+    Args:
+        node (Union[Node, type], optional): The Node subclass to generate the table for. If None, generates the table for all Node subclasses. Defaults to None.
+        col_len (int, optional): The length of each column in the table. Defaults to 25.
+        trim_cols (bool, optional): Whether to trim the columns to fit the specified length. Defaults to False.
+
+    Returns:
+        str: The generated table as a string.
+    """
     result = []
     checker2str = [
         "key",
@@ -54,11 +64,24 @@ def get_property_table(
     return "\n".join(result)
 
 
+from typing import Union, List
+
 def get_property_tree(
     node: Union[Node, type] = None, skip: Union[List[str], None] = None, n_levels=-1
 ) -> str:
     """
-    !@brief Returns all node subtypes and their attributes in a tree format.
+    Returns all node subtypes and their attributes in a tree format.
+
+    Args:
+        node (Union[Node, type], optional): The node or node type to generate the property tree for. 
+            If not provided, the Specification node will be used. Defaults to None.
+        skip (Union[List[str], None], optional): A list of attribute names to skip in the property tree. 
+            Defaults to None.
+        n_levels (int, optional): The number of levels to include in the property tree. 
+            A negative value indicates all levels. Defaults to -1.
+
+    Returns:
+        str: The property tree as a string.
     """
     if node is None:
         from ..v4 import Specification
@@ -78,7 +101,16 @@ def _get_property_tree(
     n_levels=-1,
 ) -> str:
     """
-    !@brief Returns all node subtypes and their attributes in a tree format.
+    Returns all node subtypes and their attributes in a tree format.
+
+    Args:
+        node (Union[Node, type]): The node or type to generate the property tree for.
+        top (Union[Node, type]): The top-level node or type.
+        skip (Union[List[str], None], optional): List of attributes to skip. Defaults to None.
+        n_levels (int, optional): Number of levels to include in the tree. Defaults to -1 (all levels).
+
+    Returns:
+        str: The property tree in a string format.
     """
     if n_levels == 0:
         return ""
@@ -146,7 +178,15 @@ def get_property_yaml(
     node: Node, top: "BaseSpecification" = None, skip: Union[List[str], None] = None
 ):
     """
-    !@brief Returns all node subtypes and their attributes in a YAML format.
+    Returns all node subtypes and their attributes in a YAML format.
+
+    Parameters:
+        node (Node): The node for which to generate the YAML.
+        top (BaseSpecification, optional): The top-level specification. Defaults to None.
+        skip (Union[List[str], None], optional): List of attributes to skip. Defaults to None.
+
+    Returns:
+        str: The YAML representation of the node subtypes and their attributes.
     """
     if node is None:
         from ..v4 import Specification
@@ -167,7 +207,7 @@ def get_property_yaml(
 def _get_property_yaml(
     node: Node, top: "BaseSpecification" = None, skip: Union[List[str], None] = None
 ):
-    """!@brief Returns a yaml representation of the specification."""
+    """Returns a yaml representation of the specification."""
     top = top or node
     result = []
     skip = ["ignore"] if skip is None else skip

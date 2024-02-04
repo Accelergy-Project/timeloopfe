@@ -7,23 +7,30 @@ TimeloopFE provides a rich Python interface, error checking, and automation
 tools. With closely-aligned Python and YAML interfaces, TimeloopFE is designed
 to enable easy design space exploration and automation.
 
-### Installation
+## Documentation
+Documentation for the full framework is available at
+[timeloop.csail.mit.edu](timeloop.csail.mit.edu). Documentation for TimeloopFE
+is available at
+[accelergy-project.github.io/timeloopfe/index.html](accelergy-project.github.io/timeloopfe/index.html).
+
+## Installation
 First, ensure that Timeloop and Accelergy are installed following the
 [Timeloop+Accelergy install instructions](https://timeloop.csail.mit.edu/installation).
 
 To install timeloopfe, run the following commands: 
 ```bash 
-git clone https://github.com/Accelergy-Project/timeloopfe.git 
+git clone
+https://github.com/Accelergy-Project/timeloopfe.git 
 pip3 install ./timeloopfe
 ```
 
-### Tutorials and Examples
+## Tutorials and Examples
 Tutorials and examples available in the [Timeloop and Accelergy exercises
 repository](https://github.com/Accelergy-Project/timeloop-accelergy-exercises.git).
 In this repository, examples can be found in the `workspace/baseline_designs`
 directory and tutorials can be found in the `workspace/exercises` directory.
 
-### Minimal Usage
+## Minimal Usage
 TimeloopFE interface provides two primary functions: - Input file gathering &
 error checking - Python interface for design space exploration
 ```python 

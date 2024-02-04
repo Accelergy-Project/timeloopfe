@@ -1,0 +1,71 @@
+\hypertarget{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor}{}\doxysection{timeloopfe.\+v4.\+processors.\+constraint\+\_\+macro.\+Constraint\+Macro\+Processor Class Reference}
+\label{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor}\index{timeloopfe.v4.processors.constraint\_macro.ConstraintMacroProcessor@{timeloopfe.v4.processors.constraint\_macro.ConstraintMacroProcessor}}
+
+
+Defines constraint macros to be used for simplifying constraint specification.  
+
+
+
+
+Inherits \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor}{timeloopfe.\+common.\+processor.\+Processor}}.
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_a55ca421662cc2257a9d70bf3708fb584}\label{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_a55ca421662cc2257a9d70bf3708fb584}} 
+def {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, $\ast$args, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_a868c3fbc6d2fbcb6e065055cc287d075}{declare\+\_\+attrs}} (self)
+\begin{DoxyCompactList}\small\item\em Initialize the attributes that the processor is responsible for. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_a99723674ec0d671b357fb80324d312b2}\label{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_a99723674ec0d671b357fb80324d312b2}} 
+Dict\mbox{[}str, int\mbox{]} {\bfseries get\+\_\+unconstrained\+\_\+dims} (self, \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1specification_1_1Specification}{Specification}} \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_a571a445b6e20b7420d020f72dcf077d0}{spec}})
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_aedbff36fec3ddd0360ebba0c961c00a7}\label{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_aedbff36fec3ddd0360ebba0c961c00a7}} 
+Dict\mbox{[}str, int\mbox{]} {\bfseries get\+\_\+constrained\+\_\+dims} (self, \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1constraints_1_1Factors}{Factors}} factors, \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1specification_1_1Specification}{Specification}} \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_a571a445b6e20b7420d020f72dcf077d0}{spec}})
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_a0457fc97648f846375b0659c4f6637be}\label{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_a0457fc97648f846375b0659c4f6637be}} 
+def {\bfseries process} (self, \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1specification_1_1Specification}{Specification}} \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_a571a445b6e20b7420d020f72dcf077d0}{spec}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Defines constraint macros to be used for simplifying constraint specification. 
+
+Iteration constraint macros\+:
+\begin{DoxyItemize}
+\item factors\+\_\+only\+: Only the listed factors are allowed. Other factors are set to 1. e.\+g. factors\+\_\+only\+: \char`\"{}\+A=5\char`\"{} -\/$>$ factors\+: A=5, B=1, C=1, ...
+\item no\+\_\+iteration\+\_\+over\+\_\+dataspaces\+: Takes a list of dataspaces. Iteration over all factors of these dataspaces is disabled. e.\+g. no\+\_\+iteration\+\_\+over\+\_\+dataspaces\+: \mbox{[}\char`\"{}\+Weights\char`\"{}\mbox{]} -\/$>$ factors\+: R=1 S=1 C=1 M=1 if the factors in weights are RSCM
+\item must\+\_\+iterate\+\_\+over\+\_\+dataspaces\+: Takes a list of dataspaces. Must iterate over the union of factors of these dataspaces.
+\item maximize\+\_\+dims\+: Takes a list of lists of dimensions. Each list of dimensions is maximized. e.\+g. maximize\+\_\+dims\+: \mbox{[} \mbox{[}R, S\mbox{]}, \mbox{[}C, M\mbox{]} \mbox{]} -\/$>$ find the largest factors of R and S that we can fit, then find the largest factors of C and M that we can fit. In a spatial constraint, this uses the fanout of the leaf. In a temporal constraint, this uses a maximize\+\_\+dims\+\_\+capacity directive.
+\end{DoxyItemize}
+
+Dataspace constraint macros\+:
+\begin{DoxyItemize}
+\item keep\+\_\+only\+: Only the listed dataspaces are kept. All other dataspaces are bypassed.
+\item bypass\+\_\+only\+: Only the listed dataspaces are bypassed. All other dataspaces are kept. 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_a868c3fbc6d2fbcb6e065055cc287d075}\label{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_a868c3fbc6d2fbcb6e065055cc287d075}} 
+\index{timeloopfe.v4.processors.constraint\_macro.ConstraintMacroProcessor@{timeloopfe.v4.processors.constraint\_macro.ConstraintMacroProcessor}!declare\_attrs@{declare\_attrs}}
+\index{declare\_attrs@{declare\_attrs}!timeloopfe.v4.processors.constraint\_macro.ConstraintMacroProcessor@{timeloopfe.v4.processors.constraint\_macro.ConstraintMacroProcessor}}
+\doxysubsubsection{\texorpdfstring{declare\_attrs()}{declare\_attrs()}}
+{\footnotesize\ttfamily def timeloopfe.\+v4.\+processors.\+constraint\+\_\+macro.\+Constraint\+Macro\+Processor.\+declare\+\_\+attrs (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Initialize the attributes that the processor is responsible for. 
+
+!\begin{DoxyNote}{Note}
+This method is called before process() is called. See the Simple\+Processor for an example. 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_afb4508d3809d902a5e687a1c8229dbc0}{timeloopfe.\+common.\+processor.\+Processor}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+timeloopfe/v4/processors/constraint\+\_\+macro.\+py\end{DoxyCompactItemize}

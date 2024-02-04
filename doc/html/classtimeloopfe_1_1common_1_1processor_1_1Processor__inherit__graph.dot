@@ -1,0 +1,28 @@
+digraph "timeloopfe.common.processor.Processor"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="timeloopfe.common.processor.\lProcessor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Base class for all processors, which are used to modify the specification before it is passed to Acce..."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ABC",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="timeloopfe.common.processor.\lReferences2CopiesProcessor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1common_1_1processor_1_1References2CopiesProcessor.html",tooltip="Converts references to copies in the specification."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="timeloopfe.common.processor.\lSimpleProcessor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1common_1_1processor_1_1SimpleProcessor.html",tooltip="An example simple processor."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="timeloopfe.v4.processors.constraint\l_attacher.ConstraintAttacherProcessor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1processors_1_1constraint__attacher_1_1ConstraintAttacherProcessor.html",tooltip="Takes constraints from constraints lists and attaches them to objects in the architecture."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="timeloopfe.v4.processors.constraint\l_macro.ConstraintMacroProcessor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor.html",tooltip="Defines constraint macros to be used for simplifying constraint specification."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="timeloopfe.v4.processors.dataspace2branch.\lDataspace2BranchProcessor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1processors_1_1dataspace2branch_1_1Dataspace2BranchProcessor.html",tooltip="Resolves which data spaces are kept in which branches."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="timeloopfe.v4.processors.enable\l_dummy_table.EnableDummyTableProcessor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1processors_1_1enable__dummy__table_1_1EnableDummyTableProcessor.html",tooltip="Enable the dummy table for Accelergy to placeholder energy/area."];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="timeloopfe.v4.processors.permutation\l_optimizer.PermutationOptimizerProcessor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1processors_1_1permutation__optimizer_1_1PermutationOptimizerProcessor.html",tooltip="Optimizes permutation by pruning superfluous permutations."];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="timeloopfe.v4.processors.required\l_actions.RequiredActionsProcessor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1processors_1_1required__actions_1_1RequiredActionsProcessor.html",tooltip="Ensures that all components have actions defined for Accelergy."];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="timeloopfe.v4.processors.sparse\l_opt_attacher.SparseOptAttacherProcessor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1processors_1_1sparse__opt__attacher_1_1SparseOptAttacherProcessor.html",tooltip="Takes sparse optimizations from sparse optimizations lists and attaches them to the architecture."];
+}

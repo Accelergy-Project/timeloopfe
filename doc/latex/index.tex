@@ -1,0 +1,43 @@
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+The Timeloop Front-\/\+End (Timeloop\+FE) is a Python front-\/end interface to the Timeloop infrastructure, which allows users to model tensor accelerators and explore the vast space of architectures, workloads, and mappings.
+
+Timeloop\+FE provides a rich Python interface, error checking, and automation tools. With closely-\/aligned Python and YAML interfaces, Timeloop\+FE is designed to enable easy design space exploration and automation.\hypertarget{index_autotoc_md1}{}\doxysubsection{Installation}\label{index_autotoc_md1}
+To install timeloopfe, run the following commands\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git clone}
+\DoxyCodeLine{https://github.com/Accelergy-\/Project/timeloopfe.git }
+\DoxyCodeLine{pip3 install ./timeloopfe}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md2}{}\doxysubsection{Tutorials and Examples}\label{index_autotoc_md2}
+Tutorials and examples available in the \href{https://github.com/Accelergy-Project/timeloop-accelergy-exercises.git}{\texttt{ Timeloop and Accelergy exercises repository}}. In this repository, examples can be found in the {\ttfamily workspace/baseline\+\_\+designs} directory and tutorials can be found in the {\ttfamily workspace/exercises} directory.\hypertarget{index_autotoc_md3}{}\doxysubsection{Minimal Usage}\label{index_autotoc_md3}
+Timeloop\+FE interface provides two primary functions\+: -\/ Input file gathering \& error checking -\/ Python interface for design space exploration 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import timeloopfe.v4 as tl}
+\DoxyCodeLine{from joblib import Parallel, delayed}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Basic setup. Gathers input files, checks for errors}
+\DoxyCodeLine{spec = tl.Specification.from\_yaml\_files(}
+\DoxyCodeLine{  "{}your\_input\_file.yaml"{}, "{}your\_other\_input\_file.yaml"{}}
+\DoxyCodeLine{) }
+\DoxyCodeLine{tl.call\_mapper(spec, output\_dir="{}your\_output\_dir"{})}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Multiprocessed design space exploration}
+\DoxyCodeLine{def run\_mapper\_with\_spec(buf\_size: int):}
+\DoxyCodeLine{  spec = tl.Specification.from\_yaml\_files(}
+\DoxyCodeLine{    "{}your\_input\_file.yaml"{}, "{}your\_other\_input\_file.yaml"{}}
+\DoxyCodeLine{  )}
+\DoxyCodeLine{  spec.architecture.find("{}my\_buffer"{}).attributes.depth = buf\_size}
+\DoxyCodeLine{  return tl.call\_mapper(spec, output\_dir=f"{}outputs\_bufsize=\{buf\_size\}"{})}
+\DoxyCodeLine{}
+\DoxyCodeLine{buf\_sizes = [1024, 2048, 4096, 8192, 16384]}
+\DoxyCodeLine{results = Parallel(n\_jobs=8)(}
+\DoxyCodeLine{  delayed(run\_mapper\_with\_spec)(buf\_size) for buf\_size in buf\_sizes}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+
+
+Please visit the \href{https://github.com/Accelergy-Project/timeloop-accelergy-exercises.git}{\texttt{ Timeloop and Accelergy exercises repository}} for more examples and tutorials. 

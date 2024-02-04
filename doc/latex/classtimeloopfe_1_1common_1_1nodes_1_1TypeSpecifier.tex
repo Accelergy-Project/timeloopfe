@@ -1,0 +1,50 @@
+\hypertarget{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier}{}\doxysection{timeloopfe.\+common.\+nodes.\+Type\+Specifier Class Reference}
+\label{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier}\index{timeloopfe.common.nodes.TypeSpecifier@{timeloopfe.common.nodes.TypeSpecifier}}
+
+
+Represents a type specifier for a node in the Timeloop\+FE library.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_adc2b9dd63deffd3c86272c04268f018a}\label{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_adc2b9dd63deffd3c86272c04268f018a}} 
+def {\bfseries get\+\_\+id2casted} (cls)
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_ae4cd5a787bfb8d1788431304646aee68}\label{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_ae4cd5a787bfb8d1788431304646aee68}} 
+def {\bfseries reset\+\_\+id2casted} (cls)
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_ab1adc4d32b7104a46ea599dba2379e45}\label{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_ab1adc4d32b7104a46ea599dba2379e45}} 
+def {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str name, Type required\+\_\+type, Any default=default\+\_\+unspecified\+\_\+, Union\mbox{[}Callable, None\mbox{]} callfunc=None, Type should\+\_\+have\+\_\+been\+\_\+removed\+\_\+by=None, bool part\+\_\+name\+\_\+match=False, bool no\+\_\+change\+\_\+key=False)
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_a9bc8435af298be3240f5c5f53c2c9f82}\label{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_a9bc8435af298be3240f5c5f53c2c9f82}} 
+def {\bfseries removed\+\_\+by\+\_\+str} (self)
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_a380d90bda5b9867d216294493bcbb7c3}\label{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_a380d90bda5b9867d216294493bcbb7c3}} 
+Any {\bfseries cast\+\_\+check\+\_\+type} (self, Any value, \char`\"{}Node\char`\"{} node, str key)
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_a090a28d338e917d6e28a9844613b29c7}\label{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_a090a28d338e917d6e28a9844613b29c7}} 
+Any {\bfseries cast} (self, Any value, bool \+\_\+\+\_\+node\+\_\+skip\+\_\+parse=False)
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_a569ca23d01fa3f17331c08089917bb8a}\label{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_a569ca23d01fa3f17331c08089917bb8a}} 
+def {\bfseries check\+\_\+type} (self, Any value, \char`\"{}Node\char`\"{} node, str key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_a811430124859c2be4153bc928e9a1c02}\label{classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier_a811430124859c2be4153bc928e9a1c02}} 
+{\bfseries callfunc}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a type specifier for a node in the Timeloop\+FE library. 
+
+\begin{DoxyParagraph}{Methods}
+get\+\_\+id2casted Get the dictionary of casted values. reset\+\_\+id2casted Reset the dictionary of casted values. removed\+\_\+by\+\_\+str Get the string representation of the type that should have removed or transformed the node. cast\+\_\+check\+\_\+type(self, value\+: Any, node\+: \char`\"{}\+Node\char`\"{}, key\+: str) -\/$>$ Any\+: Check and cast the value to the required type. cast(self, value\+: Any, \+\_\+\+\_\+node\+\_\+skip\+\_\+parse\+: bool = False) -\/$>$ Any\+: Cast the value to the required type. check\+\_\+type(self, value\+: Any, node\+: \char`\"{}\+Node\char`\"{}, key\+: str)\+: Check if the value matches the required type. 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+timeloopfe/common/nodes.\+py\end{DoxyCompactItemize}

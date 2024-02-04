@@ -1,0 +1,114 @@
+\hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification}{}\doxysection{timeloopfe.\+common.\+base\+\_\+specification.\+Base\+Specification Class Reference}
+\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification}\index{timeloopfe.common.base\_specification.BaseSpecification@{timeloopfe.common.base\_specification.BaseSpecification}}
+
+
+Base class for specifications in the Timeloop framework.  
+
+
+
+
+Inherits \mbox{\hyperlink{classtimeloopfe_1_1common_1_1nodes_1_1DictNode}{timeloopfe.\+common.\+nodes.\+Dict\+Node}}, and \mbox{\hyperlink{classtimeloopfe_1_1common_1_1nodes_1_1DictNode}{timeloopfe.\+common.\+nodes.\+Dict\+Node}}.
+
+
+
+Inherited by \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1specification_1_1Specification}{timeloopfe.\+v4.\+specification.\+Specification}}.
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a73e1c6686f6f799af82a22e9c6d455a0}\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a73e1c6686f6f799af82a22e9c6d455a0}} 
+def \mbox{\hyperlink{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a73e1c6686f6f799af82a22e9c6d455a0}{declare\+\_\+attrs}} (cls, $\ast$args, $\ast$$\ast$kwargs)
+\begin{DoxyCompactList}\small\item\em Initialize the attributes of this node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a73e1c6686f6f799af82a22e9c6d455a0}\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a73e1c6686f6f799af82a22e9c6d455a0}} 
+def \mbox{\hyperlink{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a73e1c6686f6f799af82a22e9c6d455a0}{declare\+\_\+attrs}} (cls, $\ast$args, $\ast$$\ast$kwargs)
+\begin{DoxyCompactList}\small\item\em Initialize the attributes of this node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a4ebb5accf6c3d02c9b0f769e9b47ece5}\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a4ebb5accf6c3d02c9b0f769e9b47ece5}} 
+def {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, $\ast$args, $\ast$$\ast$kwargs)
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a47df0d00919602a9287a1f53d060e310}\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a47df0d00919602a9287a1f53d060e310}} 
+def {\bfseries needs\+\_\+processing} (self, Optional\mbox{[}List\mbox{[}\char`\"{}Processor\char`\"{}\mbox{]}\mbox{]} with\+\_\+processors=None, Optional\mbox{[}List\mbox{[}\char`\"{}Processor\char`\"{}\mbox{]}\mbox{]} to\+\_\+run=None)
+\item 
+def \mbox{\hyperlink{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a119c35ee559e39148fff64bde2ecefda}{process}} (self, Union\mbox{[}\char`\"{}Processor\char`\"{}, List\mbox{[}\char`\"{}Processor\char`\"{}\mbox{]}\mbox{]} with\+\_\+processors=None, bool check\+\_\+types=False, bool check\+\_\+types\+\_\+ignore\+\_\+empty=True, bool reprocess=True)
+\begin{DoxyCompactList}\small\item\em Process the specification with the given processors. \end{DoxyCompactList}\item 
+\char`\"{}Specification\char`\"{} \mbox{\hyperlink{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a331c57bf779bb1978af56e9d34fe936c}{from\+\_\+yaml\+\_\+files}} (cls, $\ast$args, $\ast$$\ast$kwargs)
+\begin{DoxyCompactList}\small\item\em Create a Specification object from YAML files. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a3c68a5d01c4fd226a620e080d6f2beba}{parse\+\_\+expressions}} (self, Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} symbol\+\_\+table=None, Optional\mbox{[}set\mbox{]} parsed\+\_\+ids=None)
+\begin{DoxyCompactList}\small\item\em Parse expressions in the specification. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a9d4972666ea2218fbc5c46e317f6fd4a}\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a9d4972666ea2218fbc5c46e317f6fd4a}} 
+\mbox{\hyperlink{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a9d4972666ea2218fbc5c46e317f6fd4a}{processors}}
+\begin{DoxyCompactList}\small\item\em List of processors associated with the specification. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_aa66091a723b68ee7694688033752d8b0}\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_aa66091a723b68ee7694688033752d8b0}} 
+{\bfseries spec}
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_ad4d5664ca6a77b6ab85abcce5db55984}\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_ad4d5664ca6a77b6ab85abcce5db55984}} 
+\mbox{\hyperlink{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_ad4d5664ca6a77b6ab85abcce5db55984}{preserve\+\_\+references}}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether to preserve references. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Base class for specifications in the Timeloop framework. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a331c57bf779bb1978af56e9d34fe936c}\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a331c57bf779bb1978af56e9d34fe936c}} 
+\index{timeloopfe.common.base\_specification.BaseSpecification@{timeloopfe.common.base\_specification.BaseSpecification}!from\_yaml\_files@{from\_yaml\_files}}
+\index{from\_yaml\_files@{from\_yaml\_files}!timeloopfe.common.base\_specification.BaseSpecification@{timeloopfe.common.base\_specification.BaseSpecification}}
+\doxysubsubsection{\texorpdfstring{from\_yaml\_files()}{from\_yaml\_files()}}
+{\footnotesize\ttfamily  \char`\"{}Specification\char`\"{} timeloopfe.\+common.\+base\+\_\+specification.\+Base\+Specification.\+from\+\_\+yaml\+\_\+files (\begin{DoxyParamCaption}\item[{}]{cls,  }\item[{$\ast$}]{args,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+Create a Specification object from YAML files. 
+
+\begin{DoxyVerb}        *args: YAML file paths.
+\end{DoxyVerb}
+ 
+\begin{DoxyParams}{Parameters}
+{\em jinja\+\_\+parse\+\_\+data} & Dictionary of data to be used for Jinja parsing.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+Specification The created Specification object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a3c68a5d01c4fd226a620e080d6f2beba}\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a3c68a5d01c4fd226a620e080d6f2beba}} 
+\index{timeloopfe.common.base\_specification.BaseSpecification@{timeloopfe.common.base\_specification.BaseSpecification}!parse\_expressions@{parse\_expressions}}
+\index{parse\_expressions@{parse\_expressions}!timeloopfe.common.base\_specification.BaseSpecification@{timeloopfe.common.base\_specification.BaseSpecification}}
+\doxysubsubsection{\texorpdfstring{parse\_expressions()}{parse\_expressions()}}
+{\footnotesize\ttfamily def timeloopfe.\+common.\+base\+\_\+specification.\+Base\+Specification.\+parse\+\_\+expressions (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} }]{symbol\+\_\+table = {\ttfamily None},  }\item[{Optional\mbox{[}set\mbox{]} }]{parsed\+\_\+ids = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Parse expressions in the specification. 
+
+\begin{DoxyVerb}        symbol_table (Optional[Dict[str, Any]], optional): Symbol table to be used for parsing. Defaults to None.
+        parsed_ids (Optional[set], optional): Set of IDs of specifications that have already been parsed. Defaults to None.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1specification_1_1Specification_a64f7b2ff5562507f759d3d8044fe906b}{timeloopfe.\+v4.\+specification.\+Specification}}.
+
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a119c35ee559e39148fff64bde2ecefda}\label{classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification_a119c35ee559e39148fff64bde2ecefda}} 
+\index{timeloopfe.common.base\_specification.BaseSpecification@{timeloopfe.common.base\_specification.BaseSpecification}!process@{process}}
+\index{process@{process}!timeloopfe.common.base\_specification.BaseSpecification@{timeloopfe.common.base\_specification.BaseSpecification}}
+\doxysubsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily def timeloopfe.\+common.\+base\+\_\+specification.\+Base\+Specification.\+process (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{Union\mbox{[}\char`\"{}Processor\char`\"{}, List\mbox{[}\char`\"{}Processor\char`\"{}\mbox{]}\mbox{]} }]{with\+\_\+processors = {\ttfamily None},  }\item[{bool }]{check\+\_\+types = {\ttfamily False},  }\item[{bool }]{check\+\_\+types\+\_\+ignore\+\_\+empty = {\ttfamily True},  }\item[{bool }]{reprocess = {\ttfamily True} }\end{DoxyParamCaption})}
+
+
+
+Process the specification with the given processors. 
+
+\begin{DoxyVerb}            with_processors (Union[Processor, List[Processor]], optional): Processors to be used for processing the specification. Defaults to None.
+            check_types (bool, optional): Flag indicating whether to check for unrecognized types. Defaults to False.
+            check_types_ignore_empty (bool, optional): Flag indicating whether to ignore empty types during type checking. Defaults to True.
+            reprocess (bool, optional): Flag indicating whether to reprocess the specification even if it has been processed before. Defaults to True.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+timeloopfe/common/base\+\_\+specification.\+py\end{DoxyCompactItemize}

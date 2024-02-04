@@ -1,0 +1,353 @@
+timeloopfe is a Python front-\/end interface to the Timeloop infrastructure, which allows users to model tensor accelerators and explore the vast space of architectures, workloads, and mappings.
+
+Over the original Timeloop infrastructure, timeloopfe provides a richer interface with a newly-\/designed architecture speficiation, processing / automation tools, and a Python interface. The new interface also includes rigorous type-\/checking and is fully extensible.\hypertarget{md_README_autotoc_md2}{}\doxysection{Examples}\label{md_README_autotoc_md2}
+The {\ttfamily examples} directory contains examples of architecture specifications written in the new format. There are three files of interest in most examples\+:
+\begin{DoxyItemize}
+\item {\ttfamily arch.\+yaml} contains the architecture specification.
+\item {\ttfamily arch\+\_\+split.\+yaml} contains the architecture specification, with constraints separated into a separate list. The specification is agnostic to whether constraints are specified in the object they constrain or in a separate list.
+\item {\ttfamily arch\+\_\+old.\+yaml} contains the architecture specification in the old Timeloop format. This is provided for comparison.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md3}{}\doxysubsection{Running the Example Script}\label{md_README_autotoc_md3}
+Any of the example architectures can be run by calling 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{python3 example.py <example number>}
+
+\end{DoxyCode}
+ where {\ttfamily $<$example number$>$} is the number of the example. A full list of examples can be shown by running {\ttfamily python3 example.\+py -\/h}.\hypertarget{md_README_autotoc_md4}{}\doxysubsection{Learning the for Experienced Timeloop Users}\label{md_README_autotoc_md4}
+The specification format is designed to be easy to learn for experienced Timeloop users. Explore the {\ttfamily examples} for examples of architectures written in the old and new formats.\hypertarget{md_README_autotoc_md5}{}\doxysection{Using timeloopfe}\label{md_README_autotoc_md5}
+There are three steps to using Timeloop with timeloopfe\+:
+\begin{DoxyEnumerate}
+\item Create a specification. This can be done by loading a YAML file, creating a specification from Python objects, or a combination of the two.
+\item Process the specification. This calls a series of processors that apply changes to the specification. A standard suite of processors is provided in 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{timeloopfe.processors.v4\_standard\_suite```,\}}
+\DoxyCodeLine{   created by subclassing ```timeloopfe.processors.Processor```.}
+\DoxyCodeLine{3. Call Timeloop. Timeloop model or mapper can be called with the processed}
+\DoxyCodeLine{   specification.}
+\DoxyCodeLine{}
+\DoxyCodeLine{A full example is shown below:}
+\DoxyCodeLine{}
+\DoxyCodeLine{```python}
+\DoxyCodeLine{import timeloopfe as tl}
+\DoxyCodeLine{from timeloopfe.v4spec.specification import Specification}
+\DoxyCodeLine{from timeloopfe.processors.v4\_standard\_suite import STANDARD\_SUITE}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Load a specification from a YAML file}
+\DoxyCodeLine{spec = Specification.from\_yaml\_files(}
+\DoxyCodeLine{    ["{}A.yaml"{}, "{}B.yaml"{}]}
+\DoxyCodeLine{    processors=STANDARD\_SUITE}
+\DoxyCodeLine{)}
+\DoxyCodeLine{}
+\DoxyCodeLine{spec.process()}
+\DoxyCodeLine{tl.model(spec, './outputsdir') \# or tl.mapper or tl.accelergy}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+To run Timeloop using the old specification, use the following\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import timeloopfe as tl}
+\DoxyCodeLine{from timeloopfe.v3spec.specification import Specification}
+\DoxyCodeLine{from timeloopfe.processors.v3\_standard\_suite import STANDARD\_SUITE}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Load a specification from a YAML file}
+\DoxyCodeLine{spec = Specification.from\_yaml\_files(}
+\DoxyCodeLine{    ["{}A.yaml"{}, "{}B.yaml"{}]}
+\DoxyCodeLine{    processors=STANDARD\_SUITE}
+\DoxyCodeLine{)}
+\DoxyCodeLine{}
+\DoxyCodeLine{tl.model(spec, './outputsdir') \# or tl.mapper or tl.accelergy}
+\DoxyCodeLine{\# use tl.model(spec, './outputsdir', legacy\_timeloop=True) to use the old}
+\DoxyCodeLine{\# keywords (mix of dashes and underscores, synonyms)}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md6}{}\doxysubsection{Step 1\+: Creating a Specification}\label{md_README_autotoc_md6}
+The top-\/level Specification object is the root of the specification. It is a dictionary of objects, each of which contains another input to Timeloop. Specifications can be loaded from YAML files or created from Python objects. The {\ttfamily Specification.\+from\+\_\+yaml\+\_\+files} method is the YAML entry point, which takes a list of YAML files as input. Each YAML file should contain a dictionary at the top level. Keyword arguments can express additional top-\/level objects.
+
+When the specification is initialized, sub-\/objects are hierarchically initialized.
+
+YAML files are structured as nested lists and maps (dictionaries). These will be converted into Python objects. Keys and tags are to determine the structure of YAML input files. Most maps have a set of expected keys, where each key has an expected value type. Likewise, most lists have a set of expected tags, where each tag has an expected value type. The parser will raise an error if a key or tag is missing or unknown.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# EXAMPLE:}
+\DoxyCodeLine{\#    The specification expects a top\_level\_dict with two keys: key1 and key2.}
+\DoxyCodeLine{\#    Key1 is a str, and key2 is a list. The list expects two tags: !A and !B.}
+\DoxyCodeLine{\#    !A is a str, and !B is an int.}
+\DoxyCodeLine{}
+\DoxyCodeLine{top\_level\_dict: \# Specification says key1 is a str and key2 is a list}
+\DoxyCodeLine{  key1: value1}
+\DoxyCodeLine{  key2:}
+\DoxyCodeLine{    -\/ !A \# Tag !A tells the parser to expect a str}
+\DoxyCodeLine{      abc}
+\DoxyCodeLine{    -\/ !B \# Tag !B tells the parser to expect an int}
+\DoxyCodeLine{      123}
+
+\end{DoxyCode}
+
+
+All keys and tags are context-\/dependent. A tree of expected keys, tags, and types can be shown by running the following\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{from timeloopfe.v4spec.specification import Specification}
+\DoxyCodeLine{from timeloopfe.parsing.doc import get\_property\_tree}
+\DoxyCodeLine{print(get\_property\_tree(Specification))}
+
+\end{DoxyCode}
+
+
+Common sources of errors may be\+:
+\begin{DoxyItemize}
+\item An unexpected type (e.\+g., string where an integer is expected)
+\item A missing key or tag
+\item An unknown key or tag
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md7}{}\doxysubsection{Step 2\+: Processing the Specification}\label{md_README_autotoc_md7}
+The specification can be processed by calling the {\ttfamily process} method, which sequentially calls the list of processors provided to the {\ttfamily Specification} constructor. The {\ttfamily STANDARD\+\_\+\+SUITE} is a list of processors that are recommended.
+
+Of course, the specification can be edited directly instead of via processors. However, processors are useful for portability.
+
+Numerous methods are available to help crawl \& process the specification. We recommend looking through the example processors in the 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{timeloopfe.processors.v4\_standard\_suite```\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\# Creating Your Own Processors}
+\DoxyCodeLine{To write your own processors, you may subclass}
+\DoxyCodeLine{```timeloopfe.processors.Processor```. Processors are given a logger object and}
+\DoxyCodeLine{the specification to process. Each edits the specification in-\/place. Look at}
+\DoxyCodeLine{any of the processors in the ```timeloopfe.processors.v4\_standard\_suite}
+
+\end{DoxyCode}
+ module for examples. The 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{timeloopfe/processors/v4suite/constraint\_attacher.py```\}}
+\DoxyCodeLine{point; it contains a simple example of a processor that attaches constraints to}
+\DoxyCodeLine{}
+\DoxyCodeLine{Processors may define extra keys or tags that they use in the architecture}
+\DoxyCodeLine{specification. They may do so in their init\_elems method, which is called}
+\DoxyCodeLine{before parsing begins. For example, code below shows a simple processor. The}
+\DoxyCodeLine{```SimpleProcessor``` class defines defines a key ```simple\_processor\_attr}
+
+\end{DoxyCode}
+ for the Problem class. The value under the key is a string with a default value of \char`\"{}\char`\"{}. As this key is not natively supported, it should be removed by the 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{SimpleProcessor```\}}
+\DoxyCodeLine{```SimpleProcessor``` does not remove the key, an error will be raised.}
+\DoxyCodeLine{}
+\DoxyCodeLine{```python}
+\DoxyCodeLine{from timeloopfe.v4spec.problem import Problem}
+\DoxyCodeLine{}
+\DoxyCodeLine{class SimpleProcessor(Processor):}
+\DoxyCodeLine{    "{}"{}"{}!@brief An example simple processor."{}"{}"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    def \_\_init\_\_(self, *args, **kwargs):}
+\DoxyCodeLine{        super().\_\_init\_\_(*args, **kwargs)}
+\DoxyCodeLine{        self.logger.info("{}Initializing SimpleProcessor"{})}
+\DoxyCodeLine{}
+\DoxyCodeLine{    def init\_elems(self):}
+\DoxyCodeLine{        "{}"{}"{}!@brief Initialize the elements that the processor handles."{}"{}"{}}
+\DoxyCodeLine{        with self.responsible\_for\_removing\_elems():}
+\DoxyCodeLine{            Problem.init\_elem("{}simple\_processor\_attr"{}, str, "{}"{})}
+\DoxyCodeLine{}
+\DoxyCodeLine{    def process(self):}
+\DoxyCodeLine{        "{}"{}"{}!@brief Process the specification. Remove elements that this}
+\DoxyCodeLine{        processor is responsible for."{}"{}"{}}
+\DoxyCodeLine{        if "{}simple\_processor\_attr"{} in self.spec.problem:}
+\DoxyCodeLine{            del self.spec.problem["{}simple\_processor\_attr"{}]}
+\DoxyCodeLine{            self.logger.info('Deleted "{}simple\_processor\_attr"{}')}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md8}{}\doxysubsection{Step 3\+: Calling Timeloop}\label{md_README_autotoc_md8}
+Timeloop is called by the {\ttfamily timeloopfe.\+model} and {\ttfamily timeloopfe.\+model} functions. Accelergy verbose can be called with {\ttfamily timeloopfe.\+accelergy}. These functions are called using the following interface\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{def call\_timeloop-\/mapper(}
+\DoxyCodeLine{    specification: "{}Specification"{},}
+\DoxyCodeLine{    output\_dir: str,}
+\DoxyCodeLine{    environment: Optional[Dict[str, str]] = None,}
+\DoxyCodeLine{    extra\_input\_files: Optional[List[str]] = None,}
+\DoxyCodeLine{    dump\_intermediate\_to: Optional[str] = None,}
+\DoxyCodeLine{    log\_to: Optional[Union[str, IO]] = None,}
+\DoxyCodeLine{    legacy\_timeloop: bool = False,}
+\DoxyCodeLine{) -\/> int:}
+\DoxyCodeLine{    "{}"{}"{}!@brief Call Timeloop Mapper from Python}
+\DoxyCodeLine{    !@param specification The specification with which to call Timeloop.}
+\DoxyCodeLine{    !@param input\_content The content of the input file.}
+\DoxyCodeLine{    !@param output\_dir The directory to run Timeloop in.}
+\DoxyCodeLine{    !@param environment A dictionary of environment variables to pass to}
+\DoxyCodeLine{                        Timeloop.}
+\DoxyCodeLine{    !@param extra\_input\_files A list of extra input files to pass to Timeloop.}
+\DoxyCodeLine{    !@param dump\_intermediate\_to If not None, dump the input content to this}
+\DoxyCodeLine{                                 file before calling Timeloop.}
+\DoxyCodeLine{    !@param log\_to If not None, log the output of the Timeloop call to this}
+\DoxyCodeLine{                   file or file-\/like object.}
+\DoxyCodeLine{    !@param legacy\_timeloop If True, use the legacy Timeloop command.}
+\DoxyCodeLine{    !@return The return code of the Timeloop call.}
+\DoxyCodeLine{    "{}"{}"{}}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md9}{}\doxysection{New v4 Architecture Specification}\label{md_README_autotoc_md9}
+Check out the {\ttfamily examples} directory for examples of architecture specifications.
+
+The architecture is composed of leaf and branch nodes. Leaf nodes represent objects in the architecture, while branch nodes represent the organization of other nodes. Branches can be nested.\hypertarget{md_README_autotoc_md10}{}\doxysubsection{Leaf Nodes}\label{md_README_autotoc_md10}
+Leaf nodes denote the objects within an architecture.
+
+Leaf objects are denoted in the following way\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/ !<LEAF\_NOUN>}
+\DoxyCodeLine{  attributes: \{Dictionary of attributes\}}
+\DoxyCodeLine{  spatial: \{meshX: <int>, meshY: <int>\}}
+\DoxyCodeLine{  constraints: \{Dictionary of constraints\}}
+
+\end{DoxyCode}
+
+
+The following types of leaves are supported. Notice that {\itshape the name of each leaf is a noun describing the type of leaf}
+\begin{DoxyItemize}
+\item {\ttfamily !\+Element} objects include storage and compute units.
+\item {\ttfamily !\+Container} objects encompass other objects. They can be used to group objects together for the purpose of applying constraints or attributes to them.
+\item {\ttfamily !\+Nothing} objects are represent empty space or a lack of node in a location. For example, a {\ttfamily !\+Nothing} node may be used in a {\ttfamily !\+Parallel} branch to process data that skips all other nodes in the branch.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md11}{}\doxysubsection{Branch Nodes}\label{md_README_autotoc_md11}
+Branch nodes denote the organization of nodes in an architecture. Each branch is a collection of nodes that are related to each other in some way. Branches can be nested to any depth.
+
+Branch objects are denoted in the following way\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/ !<BRANCHTYPE\_ADJECTIVE>}
+\DoxyCodeLine{  nodes: [List of nodes in this branch]}
+
+\end{DoxyCode}
+
+
+The following types of branches are supported. Notice that {\itshape the name of each branch is an adjective describing the relations between the nodes it contains\+:}
+\begin{DoxyItemize}
+\item {\ttfamily !\+Hierarchical} nodes can move data between nodes that are lower/higher in the hierarchy. Nodes lower in the hierarchy (further from main memory) can use higher-\/level nodes as backing memory.
+\item {\ttfamily !\+Pipelined} nodes can not move data flexibly; each piece of data entering one end of the pipeline will exit the other end.
+\item {\ttfamily !\+Parallel} nodes process disjoint sets of data in parallel. Each dataspace traversing the parallel branch must traverse exactly one of the nodes within the branch.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md12}{}\doxysubsection{Expressing Spatial Fanout}\label{md_README_autotoc_md12}
+Spatial fanout is expressed by adding a {\ttfamily spatial} attribute to a leaf node. Under a hierarchy, this spatial fanout will be applied to all subsequent nodes in the hierarchy. Multiple spatial fanouts in a hierarchy will be multiplied together.
+
+Spatial constraints are applied \char`\"{}between\char`\"{} the spatial elements in a fanout. For example, consider the following\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{nodes: \# Top-\/level hierarchy}
+\DoxyCodeLine{-\/ !Container}
+\DoxyCodeLine{  name: top}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/ !Container \# PE}
+\DoxyCodeLine{  name: PE}
+\DoxyCodeLine{  spatial: \{meshY: 12\}}
+\DoxyCodeLine{  constraints:}
+\DoxyCodeLine{    spatial: \{factors: [P=12]\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/ !Element \# Storage}
+\DoxyCodeLine{  name: spad}
+\DoxyCodeLine{  class: storage}
+\DoxyCodeLine{  attributes: \{Omitted for brevity\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/ !Element \# MAC unit}
+\DoxyCodeLine{  name: mac}
+\DoxyCodeLine{  class: intmac}
+\DoxyCodeLine{  attributes: \{Omitted for brevity\}}
+
+\end{DoxyCode}
+
+
+In this example, there are 12 PEs in the Y dimension of the array. Each PE has a scratchpad and a MAC unit. A spatial factor of {\ttfamily P=12} is applied to the PEs, meaning that each PE will process a different index of the {\ttfamily P} dimension of workload tensors.
+
+Spatial fanouts are not allowed under pipeline or parallel branches.\hypertarget{md_README_autotoc_md13}{}\doxysubsection{A Full Example}\label{md_README_autotoc_md13}
+Below is the full specification of the Eyeriss architecture. Eyeriss has a DRAM main memory, a global buffer for inputs and outputs, and a 2D array of processing elements (PEs). Each PE has three parallel scratchpads to store inputs, weights, and outputs. Each PE also has a MAC unit to perform computations.
+
+Containers are used to group the PEs together into a 2D array. We use two levels of container to represent different spatial constraints for the X and Y dimensions of the array.
+
+A mix of block and flow style YAML is used. In general, flow style is used for short lists / maps that can fit in a single line, while block style is used for everything else.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{architecture:}
+\DoxyCodeLine{  \# ============================================================}
+\DoxyCodeLine{  \# Architecture Description}
+\DoxyCodeLine{  \# ============================================================}
+\DoxyCodeLine{  version: 0.4}
+\DoxyCodeLine{  nodes: \# Top-\/level is hierarchical}
+\DoxyCodeLine{  -\/ !Element \# DRAM main memory}
+\DoxyCodeLine{    name: DRAM}
+\DoxyCodeLine{    class: DRAM}
+\DoxyCodeLine{    attributes: \{type: "{}LPDDR4"{}, width: 64, block\_size: 8, datawidth: 8\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  -\/ !Container \# Eyeriss accelerator}
+\DoxyCodeLine{    name: eyeriss}
+\DoxyCodeLine{    attributes: \{technology: "{}32nm"{}\}}
+\DoxyCodeLine{      }
+\DoxyCodeLine{  -\/ !Element \# Global buffer for inputs \& outputs}
+\DoxyCodeLine{    name: shared\_glb}
+\DoxyCodeLine{    class: smartbuffer\_SRAM}
+\DoxyCodeLine{    attributes:}
+\DoxyCodeLine{      memory\_depth: 16384}
+\DoxyCodeLine{      memory\_width: 64}
+\DoxyCodeLine{      n\_banks: 32}
+\DoxyCodeLine{      block\_size: 8}
+\DoxyCodeLine{      datawidth: 8}
+\DoxyCodeLine{      read\_bandwidth: 16}
+\DoxyCodeLine{      write\_bandwidth: 16}
+\DoxyCodeLine{    constraints:}
+\DoxyCodeLine{      dataspace: \{keep: [Inputs, Outputs], bypass: [Weights]\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  -\/ !Container \# Each column of PEs produces a different psum row}
+\DoxyCodeLine{    name: PE\_column}
+\DoxyCodeLine{    spatial: \{meshX: 14\}}
+\DoxyCodeLine{    constraints:}
+\DoxyCodeLine{      spatial:}
+\DoxyCodeLine{        permutation: [N, C, P, R, S, Q, M]}
+\DoxyCodeLine{        factors: [N=1, C=1, P=1, R=1, S=1]}
+\DoxyCodeLine{        split: 7}
+\DoxyCodeLine{}
+\DoxyCodeLine{  -\/ !Container \# Each PE in the column receives a different filter row}
+\DoxyCodeLine{    name: PE}
+\DoxyCodeLine{    spatial: \{meshY: 12\}}
+\DoxyCodeLine{    constraints:}
+\DoxyCodeLine{      spatial:}
+\DoxyCodeLine{        split: 4}
+\DoxyCodeLine{        permutation: [N, P, Q, R, S, C, M]}
+\DoxyCodeLine{        factors: [N=1, P=1, Q=1, R=1]}
+\DoxyCodeLine{}
+\DoxyCodeLine{  -\/ !Parallel \# Input/Output/Weight scratchpads in parallel}
+\DoxyCodeLine{    nodes:}
+\DoxyCodeLine{    -\/ !Element \# Input scratchpad}
+\DoxyCodeLine{      name: ifmap\_spad}
+\DoxyCodeLine{      class: smartbuffer\_RF}
+\DoxyCodeLine{      attributes: \{memory\_depth: 12, memory\_width: 16, datawidth: 8\}}
+\DoxyCodeLine{      constraints:}
+\DoxyCodeLine{        dataspace: \{keep: [Inputs]\}}
+\DoxyCodeLine{        temporal:}
+\DoxyCodeLine{          permutation: [N, M, C, P, Q, R, S]}
+\DoxyCodeLine{          factors: [N=1, M=1, C=1, P=1, Q=1, R=1, S=1]}
+\DoxyCodeLine{}
+\DoxyCodeLine{    -\/ !Element \# Weight scratchpad}
+\DoxyCodeLine{      name: weights\_spad}
+\DoxyCodeLine{      class: smartbuffer\_RF}
+\DoxyCodeLine{      attributes: \{memory\_depth: 192, memory\_width: 16, datawidth: 8\}}
+\DoxyCodeLine{      constraints:}
+\DoxyCodeLine{        dataspace: \{keep: [Weights]\}}
+\DoxyCodeLine{        temporal: \{factors: [N=1, M=1, P=1, Q=1, S=1]\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    -\/ !Element \# Output scratchpad}
+\DoxyCodeLine{      name: psum\_spad}
+\DoxyCodeLine{      class: smartbuffer\_RF}
+\DoxyCodeLine{      attributes: }
+\DoxyCodeLine{        memory\_depth: 16}
+\DoxyCodeLine{        memory\_width: 16}
+\DoxyCodeLine{        datawidth: 16}
+\DoxyCodeLine{        update\_fifo\_depth: 2}
+\DoxyCodeLine{      constraints:}
+\DoxyCodeLine{        dataspace: \{keep: [Outputs]\}}
+\DoxyCodeLine{        temporal: \{factors: [N=1, C=1, R=1, S=1, P=1, Q=1]\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{  -\/ !Element \# MAC unit}
+\DoxyCodeLine{    name: mac}
+\DoxyCodeLine{    class: intmac}
+\DoxyCodeLine{    attributes: \{multiplier\_width: 8, adder\_width: 16\}}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md14}{}\doxysubsection{Other Inputs}\label{md_README_autotoc_md14}
+Other inputs (e.\+g., constraints, mapper, sparse\+\_\+optimizations) largely follow the same format as existing Timeloop inputs. See the Timeloop documentation for more information, or use the following commands to see the full structure of all inputs\+: \`{}\`{}\`{}python from timeloopfe.\+v4spec.\+specification import Specification from timeloopfe.\+parsing.\+doc import get\+\_\+property\+\_\+tree print(get\+\_\+property\+\_\+tree(\+Specification)) 

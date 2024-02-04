@@ -1,0 +1,104 @@
+\hypertarget{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode}{}\doxysection{timeloopfe.\+v4.\+arch.\+Arch\+Node Class Reference}
+\label{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode}\index{timeloopfe.v4.arch.ArchNode@{timeloopfe.v4.arch.ArchNode}}
+
+
+A node in the architecture hierarchy.  
+
+
+
+
+Inheritance diagram for timeloopfe.\+v4.\+arch.\+Arch\+Node\+:
+% FIG 0
+
+
+Collaboration diagram for timeloopfe.\+v4.\+arch.\+Arch\+Node\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_a4cf41ad7cf2e27075483fbb0147945bf}\label{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_a4cf41ad7cf2e27075483fbb0147945bf}} 
+def {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, $\ast$args, $\ast$$\ast$kwargs)
+\item 
+\char`\"{}Leaf\char`\"{} \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_a0a5ae1e8ae513f363326cfad4051d02b}{name2leaf}} (self, str name)
+\begin{DoxyCompactList}\small\item\em Finds a leaf node with the given name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_a86c65a34dd5fbebb103b43a45d3d72fa}\label{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_a86c65a34dd5fbebb103b43a45d3d72fa}} 
+\char`\"{}Leaf\char`\"{} \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_a86c65a34dd5fbebb103b43a45d3d72fa}{find}} (self, $\ast$args, $\ast$$\ast$kwargs)
+\begin{DoxyCompactList}\small\item\em Alias for name2leaf method. \end{DoxyCompactList}\item 
+\char`\"{}constraints.\+Constraint\+Group\char`\"{} \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_afa3fc131edbb621edcf53aa7a9d3cfb2}{name2constraints}} (self, str name)
+\begin{DoxyCompactList}\small\item\em Retrieves the constraints of a leaf node with the given name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A node in the architecture hierarchy. 
+
+\begin{DoxyVerb}    *args: Variable length argument list.
+    **kwargs: Arbitrary keyword arguments.
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Methods}
+name2leaf Finds a leaf node with the given name. find Alias for name2leaf method. name2constraints Retrieves the constraints of a leaf node with the given name.
+\end{DoxyParagraph}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Value\+Error} & If the leaf node with the given name is not found.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+
+
+None 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_afa3fc131edbb621edcf53aa7a9d3cfb2}\label{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_afa3fc131edbb621edcf53aa7a9d3cfb2}} 
+\index{timeloopfe.v4.arch.ArchNode@{timeloopfe.v4.arch.ArchNode}!name2constraints@{name2constraints}}
+\index{name2constraints@{name2constraints}!timeloopfe.v4.arch.ArchNode@{timeloopfe.v4.arch.ArchNode}}
+\doxysubsubsection{\texorpdfstring{name2constraints()}{name2constraints()}}
+{\footnotesize\ttfamily  \char`\"{}constraints.\+Constraint\+Group\char`\"{} timeloopfe.\+v4.\+arch.\+Arch\+Node.\+name2constraints (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{name }\end{DoxyParamCaption})}
+
+
+
+Retrieves the constraints of a leaf node with the given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the leaf node.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+constraints The constraints of the leaf node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_a0a5ae1e8ae513f363326cfad4051d02b}\label{classtimeloopfe_1_1v4_1_1arch_1_1ArchNode_a0a5ae1e8ae513f363326cfad4051d02b}} 
+\index{timeloopfe.v4.arch.ArchNode@{timeloopfe.v4.arch.ArchNode}!name2leaf@{name2leaf}}
+\index{name2leaf@{name2leaf}!timeloopfe.v4.arch.ArchNode@{timeloopfe.v4.arch.ArchNode}}
+\doxysubsubsection{\texorpdfstring{name2leaf()}{name2leaf()}}
+{\footnotesize\ttfamily  \char`\"{}Leaf\char`\"{} timeloopfe.\+v4.\+arch.\+Arch\+Node.\+name2leaf (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{name }\end{DoxyParamCaption})}
+
+
+
+Finds a leaf node with the given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the leaf node to find.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+\mbox{\hyperlink{classtimeloopfe_1_1v4_1_1arch_1_1Leaf}{Leaf}} The leaf node with the given name.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Value\+Error} & If the leaf node with the given name is not found. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+timeloopfe/v4/arch.\+py\end{DoxyCompactItemize}

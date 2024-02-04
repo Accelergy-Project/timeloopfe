@@ -1,0 +1,91 @@
+\hypertarget{classtimeloopfe_1_1common_1_1processor_1_1Processor}{}\doxysection{timeloopfe.\+common.\+processor.\+Processor Class Reference}
+\label{classtimeloopfe_1_1common_1_1processor_1_1Processor}\index{timeloopfe.common.processor.Processor@{timeloopfe.common.processor.Processor}}
+
+
+Base class for all processors, which are used to modify the specification before it is passed to Accelergy/\+Timeloop.  
+
+
+
+
+Inherits ABC.
+
+
+
+Inherited by \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1References2CopiesProcessor}{timeloopfe.\+common.\+processor.\+References2\+Copies\+Processor}}, \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1SimpleProcessor}{timeloopfe.\+common.\+processor.\+Simple\+Processor}}, \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1processors_1_1constraint__attacher_1_1ConstraintAttacherProcessor}{timeloopfe.\+v4.\+processors.\+constraint\+\_\+attacher.\+Constraint\+Attacher\+Processor}}, \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor}{timeloopfe.\+v4.\+processors.\+constraint\+\_\+macro.\+Constraint\+Macro\+Processor}}, \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1processors_1_1dataspace2branch_1_1Dataspace2BranchProcessor}{timeloopfe.\+v4.\+processors.\+dataspace2branch.\+Dataspace2\+Branch\+Processor}}, \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1processors_1_1enable__dummy__table_1_1EnableDummyTableProcessor}{timeloopfe.\+v4.\+processors.\+enable\+\_\+dummy\+\_\+table.\+Enable\+Dummy\+Table\+Processor}}, \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1processors_1_1permutation__optimizer_1_1PermutationOptimizerProcessor}{timeloopfe.\+v4.\+processors.\+permutation\+\_\+optimizer.\+Permutation\+Optimizer\+Processor}}, \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1processors_1_1required__actions_1_1RequiredActionsProcessor}{timeloopfe.\+v4.\+processors.\+required\+\_\+actions.\+Required\+Actions\+Processor}}, and \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1processors_1_1sparse__opt__attacher_1_1SparseOptAttacherProcessor}{timeloopfe.\+v4.\+processors.\+sparse\+\_\+opt\+\_\+attacher.\+Sparse\+Opt\+Attacher\+Processor}}.
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1processor_1_1Processor_afab9f47ef5208533c183cecd81bae2a6}\label{classtimeloopfe_1_1common_1_1processor_1_1Processor_afab9f47ef5208533c183cecd81bae2a6}} 
+def {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, Optional\mbox{[}\char`\"{}Specification\char`\"{}\mbox{]} spec=None)
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1processor_1_1Processor_ab12f493109804e88daf65234c7f0a451}\label{classtimeloopfe_1_1common_1_1processor_1_1Processor_ab12f493109804e88daf65234c7f0a451}} 
+def \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_ab12f493109804e88daf65234c7f0a451}{process}} (self, \char`\"{}Specification\char`\"{} spec)
+\begin{DoxyCompactList}\small\item\em Process the specification. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_afb4508d3809d902a5e687a1c8229dbc0}{declare\+\_\+attrs}} (self)
+\begin{DoxyCompactList}\small\item\em Initialize the attributes that the processor is responsible for. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1processor_1_1Processor_a3f8e526a519952cfd44426bb3db67263}\label{classtimeloopfe_1_1common_1_1processor_1_1Processor_a3f8e526a519952cfd44426bb3db67263}} 
+def \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_a3f8e526a519952cfd44426bb3db67263}{get\+\_\+index}} (self, type processor\+\_\+type, \char`\"{}Specification\char`\"{} spec)
+\begin{DoxyCompactList}\small\item\em Get the index of the processor in the list of processors. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_a2956ecbc9bcf3d1f6f6537f055b892fc}{must\+\_\+run\+\_\+after}} (self, type other, \char`\"{}Specification\char`\"{} spec, bool ok\+\_\+if\+\_\+not\+\_\+found=False)
+\begin{DoxyCompactList}\small\item\em Ensure that this processor runs after another processor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1processor_1_1Processor_aeaebfe3a7f1467d1245c7b59d111c620}\label{classtimeloopfe_1_1common_1_1processor_1_1Processor_aeaebfe3a7f1467d1245c7b59d111c620}} 
+def {\bfseries add\+\_\+attr} (self, \mbox{\hyperlink{classtimeloopfe_1_1common_1_1nodes_1_1Node}{Node}} target, $\ast$args, $\ast$$\ast$kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1processor_1_1Processor_abff24e8db2c6ad27dd106be035d6e56c}\label{classtimeloopfe_1_1common_1_1processor_1_1Processor_abff24e8db2c6ad27dd106be035d6e56c}} 
+\mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_abff24e8db2c6ad27dd106be035d6e56c}{logger}}
+\begin{DoxyCompactList}\small\item\em The logger for this processor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1processor_1_1Processor_a571a445b6e20b7420d020f72dcf077d0}\label{classtimeloopfe_1_1common_1_1processor_1_1Processor_a571a445b6e20b7420d020f72dcf077d0}} 
+\mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_a571a445b6e20b7420d020f72dcf077d0}{spec}}
+\begin{DoxyCompactList}\small\item\em The specification to process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for all processors, which are used to modify the specification before it is passed to Accelergy/\+Timeloop. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1processor_1_1Processor_afb4508d3809d902a5e687a1c8229dbc0}\label{classtimeloopfe_1_1common_1_1processor_1_1Processor_afb4508d3809d902a5e687a1c8229dbc0}} 
+\index{timeloopfe.common.processor.Processor@{timeloopfe.common.processor.Processor}!declare\_attrs@{declare\_attrs}}
+\index{declare\_attrs@{declare\_attrs}!timeloopfe.common.processor.Processor@{timeloopfe.common.processor.Processor}}
+\doxysubsubsection{\texorpdfstring{declare\_attrs()}{declare\_attrs()}}
+{\footnotesize\ttfamily def timeloopfe.\+common.\+processor.\+Processor.\+declare\+\_\+attrs (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Initialize the attributes that the processor is responsible for. 
+
+!\begin{DoxyNote}{Note}
+This method is called before \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1Processor_ab12f493109804e88daf65234c7f0a451}{process()}} is called. See the \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1SimpleProcessor}{Simple\+Processor}} for an example. 
+\end{DoxyNote}
+
+
+Reimplemented in \mbox{\hyperlink{classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor_a868c3fbc6d2fbcb6e065055cc287d075}{timeloopfe.\+v4.\+processors.\+constraint\+\_\+macro.\+Constraint\+Macro\+Processor}}, and \mbox{\hyperlink{classtimeloopfe_1_1common_1_1processor_1_1SimpleProcessor_a458fb23ff364df4e50688e0cafe95038}{timeloopfe.\+common.\+processor.\+Simple\+Processor}}.
+
+\mbox{\Hypertarget{classtimeloopfe_1_1common_1_1processor_1_1Processor_a2956ecbc9bcf3d1f6f6537f055b892fc}\label{classtimeloopfe_1_1common_1_1processor_1_1Processor_a2956ecbc9bcf3d1f6f6537f055b892fc}} 
+\index{timeloopfe.common.processor.Processor@{timeloopfe.common.processor.Processor}!must\_run\_after@{must\_run\_after}}
+\index{must\_run\_after@{must\_run\_after}!timeloopfe.common.processor.Processor@{timeloopfe.common.processor.Processor}}
+\doxysubsubsection{\texorpdfstring{must\_run\_after()}{must\_run\_after()}}
+{\footnotesize\ttfamily def timeloopfe.\+common.\+processor.\+Processor.\+must\+\_\+run\+\_\+after (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{type}]{other,  }\item[{\char`\"{}Specification\char`\"{}}]{spec,  }\item[{bool }]{ok\+\_\+if\+\_\+not\+\_\+found = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+Ensure that this processor runs after another processor. 
+
+!
+\begin{DoxyParams}{Parameters}
+{\em other} & The processor that this processor must run after.\\
+\hline
+\end{DoxyParams}
+!
+\begin{DoxyParams}{Parameters}
+{\em ok\+\_\+if\+\_\+not\+\_\+found} & If False, OK if the other processor is not found. If True, raise an exception if the other processor is not found. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+timeloopfe/common/processor.\+py\end{DoxyCompactItemize}

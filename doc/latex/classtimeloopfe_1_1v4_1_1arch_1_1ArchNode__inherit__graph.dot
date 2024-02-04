@@ -1,0 +1,38 @@
+digraph "timeloopfe.v4.arch.ArchNode"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="timeloopfe.v4.arch.ArchNode",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="A node in the architecture hierarchy."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="timeloopfe.common.nodes.Node",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html",tooltip="Base class for all nodes in the hierarchy."];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="ABC",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="timeloopfe.v4.arch.ArchNodes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1ArchNodes.html",tooltip="A collection of architectural nodes."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="timeloopfe.v4.arch.Branch",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Branch.html",tooltip="A branch in the architecture."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="timeloopfe.v4.arch.Hierarchical",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Hierarchical.html",tooltip="A hierarchical branch in the architecture."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="timeloopfe.v4.arch.Architecture",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Architecture.html",tooltip="An architecture."];
+  Node5 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="timeloopfe.v4.arch.Parallel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Parallel.html",tooltip="A parallel branch in the architecture."];
+  Node5 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="timeloopfe.v4.arch.Pipelined",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Pipelined.html",tooltip="\" A pipelined branch in the architecture."];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="timeloopfe.v4.arch.Leaf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Leaf.html",tooltip="A leaf node in the architecture hierarchy."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="timeloopfe.v4.arch.Component",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Component.html",tooltip="A component in the architecture."];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="timeloopfe.v4.arch.Compute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Compute.html",tooltip="A compute component."];
+  Node11 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="timeloopfe.v4.arch.Network",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Network.html",tooltip="A network component."];
+  Node11 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="timeloopfe.v4.arch.Nothing",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Nothing.html",tooltip="A class representing a 'nothing' component."];
+  Node11 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="timeloopfe.v4.arch.Storage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Storage.html",tooltip="A storage component."];
+  Node10 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="timeloopfe.v4.arch.Container",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtimeloopfe_1_1v4_1_1arch_1_1Container.html",tooltip="A container in the architecture."];
+}

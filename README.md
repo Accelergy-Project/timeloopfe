@@ -13,8 +13,7 @@ First, ensure that Timeloop and Accelergy are installed following the
 
 To install timeloopfe, run the following commands: 
 ```bash 
-git clone
-https://github.com/Accelergy-Project/timeloopfe.git 
+git clone https://github.com/Accelergy-Project/timeloopfe.git 
 pip3 install ./timeloopfe
 ```
 

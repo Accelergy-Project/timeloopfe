@@ -1,8 +1,7 @@
 import os
 import sys
 import logging
-import timeloopfe as tl
-import timeloopfe.v4spec as v4spec
+import timeloopfe.v4 as tl
 from timeloopfe.v4.processors import EnableDummyTableProcessor
 
 
@@ -39,8 +38,7 @@ if __name__ == "__main__":
     ), f'Invalid choice "{CHOICE}". Choose from {list(OPTIONS.keys())}'
 
     cinstr = "_split" if SPLIT else ""
-    TARGET = [f"{OPTIONS[CHOICE]}/arch{cinstr}",
-              "problem", "mapper", "variables"]
+    TARGET = [f"{OPTIONS[CHOICE]}/arch{cinstr}", "problem", "mapper", "variables"]
     TARGET = [os.path.join("arch_spec_examples", f"{t}.yaml") for t in TARGET]
 
     alt_prob = f"problem_{OPTIONS[CHOICE]}"
@@ -56,8 +54,7 @@ if __name__ == "__main__":
 
     for_model = CHOICE >= 7 and CHOICE != 17 and CHOICE != 19
 
-    print(tl.parsing.doc.get_property_tree(v4spec.Specification))
-    spec = v4spec.Specification.from_yaml_files(*TARGET)
+    spec = tl.Specification.from_yaml_files(*TARGET)
     spec.process()
     # Add in the EnableDummyTable processor so Accelergy provides dummy numbers
     # and we don't have to worry about having area/energy estimators
@@ -65,6 +62,6 @@ if __name__ == "__main__":
 
     # Run the mapper or model
     if for_model:
-        tl.model(spec, "./outdir")
+        tl.call_model(spec, "./outdir")
     else:
-        tl.mapper(spec, "./outdir")
+        tl.call_mapper(spec, "./outdir")

@@ -34,5 +34,5 @@ class TestMathProcessorParsing(unittest.TestCase):
         spec = self.get_spec(processors=[References2CopiesProcessor])
         arch = spec.architecture.nodes
         arch[0].attributes["test"] = "intentionally invalid math. should fail."
-        with self.assertRaises(SystemExit):
+        with self.assertRaises(ArithmeticError):
             spec.parse_expressions()

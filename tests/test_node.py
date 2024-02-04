@@ -195,7 +195,8 @@ class NodeTest(unittest.TestCase):
         x.metadata_storage_width = 1
         x.check_unrecognized()
         with self.assertRaises(KeyError):
-            x.metadata_block_size = None
+            del x.metadata_block_size
+            del x["metadata_block_size"]
             x.check_unrecognized()
 
     def get_property_table(self):

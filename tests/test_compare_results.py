@@ -161,8 +161,8 @@ class TestCompareResults(unittest.TestCase):
             os.path.join(newdir, "output.log"),
         )
         x = "mapper" if not run_model else "model"
-        stats1 = os.path.join(newdir, f"timeloop_{x}.stats.txt")
-        stats2 = os.path.join(olddir, f"timeloop_{x}.stats.txt")
+        stats1 = os.path.join(newdir, f"timeloop-{x}.stats.txt")
+        stats2 = os.path.join(olddir, f"timeloop-{x}.stats.txt")
         self.assertEqual(self._grabstats(stats1), self._grabstats(stats2))
 
     def test_eyriss_like(self):

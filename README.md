@@ -9,9 +9,9 @@ to enable easy design space exploration and automation.
 
 ## Documentation
 Documentation for the full framework is available at
-[timeloop.csail.mit.edu](timeloop.csail.mit.edu). Documentation for TimeloopFE
+[timeloop.csail.mit.edu](https://timeloop.csail.mit.edu). Documentation for TimeloopFE
 is available at
-[accelergy-project.github.io/timeloopfe/index.html](accelergy-project.github.io/timeloopfe/index.html).
+[accelergy-project.github.io/timeloopfe/index.html](https://accelergy-project.github.io/timeloopfe/index.html).
 
 ## Installation
 First, ensure that Timeloop and Accelergy are installed following the

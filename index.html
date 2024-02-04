@@ -76,16 +76,20 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a>The Timeloop Front-End (TimeloopFE) is a Python front-end interface to the Timeloop infrastructure, which allows users to model tensor accelerators and explore the vast space of architectures, workloads, and mappings.</p>
 <p>TimeloopFE provides a rich Python interface, error checking, and automation tools. With closely-aligned Python and YAML interfaces, TimeloopFE is designed to enable easy design space exploration and automation.</p>
-<h2><a class="anchor" id="autotoc_md1"></a>
-Installation</h2>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Documentation</h1>
+<p>Documentation for the full framework is available at <a href="timeloop.csail.mit.edu">timeloop.csail.mit.edu</a>. Documentation for TimeloopFE is available at <a href="accelergy-project.github.io/timeloopfe/index.html">accelergy-project.github.io/timeloopfe/index.html</a>.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Installation</h1>
 <p>First, ensure that Timeloop and Accelergy are installed following the <a href="https://timeloop.csail.mit.edu/installation">Timeloop+Accelergy install instructions</a>.</p>
-<p>To install timeloopfe, run the following commands: </p><div class="fragment"><div class="line">git clone https://github.com/Accelergy-Project/timeloopfe.git </div>
+<p>To install timeloopfe, run the following commands: </p><div class="fragment"><div class="line">git clone</div>
+<div class="line">https://github.com/Accelergy-Project/timeloopfe.git </div>
 <div class="line">pip3 install ./timeloopfe</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2"></a>
-Tutorials and Examples</h2>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+Tutorials and Examples</h1>
 <p>Tutorials and examples available in the <a href="https://github.com/Accelergy-Project/timeloop-accelergy-exercises.git">Timeloop and Accelergy exercises repository</a>. In this repository, examples can be found in the <code>workspace/baseline_designs</code> directory and tutorials can be found in the <code>workspace/exercises</code> directory.</p>
-<h2><a class="anchor" id="autotoc_md3"></a>
-Minimal Usage</h2>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Minimal Usage</h1>
 <p>TimeloopFE interface provides two primary functions: - Input file gathering &amp; error checking - Python interface for design space exploration </p><div class="fragment"><div class="line"><span class="keyword">import</span> <a class="code hl_namespace" href="namespacetimeloopfe_1_1v4.html">timeloopfe.v4</a> <span class="keyword">as</span> tl</div>
 <div class="line"><span class="keyword">from</span> joblib <span class="keyword">import</span> Parallel, delayed</div>
 <div class="line"> </div>

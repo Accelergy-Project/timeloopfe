@@ -1,0 +1,23 @@
+<map id="timeloopfe.v4.constraints.Constraint" name="timeloopfe.v4.constraints.Constraint">
+<area shape="rect" id="Node000001" title="A constraint in the system." alt="" coords="579,104,748,145"/>
+<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Dataspace.html" title="A constraint class for specifying dataspace properties." alt="" coords="799,5,967,46"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="717,94,795,57,824,44,826,49,797,61,719,99"/>
+<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Iteration.html" title="An iteration (spatial or temporal) constraint." alt="" coords="799,71,967,111"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="762,107,798,101,799,106,763,112"/>
+<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1v4_1_1constraints_1_1MaxOverbookedProportion.html" title="A constraint that defines the maximum overbooked proportion." alt="" coords="796,136,970,177"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="763,136,796,141,795,146,763,141"/>
+<area shape="rect" id="Node000011" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Utilization.html" title="A constraint that defines the utilization of a component." alt="" coords="799,201,967,242"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="719,149,797,186,827,198,825,203,795,191,717,154"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="356,104,531,145"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="547,122,579,122,579,127,547,127"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="102,86,308,112"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="324,109,356,112,355,118,323,114"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,86,54,112"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="69,96,101,96,101,102,69,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="184,136,226,161"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="241,142,355,130,356,136,242,147"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Spatial.html" title="A spatial iteration constraint." alt="" coords="1018,39,1186,79"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="982,74,1017,69,1018,74,983,79"/>
+<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Temporal.html" title="A temporal iteration constraint." alt="" coords="1018,104,1186,145"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="983,103,1018,109,1017,114,982,109"/>
+</map>

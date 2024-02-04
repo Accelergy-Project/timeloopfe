@@ -1,0 +1,18 @@
+<map id="timeloopfe.v4.arch.Container" name="timeloopfe.v4.arch.Container">
+<area shape="rect" id="Node000001" title="A container in the architecture." alt="" coords="188,315,372,341"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1v4_1_1arch_1_1Leaf.html" title="A leaf node in the architecture hierarchy." alt="" coords="137,241,292,267"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,276,271,313,267,316,234,280"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1v4_1_1arch_1_1ArchNode.html" title="A node in the architecture hierarchy." alt="" coords="224,160,411,186"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="291,198,232,243,229,239,288,193"/>
+<area shape="rect" id="Node000004" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="181,79,387,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="298,118,315,159,310,161,293,120"/>
+<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="24,153,200,193"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="245,114,156,154,154,150,243,109"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="260,5,308,31"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="324,29,364,48,384,61,401,77,422,106,434,133,435,161,425,194,400,235,367,270,333,297,303,317,300,312,330,293,364,266,396,232,420,192,430,161,429,134,417,108,397,81,380,65,362,52,322,34"/>
+<area shape="poly" id="edge8_Node000002_Node000005" title=" " alt="" coords="245,26,186,37,118,59,85,76,56,97,32,123,15,154,8,174,9,182,14,192,33,206,64,219,142,238,141,243,63,224,30,211,10,195,4,184,3,174,10,152,27,119,52,93,82,71,116,54,184,32,244,21"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="287,46,287,79,281,79,281,46"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="151,201,201,239,197,243,148,205"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="91,79,133,105"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="115,120,115,152,109,152,109,120"/>
+</map>

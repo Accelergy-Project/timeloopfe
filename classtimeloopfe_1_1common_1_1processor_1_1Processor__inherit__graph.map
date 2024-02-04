@@ -1,0 +1,23 @@
+<map id="timeloopfe.common.processor.Processor" name="timeloopfe.common.processor.Processor">
+<area shape="rect" id="Node000001" title="Base class for all processors, which are used to modify the specification before it is passed to Acce..." alt="" coords="102,267,299,307"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1processor_1_1References2CopiesProcessor.html" title="Converts references to copies in the specification." alt="" coords="390,5,587,46"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="212,251,231,206,260,153,298,101,320,77,346,57,388,36,390,41,348,61,324,81,302,104,264,156,236,208,217,253"/>
+<area shape="rect" id="Node000004" href="$classtimeloopfe_1_1common_1_1processor_1_1SimpleProcessor.html" title="An example simple processor." alt="" coords="390,71,587,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="220,252,272,185,306,151,346,122,388,104,390,109,348,127,310,155,276,189,224,255"/>
+<area shape="rect" id="Node000005" href="$classtimeloopfe_1_1v4_1_1processors_1_1constraint__attacher_1_1ConstraintAttacherProcessor.html" title="Takes constraints from constraints lists and attaches them to objects in the architecture." alt="" coords="366,136,611,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="237,254,287,219,346,187,380,175,382,180,348,192,290,224,240,259"/>
+<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor.html" title="Defines constraint macros to be used for simplifying constraint specification." alt="" coords="376,201,601,242"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="307,260,395,240,396,245,308,265"/>
+<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1processors_1_1dataspace2branch_1_1Dataspace2BranchProcessor.html" title="Resolves which data spaces are kept in which branches." alt="" coords="350,267,627,307"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="315,284,349,284,349,290,315,290"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1processors_1_1enable__dummy__table_1_1EnableDummyTableProcessor.html" title="Enable the dummy table for Accelergy to placeholder energy/area." alt="" coords="347,332,629,373"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="308,309,396,329,395,334,307,314"/>
+<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1processors_1_1permutation__optimizer_1_1PermutationOptimizerProcessor.html" title="Optimizes permutation by pruning superfluous permutations." alt="" coords="355,397,622,438"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="240,315,290,350,348,382,382,394,380,399,346,387,287,355,237,320"/>
+<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1v4_1_1processors_1_1required__actions_1_1RequiredActionsProcessor.html" title="Ensures that all components have actions defined for Accelergy Storage:" alt="" coords="375,463,602,503"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="224,319,276,385,310,419,348,447,375,460,373,465,346,452,306,423,272,389,220,322"/>
+<area shape="rect" id="Node000011" href="$classtimeloopfe_1_1v4_1_1processors_1_1sparse__opt__attacher_1_1SparseOptAttacherProcessor.html" title="Takes sparse optimizations from sparse optimizations lists and attaches them to the architecture." alt="" coords="352,528,625,569"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="217,321,236,366,264,418,302,470,324,493,349,513,370,525,367,530,345,517,320,497,298,473,260,421,231,368,212,323"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,274,54,300"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,284,101,284,101,290,69,290"/>
+</map>

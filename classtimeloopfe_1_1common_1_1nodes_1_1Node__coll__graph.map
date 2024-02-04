@@ -1,0 +1,5 @@
+<map id="timeloopfe.common.nodes.Node" name="timeloopfe.common.nodes.Node">
+<area shape="rect" id="Node000001" title="Base class for all nodes in the hierarchy." alt="" coords="5,79,212,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="84,5,133,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,46,111,79,106,79,106,46"/>
+</map>

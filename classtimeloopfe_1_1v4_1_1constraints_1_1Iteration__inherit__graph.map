@@ -1,0 +1,17 @@
+<map id="timeloopfe.v4.constraints.Iteration" name="timeloopfe.v4.constraints.Iteration">
+<area shape="rect" id="Node000001" title="An iteration (spatial or temporal) constraint." alt="" coords="101,330,270,371"/>
+<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Spatial.html" title="A spatial iteration constraint." alt="" coords="5,419,174,459"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="154,383,113,420,109,416,151,379"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Temporal.html" title="A temporal iteration constraint." alt="" coords="197,419,366,459"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="220,379,262,416,258,420,217,383"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Constraint.html" title="A constraint in the system." alt="" coords="101,241,270,282"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,298,188,330,183,330,183,298"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="98,153,273,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="188,209,188,241,183,241,183,209"/>
+<area shape="rect" id="Node000004" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="9,79,215,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="135,114,169,150,165,154,132,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="88,5,136,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="115,46,115,79,110,79,110,46"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="239,79,281,105"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="240,118,206,154,202,150,236,114"/>
+</map>

@@ -40,9 +40,11 @@ from joblib import Parallel, delayed
 # Basic setup. Gathers input files, checks for errors
 spec = tl.Specification.from_yaml_files(
   "your_input_file.yaml", "your_other_input_file.yaml"
-) 
+)
+# Call Timeloop mapper
 tl.call_mapper(spec, output_dir="your_output_dir")
-
+# Call Accelergy verbose
+tl.call_accelergy_verbose(spec, output_dir="your_output_dir")
 
 # Multiprocessed design space exploration
 def run_mapper_with_spec(buf_size: int):

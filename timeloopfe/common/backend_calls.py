@@ -81,6 +81,7 @@ def _call(
     environment: Optional[Dict[str, str]] = None,
     dump_intermediate_to: Optional[str] = None,
     log_to: Optional[str] = None,
+    extra_args: List[str] = (),
     return_proc: bool = False,
 ) -> Union[int, subprocess.Popen]:
     """Call a Timeloop or Accelergy command from Python
@@ -92,6 +93,7 @@ def _call(
         environment (Optional[Dict[str, str]]): A dictionary of environment variables to pass.
         dump_intermediate_to (Optional[str]): If not None, dump the input content to this file before calling.
         log_to (Optional[str]): If not None, log the output of the call to this file or file-like object.
+        extra_args (List[str]): A list of extra arguments to pass to the call.
         return_proc (bool): If True, return the subprocess.Popen object instead of the return code.
 
     Returns:
@@ -110,7 +112,10 @@ def _call(
 
     envstr = " ".join(str(k) + "=" + str(v) for k, v in (environment or {}).items())
 
-    tlcmd = f'cd "{output_dir}" ; {envstr} {call} {" ".join(ifiles)}'
+    tlcmd = (
+        f'cd "{output_dir}" ; {envstr} {call} '
+        f'{" ".join(extra_args)} {" ".join(ifiles)}'
+    )
     logging.info("Calling Timeloop: %s", tlcmd)
     if isinstance(log_to, str):
         log_to = open(log_to, "w")
@@ -136,6 +141,7 @@ def call_mapper(
     extra_input_files: Optional[List[str]] = None,
     dump_intermediate_to: Optional[str] = None,
     log_to: Optional[Union[str, Any]] = None,
+    extra_args: List[str] = (),
     return_proc: bool = False,
 ) -> Union[int, subprocess.Popen]:
     """Call Timeloop Mapper from Python
@@ -147,6 +153,7 @@ def call_mapper(
         extra_input_files (Optional[List[str]]): A list of extra input files to pass to Timeloop
         dump_intermediate_to (Optional[str]): If not None, dump the input content to this file before calling Timeloop.
         log_to (Optional[Union[str, Any]]): If not None, log the output of the Timeloop call to this file or file-like object.
+        extra_args (List[str]): A list of extra arguments to pass to Timeloop.
         return_proc (bool): If True, return the subprocess.Popen object instead of the return code.
 
     Returns:
@@ -163,6 +170,7 @@ def call_mapper(
         environment=environment,
         dump_intermediate_to=dump_intermediate_to,
         log_to=log_to,
+        extra_args=extra_args,
         return_proc=return_proc,
     )
 
@@ -174,6 +182,7 @@ def call_model(
     extra_input_files: Optional[List[str]] = None,
     dump_intermediate_to: Optional[str] = None,
     log_to: Optional[Union[str, Any]] = None,
+    extra_args: List[str] = (),
     return_proc: bool = False,
 ) -> Union[int, subprocess.Popen]:
     """Call Timeloop Model from Python
@@ -185,6 +194,7 @@ def call_model(
         extra_input_files (Optional[List[str]]): A list of extra input files to pass to Timeloop
         dump_intermediate_to (Optional[str]): If not None, dump the input content to this file before calling Timeloop.
         log_to (Optional[Union[str, Any]]): If not None, log the output of the Timeloop call to this file or file-like object.
+        extra_args (List[str]): A list of extra arguments to pass to Timeloop.
         return_proc (bool): If True, return the subprocess.Popen object instead of the return code.
 
     Returns:
@@ -201,6 +211,7 @@ def call_model(
         environment=environment,
         dump_intermediate_to=dump_intermediate_to,
         log_to=log_to,
+        extra_args=extra_args,
         return_proc=return_proc,
     )
 
@@ -212,6 +223,7 @@ def call_accelergy_verbose(
     extra_input_files: Optional[List[str]] = None,
     dump_intermediate_to: Optional[str] = None,
     log_to: Optional[Union[str, Any]] = None,
+    extra_args: List[str] = (),
     return_proc: bool = False,
 ) -> Union[int, subprocess.Popen]:
     """Call Accelergy from Python
@@ -223,6 +235,7 @@ def call_accelergy_verbose(
         extra_input_files (Optional[List[str]]): A list of extra input files to pass to Accelergy
         dump_intermediate_to (Optional[str]): If not None, dump the input content to this file before calling Accelergy.
         log_to (Optional[Union[str, Any]]): If not None, log the output of the Accelergy call to this file or file-like object.
+        extra_args (List[str]): A list of extra arguments to pass to Accelergy.
         return_proc (bool): If True, return the subprocess.Popen object instead of the return code.
     """
     input_paths, output_dir = _pre_call(
@@ -236,6 +249,7 @@ def call_accelergy_verbose(
         environment=environment,
         dump_intermediate_to=dump_intermediate_to,
         log_to=log_to,
+        extra_args=extra_args,
         return_proc=return_proc,
     )
 

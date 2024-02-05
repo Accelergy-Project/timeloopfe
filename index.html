@@ -96,9 +96,11 @@ Minimal Usage</h1>
 <div class="line"><span class="comment"># Basic setup. Gathers input files, checks for errors</span></div>
 <div class="line">spec = tl.Specification.from_yaml_files(</div>
 <div class="line">  <span class="stringliteral">&quot;your_input_file.yaml&quot;</span>, <span class="stringliteral">&quot;your_other_input_file.yaml&quot;</span></div>
-<div class="line">) </div>
+<div class="line">)</div>
+<div class="line"><span class="comment"># Call Timeloop mapper</span></div>
 <div class="line">tl.call_mapper(spec, output_dir=<span class="stringliteral">&quot;your_output_dir&quot;</span>)</div>
-<div class="line"> </div>
+<div class="line"><span class="comment"># Call Accelergy verbose</span></div>
+<div class="line">tl.call_accelergy_verbose(spec, output_dir=<span class="stringliteral">&quot;your_output_dir&quot;</span>)</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"># Multiprocessed design space exploration</span></div>
 <div class="line"><span class="keyword">def </span>run_mapper_with_spec(buf_size: int):</div>

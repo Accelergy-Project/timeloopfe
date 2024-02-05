@@ -1187,6 +1187,11 @@ class FlatteningListNode(ListNode):
                 if isinstance(x, list):
                     self.extend(self.pop(i))
 
+    def combine(self, other: "FlatteningListNode") -> "FlatteningListNode":
+        self.extend(other)
+        self._flatten()
+        return self
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._flatten()

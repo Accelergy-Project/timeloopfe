@@ -210,7 +210,7 @@ class BaseSpecification(DictNode):
         if not spec._parsed_expressions:
             spec.parse_expressions()
         if spec.needs_processing():
-            spec.process(check_types=True, reprocess=False)
+            spec.process(check_types=False, reprocess=False)
         spec.process(spec._required_processors)
         spec.check_unrecognized()
         return spec

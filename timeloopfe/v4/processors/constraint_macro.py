@@ -281,7 +281,7 @@ class ConstraintMacroProcessor(Processor):
                     if dim in factors.get_factor_names():
                         raise ValueError(
                             f'Cannot maximize dimension "{dim}" because it is '
-                            f"already constrained to ."
+                            f"already constrained to "
                             f"{factors.name2factor(dim)} in {factors}."
                         )
                     if dim not in unconstrained:

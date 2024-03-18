@@ -64,22 +64,11 @@ class TypeSpecifier:
 
     Methods:
         get_id2casted(cls): Get the dictionary of casted values.
-        reset_id2casted(cls): Reset the dictionary of casted values.
         removed_by_str(self): Get the string representation of the type that should have removed or transformed the node.
         cast_check_type(self, value: Any, node: "Node", key: str) -> Any: Check and cast the value to the required type.
         cast(self, value: Any, __node_skip_parse: bool = False) -> Any: Cast the value to the required type.
         check_type(self, value: Any, node: "Node", key: str): Check if the value matches the required type.
     """
-
-    @classmethod
-    def get_id2casted(cls):
-        if not hasattr(_thread_local, "id2casted"):
-            _thread_local.id2casted = {}
-        return _thread_local.id2casted
-
-    @classmethod
-    def reset_id2casted(cls):
-        _thread_local.id2casted = {}
 
     def __init__(
         self,
@@ -185,18 +174,11 @@ class TypeSpecifier:
 
     def cast(self, value: Any, __node_skip_parse: bool = False) -> Any:
         tag = Node.get_tag(value)
-        primitive = type(value) in (int, float, bool, str, bytes, type(None))
-        id2cast_key = (id(value), id(self.callfunc), __node_skip_parse)
-
-        if not primitive and id2cast_key in self.get_id2casted():
-            value = self.get_id2casted()[id2cast_key]
-        elif self.callfunc is not None:
+        if self.callfunc is not None:
             if __node_skip_parse:
                 value = self.callfunc(value, __node_skip_parse=__node_skip_parse)
             else:
                 value = self.callfunc(value)
-            if not primitive:
-                self.get_id2casted()[id2cast_key] = value
         try:
             value.tag = tag
         except AttributeError:
@@ -298,6 +280,7 @@ class Node(ABC):
         self.__currently_parsing_index: Union[int, str] = None
         self.logger = logging.getLogger(self.__class__.__name__)
         self._default_parse = False
+        self.from_data = None
 
     @classmethod
     def get_specifiers_from_processors(cls, spec: "BaseSpecification"):
@@ -1013,6 +996,8 @@ class Node(ABC):
             return b
         if b is None or isempty(b) or b is default_unspecified_:
             return a
+        if a == b:
+            return a
 
         contextstr = ""
         if innonde is not None:
@@ -1160,6 +1145,7 @@ class ListNode(Node, list):
                 raise TypeError(f"ListNode {myname} got a non-list: {a}")
         if kwargs:
             raise TypeError(f"ListNode {myname} got keyword args: {kwargs}")
+        self.from_data = list(self)
         if not __node_skip_parse:
             self._parse_elems()
 
@@ -1204,22 +1190,19 @@ class DictNode(Node, dict):
         __node_skip_parse = kwargs.pop("__node_skip_parse", False)
         super().__init__(*args, **kwargs)
 
-        self.update(self._to_dict(args))
-        for a in args:
-            if isinstance(a, dict):
-                self.update(a)
+        self.update(**kwargs)
+        to_update = [a for a in args]
+        while to_update:
+            t = to_update.pop(0)
+            if isinstance(t, dict):
+                self._update_combine_pre_parse(t)
+            elif isinstance(t, list):
+                to_update.extend(t)
             else:
-                selfname = self.__class__.__name__
-                typename = type(a).__name__
-                if isinstance(a, list):
-                    typename = "list"
-                warnstr = f"DictNode {selfname} got a {typename} " f"instad of a dict."
-
-                # logging.warning('%s Attempting to convert to dict.', warnstr)
-                try:
-                    self.update(self._to_dict(a))
-                except Exception as exc:
-                    raise TypeError(f"{warnstr} Could not convert to dict") from exc
+                raise TypeError(
+                    f"DictNode {self.__class__.__name__} got a {type(t)} argument."
+                    f"Expected a dict or list of dicts."
+                )
 
         self.update(kwargs)
         for k, v in self._get_type_specifiers(self.spec).items():
@@ -1228,17 +1211,15 @@ class DictNode(Node, dict):
         if not __node_skip_parse:
             self._parse_elems()
 
-    @staticmethod
-    def _to_dict(x: Any) -> Dict[Any, Any]:
-        if isinstance(x, dict):
-            return x
-        elif isinstance(x, (list, tuple)):
-            result = {}
-            for y in x:
-                result.update(DictNode._to_dict(y))
-            return result
-        else:
-            raise TypeError(f"Can not convert non-dict to dict: {x}")
+    def _update_combine_pre_parse(self, other: dict):
+        for k, v in other.items():
+            try:
+                self.combine_index(k, v)
+            except Exception as exc:
+                raise ValueError(
+                    f"Re-specification of key {k} in {self.get_name()}. "
+                    f"First value: {self[k]}. Second value: {v}."
+                ) from exc
 
     @classmethod
     def require_one_of(cls, *args):

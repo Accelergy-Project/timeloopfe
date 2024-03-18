@@ -52,7 +52,7 @@ class SparseOptimizationGroup(DictNode):
         super().add_attr("target", str, None)
         super().add_attr("action_optimization", ActionOptimizationList, [])
         super().add_attr("representation_format", RepresentationFormat, {})
-        super().add_attr("compute_optimization", ComputeOptimization, {})
+        super().add_attr("compute_optimization", ComputeOptimizationList, [])
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -180,6 +180,20 @@ class ActionOptimizationList(ListNode):
         super().__init__(*args, **kwargs)
 
 
+class ComputeOptimizationList(ListNode):
+    """
+    A list of compute optimizations.
+    """
+
+    @classmethod
+    def declare_attrs(cls, *args, **kwargs):
+        super().declare_attrs(*args, **kwargs)
+        super().add_attr("", ComputeOptimization)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
 class ComputeOptimization(DictNode):
     """
     A compute optimization.
@@ -192,13 +206,13 @@ class ComputeOptimization(DictNode):
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
-        super().add_attr("type", ComputeOptimizationList)
+        super().add_attr("type", ComputeOptimizationTypeList)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
-class ComputeOptimizationList(CombinableListNode):
+class ComputeOptimizationTypeList(CombinableListNode):
     """
     A list of compute optimizations.
     """

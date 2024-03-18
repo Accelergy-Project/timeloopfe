@@ -16,6 +16,7 @@ var searchData=
   ['dictnode_13',['DictNode',['../classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html',1,'timeloopfe::common::nodes']]],
   ['doc_2epy_14',['doc.py',['../doc_8py.html',1,'']]],
   ['documentation_15',['Documentation',['../index.html#autotoc_md1',1,'']]],
-  ['dummy_5fconstraints_16',['dummy_constraints',['../namespacetimeloopfe_1_1v4_1_1constraints.html#aa6677b2a9a7a58b741c8e6ebfd14987f',1,'timeloopfe::v4::constraints']]],
-  ['dummy_5fstorage_17',['dummy_storage',['../namespacetimeloopfe_1_1v4_1_1arch.html#a8f000b175903926c0affb84e11b20bd8',1,'timeloopfe::v4::arch']]]
+  ['ds2color_16',['ds2color',['../classtimeloopfe_1_1v4_1_1processors_1_1to__diagram__processor_1_1ToDiagramProcessor.html#a693dd0c9fa1103dd2c2b58d34c749d0f',1,'timeloopfe::v4::processors::to_diagram_processor::ToDiagramProcessor']]],
+  ['dummy_5fconstraints_17',['dummy_constraints',['../namespacetimeloopfe_1_1v4_1_1constraints.html#aa6677b2a9a7a58b741c8e6ebfd14987f',1,'timeloopfe::v4::constraints']]],
+  ['dummy_5fstorage_18',['dummy_storage',['../namespacetimeloopfe_1_1v4_1_1arch.html#a8f000b175903926c0affb84e11b20bd8',1,'timeloopfe::v4::arch']]]
 ];

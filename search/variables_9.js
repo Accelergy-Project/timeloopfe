@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['required_5fprocessors_0',['REQUIRED_PROCESSORS',['../namespacetimeloopfe_1_1v4_1_1processors.html#a34e0a3123ef65f5f1beb0a019ae194aa',1,'timeloopfe::v4::processors']]],
-  ['required_5ftype_1',['required_type',['../classtimeloopfe_1_1common_1_1nodes_1_1TypeSpecifier.html#a2ddeceee7a449dc7e938a2686d8b6e8d',1,'timeloopfe::common::nodes::TypeSpecifier']]],
-  ['requiredactionsprocessor_2',['RequiredActionsProcessor',['../namespacetimeloopfe_1_1v4_1_1processors.html#a461008bbf61694a7131153fcda24412f',1,'timeloopfe::v4::processors']]]
+  ['network_5fclasses_0',['NETWORK_CLASSES',['../namespacetimeloopfe_1_1v4_1_1arch.html#a7c73e4892ed67458dcf73628f35ee3bd',1,'timeloopfe::v4::arch']]],
+  ['nothing_5fclasses_1',['NOTHING_CLASSES',['../namespacetimeloopfe_1_1v4_1_1arch.html#a0605dbbfd5e906403ec51c9c56808ac2',1,'timeloopfe::v4::arch']]]
 ];

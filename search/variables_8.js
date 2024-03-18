@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['parent_5fnode_0',['parent_node',['../classtimeloopfe_1_1common_1_1nodes_1_1Node.html#a609fb38586f67e56f0538654fab707a1',1,'timeloopfe::common::nodes::Node']]],
-  ['permutationoptimizerprocessor_1',['PermutationOptimizerProcessor',['../namespacetimeloopfe_1_1v4_1_1processors.html#ad035031b1ce2d9af081cee4c68c90864',1,'timeloopfe::v4::processors']]],
-  ['preserve_5freferences_2',['preserve_references',['../classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification.html#ad4d5664ca6a77b6ab85abcce5db55984',1,'timeloopfe::common::base_specification::BaseSpecification']]],
-  ['processors_3',['processors',['../classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification.html#a9d4972666ea2218fbc5c46e317f6fd4a',1,'timeloopfe::common::base_specification::BaseSpecification']]]
+  ['lock_0',['lock',['../namespacetimeloopfe_1_1common_1_1nodes.html#a86d5cb9d2138a09eb32e285360ea73b5',1,'timeloopfe::common::nodes']]],
+  ['logger_1',['logger',['../classtimeloopfe_1_1common_1_1nodes_1_1Node.html#a87c4fea10c636887327046e5e655e13c',1,'timeloopfe.common.nodes.Node.logger'],['../classtimeloopfe_1_1common_1_1processor_1_1Processor.html#abff24e8db2c6ad27dd106be035d6e56c',1,'timeloopfe.common.processor.Processor.logger']]]
 ];

@@ -88,10 +88,6 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afbc909d569293ba11a19a594cb6eed60" id="r_afbc909d569293ba11a19a594cb6eed60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbc909d569293ba11a19a594cb6eed60">get_id2casted</a> (cls)</td></tr>
-<tr class="separator:afbc909d569293ba11a19a594cb6eed60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6e501c3a7fd4c5145f348670d1e3774" id="r_aa6e501c3a7fd4c5145f348670d1e3774"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6e501c3a7fd4c5145f348670d1e3774">reset_id2casted</a> (cls)</td></tr>
-<tr class="separator:aa6e501c3a7fd4c5145f348670d1e3774"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08a66c8d319780ddd7a9b58a21a93173" id="r_a08a66c8d319780ddd7a9b58a21a93173"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08a66c8d319780ddd7a9b58a21a93173">__init__</a> (self, str name, Type <a class="el" href="#a2ddeceee7a449dc7e938a2686d8b6e8d">required_type</a>, Any default=<a class="el" href="namespacetimeloopfe_1_1common_1_1nodes.html#a2191f8437dd16833b9e1811f399f94da">default_unspecified_</a>, Union[Callable, None] <a class="el" href="#a811430124859c2be4153bc928e9a1c02">callfunc</a>=None, Type <a class="el" href="#a7f58466917ebe1cabfb6d4e735e7012a">should_have_been_removed_by</a>=None, bool part_name_match=False, bool no_change_key=False)</td></tr>
 <tr class="separator:a08a66c8d319780ddd7a9b58a21a93173"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d08ea1fa2dbbbe84c9bc37ef8625d65" id="r_a3d08ea1fa2dbbbe84c9bc37ef8625d65"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d08ea1fa2dbbbe84c9bc37ef8625d65">removed_by_str</a> (self)</td></tr>
@@ -115,7 +111,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a type specifier for a node in the TimeloopFE library. </p>
 <p>Attributes: name (str): The name of the type specifier. required_type (Type): The required type for the node. default (Any): The default value for the type specifier. callfunc (Union[Callable, None]): The function to call for casting the value. should_have_been_removed_by (Type): The type that should have removed or transformed the node. part_name_match (bool): Flag indicating if the name should be partially matched. no_change_key (bool): Flag indicating if the key should not be changed.</p>
-<p>Methods: get_id2casted(cls): Get the dictionary of casted values. reset_id2casted(cls): Reset the dictionary of casted values. removed_by_str(self): Get the string representation of the type that should have removed or transformed the node. cast_check_type(self, value: Any, node: "Node", key: str) -&gt; Any: Check and cast the value to the required type. cast(self, value: Any, __node_skip_parse: bool = False) -&gt; Any: Cast the value to the required type. check_type(self, value: Any, node: "Node", key: str): Check if the value matches the required type. </p>
+<p>Methods: get_id2casted(cls): Get the dictionary of casted values. removed_by_str(self): Get the string representation of the type that should have removed or transformed the node. cast_check_type(self, value: Any, node: "Node", key: str) -&gt; Any: Check and cast the value to the required type. cast(self, value: Any, __node_skip_parse: bool = False) -&gt; Any: Cast the value to the required type. check_type(self, value: Any, node: "Node", key: str): Check if the value matches the required type. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a08a66c8d319780ddd7a9b58a21a93173" name="a08a66c8d319780ddd7a9b58a21a93173"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a08a66c8d319780ddd7a9b58a21a93173">&#9670;&#160;</a></span>__init__()</h2>
@@ -257,23 +253,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="afbc909d569293ba11a19a594cb6eed60" name="afbc909d569293ba11a19a594cb6eed60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbc909d569293ba11a19a594cb6eed60">&#9670;&#160;</a></span>get_id2casted()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">timeloopfe.common.nodes.TypeSpecifier.get_id2casted </td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>cls</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a3d08ea1fa2dbbbe84c9bc37ef8625d65" name="a3d08ea1fa2dbbbe84c9bc37ef8625d65"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3d08ea1fa2dbbbe84c9bc37ef8625d65">&#9670;&#160;</a></span>removed_by_str()</h2>
 
@@ -284,23 +263,6 @@ Public Attributes</h2></td></tr>
           <td class="memname">timeloopfe.common.nodes.TypeSpecifier.removed_by_str </td>
           <td>(</td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa6e501c3a7fd4c5145f348670d1e3774" name="aa6e501c3a7fd4c5145f348670d1e3774"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6e501c3a7fd4c5145f348670d1e3774">&#9670;&#160;</a></span>reset_id2casted()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">timeloopfe.common.nodes.TypeSpecifier.reset_id2casted </td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>cls</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

@@ -9,11 +9,12 @@ var searchData=
   ['compute_6',['Compute',['../classtimeloopfe_1_1v4_1_1arch_1_1Compute.html',1,'timeloopfe::v4::arch']]],
   ['computeoptimization_7',['ComputeOptimization',['../classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1ComputeOptimization.html',1,'timeloopfe::v4::sparse_optimizations']]],
   ['computeoptimizationlist_8',['ComputeOptimizationList',['../classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1ComputeOptimizationList.html',1,'timeloopfe::v4::sparse_optimizations']]],
-  ['constraint_9',['Constraint',['../classtimeloopfe_1_1v4_1_1constraints_1_1Constraint.html',1,'timeloopfe::v4::constraints']]],
-  ['constraintattacherprocessor_10',['ConstraintAttacherProcessor',['../classtimeloopfe_1_1v4_1_1processors_1_1constraint__attacher_1_1ConstraintAttacherProcessor.html',1,'timeloopfe::v4::processors::constraint_attacher']]],
-  ['constraintgroup_11',['ConstraintGroup',['../classtimeloopfe_1_1v4_1_1constraints_1_1ConstraintGroup.html',1,'timeloopfe::v4::constraints']]],
-  ['constraintmacroprocessor_12',['ConstraintMacroProcessor',['../classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor.html',1,'timeloopfe::v4::processors::constraint_macro']]],
-  ['constraints_13',['Constraints',['../classtimeloopfe_1_1v4_1_1constraints_1_1Constraints.html',1,'timeloopfe::v4::constraints']]],
-  ['constraintslist_14',['ConstraintsList',['../classtimeloopfe_1_1v4_1_1constraints_1_1ConstraintsList.html',1,'timeloopfe::v4::constraints']]],
-  ['container_15',['Container',['../classtimeloopfe_1_1v4_1_1arch_1_1Container.html',1,'timeloopfe::v4::arch']]]
+  ['computeoptimizationtypelist_9',['ComputeOptimizationTypeList',['../classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1ComputeOptimizationTypeList.html',1,'timeloopfe::v4::sparse_optimizations']]],
+  ['constraint_10',['Constraint',['../classtimeloopfe_1_1v4_1_1constraints_1_1Constraint.html',1,'timeloopfe::v4::constraints']]],
+  ['constraintattacherprocessor_11',['ConstraintAttacherProcessor',['../classtimeloopfe_1_1v4_1_1processors_1_1constraint__attacher_1_1ConstraintAttacherProcessor.html',1,'timeloopfe::v4::processors::constraint_attacher']]],
+  ['constraintgroup_12',['ConstraintGroup',['../classtimeloopfe_1_1v4_1_1constraints_1_1ConstraintGroup.html',1,'timeloopfe::v4::constraints']]],
+  ['constraintmacroprocessor_13',['ConstraintMacroProcessor',['../classtimeloopfe_1_1v4_1_1processors_1_1constraint__macro_1_1ConstraintMacroProcessor.html',1,'timeloopfe::v4::processors::constraint_macro']]],
+  ['constraints_14',['Constraints',['../classtimeloopfe_1_1v4_1_1constraints_1_1Constraints.html',1,'timeloopfe::v4::constraints']]],
+  ['constraintslist_15',['ConstraintsList',['../classtimeloopfe_1_1v4_1_1constraints_1_1ConstraintsList.html',1,'timeloopfe::v4::constraints']]],
+  ['container_16',['Container',['../classtimeloopfe_1_1v4_1_1arch_1_1Container.html',1,'timeloopfe::v4::arch']]]
 ];

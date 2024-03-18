@@ -1,13 +1,13 @@
 <map id="timeloopfe.common.nodes.CombinableListNode" name="timeloopfe.common.nodes.CombinableListNode">
 <area shape="rect" id="Node000001" title="A list node that can be combined with others by extending." alt="" coords="579,104,755,145"/>
-<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1v4_1_1constraints_1_1ConstraintsList.html" title="A class representing a list of constraints." alt="" coords="845,5,1014,46"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="719,94,802,57,844,43,846,48,804,61,721,99"/>
-<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Factors.html" title="A list of factors used to describe loop bounds." alt="" coords="845,71,1014,111"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="770,109,844,99,845,104,771,114"/>
-<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1globals_1_1ExpressionCustomFunctions.html" title="A list of paths to Python files containing functions to be used in expressions." alt="" coords="825,136,1034,177"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="770,134,825,141,824,146,770,140"/>
-<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1ComputeOptimizationList.html" title="A list of compute optimizations." alt="" coords="803,201,1056,242"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="721,149,804,186,842,198,840,203,802,191,719,154"/>
+<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1v4_1_1constraints_1_1ConstraintsList.html" title="A class representing a list of constraints." alt="" coords="834,5,1003,46"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="719,94,802,57,838,44,840,49,804,61,721,99"/>
+<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Factors.html" title="A list of factors used to describe loop bounds." alt="" coords="834,71,1003,111"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="770,108,833,100,834,105,771,113"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1globals_1_1ExpressionCustomFunctions.html" title="A list of paths to Python files containing functions to be used in expressions." alt="" coords="814,136,1023,177"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="770,135,814,140,814,146,770,140"/>
+<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1ComputeOptimizationTypeList.html" title="A list of compute optimizations." alt="" coords="803,201,1034,256"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="724,149,804,186,833,197,831,202,802,191,722,154"/>
 <area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="356,104,531,145"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="547,122,579,122,579,127,547,127"/>
 <area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="102,86,308,112"/>

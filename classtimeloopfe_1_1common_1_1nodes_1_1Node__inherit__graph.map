@@ -4,8 +4,8 @@
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,666,446,1587,441,1588,211,668"/>
 <area shape="rect" id="Node000056" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="362,316,537,357"/>
 <area shape="poly" id="edge38_Node000001_Node000056" title=" " alt="" coords="224,612,430,356,434,359,228,616"/>
-<area shape="rect" id="Node000079" href="$classtimeloopfe_1_1v4_1_1arch_1_1ArchNode.html" title="A node in the architecture hierarchy." alt="" coords="356,626,543,652"/>
-<area shape="poly" id="edge49_Node000001_Node000079" title=" " alt="" coords="324,636,356,636,356,642,324,642"/>
+<area shape="rect" id="Node000080" href="$classtimeloopfe_1_1v4_1_1arch_1_1ArchNode.html" title="A node in the architecture hierarchy." alt="" coords="356,626,543,652"/>
+<area shape="poly" id="edge49_Node000001_Node000080" title=" " alt="" coords="324,636,356,636,356,642,324,642"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,626,54,652"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,636,101,636,101,642,69,642"/>
 <area shape="rect" id="Node000004" href="$classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification.html" title="Base class for specifications in the Timeloop framework." alt="" coords="603,1000,811,1041"/>
@@ -97,7 +97,7 @@
 <area shape="poly" id="edge47_Node000056_Node000070" title=" " alt="" coords="489,365,537,399,593,431,624,444,622,449,590,436,534,404,486,369"/>
 <area shape="rect" id="Node000071" href="$classtimeloopfe_1_1v4_1_1constraints_1_1ProblemDataspaceList.html" title="A list of problem dataspaces." alt="" coords="623,512,791,553"/>
 <area shape="poly" id="edge48_Node000056_Node000071" title=" " alt="" coords="473,368,523,434,556,468,593,497,624,512,621,517,590,501,552,472,519,437,469,371"/>
-<area shape="poly" id="edge51_Node000079_Node000008" title=" " alt="" coords="559,636,622,636,622,642,559,642"/>
-<area shape="poly" id="edge52_Node000079_Node000013" title=" " alt="" coords="536,653,637,672,636,677,535,658"/>
-<area shape="poly" id="edge50_Node000079_Node000064" title=" " alt="" coords="535,620,636,601,637,606,536,625"/>
+<area shape="poly" id="edge51_Node000080_Node000008" title=" " alt="" coords="559,636,622,636,622,642,559,642"/>
+<area shape="poly" id="edge52_Node000080_Node000013" title=" " alt="" coords="536,653,637,672,636,677,535,658"/>
+<area shape="poly" id="edge50_Node000080_Node000064" title=" " alt="" coords="535,620,636,601,637,606,536,625"/>
 </map>

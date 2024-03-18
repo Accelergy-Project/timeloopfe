@@ -22,8 +22,7 @@ class BaseSpecification(DictNode):
     """
 
     @classmethod
-    def declare_attrs(cls, *args, **kwargs):
-        ...
+    def declare_attrs(cls, *args, **kwargs): ...
 class BaseSpecification(DictNode):
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
@@ -33,6 +32,7 @@ class BaseSpecification(DictNode):
         super().add_attr("_required_processors", ListNode, [])
         super().add_attr("_parsed_expressions", bool, False)
         super().add_attr("_processors_run", ListNode, [])
+        super().add_attr("_processors_run_pre_parse", ListNode, [])
 
     def _claim_nodes(self, *args, **kwargs):
         def claim_node(n: Node):
@@ -63,7 +63,6 @@ class BaseSpecification(DictNode):
         self._processors_declare_attrs()
 
     def __init__(self, *args, **kwargs):
-        TypeSpecifier.reset_id2casted()
         self._processor_attributes = {}
         Node.set_global_spec(self)
         self.spec = self
@@ -71,11 +70,13 @@ class BaseSpecification(DictNode):
         self._early_init_processors(**kwargs)  # Because processors define declare_attrs
 
         super().__init__(*args, **kwargs)
-        TypeSpecifier.reset_id2casted()
 
-        self.processors: ListNode = self["processors"]
-        self._required_processors: ListNode = self["_required_processors"]
+        self.processors: ListNode[Processor] = self["processors"]
+        self._required_processors: ListNode[Processor] = self["_required_processors"]
         self._processors_run: List[Processor] = self["_processors_run"]
+        self._processors_run_pre_parse: List[Processor] = self[
+            "_processors_run_pre_parse"
+        ]
         self._parsed_expressions = self["_parsed_expressions"]
         self.preserve_references = kwargs.get("preserve_references", False)
 
@@ -86,10 +87,13 @@ class BaseSpecification(DictNode):
         self,
         with_processors: Optional[List["Processor"]] = None,
         to_run: Optional[List["Processor"]] = None,
+        pre_parse: bool = False,
     ):
         if with_processors is None:
             with_processors = self.processors + [References2CopiesProcessor]
-        to_check = (to_run or []) + self._processors_run
+        to_check = (to_run or []) + (
+            self._processors_run_pre_parse if pre_parse else self._processors_run
+        )
 
         for p in with_processors:
             for x in to_check:
@@ -105,64 +109,64 @@ class BaseSpecification(DictNode):
         return False
 
     def process(
-            self,
-            with_processors: Union["Processor", List["Processor"]] = None,
-            check_types: bool = False,
-            check_types_ignore_empty: bool = True,
-            reprocess: bool = True,
-        ):
-            """
-            Process the specification with the given processors.
+        self,
+        with_processors: Union["Processor", List["Processor"]] = None,
+        check_types: bool = False,
+        check_types_ignore_empty: bool = True,
+        reprocess: bool = True,
+    ):
+        """
+        Process the specification with the given processors.
 
-            Args:
-                with_processors (Union[Processor, List[Processor]], optional): Processors to be used for processing the specification. Defaults to None.
-                check_types (bool, optional): Flag indicating whether to check for unrecognized types. Defaults to False.
-                check_types_ignore_empty (bool, optional): Flag indicating whether to ignore empty types during type checking. Defaults to True.
-                reprocess (bool, optional): Flag indicating whether to reprocess the specification even if it has been processed before. Defaults to True.
-            """
-            prev_global_spec = Node.get_global_spec()
-            try:
-                Node.set_global_spec(self)
-                if with_processors is None:
-                    processors = self.processors
-                else:
-                    if not isinstance(with_processors, (list, tuple)):
-                        with_processors = [with_processors]
-                    processors = [p for p in with_processors]
+        Args:
+            with_processors (Union[Processor, List[Processor]], optional): Processors to be used for processing the specification. Defaults to None.
+            check_types (bool, optional): Flag indicating whether to check for unrecognized types. Defaults to False.
+            check_types_ignore_empty (bool, optional): Flag indicating whether to ignore empty types during type checking. Defaults to True.
+            reprocess (bool, optional): Flag indicating whether to reprocess the specification even if it has been processed before. Defaults to True.
+        """
+        prev_global_spec = Node.get_global_spec()
+        try:
+            Node.set_global_spec(self)
+            if with_processors is None:
+                processors = self.processors
+            else:
+                if not isinstance(with_processors, (list, tuple)):
+                    with_processors = [with_processors]
+                processors = [p for p in with_processors]
 
-                if self.needs_processing([References2CopiesProcessor], processors):
-                    self.process(References2CopiesProcessor, check_types=False)
+            if self.needs_processing([References2CopiesProcessor], processors):
+                self.process(References2CopiesProcessor, check_types=False)
 
-                overall_start_time = time.time()
-                for i, p in enumerate(processors):
-                    if not self.needs_processing([p]) and (
-                        not reprocess
-                        or p == References2CopiesProcessor
-                        or isinstance(p, References2CopiesProcessor)
-                    ):
-                        continue
-                    # If the processor isn't initialized, initialize it
-                    p_cls = p
-                    p = class2obj(p)
-                    Node.reset_processor_elems(p.__class__)
-                    processors[i] = p
-                    self.logger.info("Running processor %s", p.__class__.__name__)
-                    start_time = time.time()
-                    p.process(self)
-                    self.logger.info(
-                        "Processor %s done after %.2f seconds",
-                        p.__class__.__name__,
-                        time.time() - start_time,
-                    )
-                    self._processors_run.append(p_cls)
-                if check_types:
-                    self.check_unrecognized(ignore_empty=check_types_ignore_empty)
+            overall_start_time = time.time()
+            for i, p in enumerate(processors):
+                if not self.needs_processing([p]) and (
+                    not reprocess
+                    or p == References2CopiesProcessor
+                    or isinstance(p, References2CopiesProcessor)
+                ):
+                    continue
+                # If the processor isn't initialized, initialize it
+                p_cls = p
+                p = class2obj(p)
+                Node.reset_processor_elems(p.__class__)
+                processors[i] = p
+                self.logger.info("Running processor %s", p.__class__.__name__)
+                start_time = time.time()
+                p.process(self)
                 self.logger.info(
-                    "Specification processed in %.2f seconds",
-                    time.time() - overall_start_time,
+                    "Processor %s done after %.2f seconds",
+                    p.__class__.__name__,
+                    time.time() - start_time,
                 )
-            finally:
-                Node.set_global_spec(prev_global_spec)
+                self._processors_run.append(p_cls)
+            if check_types:
+                self.check_unrecognized(ignore_empty=check_types_ignore_empty)
+            self.logger.info(
+                "Specification processed in %.2f seconds",
+                time.time() - overall_start_time,
+            )
+        finally:
+            Node.set_global_spec(prev_global_spec)
 
     @classmethod
     def from_yaml_files(cls, *args, **kwargs) -> "Specification":
@@ -185,7 +189,7 @@ class BaseSpecification(DictNode):
     ):
         """
         Parse expressions in the specification.
-        
+
         Args:
             symbol_table (Optional[Dict[str, Any]], optional): Symbol table to be used for parsing. Defaults to None.
             parsed_ids (Optional[set], optional): Set of IDs of specifications that have already been parsed. Defaults to None.
@@ -197,6 +201,11 @@ class BaseSpecification(DictNode):
                 f"preserve_references=False or call process() with "
                 f"any arguments."
             )
+        for p in self.processors:
+            if self.needs_processing([p], pre_parse=True):
+                class2obj(p).pre_parse_process(self)
+                self._processors_run_pre_parse.append(p)
+
         symbol_table = {} if symbol_table is None else symbol_table.copy()
         parsed_ids = set() if parsed_ids is None else parsed_ids
         parsed_ids.add(id(self))

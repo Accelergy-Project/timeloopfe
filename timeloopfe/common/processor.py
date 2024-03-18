@@ -1,4 +1,5 @@
 """ Base class for all processors."""
+
 from abc import abstractmethod, ABC
 import copy
 import logging
@@ -8,7 +9,7 @@ from typing import Any, Optional
 
 class Processor(ABC):
     """Base class for all processors, which are used to modify the specification before it is passed to Accelergy/Timeloop.
-    
+
     Attributes:
         spec: The specification to process.
         logger: The logger for this processor.
@@ -18,10 +19,15 @@ class Processor(ABC):
         self._initialized: bool = True
         self.logger = logging.getLogger(self.__class__.__name__)
 
+    def pre_parse_process(self, spec: "Specification"):
+        """Process the specification before parsing."""
+        self.logger.debug(f"Pre-parse processing with {self}")
+        self.spec = spec
+
     @abstractmethod
     def process(self, spec: "Specification"):
         """Process the specification."""
-        self.logger.debug(f"Processing...")
+        self.logger.debug(f"Processing with {self}")
         self.spec = spec
 
     def declare_attrs(self):

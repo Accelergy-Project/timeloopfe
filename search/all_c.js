@@ -9,9 +9,10 @@ var searchData=
   ['network_5fclasses_6',['NETWORK_CLASSES',['../namespacetimeloopfe_1_1v4_1_1arch.html#a7c73e4892ed67458dcf73628f35ee3bd',1,'timeloopfe::v4::arch']]],
   ['network_5fkwargs_7',['network_kwargs',['../classtimeloopfe_1_1v4_1_1processors_1_1to__diagram__processor_1_1ToDiagramProcessor.html#a0a8f7de1b17b916177a9fad4a08ec6c5',1,'timeloopfe::v4::processors::to_diagram_processor::ToDiagramProcessor']]],
   ['networks_8',['Networks',['../classtimeloopfe_1_1v4_1_1arch_1_1Networks.html',1,'timeloopfe::v4::arch']]],
-  ['node_9',['Node',['../classtimeloopfe_1_1common_1_1nodes_1_1Node.html',1,'timeloopfe::common::nodes']]],
-  ['nodes_2epy_10',['nodes.py',['../nodes_8py.html',1,'']]],
-  ['nothing_11',['Nothing',['../classtimeloopfe_1_1v4_1_1arch_1_1Nothing.html',1,'timeloopfe::v4::arch']]],
-  ['nothing_5fclasses_12',['NOTHING_CLASSES',['../namespacetimeloopfe_1_1v4_1_1arch.html#a0605dbbfd5e906403ec51c9c56808ac2',1,'timeloopfe::v4::arch']]],
-  ['num2list_5fof_5fprime_5ffactors_13',['num2list_of_prime_factors',['../namespacetimeloopfe_1_1v4_1_1processors_1_1constraint__macro.html#a056c3bf9f5ed31f1e10e822159f5918e',1,'timeloopfe::v4::processors::constraint_macro']]]
+  ['node_9',['Node',['../classtimeloopfe_1_1common_1_1nodes_01copy_1_1Node.html',1,'timeloopfe.common.nodes copy.Node'],['../classtimeloopfe_1_1common_1_1nodes_1_1Node.html',1,'timeloopfe.common.nodes.Node']]],
+  ['nodes_20copy_2epy_10',['nodes copy.py',['../nodes_01copy_8py.html',1,'']]],
+  ['nodes_2epy_11',['nodes.py',['../nodes_8py.html',1,'']]],
+  ['nothing_12',['Nothing',['../classtimeloopfe_1_1v4_1_1arch_1_1Nothing.html',1,'timeloopfe::v4::arch']]],
+  ['nothing_5fclasses_13',['NOTHING_CLASSES',['../namespacetimeloopfe_1_1v4_1_1arch.html#a0605dbbfd5e906403ec51c9c56808ac2',1,'timeloopfe::v4::arch']]],
+  ['num2list_5fof_5fprime_5ffactors_14',['num2list_of_prime_factors',['../namespacetimeloopfe_1_1v4_1_1processors_1_1constraint__macro.html#a056c3bf9f5ed31f1e10e822159f5918e',1,'timeloopfe::v4::processors::constraint_macro']]]
 ];

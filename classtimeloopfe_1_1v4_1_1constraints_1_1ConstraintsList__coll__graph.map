@@ -1,6 +1,6 @@
 <map id="timeloopfe.v4.constraints.ConstraintsList" name="timeloopfe.v4.constraints.ConstraintsList">
 <area shape="rect" id="Node000001" title="A class representing a list of constraints." alt="" coords="98,330,266,371"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1CombineableListNode.html" title="A list node that can be combined with others by extending." alt="" coords="94,241,270,282"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1CombinableListNode.html" title="A list node that can be combined with others by extending." alt="" coords="94,241,270,282"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,298,185,330,179,330,179,298"/>
 <area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="94,153,270,193"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="185,209,185,241,179,241,179,209"/>

@@ -1,4 +1,4 @@
-<map id="timeloopfe.common.nodes.CombineableListNode" name="timeloopfe.common.nodes.CombineableListNode">
+<map id="timeloopfe.common.nodes.CombinableListNode" name="timeloopfe.common.nodes.CombinableListNode">
 <area shape="rect" id="Node000001" title="A list node that can be combined with others by extending." alt="" coords="94,241,270,282"/>
 <area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="94,153,270,193"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,209,185,241,179,241,179,209"/>

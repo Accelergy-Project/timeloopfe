@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from ..common.nodes import DictNode, ListNode, isempty
+from ..common.nodes import DictNode, ListNode, isempty, CombinableListNode
 from .version import assert_version
 
 
@@ -192,7 +192,21 @@ class ComputeOptimization(DictNode):
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
-        super().add_attr("type", ("gating", "skipping"), None)
+        super().add_attr("type", ComputeOptimizationList)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+class ComputeOptimizationList(CombinableListNode):
+    """
+    A list of compute optimizations.
+    """
+
+    @classmethod
+    def declare_attrs(cls, *args, **kwargs):
+        super().declare_attrs(*args, **kwargs)
+        super().add_attr("", ("gating", "skipping"))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

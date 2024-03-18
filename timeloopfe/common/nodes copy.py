@@ -63,11 +63,23 @@ class TypeSpecifier:
         no_change_key (bool): Flag indicating if the key should not be changed.
 
     Methods:
+        get_id2casted(cls): Get the dictionary of casted values.
+        reset_id2casted(cls): Reset the dictionary of casted values.
         removed_by_str(self): Get the string representation of the type that should have removed or transformed the node.
         cast_check_type(self, value: Any, node: "Node", key: str) -> Any: Check and cast the value to the required type.
         cast(self, value: Any, __node_skip_parse: bool = False) -> Any: Cast the value to the required type.
         check_type(self, value: Any, node: "Node", key: str): Check if the value matches the required type.
     """
+
+    @classmethod
+    def get_id2casted(cls):
+        if not hasattr(_thread_local, "id2casted"):
+            _thread_local.id2casted = {}
+        return _thread_local.id2casted
+
+    @classmethod
+    def reset_id2casted(cls):
+        _thread_local.id2casted = {}
 
     def __init__(
         self,
@@ -173,11 +185,18 @@ class TypeSpecifier:
 
     def cast(self, value: Any, __node_skip_parse: bool = False) -> Any:
         tag = Node.get_tag(value)
-        if self.callfunc is not None:
+        primitive = type(value) in (int, float, bool, str, bytes, type(None))
+        id2cast_key = (id(value), id(self.callfunc), __node_skip_parse)
+
+        if not primitive and id2cast_key in self.get_id2casted():
+            value = self.get_id2casted()[id2cast_key]
+        elif self.callfunc is not None:
             if __node_skip_parse:
                 value = self.callfunc(value, __node_skip_parse=__node_skip_parse)
             else:
                 value = self.callfunc(value)
+            if not primitive:
+                self.get_id2casted()[id2cast_key] = value
         try:
             value.tag = tag
         except AttributeError:
@@ -279,7 +298,6 @@ class Node(ABC):
         self.__currently_parsing_index: Union[int, str] = None
         self.logger = logging.getLogger(self.__class__.__name__)
         self._default_parse = False
-        self.from_data = None
 
     @classmethod
     def get_specifiers_from_processors(cls, spec: "BaseSpecification"):

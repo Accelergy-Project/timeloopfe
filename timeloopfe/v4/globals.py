@@ -1,4 +1,4 @@
-from ..common.nodes import CombineableListNode, DictNode
+from ..common.nodes import CombinableListNode, DictNode
 from .version import assert_version
 
 
@@ -42,7 +42,7 @@ class EnvironmentVariables(DictNode):
         super().__init__(*args, **kwargs)
 
 
-class ExpressionCustomFunctions(CombineableListNode):
+class ExpressionCustomFunctions(CombinableListNode):
     """
     A list of paths to Python files containing functions to be used in expressions.
     """

@@ -1,6 +1,6 @@
 import logging
 from typing import Iterable, List, Optional, Tuple, Type, Union
-from ..common.nodes import DictNode, ListNode, isempty, CombineableListNode
+from ..common.nodes import DictNode, ListNode, isempty, CombinableListNode
 import timeloopfe.v4.problem as problem
 import copy
 from .version import assert_version
@@ -85,7 +85,7 @@ class Constraints(DictNode):
         self.targets: ConstraintsList = self["targets"]
 
 
-class ConstraintsList(CombineableListNode):
+class ConstraintsList(CombinableListNode):
     """
     A class representing a list of constraints.
     """
@@ -392,7 +392,7 @@ class Factor(str):
     pass
 
 
-class Factors(CombineableListNode):
+class Factors(CombinableListNode):
     """
     A list of factors used to describe loop bounds
     """

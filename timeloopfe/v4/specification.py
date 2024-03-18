@@ -1,6 +1,6 @@
 import time
 from . import arch, constraints, problem, variables
-from ..common.nodes import DictNode, ListNode, Node, TypeSpecifier, CombineableListNode
+from ..common.nodes import DictNode, ListNode, Node, TypeSpecifier, CombinableListNode
 from .arch import Architecture
 from .constraints import Constraints, ConstraintsList
 from .problem import Problem

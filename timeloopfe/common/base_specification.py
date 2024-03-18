@@ -1,7 +1,7 @@
 import copy
 import time
 from typing import Any, Dict, List, Optional, Union
-from .nodes import DictNode, ListNode, Node, TypeSpecifier, CombineableListNode
+from .nodes import DictNode, ListNode, Node, TypeSpecifier, CombinableListNode
 from .processor import Processor, ProcessorError, References2CopiesProcessor
 
 

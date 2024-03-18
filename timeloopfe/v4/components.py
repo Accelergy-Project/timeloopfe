@@ -1,6 +1,6 @@
 from numbers import Number
 from typing import Any, Dict, Optional, Union
-from ..common.nodes import DictNode, CombineableListNode, ListNode, FlatteningListNode
+from ..common.nodes import DictNode, CombinableListNode, ListNode, FlatteningListNode
 from .version import assert_version
 
 

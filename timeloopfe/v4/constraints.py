@@ -76,7 +76,7 @@ class Constraints(DictNode):
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
-        super().add_attr("version", callfunc=assert_version)
+        super().add_attr("version", default="0.4", callfunc=assert_version)
         super().add_attr("targets", ConstraintsList, [])
 
     def __init__(self, *args, **kwargs):
@@ -89,6 +89,7 @@ class ConstraintsList(CombineableListNode):
     """
     A class representing a list of constraints.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -277,7 +278,7 @@ class Spatial(Iteration):
 class Temporal(Iteration):
     """
     A temporal iteration constraint.
-    
+
     Attributes:
         no_reuse (List[str]): A list of problem dataspaces that should not be reused.
         rmw_first_update (List[str]): A list of problem dataspaces that should have RMW for the first update (rather than a write only).
@@ -326,7 +327,7 @@ class Dataspace(Constraint):
 class MaxOverbookedProportion(Constraint):
     """
     A constraint that defines the maximum overbooked proportion.
-    
+
     Attributes:
         proportion (float): The maximum overbooked proportion.
     """
@@ -350,6 +351,7 @@ class Utilization(Constraint):
         min (float or str): The minimum utilization value.
         type (str): The type of the constraint, which is "utilization".
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -386,6 +388,7 @@ class Permutation(ListNode):
 
 class Factor(str):
     """A loop factor (e.g., P=1)"""
+
     pass
 
 
@@ -393,6 +396,7 @@ class Factors(CombineableListNode):
     """
     A list of factors used to describe loop bounds
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -486,7 +490,7 @@ class Factors(CombineableListNode):
     def get_split_factors(self) -> List[Tuple[str, str, str]]:
         """
         Get a list of split factors.
-        
+
         Example:
             get_split_factors() returns [("X", "=", "123"), ("Y", "=", "456"), ("Z", "=", "789")] if the factors are "X=123", "Y=456", and "Z=789".
 
@@ -496,7 +500,7 @@ class Factors(CombineableListNode):
     def get_factor_names(self) -> List[str]:
         """
         Get a list of factor names.
-        
+
         Example:
             get_factor_names() returns ["X", "Y", "Z"] if the factors are "X=123", "Y=456", and "Z=789".
 
@@ -515,7 +519,7 @@ class Factors(CombineableListNode):
 
         Example:
             remove_factor("X") removes the factor "X=123" from the list of factors.
-        
+
         """
         for i in range(len(self) - 1, -1, -1):
             if name == self.splitfactor(self[i])[0]:
@@ -663,6 +667,7 @@ class ProblemDataspaceList(ListNode):
     """
     A list of problem dataspaces.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)

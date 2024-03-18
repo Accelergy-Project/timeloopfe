@@ -16,7 +16,7 @@ class Components(DictNode):
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
-        super().add_attr("version", callfunc=assert_version)
+        super().add_attr("version", default="0.4", callfunc=assert_version)
         super().add_attr("classes", FlatteningListNode, [])
 
     def __init__(self, *args, **kwargs):

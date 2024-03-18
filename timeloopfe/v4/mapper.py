@@ -28,11 +28,12 @@ class Mapper(DictNode):
         filter_revisits (bool): Flag indicating whether to filter revisited mappings.
         max_permutations_per_if_visit (int): The maximum number of permutations per index factorization visit.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
         super().recognize_all()
-        super().add_attr("version", callfunc=assert_version)
+        super().add_attr("version", default="0.4", callfunc=assert_version)
         super().add_attr("out_prefix", str, "timeloop-mapper")
         super().add_attr("num_threads", int, 8)
         super().add_attr("optimization_metric", OptimizationMetrics, [])

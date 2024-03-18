@@ -7,15 +7,16 @@ from .version import assert_version
 class SparseOptimizations(DictNode):
     """
     Top-level class for sparse optimizations.
-    
+
     Attributes:
         version (str): The version of the sparse optimizations.
         targets (SparseOptimizationsList): A list of sparse optimizations.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
-        super().add_attr("version", callfunc=assert_version)
+        super().add_attr("version", default="0.4", callfunc=assert_version)
         super().add_attr("targets", SparseOptimizationsList, [])
 
     def __init__(self, *args, **kwargs):
@@ -26,7 +27,8 @@ class SparseOptimizations(DictNode):
 
 class SparseOptimizationsList(ListNode):
     """
-    A list of sparse optimizations.    """
+    A list of sparse optimizations."""
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -95,6 +97,7 @@ class RepresentationProblemDataspaceList(ListNode):
     """
     A list of representation problem dataspaces.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -125,6 +128,7 @@ class RepresentationRankList(ListNode):
     """
     A list of ranks to be used in the representation format.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -146,6 +150,7 @@ class RepresentationRank(DictNode):
         payload_word_bits (int): The number of payload word bits.
         flattened_rankIDs (list): A list of flattened rank IDs.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -165,6 +170,7 @@ class ActionOptimizationList(ListNode):
     """
     A list of action optimizations.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -182,6 +188,7 @@ class ComputeOptimization(DictNode):
         type (str): The type of compute optimization. One of "gating", "skipping".
         options (ActionOptimizationOptionList): A list of action optimization options.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -194,11 +201,12 @@ class ComputeOptimization(DictNode):
 class ActionOptimization(DictNode):
     """
     An action optimization.
-    
+
     Attributes:
         type (str): The type of action optimization. One of "gating", "skipping", "spatial_skipping".
         options (ActionOptimizationOptionList): A list of action optimization options.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -214,6 +222,7 @@ class ActionOptimizationOptionList(ListNode):
     """
     A list of action optimization options.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -231,6 +240,7 @@ class ActionOptimizationOption(DictNode):
         target (str): The target of the optimization.
         condition_on (list): Which tensor(s) to condition on.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)

@@ -14,13 +14,13 @@ from .mapspace import Mapspace
 from ..common.processor import ProcessorError, References2CopiesProcessor
 
 from typing import Any, Dict, List, Optional, Union
-from ..common.base_specification import BaseSpecification
+from ..common.base_specification import BaseSpecification, class2obj
 
 
 class Specification(BaseSpecification):
     """
     A top-level class for the Timeloop specification.
-    
+
     Attributes:
         architecture: The top-level architecture description.
         components: List of compound components.
@@ -32,9 +32,10 @@ class Specification(BaseSpecification):
         sparse_optimizations: Additional sparse optimizations available to the architecture.
         mapspace: The top-level mapspace description.
         globals: Global inclusion of extra parsing functions and environment variables.
-        
+
     Note: Inherits from BaseSpecification.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -51,7 +52,7 @@ class Specification(BaseSpecification):
         super().add_attr("sparse_optimizations", SparseOptimizations, {"version": 0.4})
         super().add_attr("variables", Variables, {"version": 0.4})
         super().add_attr("mapspace", Mapspace, {"version": 0.4})
-        super().add_attr("globals", Globals, {"version": 0.4})
+        super().add_attr("globals", Globals, {"version": 0.4}, part_name_match=True)
 
     def __init__(self, *args, **kwargs):
         from .processors import REQUIRED_PROCESSORS
@@ -81,6 +82,11 @@ class Specification(BaseSpecification):
                 f"preserve_references=False or call process() with "
                 f"any arguments."
             )
+        for p in self.processors:
+            if self.needs_processing([p], pre_parse=True):
+                class2obj(p).pre_parse_process(self)
+                self._processors_run_pre_parse.append(p)
+
         symbol_table = {} if symbol_table is None else symbol_table.copy()
         parsed_ids = set() if parsed_ids is None else parsed_ids
         parsed_ids.add(id(self))
@@ -90,6 +96,17 @@ class Specification(BaseSpecification):
         symbol_table.update(parsed_variables)
         symbol_table["variables"] = parsed_variables
         super().parse_expressions(symbol_table, parsed_ids)
+
+    def to_diagram(
+        self,
+        container_names: Union[str, List[str]] = (),
+        ignore_containers: Union[str, List[str]] = (),
+    ) -> "pydot.Graph":
+        from .processors.to_diagram_processor import ToDiagramProcessor
+
+        s = self._process()
+        proc = ToDiagramProcessor(container_names, ignore_containers, spec=s)
+        return proc.process(s)
 
 
 Specification.declare_attrs()

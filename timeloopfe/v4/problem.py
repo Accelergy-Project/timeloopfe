@@ -7,16 +7,17 @@ from .version import assert_version
 class Problem(DictNode):
     """
     The top-level problem object in Timeloop.
-    
+
     Attributes:
         version (str): The version of the problem.
         instance (Instance): The instance object for the problem.
         shape (Shape): The shape object for the problem.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
-        super().add_attr("version", callfunc=assert_version)
+        super().add_attr("version", default="0.4", callfunc=assert_version)
         super().add_attr("instance", Instance)
         super().add_attr("shape", Shape)
 
@@ -30,7 +31,7 @@ class Problem(DictNode):
 class Shape(DictNode):
     """
     Problem shape object.
-    
+
     Attributes:
         name (str): The name of the shape.
         dimensions (ListNode): The dimensions of the shape.
@@ -117,6 +118,7 @@ class ProblemDataspaceList(ListNode):
     """
     A list of data spaces in the problem.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -126,13 +128,14 @@ class ProblemDataspaceList(ListNode):
 class Instance(DictNode):
     """
     An problem instance object.
-    
+
     Attributes:
         name (str): The name of the instance.
         data_spaces (DataSpaceList): The data spaces of the instance.
         densities (DensityList): The densities of each data space.
 
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
@@ -181,6 +184,7 @@ class DensityList(DictNode):
     """
     A list of densities for each data space.
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)

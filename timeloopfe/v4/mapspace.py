@@ -9,12 +9,13 @@ class Mapspace(DictNode):
     Attributes:
         version (str): The version of the mapspace.
         template (str): The template to use for the mapspace. "ruby" for imperfect factorization, any other string for perfect factorization.
-    
+
     """
+
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
-        super().add_attr("version", callfunc=assert_version)
+        super().add_attr("version", default="0.4", callfunc=assert_version)
         super().add_attr("template", str, "ruby")
 
     def __init__(self, *args, **kwargs):

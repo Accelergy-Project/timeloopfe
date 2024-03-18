@@ -18,7 +18,6 @@ class BaseSpecification(DictNode):
         _required_processors (ListNode): List of required processors.
         _parsed_expressions (bool): Flag indicating whether expressions have been parsed.
         _processors_run (List[Processor]): List of processors that have been run.
-        preserve_references (bool): Flag indicating whether to preserve references.
     """
 
     @classmethod
@@ -78,10 +77,7 @@ class BaseSpecification(DictNode):
             "_processors_run_pre_parse"
         ]
         self._parsed_expressions = self["_parsed_expressions"]
-        self.preserve_references = kwargs.get("preserve_references", False)
-
-        if not self.preserve_references:
-            self.process(References2CopiesProcessor, check_types=False)
+        self.process(References2CopiesProcessor, check_types=False)
 
     def needs_processing(
         self,
@@ -197,8 +193,7 @@ class BaseSpecification(DictNode):
         if self.needs_processing([References2CopiesProcessor]):
             raise ProcessorError(
                 f"Must run References2CopiesProcessor before "
-                f"parsing expressions. Either call __init__ with "
-                f"preserve_references=False or call process() with "
+                f"parsing expressions. Call process() with "
                 f"any arguments."
             )
         for p in self.processors:

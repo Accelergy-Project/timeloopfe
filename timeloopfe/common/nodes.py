@@ -63,7 +63,6 @@ class TypeSpecifier:
         no_change_key (bool): Flag indicating if the key should not be changed.
 
     Methods:
-        get_id2casted(cls): Get the dictionary of casted values.
         removed_by_str(self): Get the string representation of the type that should have removed or transformed the node.
         cast_check_type(self, value: Any, node: "Node", key: str) -> Any: Check and cast the value to the required type.
         cast(self, value: Any, __node_skip_parse: bool = False) -> Any: Cast the value to the required type.

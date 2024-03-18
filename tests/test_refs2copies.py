@@ -23,23 +23,23 @@ class Refs2CopiesTest(unittest.TestCase):
             os.path.join(this_script_dir, "arch_nest.yaml"), *args, **kwargs
         )
 
-    def test_references(self):
-        spec = self.get_spec(
-            processors=[References2CopiesProcessor], preserve_references=True
-        )
-        self.assertEqual(
-            id(spec.architecture.nodes[5].attributes),
-            id(spec.architecture.nodes[7].nodes[0].attributes),
-        )
-        self.assertEqual(
-            id(spec.architecture.nodes[6].nodes),
-            id(spec.architecture.nodes[7].nodes[1].nodes),
-        )
-        spec.architecture.nodes[5]["attributes"]["abc"] = "def"
-        self.assertIn("abc", spec.architecture.nodes[7].nodes[0]["attributes"])
-        self.assertEqual(
-            spec.architecture.nodes[7].nodes[0]["attributes"]["abc"], "def"
-        )
+    # def test_references(self):
+    #     spec = self.get_spec(
+    #         processors=[References2CopiesProcessor], preserve_references=True
+    #     )
+    #     self.assertEqual(
+    #         id(spec.architecture.nodes[5].attributes),
+    #         id(spec.architecture.nodes[7].nodes[0].attributes),
+    #     )
+    #     self.assertEqual(
+    #         id(spec.architecture.nodes[6].nodes),
+    #         id(spec.architecture.nodes[7].nodes[1].nodes),
+    #     )
+    #     spec.architecture.nodes[5]["attributes"]["abc"] = "def"
+    #     self.assertIn("abc", spec.architecture.nodes[7].nodes[0]["attributes"])
+    #     self.assertEqual(
+    #         spec.architecture.nodes[7].nodes[0]["attributes"]["abc"], "def"
+    #     )
 
     def test_break_references(self):
         spec = self.get_spec(
@@ -55,21 +55,21 @@ class Refs2CopiesTest(unittest.TestCase):
             id(spec.architecture.nodes[7].nodes[1]),
         )
 
-    def test_mutate_references(self):
-        spec = self.get_spec(
-            processors=[References2CopiesProcessor], preserve_references=True
-        )
-        spec.architecture.nodes[5]["attributes"]["a"] = "abc"
-        p = Parallel()
-        spec.architecture.nodes[6].nodes.append(p)
+    # def test_mutate_references(self):
+    #     spec = self.get_spec(
+    #         processors=[References2CopiesProcessor], preserve_references=True
+    #     )
+    #     spec.architecture.nodes[5]["attributes"]["a"] = "abc"
+    #     p = Parallel()
+    #     spec.architecture.nodes[6].nodes.append(p)
 
-        # Mutatee
-        self.assertEqual(spec.architecture.nodes[5]["attributes"]["a"], "abc")
-        self.assertEqual(spec.architecture.nodes[6].nodes[-1], p)
+    #     # Mutatee
+    #     self.assertEqual(spec.architecture.nodes[5]["attributes"]["a"], "abc")
+    #     self.assertEqual(spec.architecture.nodes[6].nodes[-1], p)
 
-        # Reference
-        self.assertEqual(spec.architecture.nodes[7].nodes[0]["attributes"]["a"], "abc")
-        self.assertEqual(spec.architecture.nodes[7].nodes[1].nodes[-1], p)
+    #     # Reference
+    #     self.assertEqual(spec.architecture.nodes[7].nodes[0]["attributes"]["a"], "abc")
+    #     self.assertEqual(spec.architecture.nodes[7].nodes[1].nodes[-1], p)
 
     def test_mutate_broken_references(self):
         spec = self.get_spec(
@@ -118,17 +118,17 @@ class Refs2CopiesTest(unittest.TestCase):
         for k in ["from_A", "from_A_list"]:
             self.assertNotIn(k, c.attributes)
 
-    def test_merges_references_preserved_through_casting(self):
-        spec = self.get_spec(
-            processors=[References2CopiesProcessor], preserve_references=True
-        )
-        a, b, c = tuple(spec.architecture.nodes[x + 8] for x in range(3))
-        # Make sure constraints were casted
-        self.assertIsInstance(a.constraints, ConstraintGroup)
-        self.assertIsInstance(b.constraints, ConstraintGroup)
-        self.assertIsInstance(c.constraints, ConstraintGroup)
-        # And that they are propogated by ID
-        self.assertEqual(id(c.constraints), id(a.constraints))
+    # def test_merges_references_preserved_through_casting(self):
+    #     spec = self.get_spec(
+    #         processors=[References2CopiesProcessor], preserve_references=True
+    #     )
+    #     a, b, c = tuple(spec.architecture.nodes[x + 8] for x in range(3))
+    #     # Make sure constraints were casted
+    #     self.assertIsInstance(a.constraints, ConstraintGroup)
+    #     self.assertIsInstance(b.constraints, ConstraintGroup)
+    #     self.assertIsInstance(c.constraints, ConstraintGroup)
+    #     # And that they are propogated by ID
+    #     self.assertEqual(id(c.constraints), id(a.constraints))
 
     def test_casting_break_references(self):
         spec = self.get_spec(

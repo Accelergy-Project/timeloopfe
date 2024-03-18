@@ -78,8 +78,7 @@ class Specification(BaseSpecification):
         if self.needs_processing([References2CopiesProcessor]):
             raise ProcessorError(
                 f"Must run References2CopiesProcessor before "
-                f"parsing expressions. Either call __init__ with "
-                f"preserve_references=False or call process() with "
+                f"parsing expressions. Call process() with "
                 f"any arguments."
             )
         for p in self.processors:

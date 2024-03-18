@@ -75,7 +75,7 @@ def greedy_allocate(
 
 
 class ConstraintMacroProcessor(Processor):
-    """ Defines constraint macros to be used for simplifying constraint specification.
+    """Defines constraint macros to be used for simplifying constraint specification.
 
     Iteration constraint macros:
     - factors_only: Only the listed factors are allowed. Other factors are
@@ -181,11 +181,9 @@ class ConstraintMacroProcessor(Processor):
             ) is not None:
                 debug_message(factors, "factors_only")
                 factors: Factors = factors
-                fnames = factors.get_factor_names()
-                for p in prob_dimensions:
-                    if p not in fnames:
-                        factors.add_eq_factor(p, 1)
                 constraint.factors.combine(factors)  # type: ignore
+                for p in prob_dimensions:
+                    constraint.factors.add_eq_factor_iff_not_exists(p, 1)
 
             if (ds := constraint.pop("no_iteration_over_dataspaces", None)) is not None:
                 debug_message(ds, "no_iteration_over_dataspaces")

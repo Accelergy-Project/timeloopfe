@@ -403,25 +403,23 @@ class Factors(CombinableListNode):
         super().add_attr("", Factor, callfunc=Factors.check_valid_factor)
 
     @staticmethod
-    def check_valid_factor(f, _allow_invalid: bool = True):
+    def check_valid_factor(f):
         """
         Check if a factor is valid.
 
         Parameters:
         - f: The factor to be checked.
-        - _allow_invalid: A flag indicating whether to allow invalid factors.
 
         Returns:
-        - If _allow_invalid is False, returns a valid factor.
-        - If _allow_invalid is True and the factor is valid, returns a valid factor.
-        - If _allow_invalid is True and the factor is invalid, returns the factor itself.
+        - Factor: The factor if it is valid.
 
         Raises:
         - ValueError: If the factor cannot be split.
 
         """
-        if not _allow_invalid:
-            return Factor(f)
+        if not isinstance(f, str):
+            assert isinstance(f, Iterable), f"Expected string or iterable, got {f}."
+            f = "".join(str(s) for s in f)
         try:
             Factors.splitfactor(f)
             return Factor(f)
@@ -591,7 +589,7 @@ class Factors(CombinableListNode):
         # Non-identical, but same name, not OK
         checked = {}
         for i, f in enumerate(self):
-            self[i] = self.check_valid_factor(f, True)
+            self[i] = self.check_valid_factor(f)
             try:
                 name, eq, v = self.splitfactor(f)
             except ValueError:
@@ -672,6 +670,13 @@ class ProblemDataspaceList(ListNode):
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
         super().add_attr("", str)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    # Override the in operator
+    def __contains__(self, item):
+        return super().__contains__(item) or super().__contains__("*")
 
 
 Constraints.declare_attrs()

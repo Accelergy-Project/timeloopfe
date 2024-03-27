@@ -229,15 +229,15 @@ class ToDiagramProcessor(Processor):
         legend.add_subgraph(element_sub)
 
         element_sub.add_node(
-            st := pydot.Node("Storage", **self.storage_kwargs(shape="cylinder"))
+            pydot.Node("Storage", **self.storage_kwargs(shape="cylinder"))
         )
 
-        element_sub.add_node(cn := pydot.Node("Container", **self.container_kwargs()))
+        element_sub.add_node(pydot.Node("Container", **self.container_kwargs()))
         element_sub.add_node(
-            ot := pydot.Node("Other Component", **self.storage_kwargs(shape="box3d"))
+            pydot.Node("Other Component", **self.storage_kwargs(shape="box3d"))
         )
 
-        element_sub.add_node(c := pydot.Node("Container", **self.container_kwargs()))
+        element_sub.add_node(pydot.Node("Container", **self.container_kwargs()))
         element_sub.add_node(net := pydot.Node("Network", **self.network_kwargs()))
 
         # Add an edge from the last node of the legend to the first node of the first subgraph
@@ -291,7 +291,10 @@ class ToDiagramProcessor(Processor):
             ]
             ds_stored = ds_kept if not isinstance(n, Container) else []
             ds_reused_temporally = [
-                ds for ds in ds_kept if ds not in n.constraints.temporal.no_reuse
+                ds
+                for ds in ds_kept
+                if ds not in n.constraints.temporal.no_reuse
+                and ds not in n.constraints.dataspace.no_coalesce
             ]
             names = self.get_node_names(n, ds_reused_temporally)
 

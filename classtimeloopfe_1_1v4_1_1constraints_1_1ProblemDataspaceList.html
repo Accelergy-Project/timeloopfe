@@ -122,9 +122,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac48b774d0a330c9ea4d5023e90e2d766" id="r_ac48b774d0a330c9ea4d5023e90e2d766"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac48b774d0a330c9ea4d5023e90e2d766">declare_attrs</a> (cls, *args, **kwargs)</td></tr>
 <tr class="memdesc:ac48b774d0a330c9ea4d5023e90e2d766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the attributes of this node.  <br /></td></tr>
 <tr class="separator:ac48b774d0a330c9ea4d5023e90e2d766"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classtimeloopfe_1_1common_1_1nodes_1_1ListNode"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classtimeloopfe_1_1common_1_1nodes_1_1ListNode')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html">timeloopfe.common.nodes.ListNode</a></td></tr>
-<tr class="memitem:ae0c41fd51d29701052511084fac2141c inherit pub_methods_classtimeloopfe_1_1common_1_1nodes_1_1ListNode" id="r_ae0c41fd51d29701052511084fac2141c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html#ae0c41fd51d29701052511084fac2141c">__init__</a> (self, *args, **kwargs)</td></tr>
-<tr class="separator:ae0c41fd51d29701052511084fac2141c inherit pub_methods_classtimeloopfe_1_1common_1_1nodes_1_1ListNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76011218734226752578d332897badb8" id="r_a76011218734226752578d332897badb8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76011218734226752578d332897badb8">__init__</a> (self, *args, **kwargs)</td></tr>
+<tr class="separator:a76011218734226752578d332897badb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb209cf7d372a54794321abec93dc392" id="r_acb209cf7d372a54794321abec93dc392"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb209cf7d372a54794321abec93dc392">__contains__</a> (self, item)</td></tr>
+<tr class="separator:acb209cf7d372a54794321abec93dc392"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classtimeloopfe_1_1common_1_1nodes_1_1Node"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classtimeloopfe_1_1common_1_1nodes_1_1Node')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classtimeloopfe_1_1common_1_1nodes_1_1Node.html">timeloopfe.common.nodes.Node</a></td></tr>
 <tr class="memitem:a63799b59879cafcbb879291fdc812bfa inherit pub_methods_classtimeloopfe_1_1common_1_1nodes_1_1Node" id="r_a63799b59879cafcbb879291fdc812bfa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeloopfe_1_1common_1_1nodes_1_1Node.html#a63799b59879cafcbb879291fdc812bfa">get_specifiers_from_processors</a> (cls, &quot;BaseSpecification&quot; <a class="el" href="classtimeloopfe_1_1common_1_1nodes_1_1Node.html#aa75c42568673f1330337d2b8991f98fb">spec</a>)</td></tr>
 <tr class="memdesc:a63799b59879cafcbb879291fdc812bfa inherit pub_methods_classtimeloopfe_1_1common_1_1nodes_1_1Node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the specifiers that have been set from processors.  <br /></td></tr>
@@ -261,7 +262,57 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A list of problem dataspaces. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a76011218734226752578d332897badb8" name="a76011218734226752578d332897badb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76011218734226752578d332897badb8">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">timeloopfe.v4.constraints.ProblemDataspaceList.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">*</td>          <td class="paramname"><span class="paramname"><em>args</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">**</td>          <td class="paramname"><span class="paramname"><em>kwargs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html#ae0c41fd51d29701052511084fac2141c">timeloopfe.common.nodes.ListNode</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="acb209cf7d372a54794321abec93dc392" name="acb209cf7d372a54794321abec93dc392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb209cf7d372a54794321abec93dc392">&#9670;&#160;</a></span>__contains__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">timeloopfe.v4.constraints.ProblemDataspaceList.__contains__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>item</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac48b774d0a330c9ea4d5023e90e2d766" name="ac48b774d0a330c9ea4d5023e90e2d766"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac48b774d0a330c9ea4d5023e90e2d766">&#9670;&#160;</a></span>declare_attrs()</h2>
 

@@ -168,10 +168,11 @@ class ConstraintMacroProcessor(Processor):
                 self.logger.debug(
                     '"%s" contains "*", replacing with all dataspaces', str(p)
                 )
+                while "*" in p:
+                    p.remove("*")
                 for ds in prob_data_spaces:
                     if ds not in p:
                         p.append(ds)
-                p.remove("*")
 
         for constraint in spec.get_nodes_of_type(Iteration):
             debug_message(constraint, "iteration")

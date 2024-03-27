@@ -60,11 +60,13 @@ def _pre_call(
         raise TypeError(f"Can not call Timeloop with {type(specification)}")
 
     os.makedirs(output_dir, exist_ok=True)
-    os.makedirs(os.path.join(output_dir, "inputs"), exist_ok=True)
-    with open(os.path.join(output_dir, "inputs", "input.yaml"), "w") as f:
+    with open(
+        os.path.join(output_dir, "parsed-processed-input.yaml"),
+        "w",
+    ) as f:
         f.write(input_content)
 
-    input_paths = [os.path.join(output_dir, "inputs", "input.yaml")] + (
+    input_paths = [os.path.join(output_dir, "parsed-processed-input.yaml")] + (
         extra_input_files or []
     )
     input_paths = [os.path.abspath(f) for f in input_paths]
@@ -101,7 +103,9 @@ def _call(
     """
     os.makedirs(output_dir, exist_ok=True)
     if dump_intermediate_to is None:
-        dump_intermediate_to = os.path.join(output_dir, f"input.yaml")
+        dump_intermediate_to = os.path.join(
+            output_dir, f"tl-parsed-processed-input.yaml"
+        )
     logging.info(f"Calling {call} with input {input_paths} and output {output_dir}")
 
     ifiles = [os.path.abspath(x) for x in input_paths]

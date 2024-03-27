@@ -298,6 +298,9 @@ class Leaf(ArchNode, DictNode, ABC):
         super().parse_expressions(n_symbol_table, parsed_ids)
         return self.attributes
 
+    def get_fanout(self):
+        return self.spatial.get_fanout()
+
 
 class Component(Leaf, ABC):
     """

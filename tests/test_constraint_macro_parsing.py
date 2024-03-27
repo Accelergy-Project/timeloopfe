@@ -63,3 +63,7 @@ class TestConstraintMacroProcessorParsing(unittest.TestCase):
         it2 = spec.constraints.targets[-1]
         self.assertSetEqual(set(it.factors), {"A=1"})
         self.assertSetEqual(set(it2.factors), {"C=1"})
+
+    def test_constraint_list_in_star(self):
+        pds = constraints.ProblemDataspaceList(["*"])
+        assert "dataspace_A" in pds

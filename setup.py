@@ -21,6 +21,19 @@ if __name__ == "__main__":
         author_email="andurlis@mit.edu",
         license="MIT",
         packages=find_packages(),
-        install_requires=["accelergy >= 0.4", "ruamel.yaml", "psutil", "joblib"],
+        install_requires=[
+            "accelergy >= 0.4",
+            "ruamel.yaml",
+            "psutil",
+            "joblib",
+            "argparse",
+        ],
         python_requires=">=3.8",
+        # Have the "timeloop" or "tl" commands call timeloopfe/command_line_interface.py
+        entry_points={
+            "console_scripts": [
+                "timeloop = timeloopfe.command_line_interface:main",
+                "tl = timeloopfe.command_line_interface:main",
+            ],
+        },
     )

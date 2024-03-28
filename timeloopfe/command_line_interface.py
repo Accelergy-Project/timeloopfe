@@ -49,6 +49,9 @@ def get_version(input_files: List[str]) -> object:
                 match = re.search(r"version:[\s'\"]*(\d+\.\d+)", content)
                 if match:
                     versions.add(match.group(1))
+                if re.search(r"dumped_by_timeloop_front_end", content):
+                    return None
+
     if not versions:
         raise ValueError(
             'No version found in input files. Please have a "version: X.Y" '
@@ -123,7 +126,11 @@ def main():
     print(f"Running apps: {', '.join(apps)}")
     tl = get_version(input_files)
 
-    if any(os.path.basename(f) == "parsed-processed-input.yaml" for f in input_files):
+    if tl is None or any(
+        os.path.basename(f) == "parsed-processed-input.yaml" for f in input_files
+    ):
+        import timeloopfe.v4 as tl
+
         call_no_parse(apps, args, tl)
         return
 

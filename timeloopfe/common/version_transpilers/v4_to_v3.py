@@ -171,6 +171,7 @@ def transpile(spec: Specification, for_model: bool = False):
                 constraint.factors = ",".join(constraint.factors)
 
     rval = {
+        "dumped_by_timeloop_front_end": True,
         "architecture": {"version": "0.4", "subtree": [level]},
         "architecture_constraints": {
             "targets": constraint_list if not for_model else []

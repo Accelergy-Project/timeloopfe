@@ -451,6 +451,7 @@ class Attributes(DictNode):
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
         super().add_attr("has_power_gating", (str, bool), False)
+        super().add_attr("power_gated_at", str, None)
         super().add_attr("", part_name_match=True, no_change_key=True)
 
     def __init__(self, *args, **kwargs):

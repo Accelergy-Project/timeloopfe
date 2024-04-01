@@ -182,23 +182,36 @@ class ConstraintMacroProcessor(Processor):
             ) is not None:
                 debug_message(factors, "factors_only")
                 factors: Factors = factors
-                constraint.factors.combine(factors)  # type: ignore
+                try:
+                    constraint.factors.combine(factors)  # type: ignore
+                except Exception as e:
+                    raise ValueError(
+                        f"Failed to combine factors_only constraint {factors} with "
+                        f"existing factors {constraint.factors}. {e}"
+                    ) from e
+
                 for p in prob_dimensions:
                     constraint.factors.add_eq_factor_iff_not_exists(p, 1)
 
             if (ds := constraint.pop("no_iteration_over_dataspaces", None)) is not None:
                 debug_message(ds, "no_iteration_over_dataspaces")
                 dataspaces = [prob_shape.name2dataspace(d) for d in ds]
-                constraint.factors.combine(  # type: ignore
-                    Factors(
-                        list(
-                            f"{f}=1"
-                            for d in dataspaces
-                            for f in d.factors
-                            if f in spec.problem.shape.dimensions
-                        )
+                factors = Factors(
+                    list(
+                        f"{f}=1"
+                        for d in dataspaces
+                        for f in d.factors
+                        if f in spec.problem.shape.dimensions
                     )
                 )
+                try:
+                    constraint.factors.combine(factors)  # type: ignore
+                except Exception as e:
+                    raise ValueError(
+                        f"Failed to combine no_iteration_over_dataspaces constraint {ds}->{factors} "
+                        f"with existing factors {constraint.factors}. {e}"
+                    ) from e
+
             if (ds := constraint.pop("must_iterate_over_dataspaces", None)) is not None:
                 debug_message(ds, "must_iterate_over_dataspaces")
                 dataspaces = [prob_shape.name2dataspace(d) for d in ds]
@@ -206,16 +219,20 @@ class ConstraintMacroProcessor(Processor):
                 for d in dataspaces:
                     allfactors.update(d.factors)
                 notfactors = set(prob_dimensions) - allfactors
-
-                constraint.factors.combine(  # type: ignore
-                    Factors(
-                        list(
-                            f"{f}=1"
-                            for f in notfactors
-                            if f in spec.problem.shape.dimensions
-                        )
+                factors = Factors(
+                    list(
+                        f"{f}=1"
+                        for f in notfactors
+                        if f in spec.problem.shape.dimensions
                     )
                 )
+                try:
+                    constraint.factors.combine(factors)  # type: ignore
+                except Exception as e:
+                    raise ValueError(
+                        f"Failed to combine must_iterate_over_dataspaces constraint {ds}->{factors} "
+                        f"with existing factors {constraint.factors}. {e}"
+                    ) from e
 
         for constraint in spec.get_nodes_of_type(Dataspace):
             constraint: Dataspace = constraint  # type: ignore
@@ -225,13 +242,27 @@ class ConstraintMacroProcessor(Processor):
                 debug_message(ds, "keep_only")
                 keep = ds
                 bypass = list(set(prob_data_spaces) - set(ds))
-                constraint.combine(ctype(bypass=bypass, keep=keep))
+                try:
+                    constraint.combine(ctype(bypass=bypass, keep=keep))
+                except Exception as e:
+                    raise ValueError(
+                        f"Failed to combine keep_only constraint {ds} with "
+                        f"existing keep constraint {constraint.keep} and "
+                        f"bypass constraint {constraint.bypass}. {e}"
+                    ) from e
 
             if (ds := constraint.pop("bypass_only", None)) is not None:
                 debug_message(ds, "bypass_only")
                 keep = list(set(prob_data_spaces) - set(ds))
                 bypass = ds
-                constraint.combine(ctype(bypass=bypass, keep=keep))
+                try:
+                    constraint.combine(ctype(bypass=bypass, keep=keep))
+                except Exception as e:
+                    raise ValueError(
+                        f"Failed to combine bypass_only constraint {ds} with "
+                        f"existing keep constraint {constraint.keep} and "
+                        f"bypass constraint {constraint.bypass}. {e}"
+                    ) from e
 
         unconstrained = self.get_unconstrained_dims(spec)
 

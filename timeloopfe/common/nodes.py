@@ -163,7 +163,7 @@ class TypeSpecifier:
             new_exc = ParseError(
                 f'Error calling cast function "{callname}" '
                 f'for value "{value}" in {node.get_name()}[{key}]. '
-                f"{self.removed_by_str()}{estr}"
+                f"{self.removed_by_str()}{estr}. {exc}"
             )
             new_exc._last_non_node_exception = last_non_node_exception
             raise new_exc from exc
@@ -532,7 +532,7 @@ class Node(ABC):
             except Exception as exc:
                 raise ValueError(
                     f'Could not combine values in indices "{key}" and '
-                    f'"{newkey}" in {self.get_name()}. '  # type: ignore
+                    f'"{newkey}" in {self.get_name()}. {exc}'  # type: ignore
                 ) from exc
         else:
             self[key] = v
@@ -964,7 +964,14 @@ class Node(ABC):
 
     def __str__(self):
         """Return the name of this node."""
-        return self.get_name()
+        as_str = ""
+        if isinstance(self, dict):
+            as_str = str(dict(self))
+        if isinstance(self, list):
+            as_str = str(list(self))
+        as_str = as_str if len(as_str) < 50 else as_str[:50] + "..."
+
+        return self.get_name() + "=" + as_str
 
     def __format__(self, format_spec):
         """Formats the name of this node."""
@@ -1077,7 +1084,7 @@ class Node(ABC):
                     except Exception as exc:
                         raise TypeError(
                             f'Could not parse expression "{self[i]}" in '
-                            f'"{self.get_name()}[{i}]".'
+                            f'"{self.get_name()}[{i}]". {exc}'
                         ) from exc
                 else:
                     checker.check_type(self[i], self, i)

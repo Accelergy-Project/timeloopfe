@@ -32,6 +32,13 @@ class ArchNode(Node):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        # Make sure all leaf names are unique
+        leaves = {}
+        for l in self.get_nodes_of_type(Leaf):
+            n = l.name
+            leaves.setdefault(n, l)
+            assert l is leaves[n], f"Duplicate name {n} found in architecture"
+
     def name2leaf(self, name: str) -> "Leaf":
         """
         Finds a leaf node with the given name.

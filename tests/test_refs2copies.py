@@ -96,8 +96,8 @@ class Refs2CopiesTest(unittest.TestCase):
 
         self.assertEqual(a.name, "merge_A")
         self.assertEqual(b.name, "merge_B")
-        self.assertEqual(a.area_share, 1)
-        self.assertEqual(b.area_share, 2)
+        self.assertEqual(a.area_scale, 1)
+        self.assertEqual(b.area_scale, 2)
         self.assertEqual(a.attributes["from_A"], 1)
         self.assertEqual(b.attributes["from_B"], 2)
         self.assertListEqual(b.attributes["from_B_list"], [])
@@ -110,7 +110,7 @@ class Refs2CopiesTest(unittest.TestCase):
         self.assertEqual(c.name, "merge_C")
 
         # Followed by <<
-        self.assertEqual(c.area_share, 1)
+        self.assertEqual(c.area_scale, 1)
 
         # Recursively merged from B
         for k in ["from_C", "from_B", "from_B_list"]:

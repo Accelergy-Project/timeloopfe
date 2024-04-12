@@ -88,7 +88,7 @@ class Subcomponent(DictNode):
     Attributes:
         name (str): The name of the subcomponent.
         attributes (ComponentAttributes): The attributes of the subcomponent.
-        area_share (Union[Number, str]): The area share of the subcomponent.
+        area_scale (Union[Number, str]): The area share of the subcomponent.
     """
 
     @classmethod
@@ -96,13 +96,13 @@ class Subcomponent(DictNode):
         super().declare_attrs(*args, **kwargs)
         super().add_attr("name", str)
         super().add_attr("attributes", ComponentAttributes, {})
-        super().add_attr("area_share", (Number, str), 1)
+        super().add_attr("area_scale", (Number, str), 1)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name: str = self["name"]
         self.attributes: ComponentAttributes = self["attributes"]
-        self.area_share: Union[Number, str] = self["area_share"]
+        self.area_scale: Union[Number, str] = self["area_scale"]
 
 
 class ComponentAttributes(DictNode):
@@ -205,13 +205,13 @@ class SubcomponentAction(DictNode):
         super().declare_attrs(*args, **kwargs)
         super().add_attr("name", str)
         super().add_attr("arguments", DictNode, {})
-        super().add_attr("action_share", (str, float), 1)
+        super().add_attr("energy_scale", (str, float), 1)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name: str = self["name"]
         self.arguments: DictNode = self["arguments"]
-        self.action_share: Union[str, float] = self["action_share"]
+        self.energy_scale: Union[str, float] = self["energy_scale"]
 
 
 Components.declare_attrs()

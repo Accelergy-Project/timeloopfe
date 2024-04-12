@@ -317,7 +317,7 @@ class Component(Leaf, ABC):
         _class (str): The class of the component.
         subclass (str): The subclass of the component.
         required_actions (List[str]): The list of required actions for the component.
-        area_share (float): The area share of the component.
+        area_scale (float): How much to scale the area of the component.
         enabled (bool): Indicates whether the component is enabled or not.
     """
 
@@ -327,7 +327,7 @@ class Component(Leaf, ABC):
         super().add_attr("class", str)
         super().add_attr("subclass", str, None)
         super().add_attr("required_actions", list, [])
-        super().add_attr("area_share", Number, None)
+        super().add_attr("area_scale", Number, None)
         super().add_attr("enabled", bool, True)
 
     def __init__(self, *args, **kwargs):
@@ -335,7 +335,7 @@ class Component(Leaf, ABC):
         self._class: str = self["class"]
         self.subclass: str = self["subclass"]
         self.required_actions: List[str] = self["required_actions"]
-        self.area_share: float = self["area_share"]
+        self.area_scale: float = self["area_scale"]
         self.enabled: bool = self["enabled"]
 
     def _check_unrecognized(self, *args, **kwargs):

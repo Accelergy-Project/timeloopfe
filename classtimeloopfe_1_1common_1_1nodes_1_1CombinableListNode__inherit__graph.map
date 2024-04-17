@@ -1,19 +1,21 @@
 <map id="timeloopfe.common.nodes.CombinableListNode" name="timeloopfe.common.nodes.CombinableListNode">
-<area shape="rect" id="Node000001" title="A list node that can be combined with others by extending." alt="" coords="579,104,755,145"/>
+<area shape="rect" id="Node000001" title="A list node that can be combined with others by extending." alt="" coords="579,136,755,177"/>
 <area shape="rect" id="Node000006" href="$classtimeloopfe_1_1v4_1_1constraints_1_1ConstraintsList.html" title="A class representing a list of constraints." alt="" coords="834,5,1003,46"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="719,94,802,57,838,44,840,49,804,61,721,99"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="701,124,747,89,801,57,833,44,835,49,804,61,750,93,705,128"/>
 <area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Factors.html" title="A list of factors used to describe loop bounds." alt="" coords="834,71,1003,111"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="770,108,833,100,834,105,771,113"/>
-<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1globals_1_1ExpressionCustomFunctions.html" title="A list of paths to Python files containing functions to be used in expressions." alt="" coords="814,136,1023,177"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="770,135,814,140,814,146,770,140"/>
-<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1ComputeOptimizationTypeList.html" title="A list of compute optimizations." alt="" coords="803,201,1034,256"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="724,149,804,186,833,197,831,202,802,191,722,154"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="356,104,531,145"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="547,122,579,122,579,127,547,127"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="102,86,308,112"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="324,109,356,112,355,118,323,114"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,86,54,112"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="69,96,101,96,101,102,69,102"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="186,136,224,161"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="239,142,355,131,356,136,240,148"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="762,129,837,109,838,115,763,134"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1globals_1_1AccelergyPlugIns.html" title="A list of paths to Python files containing Accelergy plug&#45;ins." alt="" coords="817,136,1020,177"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="770,154,817,154,817,159,770,159"/>
+<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1globals_1_1ExpressionCustomFunctions.html" title="A list of paths to Python files containing functions to be used in expressions." alt="" coords="814,201,1023,242"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="763,179,838,198,837,203,762,184"/>
+<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1ComputeOptimizationTypeList.html" title="A list of compute optimizations." alt="" coords="803,266,1034,322"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="706,185,752,219,804,251,829,263,827,268,801,256,749,223,703,189"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="356,136,531,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="547,154,579,154,579,159,547,159"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="102,118,308,144"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="324,141,356,144,355,150,323,146"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,118,54,144"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="69,128,101,128,101,134,69,134"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="186,168,224,193"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="239,174,355,163,356,168,240,180"/>
 </map>

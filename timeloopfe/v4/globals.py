@@ -18,6 +18,7 @@ class Globals(DictNode):
         super().add_attr("version", default="0.4", callfunc=assert_version)
         super().add_attr("environment_variables", EnvironmentVariables, [])
         super().add_attr("expression_custom_functions", ExpressionCustomFunctions, [])
+        super().add_attr("accelergy_plug_ins", AccelergyPlugIns, [])
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -26,6 +27,7 @@ class Globals(DictNode):
         self.expression_custom_functions: ExpressionCustomFunctions = self[
             "expression_custom_functions"
         ]
+        self.accelergy_plug_ins: AccelergyPlugIns = self["accelergy_plug_ins"]
 
 
 class EnvironmentVariables(DictNode):
@@ -45,6 +47,20 @@ class EnvironmentVariables(DictNode):
 class ExpressionCustomFunctions(CombinableListNode):
     """
     A list of paths to Python files containing functions to be used in expressions.
+    """
+
+    @classmethod
+    def declare_attrs(cls, *args, **kwargs):
+        super().declare_attrs(*args, **kwargs)
+        super().add_attr("", str)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+class AccelergyPlugIns(CombinableListNode):
+    """
+    A list of paths to Python files containing Accelergy plug-ins.
     """
 
     @classmethod

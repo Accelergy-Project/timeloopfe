@@ -11,5 +11,6 @@ var searchData=
   ['metadata_5fupdate_8',['- metadata_update',['../classtimeloopfe_1_1v4_1_1processors_1_1required__actions_1_1RequiredActionsProcessor.html#autotoc_md5',1,'']]],
   ['metadata_5fwrite_9',['- metadata_write',['../classtimeloopfe_1_1v4_1_1processors_1_1required__actions_1_1RequiredActionsProcessor.html#autotoc_md8',1,'']]],
   ['minimal_20usage_10',['Minimal Usage',['../index.html#autotoc_md4',1,'']]],
-  ['must_5frun_5fafter_11',['must_run_after',['../classtimeloopfe_1_1common_1_1processor_1_1Processor.html#ade70e7ab4ab7a8bf1c24bd6d71005fe2',1,'timeloopfe::common::processor::Processor']]]
+  ['multipliabledict_11',['MultipliableDict',['../classtimeloopfe_1_1v4_1_1output__parsing_1_1MultipliableDict.html',1,'timeloopfe::v4::output_parsing']]],
+  ['must_5frun_5fafter_12',['must_run_after',['../classtimeloopfe_1_1common_1_1processor_1_1Processor.html#ade70e7ab4ab7a8bf1c24bd6d71005fe2',1,'timeloopfe::common::processor::Processor']]]
 ];

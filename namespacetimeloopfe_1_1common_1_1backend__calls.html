@@ -95,6 +95,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a91ed61623325f19fc28d8a3a311a4033" id="r_a91ed61623325f19fc28d8a3a311a4033"><td class="memItemLeft" align="right" valign="top">Union[int, subprocess.Popen]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91ed61623325f19fc28d8a3a311a4033">_call</a> (str call, List[str] input_paths, str output_dir, Optional[Dict[str, str]] environment=None, Optional[str] dump_intermediate_to=None, Optional[str] log_to=None, List[str] extra_args=(), bool return_proc=False)</td></tr>
 <tr class="memdesc:a91ed61623325f19fc28d8a3a311a4033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a Timeloop or Accelergy command from Python.  <br /></td></tr>
 <tr class="separator:a91ed61623325f19fc28d8a3a311a4033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3993dee5f6efcc2ac0241dbd63127e28" id="r_a3993dee5f6efcc2ac0241dbd63127e28"><td class="memItemLeft" align="right" valign="top">Union[int, subprocess.Popen]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3993dee5f6efcc2ac0241dbd63127e28">_parse_output</a> (<a class="el" href="classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification.html">BaseSpecification</a> specification, str output_dir, Union[int, subprocess.Popen] result, bool for_model=False)</td></tr>
+<tr class="separator:a3993dee5f6efcc2ac0241dbd63127e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd62589aa67d1843eb01ff4945ca2dc4" id="r_afd62589aa67d1843eb01ff4945ca2dc4"><td class="memItemLeft" align="right" valign="top">Union[int, subprocess.Popen]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd62589aa67d1843eb01ff4945ca2dc4">call_mapper</a> (<a class="el" href="classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification.html">BaseSpecification</a> specification, str output_dir, Optional[Dict[str, str]] environment=None, Optional[List[str]] extra_input_files=None, Optional[str] dump_intermediate_to=None, Optional[Union[str, Any]] log_to=None, List[str] extra_args=(), bool return_proc=False)</td></tr>
 <tr class="memdesc:afd62589aa67d1843eb01ff4945ca2dc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call Timeloop Mapper from Python.  <br /></td></tr>
 <tr class="separator:afd62589aa67d1843eb01ff4945ca2dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,6 +187,45 @@ Variables</h2></td></tr>
 <p>Call a Timeloop or Accelergy command from Python. </p>
 <p>Args: call (str): Which command to call. input_paths (List[str]): The content of the input file. output_dir (str): The directory to run Timeloop in. environment (Optional[Dict[str, str]]): A dictionary of environment variables to pass. dump_intermediate_to (Optional[str]): If not None, dump the input content to this file before calling. log_to (Optional[str]): If not None, log the output of the call to this file or file-like object. extra_args (List[str]): A list of extra arguments to pass to the call. return_proc (bool): If True, return the subprocess.Popen object instead of the return code.</p>
 <p>Returns: Union[int, subprocess.Popen]: The return code of the call, or the subprocess.Popen object if return_proc is True. </p>
+
+</div>
+</div>
+<a id="a3993dee5f6efcc2ac0241dbd63127e28" name="a3993dee5f6efcc2ac0241dbd63127e28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3993dee5f6efcc2ac0241dbd63127e28">&#9670;&#160;</a></span>_parse_output()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Union[int, subprocess.Popen] timeloopfe.common.backend_calls._parse_output </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification.html">BaseSpecification</a></td>          <td class="paramname"><span class="paramname"><em>specification</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>output_dir</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Union[int, subprocess.Popen]</td>          <td class="paramname"><span class="paramname"><em>result</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool </td>          <td class="paramname"><span class="paramname"><em>for_model</em><span class="paramdefsep"> = </span><span class="paramdefval">False</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

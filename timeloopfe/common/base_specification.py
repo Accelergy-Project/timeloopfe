@@ -219,5 +219,8 @@ class BaseSpecification(DictNode):
         spec.check_unrecognized()
         return spec
 
+    def _parse_timeloop_output(self, timeloop_output_dir: str, prefix: str):
+        pass
+
 
 BaseSpecification.declare_attrs()

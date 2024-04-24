@@ -15,5 +15,6 @@ from . import sparse_optimizations
 from . import specification
 from . import variables
 from . import globals
+from . import output_parsing
 
 import timeloopfe.v4.processors as processors

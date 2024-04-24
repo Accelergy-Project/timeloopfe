@@ -1,6 +1,6 @@
 import time
 from . import arch, constraints, problem, variables
-from ..common.nodes import DictNode, ListNode, Node, TypeSpecifier, CombinableListNode
+from ..common.nodes import ListNode
 from .arch import Architecture
 from .constraints import Constraints, ConstraintsList
 from .problem import Problem
@@ -9,9 +9,9 @@ from .components import Components
 from .mapper import Mapper
 from .sparse_optimizations import SparseOptimizations
 from .globals import Globals
-from .version import assert_version
 from .mapspace import Mapspace
 from ..common.processor import ProcessorError, References2CopiesProcessor
+from .output_parsing import parse_timeloop_output, OutputStats
 
 from typing import Any, Dict, List, Optional, Union
 from ..common.base_specification import BaseSpecification, class2obj
@@ -106,6 +106,11 @@ class Specification(BaseSpecification):
         s = self._process()
         proc = ToDiagramProcessor(container_names, ignore_containers, spec=s)
         return proc.process(s)
+
+    def _parse_timeloop_output(
+        self, timeloop_output_dir: str, prefix: str
+    ) -> OutputStats:
+        return parse_timeloop_output(self, timeloop_output_dir, prefix)
 
 
 Specification.declare_attrs()

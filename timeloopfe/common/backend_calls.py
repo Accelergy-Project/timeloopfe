@@ -138,6 +138,28 @@ def _call(
                 proc.send_signal(sig=signal.SIGINT)
 
 
+def _parse_output(
+    specification: BaseSpecification,
+    output_dir: str,
+    result: Union[int, subprocess.Popen],
+    for_model: bool = False,
+) -> Union[int, subprocess.Popen]:
+    """ """
+    if isinstance(result, subprocess.Popen):
+        return result
+    if result != 0:
+        m = "model" if for_model else "mapper"
+        raise RuntimeError(
+            f"Timeloop {m} failed with return code {result}. Please check the output files "
+            f"in {output_dir} for more information. To debug, you can edit the file "
+            f"{os.path.join(output_dir, 'parsed-processed-input.yaml')} and run "
+            f"tl {m} {os.path.join(output_dir, 'parsed-processed-input.yaml')} to see the error."
+        )
+    return specification._parse_timeloop_output(
+        output_dir, prefix="timeloop-model" if for_model else "timeloop-mapper"
+    )
+
+
 def call_mapper(
     specification: BaseSpecification,
     output_dir: str,
@@ -167,15 +189,20 @@ def call_mapper(
         specification, output_dir, extra_input_files, for_model=False
     )
 
-    return _call(
-        "timeloop-mapper",
-        input_paths=input_paths,
+    return _parse_output(
+        specification=specification,
         output_dir=output_dir,
-        environment=environment,
-        dump_intermediate_to=dump_intermediate_to,
-        log_to=log_to,
-        extra_args=extra_args,
-        return_proc=return_proc,
+        result=_call(
+            "timeloop-mapper",
+            input_paths=input_paths,
+            output_dir=output_dir,
+            environment=environment,
+            dump_intermediate_to=dump_intermediate_to,
+            log_to=log_to,
+            extra_args=extra_args,
+            return_proc=return_proc,
+        ),
+        for_model=False,
     )
 
 
@@ -208,15 +235,20 @@ def call_model(
         specification, output_dir, extra_input_files, for_model=True
     )
 
-    return _call(
-        "timeloop-model",
-        input_paths=input_paths,
+    return _parse_output(
+        specification=specification,
         output_dir=output_dir,
-        environment=environment,
-        dump_intermediate_to=dump_intermediate_to,
-        log_to=log_to,
-        extra_args=extra_args,
-        return_proc=return_proc,
+        result=_call(
+            "timeloop-model",
+            input_paths=input_paths,
+            output_dir=output_dir,
+            environment=environment,
+            dump_intermediate_to=dump_intermediate_to,
+            log_to=log_to,
+            extra_args=extra_args,
+            return_proc=return_proc,
+        ),
+        for_model=True,
     )
 
 

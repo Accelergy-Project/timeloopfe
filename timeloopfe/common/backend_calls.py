@@ -147,17 +147,23 @@ def _parse_output(
     """ """
     if isinstance(result, subprocess.Popen):
         return result
-    if result != 0:
-        m = "model" if for_model else "mapper"
-        raise RuntimeError(
-            f"Timeloop {m} failed with return code {result}. Please check the output files "
-            f"in {output_dir} for more information. To debug, you can edit the file "
-            f"{os.path.join(output_dir, 'parsed-processed-input.yaml')} and run "
-            f"tl {m} {os.path.join(output_dir, 'parsed-processed-input.yaml')} to see the error."
-        )
-    return specification._parse_timeloop_output(
-        output_dir, prefix="timeloop-model" if for_model else "timeloop-mapper"
+
+    m = "model" if for_model else "mapper"
+    errmsg = (
+        f"Timeloop {m} failed with return code {result}. Please check the output files "
+        f"in {output_dir} for more information. To debug, you can edit the file "
+        f"{os.path.join(output_dir, 'parsed-processed-input.yaml')} and run "
+        f"tl {m} {os.path.join(output_dir, 'parsed-processed-input.yaml')} to see the error."
     )
+
+    if result != 0:
+        raise RuntimeError(errmsg)
+    try:
+        return specification._parse_timeloop_output(
+            output_dir, prefix="timeloop-model" if for_model else "timeloop-mapper"
+        )
+    except Exception as e:
+        raise RuntimeError(f"{errmsg}") from e
 
 
 def call_mapper(

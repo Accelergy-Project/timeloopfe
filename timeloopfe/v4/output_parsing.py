@@ -1,4 +1,5 @@
 import copy
+from numbers import Number
 import os
 from typing import Any, Dict, Tuple, List, Union
 import yaml
@@ -416,7 +417,17 @@ def parse_timeloop_output(
     if os.path.exists(stats_path.replace(".stats.txt", ".map.txt")):
         mapping = open(stats_path.replace(".stats.txt", ".map.txt")).read()
 
-    cycle_seconds = spec.variables["GLOBAL_CYCLE_SECONDS"]
+    try:
+        cycle_seconds = spec.variables["GLOBAL_CYCLE_SECONDS"]
+    except:
+        cycle_seconds = 1e-9
+        from .arch import Leaf
+
+        for s in spec.architecture.get_nodes_of_type(Leaf):
+            c = s.attributes.get("GLOBAL_CYCLE_SECONDS", None)
+            if isinstance(c, Number):
+                cycle_seconds = c
+                break
 
     return OutputStats(
         percent_utilization=percent_utilization,

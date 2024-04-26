@@ -16,7 +16,7 @@ class Mapspace(DictNode):
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
         super().add_attr("version", default="0.4", callfunc=assert_version)
-        super().add_attr("template", str, "ruby")
+        super().add_attr("template", str, "uber")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

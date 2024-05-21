@@ -1,11 +1,16 @@
 <map id="timeloopfe.v4.sparse_optimizations.SparseOptimizationsList" name="timeloopfe.v4.sparse_optimizations.SparseOptimizationsList">
-<area shape="rect" id="Node000001" title="A list of sparse optimizations." alt="" coords="57,241,307,282"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="94,153,270,193"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,209,185,241,179,241,179,209"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="5,79,212,105"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="132,114,166,150,162,154,128,118"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="84,5,133,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="111,46,111,79,106,79,106,46"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="236,79,274,105"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="236,118,202,154,198,150,232,114"/>
+<area shape="rect" id="Node000001" title="A list of sparse optimizations." alt="" coords="105,274,355,315"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="142,184,318,225"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="233,240,233,274,227,274,227,240"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="5,109,212,135"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="141,141,202,181,199,186,138,146"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="228,115,238,122,230,128,213,131,212,125,228,123,233,122,226,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="10,5,58,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="54,42,102,107,98,110,49,45"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="82,5,135,31"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="111,47,111,109,106,109,106,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="170,5,226,31"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="193,47,184,67,170,87,155,100,138,111,135,106,152,96,167,83,179,65,188,45"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="333,109,372,135"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="323,146,261,186,258,181,320,141"/>
 </map>

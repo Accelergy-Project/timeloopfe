@@ -35,6 +35,8 @@ def transpile(spec: Specification, for_model: bool = False):
 
     first_node = True
 
+    node = None
+
     while stack:
         meshX *= int(next_meshX)
         meshY *= int(next_meshY)
@@ -157,6 +159,12 @@ def transpile(spec: Specification, for_model: bool = False):
             meshX *= int(next_meshX)
             meshY *= int(next_meshY)
             next_meshX, next_meshY = 1, 1
+
+    assert node is not None, "No nodes to add to the architecture"
+    assert isinstance(node, arch.Compute), (
+        "The last node in the architecture tree must be a compute node. "
+        f"With 'class: compute'. Got node {node.get_name()} of type {type(node)}"
+    )
 
     if not level["subtree"]:
         del level["subtree"]

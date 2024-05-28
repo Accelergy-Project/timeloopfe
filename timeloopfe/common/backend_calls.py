@@ -150,10 +150,11 @@ def _parse_output(
 
     m = "model" if for_model else "mapper"
     errmsg = (
+        f"\n\n" + "=" * 120 + "\n"
         f"Timeloop {m} failed with return code {result}. Please check the output files "
-        f"in {output_dir} for more information. To debug, you can edit the file "
-        f"{os.path.join(output_dir, 'parsed-processed-input.yaml')} and run "
-        f"tl {m} {os.path.join(output_dir, 'parsed-processed-input.yaml')} to see the error. "
+        f"in {output_dir} for more information. To debug, you can edit the file:"
+        f"\n\t{os.path.join(output_dir, 'parsed-processed-input.yaml')}\nand run "
+        f"\n\ttl {m} {os.path.join(output_dir, 'parsed-processed-input.yaml')}\nto see the error. "
         f"If you're running the mapper and Timeloop can't find a vaild mapping, try setting "
         f"'diagnostics: true' in the mapper input specification."
     )

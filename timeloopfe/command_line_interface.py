@@ -25,13 +25,20 @@ def parse_args() -> argparse.Namespace:
         help="Additional application to run",
     )
 
-    parser.add_argument("input_files", nargs="+", help="Input files")
+    parser.add_argument("input_files", nargs="*", help="Input files")
     parser.add_argument("-o", "--output_dir", help="Output directory", default=".")
     parser.add_argument(
         "-j",
         "--jinja_parse_data",
         nargs="+",
         help="Dictionary of data to parse with Jinja2 templating",
+    )
+    parser.add_argument(
+        "-l",
+        "--list-components",
+        action="store_true",
+        default=False,
+        help="List components and actions supported by Accelergy.",
     )
 
     return parser.parse_args()
@@ -98,7 +105,10 @@ def call_no_parse(apps: List[str], args: argparse.Namespace, tl: object):
             app = f"timeloop-{app}"
         elif app == "accelergy":
             app = "accelergy -v"
-        tl.backend_calls._call(app, args.input_files, output_dir=args.output_dir)
+        extra_args = ["-l"] if args.list_components else []
+        tl.backend_calls._call(
+            app, args.input_files, output_dir=args.output_dir, extra_args=extra_args
+        )
 
 
 def get_jinja_parse_data(args: argparse.Namespace) -> dict:
@@ -123,6 +133,15 @@ def main():
     args = parse_args()
     input_files = args.input_files
     apps = [args.app] + ([args.a] if args.a else [])
+
+    if args.list_components:
+        assert (
+            "accelergy" in apps
+        ), "Cannot list components without 'accelergy' argument."
+        if not input_files:
+            os.system("accelergy -l")
+            return
+
     print(f"Running apps: {', '.join(apps)}")
     tl = get_version(input_files)
 
@@ -138,8 +157,11 @@ def main():
         input_files, jinja_parse_data=get_jinja_parse_data(args)
     )
     for app in apps:
-        if app == "accelergy":
-            tl.call_accelergy_verbose(spec, output_dir=args.output_dir)
+        if app == "accelergy" or args.list_components:
+            extra_args = ["-l"] if args.list_components else []
+            tl.call_accelergy_verbose(
+                spec, output_dir=args.output_dir, extra_args=extra_args
+            )
         elif app == "model":
             tl.call_model(spec, output_dir=args.output_dir)
         elif app == "mapper":

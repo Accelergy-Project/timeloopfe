@@ -196,4 +196,8 @@ def transpile(spec: Specification, for_model: bool = False):
         rval["mapspace"] = spec.mapspace
     if spec.get("globals", None):
         rval["globals"] = spec.globals
+    if spec.get("ART", None):
+        rval["ART"] = spec.ART
+    if spec.get("ERT", None):
+        rval["ERT"] = spec.ERT
     return rval

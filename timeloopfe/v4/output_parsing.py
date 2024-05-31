@@ -416,6 +416,10 @@ def parse_timeloop_output(
     cycles, computes, percent_utilization, energy = parse_stats_file(stats_path)
     area = get_area_from_art(art_path)
 
+    for k in list(area.keys()) + list(energy.keys()):
+        area.setdefault(k, 0)
+        energy.setdefault(k, 0)
+
     spec.parse_expressions()
     mapping = None
     if os.path.exists(stats_path.replace(".stats.txt", ".map.txt")):

@@ -56,7 +56,11 @@ def get_area_from_art(path: str) -> dict:
     for x in d["ART"]["tables"]:
         namecount = x["name"].split(".", 1)[1]
         name = namecount.split("[", 1)[0]
-        count = int(namecount.split("[", 1)[1].split(".")[-1][:-1])
+        count = (
+            int(namecount.split("[", 1)[1].split(".")[-1][:-1])
+            if "[" in namecount
+            else 1
+        )
         name2area[name] = count * x["area"] / 1e12
     return name2area
 

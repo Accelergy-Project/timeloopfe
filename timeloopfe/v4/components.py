@@ -97,12 +97,14 @@ class Subcomponent(DictNode):
         super().add_attr("name", str)
         super().add_attr("attributes", ComponentAttributes, {})
         super().add_attr("area_scale", (Number, str), 1)
+        super().add_attr("energy_scale", (Number, str), 1)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name: str = self["name"]
         self.attributes: ComponentAttributes = self["attributes"]
         self.area_scale: Union[Number, str] = self["area_scale"]
+        self.energy_scale: Union[Number, str] = self["energy_scale"]
 
 
 class ComponentAttributes(DictNode):

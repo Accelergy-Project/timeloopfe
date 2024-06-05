@@ -328,6 +328,7 @@ class Component(Leaf, ABC):
         super().add_attr("subclass", str, None)
         super().add_attr("required_actions", list, [])
         super().add_attr("area_scale", Number, None)
+        super().add_attr("energy_scale", Number, None)
         super().add_attr("enabled", bool, True)
 
     def __init__(self, *args, **kwargs):
@@ -336,6 +337,7 @@ class Component(Leaf, ABC):
         self.subclass: str = self["subclass"]
         self.required_actions: List[str] = self["required_actions"]
         self.area_scale: float = self["area_scale"]
+        self.energy_scale: float = self["energy_scale"]
         self.enabled: bool = self["enabled"]
 
     def _check_unrecognized(self, *args, **kwargs):

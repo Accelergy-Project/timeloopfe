@@ -56,8 +56,8 @@ class Specification(BaseSpecification):
         super().add_attr("variables", Variables, {"version": 0.4})
         super().add_attr("mapspace", Mapspace, {"version": 0.4})
         super().add_attr("globals", Globals, {"version": 0.4}, part_name_match=True)
-        super().add_attr("ERT", Ert, default=not_required_)
-        super().add_attr("ART", Art, default=not_required_)
+        super().add_attr("ERT", Ert, None)
+        super().add_attr("ART", Art, None)
 
     def __init__(self, *args, **kwargs):
         from .processors import REQUIRED_PROCESSORS

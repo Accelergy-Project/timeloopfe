@@ -1,5 +1,6 @@
 from ..common.nodes import DictNode, ListNode
 
+
 class Ert(DictNode):
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
@@ -7,6 +8,9 @@ class Ert(DictNode):
 
         super().add_attr("version", default="0.4")
         super().add_attr("tables", Tables)
+
+    def isempty(self) -> bool:
+        return self.tables.isempty()
 
 
 class Tables(ListNode):
@@ -52,4 +56,3 @@ class ActionArguments(DictNode):
 
 for cls in [Ert, Tables, Table, Actions, Action, ActionArguments]:
     cls.declare_attrs()
-

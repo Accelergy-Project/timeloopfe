@@ -2,7 +2,9 @@ import time
 from . import arch, constraints, problem, variables
 from ..common.nodes import ListNode
 from .arch import Architecture
+from .art import Art
 from .constraints import Constraints, ConstraintsList
+from .ert import Ert
 from .problem import Problem
 from .variables import Variables
 from .components import Components
@@ -10,6 +12,7 @@ from .mapper import Mapper
 from .sparse_optimizations import SparseOptimizations
 from .globals import Globals
 from .mapspace import Mapspace
+from ..common.nodes import not_required_, NotRequired
 from ..common.processor import ProcessorError, References2CopiesProcessor
 from .output_parsing import parse_timeloop_output, OutputStats
 
@@ -53,8 +56,8 @@ class Specification(BaseSpecification):
         super().add_attr("variables", Variables, {"version": 0.4})
         super().add_attr("mapspace", Mapspace, {"version": 0.4})
         super().add_attr("globals", Globals, {"version": 0.4}, part_name_match=True)
-        super().add_attr("ART", default={})
-        super().add_attr("ERT", default={})
+        super().add_attr("ERT", Ert, default=not_required_)
+        super().add_attr("ART", Art, default=not_required_)
 
     def __init__(self, *args, **kwargs):
         from .processors import REQUIRED_PROCESSORS

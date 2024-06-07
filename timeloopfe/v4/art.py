@@ -1,23 +1,24 @@
-from ..common.nodes import DictNode
+from ..common.nodes import DictNode, ListNode
 
 class Art(DictNode):
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
-        super().add_attrs("tables", ArtTables)
+        super().add_attr("version", default="0.4")
+        super().add_attr("tables", Tables)
 
 class Tables(ListNode):
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
-        super().add_attrs("", Table)
+        super().add_attr("", Table)
 
 class Table(DictNode):
     @classmethod
     def declare_attrs(cls, *args, **kwargs):
         super().declare_attrs(*args, **kwargs)
-        super().add_attrs("name", str)
-        super().add_attrs("area", float)
+        super().add_attr("name", str)
+        super().add_attr("area", float)
 
 Art.declare_attrs()
 Tables.declare_attrs()

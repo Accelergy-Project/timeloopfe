@@ -12,7 +12,6 @@ from .mapper import Mapper
 from .sparse_optimizations import SparseOptimizations
 from .globals import Globals
 from .mapspace import Mapspace
-from ..common.nodes import not_required_, NotRequired
 from ..common.processor import ProcessorError, References2CopiesProcessor
 from .output_parsing import parse_timeloop_output, OutputStats
 

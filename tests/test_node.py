@@ -4,7 +4,7 @@ from timeloopfe.v4.processors.constraint_attacher import (
     ConstraintAttacherProcessor,
 )
 from timeloopfe.common.processor import Processor
-from timeloopfe.common.nodes import DictNode, ParseError, not_required_
+from timeloopfe.common.nodes import DictNode, ParseError
 from timeloopfe.v4.specification import Specification
 from timeloopfe.v4.arch import (
     Component,
@@ -73,14 +73,6 @@ class NodeTest(unittest.TestCase):
                 for e in spec.get_nodes_of_type(Component):
                     print(f"Checking {e.name} {e.__class__.__name__}")
                     e.pop("for_testing_ignoreme", None)
-
-                def remove_not_required(x):
-                    if isinstance(x, DictNode):
-                        to_remove = [ k for k, v in x.items() if v is not_required_ ]
-                        for k in to_remove:
-                            x.pop(k)
-
-                spec.recursive_apply(remove_not_required, self_first=True)
 
 
         spec = self.get_spec(processors=[Test])

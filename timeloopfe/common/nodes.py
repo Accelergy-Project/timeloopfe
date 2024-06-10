@@ -40,21 +40,7 @@ class Unspecified:
         return "REQUIRED"
 
 
-class NotRequired:
-    """
-    Class to represent a value that is not required in parsed output.
-
-    See how it is used as `default` in `TypeSpecifier`.
-    """
-
-    def __copy__(self):
-        return self
-
-    def __deepcopy__(self, memo):
-        return self
-
 default_unspecified_ = Unspecified()
-not_required_ = NotRequired()
 
 
 T = TypeVar("T", bound="Node")
@@ -136,15 +122,12 @@ class TypeSpecifier:
         return ""
 
     def cast_check_type(self, value: Any, node: "Node", key: str) -> Any:
-        if value is default_unspecified_ and self.default is not not_required_:
+        if value is default_unspecified_:
             assert self.default is not default_unspecified_, (
                 "Can not call cast_check_type() with default_unspecified_"
                 "if default value is also default_unspecified_."
             )
             value = copy.deepcopy(self.default)
-
-        if self.default is not_required_ and value is default_unspecified_:
-            return not_required_
 
         try:
             casted = self.cast(value)
@@ -210,9 +193,6 @@ class TypeSpecifier:
             if isinstance(self.required_type, tuple)
             else (self.required_type,)
         )
-
-        if self.default is not_required_ and value is not_required_:
-            return True
 
         for s in t:
             if isinstance(s, str) and str(value) == s:
@@ -556,11 +536,8 @@ class Node(ABC):
                     f'Could not combine values in indices "{key}" and '
                     f'"{newkey}" in {self.get_name()}. {exc}'  # type: ignore
                 ) from exc
-        elif v is not not_required_:
-            self[key] = v
         else:
-            assert v is not_required_
-            self.pop(key)
+            self[key] = v
         self.__currently_parsing_index = None
 
     def _parse_elems(self):

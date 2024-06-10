@@ -42,6 +42,7 @@ class Unspecified:
 
 default_unspecified_ = Unspecified()
 
+
 T = TypeVar("T", bound="Node")
 
 
@@ -192,6 +193,7 @@ class TypeSpecifier:
             if isinstance(self.required_type, tuple)
             else (self.required_type,)
         )
+
         for s in t:
             if isinstance(s, str) and str(value) == s:
                 return True

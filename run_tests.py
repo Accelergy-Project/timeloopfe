@@ -1,5 +1,7 @@
 from tests import (
+    test_art,
     test_constraints,
+    test_ert,
     test_nest,
     test_node,
     test_math_parsing,
@@ -17,7 +19,9 @@ import shutil
 if __name__ == "__main__":
     loader = unittest.TestLoader()
     suite = unittest.TestSuite()
+    suite.addTests(loader.loadTestsFromModule(test_art))
     suite.addTests(loader.loadTestsFromModule(test_constraints))
+    suite.addTests(loader.loadTestsFromModule(test_ert))
     suite.addTests(loader.loadTestsFromModule(test_nest))
     suite.addTests(loader.loadTestsFromModule(test_node))
     suite.addTests(loader.loadTestsFromModule(test_math_parsing))

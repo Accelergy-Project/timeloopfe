@@ -9,7 +9,7 @@ from accelergy.utils import yaml
 
 from timeloopfe.v4.specification import Specification as spec4
 from timeloopfe.v3.specification import Specification as spec3
-from timeloopfe.common.backend_calls import call_mapper, call_model
+from timeloopfe.common.backend_calls import call_mapper, call_model, to_mapper_app, to_model_app
 
 from timeloopfe.v4.processors import (
     References2CopiesProcessor,
@@ -40,11 +40,14 @@ PROCESSORS = [
 
 
 class TestCompareResults(unittest.TestCase):
-    def _grabstats(self, path: str) -> str:
+    def _grabstats_from_file(self, path: str) -> str:
         if not os.path.exists(path):
             raise ValueError(f"File {path} does not exist. Check if Timeloop ran.")
         contents = open(os.path.realpath(path)).read()
         # Grab contents between lines containing "Summary Stats" and "Computes"
+        return self._grabstats(contents)
+    
+    def _grabstats(self, contents: str) -> str:
         start, end = None, None
         for i, line in enumerate(contents.split("\n")):
             if "Summary Stats" in line:
@@ -147,6 +150,11 @@ class TestCompareResults(unittest.TestCase):
             f = call_model if run_model else call_mapper
             f(s, d, dump_intermediate_to=dumpto, log_to=logto)
 
+            if run_model:
+                pytimeloop_stats = to_model_app(s, d).run().stats_string
+            else:
+                pytimeloop_stats = to_mapper_app(s, d).run().stats_string
+
         # spec = Specification.from_yaml_files(
         #     f"{newdir}/inputs/*.yaml", processors=PROCESSORS
         # )
@@ -163,7 +171,10 @@ class TestCompareResults(unittest.TestCase):
         x = "mapper" if not run_model else "model"
         stats1 = os.path.join(newdir, f"timeloop-{x}.stats.txt")
         stats2 = os.path.join(olddir, f"timeloop-{x}.stats.txt")
-        self.assertEqual(self._grabstats(stats1), self._grabstats(stats2))
+        self.assertEqual(self._grabstats_from_file(stats1),
+                         self._grabstats_from_file(stats2))
+        self.assertEqual(self._grabstats_from_file(stats1),
+                         self._grabstats(pytimeloop_stats))
 
     def test_eyriss_like(self):
         self.run_test("eyeriss_like", "", False)

@@ -1,32 +1,32 @@
 <map id="timeloopfe.v4.sparse_optimizations.SparseOptimizationGroup" name="timeloopfe.v4.sparse_optimizations.SparseOptimizationGroup">
-<area shape="rect" id="Node000001" title="A group of sparse optimizations." alt="" coords="1432,113,1652,168"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="714,141,889,182"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="904,181,1024,199,1139,207,1254,199,1346,185,1434,166,1435,171,1347,190,1255,204,1139,212,1023,204,903,187"/>
+<area shape="rect" id="Node000001" title="A group of sparse optimizations." alt="" coords="1432,106,1652,162"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="714,140,889,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="904,180,1024,198,1139,206,1254,198,1352,181,1443,160,1444,165,1353,187,1255,203,1139,211,1023,203,903,185"/>
 <area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1ActionOptimization.html" title="An action optimization." alt="" coords="1031,5,1247,46"/>
-<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="878,133,948,107,998,82,1009,69,1022,56,1044,44,1046,49,1025,60,1013,73,1001,86,950,112,880,138"/>
+<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="903,138,952,120,998,93,1005,84,1009,75,1013,65,1022,56,1041,44,1044,49,1025,60,1017,68,1014,77,1010,87,1001,97,954,125,904,143"/>
 <area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1RepresentationFormat.html" title="A representation format sparse optimization." alt="" coords="1042,70,1236,126"/>
-<area shape="poly" id="edge11_Node000009_Node000002" title=" " alt="" coords="904,140,1041,113,1042,119,905,145"/>
+<area shape="poly" id="edge11_Node000009_Node000002" title=" " alt="" coords="904,140,999,123,1041,115,1042,120,1000,128,905,146"/>
 <area shape="rect" id="Node000013" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1ComputeOptimization.html" title="A compute optimization." alt="" coords="1023,149,1255,190"/>
-<area shape="poly" id="edge17_Node000013_Node000002" title=" " alt="" coords="904,161,1023,164,1023,170,904,167"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="224,113,430,139"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="446,130,680,147,714,150,713,155,680,152,446,135"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="302,96,311,89,327,86,342,88,351,95,353,104,349,114,344,111,348,104,347,98,340,93,327,91,313,94,306,100"/>
-<area shape="rect" id="Node000011" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="479,39,655,79"/>
-<area shape="poly" id="edge14_Node000011_Node000003" title=" " alt="" coords="390,106,490,77,492,83,391,111"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="9,64,57,89"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="73,80,246,110,246,115,72,85"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="6,113,60,139"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="75,123,223,123,223,128,75,128"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="5,174,61,200"/>
-<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="76,179,199,158,282,136,283,142,200,164,77,184"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="546,164,588,189"/>
-<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="603,171,713,164,713,170,604,177"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="1246,48,1408,91,1464,109,1462,114,1407,96,1245,53"/>
-<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="1252,107,1431,126,1431,131,1252,112"/>
-<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1RepresentationProblemDataspaceList.html" title="A list of representation problem dataspaces." alt="" coords="704,31,898,87"/>
-<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="914,69,1042,84,1041,89,914,75"/>
-<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="670,56,704,56,704,62,670,62"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="308,24,346,49"/>
-<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="362,37,479,48,479,53,361,42"/>
-<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="1270,157,1431,146,1432,151,1270,163"/>
+<area shape="poly" id="edge17_Node000013_Node000002" title=" " alt="" coords="904,161,1023,164,1023,169,904,166"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="224,129,430,155"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="446,144,713,154,713,160,446,149"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="302,112,311,105,327,102,342,104,351,111,353,120,349,130,344,127,348,120,347,114,340,109,327,107,313,110,306,116"/>
+<area shape="rect" id="Node000011" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="479,57,655,98"/>
+<area shape="poly" id="edge14_Node000011_Node000003" title=" " alt="" coords="392,122,487,96,489,101,393,127"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="9,80,57,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="73,96,246,126,246,131,72,101"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="6,129,60,155"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="75,139,223,139,223,144,75,144"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,190,61,216"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="76,195,199,174,282,152,283,158,200,180,77,200"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="546,190,588,216"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="603,194,713,174,714,179,604,199"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="1248,48,1408,88,1456,103,1454,108,1407,94,1247,53"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="1252,105,1431,121,1431,126,1252,110"/>
+<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1RepresentationProblemDataspaceList.html" title="A list of representation problem dataspaces." alt="" coords="704,50,898,106"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="914,82,1041,89,1041,95,914,87"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="670,75,704,75,704,80,670,80"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="308,40,346,65"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="362,53,479,66,479,71,361,59"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="1270,155,1431,141,1432,146,1270,161"/>
 </map>

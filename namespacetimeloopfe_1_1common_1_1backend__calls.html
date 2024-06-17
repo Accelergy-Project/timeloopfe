@@ -102,6 +102,9 @@ $(function(){ initResizable(false); });
 Functions</h2></td></tr>
 <tr class="memitem:a98425a5d070d29cc2c42af049268b7cc" id="r_a98425a5d070d29cc2c42af049268b7cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98425a5d070d29cc2c42af049268b7cc">delayed_import</a> ()</td></tr>
 <tr class="separator:a98425a5d070d29cc2c42af049268b7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b14674b52c0a161e7606602db02d54f" id="r_a9b14674b52c0a161e7606602db02d54f"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b14674b52c0a161e7606602db02d54f">_specification_to_yaml_string</a> (<a class="el" href="classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification.html">BaseSpecification</a> specification, bool for_model=False)</td></tr>
+<tr class="memdesc:a9b14674b52c0a161e7606602db02d54f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts specification into YAML string, which may require transpilation.  <br /></td></tr>
+<tr class="separator:a9b14674b52c0a161e7606602db02d54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05d9ff5f9c0bafbc701e13ea5f6e29d0" id="r_a05d9ff5f9c0bafbc701e13ea5f6e29d0"><td class="memItemLeft" align="right" valign="top">Tuple[List[str], str]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05d9ff5f9c0bafbc701e13ea5f6e29d0">_pre_call</a> (<a class="el" href="classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification.html">BaseSpecification</a> specification, str output_dir, Optional[List[str]] extra_input_files=None, bool for_model=False)</td></tr>
 <tr class="memdesc:a05d9ff5f9c0bafbc701e13ea5f6e29d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare to call Timeloop or Accelergy from Python !  <br /></td></tr>
 <tr class="separator:a05d9ff5f9c0bafbc701e13ea5f6e29d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -285,6 +288,44 @@ Variables</h2></td></tr>
     <tr><td class="paramname">specification</td><td>The specification with which to call Timeloop. !</td></tr>
     <tr><td class="paramname">output_dir</td><td>The directory to run Timeloop in. !</td></tr>
     <tr><td class="paramname">extra_input_files</td><td>A list of extra input files to pass to Timeloop. !</td></tr>
+    <tr><td class="paramname">for_model</td><td>Whether the result is for Timeloop model or mapper </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9b14674b52c0a161e7606602db02d54f" name="a9b14674b52c0a161e7606602db02d54f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b14674b52c0a161e7606602db02d54f">&#9670;&#160;</a></span>_specification_to_yaml_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> str timeloopfe.common.backend_calls._specification_to_yaml_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classtimeloopfe_1_1common_1_1base__specification_1_1BaseSpecification.html">BaseSpecification</a></td>          <td class="paramname"><span class="paramname"><em>specification</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool </td>          <td class="paramname"><span class="paramname"><em>for_model</em></span><span class="paramdefsep"> = </span><span class="paramdefval">False</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts specification into YAML string, which may require transpilation. </p>
+<p>!</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">specification</td><td>The specification with which to call Timeloop. !</td></tr>
     <tr><td class="paramname">for_model</td><td>Whether the result is for Timeloop model or mapper </td></tr>
   </table>
   </dd>

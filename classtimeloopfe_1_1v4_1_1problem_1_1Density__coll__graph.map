@@ -1,9 +1,9 @@
 <map id="timeloopfe.v4.problem.Density" name="timeloopfe.v4.problem.Density">
-<area shape="rect" id="Node000001" title="A Density object represents the density and distribution of a workload tensor." alt="" coords="207,288,400,313"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="144,184,319,225"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,235,296,286,292,289,253,239"/>
+<area shape="rect" id="Node000001" title="A Density object represents the density and distribution of a workload tensor." alt="" coords="207,286,400,312"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="144,183,319,223"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,234,296,285,292,288,253,237"/>
 <area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="5,109,212,135"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="141,141,203,181,200,186,138,146"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="141,141,202,180,199,185,138,145"/>
 <area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="228,115,238,122,230,128,213,131,212,125,228,123,233,122,226,120"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="10,5,58,31"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="54,42,102,107,98,110,49,45"/>
@@ -12,7 +12,7 @@
 <area shape="rect" id="Node000006" title=" " alt="" coords="170,5,226,31"/>
 <area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="193,47,184,67,170,87,155,100,138,111,135,106,152,96,167,83,179,65,188,45"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="334,109,376,135"/>
-<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="325,146,263,186,260,181,322,141"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="343,192,410,217"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="360,231,315,289,311,285,356,228"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="325,145,263,185,260,180,322,141"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="343,190,410,216"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="360,230,315,287,311,284,356,227"/>
 </map>

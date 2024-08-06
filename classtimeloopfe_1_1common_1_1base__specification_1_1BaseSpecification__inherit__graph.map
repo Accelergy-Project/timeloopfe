@@ -1,7 +1,7 @@
 <map id="timeloopfe.common.base_specification.BaseSpecification" name="timeloopfe.common.base_specification.BaseSpecification">
 <area shape="rect" id="Node000001" title="Base class for specifications in the Timeloop framework." alt="" coords="78,241,286,282"/>
 <area shape="rect" id="Node000006" href="$classtimeloopfe_1_1v4_1_1specification_1_1Specification.html" title="A top&#45;level class for the Timeloop specification." alt="" coords="94,330,270,371"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="185,298,185,330,179,330,179,298"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="184,298,184,330,179,330,179,298"/>
 <area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="94,153,270,193"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,209,177,241,171,241,170,209"/>
 <area shape="poly" id="edge5_Node000001_Node000002" title=" " alt="" coords="193,209,192,241,187,241,188,209"/>

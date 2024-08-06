@@ -12,13 +12,13 @@
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="314,304,349,300,349,306,315,310"/>
 <area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1processors_1_1enable__dummy__table_1_1EnableDummyTableProcessor.html" title="Enable the dummy table for Accelergy to placeholder energy/area." alt="" coords="347,332,629,373"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="315,330,347,334,346,339,314,336"/>
-<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1processors_1_1permutation__optimizer_1_1PermutationOptimizerProcessor.html" title="Optimizes permutation by pruning superfluous permutations." alt="" coords="355,397,622,438"/>
+<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1processors_1_1permutation__optimizer_1_1PermutationOptimizerProcessor.html" title="Optimizes permutation by pruning superfluous permutations." alt="" coords="354,397,622,438"/>
 <area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="258,345,348,382,390,394,388,399,346,387,256,350"/>
-<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1v4_1_1processors_1_1required__actions_1_1RequiredActionsProcessor.html" title="Ensures that all components have actions defined for Accelergy Storage:" alt="" coords="375,463,602,503"/>
+<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1v4_1_1processors_1_1required__actions_1_1RequiredActionsProcessor.html" title="Ensures that all components have actions defined for Accelergy Storage:" alt="" coords="374,463,602,503"/>
 <area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="231,351,282,401,314,426,348,447,377,460,375,465,346,452,311,431,279,405,227,355"/>
 <area shape="rect" id="Node000011" href="$classtimeloopfe_1_1v4_1_1processors_1_1sparse__opt__attacher_1_1SparseOptAttacherProcessor.html" title="Takes sparse optimizations from sparse optimizations lists and attaches them to the architecture." alt="" coords="352,528,625,569"/>
 <area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="220,354,241,391,270,435,306,477,348,513,372,525,369,530,346,517,302,481,266,438,237,394,216,356"/>
-<area shape="rect" id="Node000012" href="$classtimeloopfe_1_1v4_1_1processors_1_1to__diagram__processor_1_1ToDiagramProcessor.html" title="Generates a Graphviz diagram of the architecture." alt="" coords="357,593,620,634"/>
+<area shape="rect" id="Node000012" href="$classtimeloopfe_1_1v4_1_1processors_1_1to__diagram__processor_1_1ToDiagramProcessor.html" title="Generates a Graphviz diagram of the architecture." alt="" coords="356,593,620,634"/>
 <area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="214,355,231,405,259,466,298,527,322,554,349,578,369,591,366,595,345,582,318,558,294,530,255,469,227,407,209,356"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,308,54,333"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,318,101,318,101,323,69,323"/>

@@ -1,12 +1,12 @@
 <map id="timeloopfe.v4.sparse_optimizations.RepresentationFormat" name="timeloopfe.v4.sparse_optimizations.RepresentationFormat">
-<area shape="rect" id="Node000001" title="A representation format sparse optimization." alt="" coords="1022,72,1216,127"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="478,107,653,148"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="669,120,1021,102,1022,107,669,125"/>
+<area shape="rect" id="Node000001" title="A representation format sparse optimization." alt="" coords="1023,72,1218,127"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="479,100,655,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="670,114,1023,101,1023,106,670,120"/>
 <area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="224,95,430,120"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="446,115,478,117,477,123,445,120"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="303,77,311,71,327,68,342,70,351,77,353,86,349,95,344,93,348,86,346,80,340,75,327,73,313,76,306,82"/>
-<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="478,42,653,83"/>
-<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="413,89,477,76,478,81,414,94"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="446,111,479,113,479,119,446,117"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="302,77,311,71,327,68,342,70,351,77,353,86,349,95,344,93,348,86,347,80,340,75,327,73,313,76,306,82"/>
+<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="479,35,655,76"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="404,88,478,72,479,77,405,93"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="9,45,57,71"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="73,62,246,91,246,97,72,67"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="6,95,60,120"/>
@@ -14,10 +14,10 @@
 <area shape="rect" id="Node000006" title=" " alt="" coords="5,156,61,182"/>
 <area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="76,163,135,155,199,140,223,129,258,118,260,124,225,134,201,145,136,160,76,168"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="306,144,348,170"/>
-<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="363,150,477,136,478,141,364,155"/>
-<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1RepresentationProblemDataspaceList.html" title="A list of representation problem dataspaces." alt="" coords="703,38,897,94"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="913,75,1022,87,1021,92,912,81"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="669,61,702,62,702,67,669,67"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="363,149,479,131,480,137,364,154"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1RepresentationProblemDataspaceList.html" title="A list of representation problem dataspaces." alt="" coords="704,28,898,83"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="914,68,1023,83,1022,89,913,74"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="670,53,704,53,704,58,670,58"/>
 <area shape="rect" id="Node000010" title=" " alt="" coords="308,5,346,31"/>
-<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="362,22,478,43,477,49,361,27"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="362,21,480,39,479,45,361,26"/>
 </map>

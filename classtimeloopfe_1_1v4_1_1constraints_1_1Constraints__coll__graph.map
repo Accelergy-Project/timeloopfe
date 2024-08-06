@@ -1,25 +1,25 @@
 <map id="timeloopfe.v4.constraints.Constraints" name="timeloopfe.v4.constraints.Constraints">
-<area shape="rect" id="Node000001" title="Class representing constraints." alt="" coords="138,465,307,506"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="205,183,381,223"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="293,239,278,332,265,388,246,442,235,466,230,463,241,440,260,386,273,331,287,238"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="78,109,284,135"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="212,142,267,180,264,184,209,146"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="301,115,311,122,303,128,285,131,284,125,301,123,306,122,298,120"/>
-<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="5,183,181,223"/>
-<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="158,147,116,184,113,180,154,143"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="82,5,131,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="126,42,174,107,170,110,122,45"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="154,5,208,31"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="184,47,184,109,178,109,178,47"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="243,5,298,31"/>
-<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="265,47,256,67,243,87,228,100,211,111,208,106,224,96,239,83,252,65,260,45"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="407,109,449,135"/>
-<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="396,145,328,185,325,180,393,140"/>
-<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1constraints_1_1ConstraintsList.html" title="A class representing a list of constraints." alt="" coords="77,361,245,402"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="183,414,213,463,208,466,178,417"/>
-<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1common_1_1nodes_1_1CombinableListNode.html" title="A list node that can be combined with others by extending." alt="" coords="61,273,237,313"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="156,329,161,361,156,361,151,329"/>
-<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="116,235,139,271,134,274,111,238"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="15,109,54,135"/>
-<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="54,146,81,181,76,184,50,149"/>
+<area shape="rect" id="Node000001" title="Class representing constraints." alt="" coords="138,468,306,508"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="205,184,381,225"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="293,240,278,334,265,390,246,445,235,468,230,466,241,443,260,389,273,333,287,239"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="76,109,283,135"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="211,142,267,181,264,186,208,146"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="300,115,309,122,301,128,284,131,283,125,300,123,304,122,297,120"/>
+<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="5,184,181,225"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="157,147,116,186,112,182,154,143"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="81,5,129,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="125,42,173,107,169,110,121,45"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="153,5,206,31"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="182,47,182,109,177,109,177,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="241,5,297,31"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="264,47,255,67,242,87,226,100,209,111,207,106,223,96,238,83,250,65,259,45"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="405,109,448,135"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="395,145,327,186,324,181,392,141"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1constraints_1_1ConstraintsList.html" title="A class representing a list of constraints." alt="" coords="77,364,245,405"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="183,417,213,466,208,469,178,419"/>
+<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1common_1_1nodes_1_1CombinableListNode.html" title="A list node that can be combined with others by extending." alt="" coords="61,274,237,315"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="156,330,161,363,156,364,151,331"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="116,236,139,272,134,275,111,239"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="14,109,52,135"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="53,146,81,182,77,186,49,149"/>
 </map>

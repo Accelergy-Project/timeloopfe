@@ -1,5 +1,5 @@
 <map id="timeloopfe.common.nodes copy.TypeSpecifier" name="timeloopfe.common.nodes copy.TypeSpecifier">
-<area shape="rect" id="Node000001" title="Represents a type specifier for a node in the TimeloopFE library." alt="" coords="83,124,255,165"/>
+<area shape="rect" id="Node000001" title="Represents a type specifier for a node in the TimeloopFE library." alt="" coords="82,124,255,165"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,55,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="35,46,42,73,57,98,73,111,91,121,88,126,70,115,53,102,37,75,30,47"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="147,5,190,31"/>

@@ -31,16 +31,12 @@ def delayed_import():
     v4_to_v3 = current_import
 
 
-def _pre_call(
+def _specification_to_yaml_string(
     specification: BaseSpecification,
-    output_dir: str,
-    extra_input_files: Optional[List[str]] = None,
     for_model: bool = False,
-) -> Tuple[List[str], str]:
-    """Prepare to call Timeloop or Accelergy from Python
+) -> str:
+    """Converts specification into YAML string, which may require transpilation.
     !@param specification The specification with which to call Timeloop.
-    !@param output_dir The directory to run Timeloop in.
-    !@param extra_input_files A list of extra input files to pass to Timeloop.
     !@param for_model Whether the result is for Timeloop model or mapper
     """
     delayed_import()
@@ -58,6 +54,25 @@ def _pre_call(
         input_content = to_yaml_string(input_content)
     else:
         raise TypeError(f"Can not call Timeloop with {type(specification)}")
+
+    return input_content
+
+
+def _pre_call(
+    specification: BaseSpecification,
+    output_dir: str,
+    extra_input_files: Optional[List[str]] = None,
+    for_model: bool = False,
+) -> Tuple[List[str], str]:
+    """Prepare to call Timeloop or Accelergy from Python
+    !@param specification The specification with which to call Timeloop.
+    !@param output_dir The directory to run Timeloop in.
+    !@param extra_input_files A list of extra input files to pass to Timeloop.
+    !@param for_model Whether the result is for Timeloop model or mapper
+    """
+    delayed_import()
+
+    input_content = _specification_to_yaml_string(specification, for_model)
 
     os.makedirs(output_dir, exist_ok=True)
     with open(
@@ -392,17 +407,23 @@ def to_mapper_app(
     """
     try:
         from pytimeloop.app import MapperApp
+        from pytimeloop.config import Config
     except ImportError:
         raise ImportError(
             "pytimeloop is not installed. To create a mapper app, please install pytimeloop. "
             "Alternatively, you can use the call_mapper function directly."
         )
+    input_content = _specification_to_yaml_string(specification,
+                                                  for_model=False)
 
-    input_paths, output_dir = _pre_call(
-        specification, output_dir, extra_input_files, for_model=False
-    )
-    input_agg = "".join(open(i).read() for i in input_paths)
-    return MapperApp(input_agg, default_out_dir=output_dir)
+    if extra_input_files is not None:
+        for fname in extra_input_files:
+            with open(fname, 'r') as f:
+                input_content += '\n'
+                input_content += f.read()
+
+    config = Config(input_content, 'yaml')
+    return MapperApp(config, output_dir, 'timeloop-mapper')
 
 
 def to_model_app(
@@ -423,14 +444,20 @@ def to_model_app(
     """
     try:
         from pytimeloop.app import ModelApp
+        from pytimeloop.config import Config
     except ImportError:
         raise ImportError(
             "pytimeloop is not installed. To create a model app, please install pytimeloop. "
             "Alternatively, you can use the call_model function directly."
         )
+    input_content = _specification_to_yaml_string(specification,
+                                                  for_model=True)
 
-    input_paths, output_dir = _pre_call(
-        specification, output_dir, extra_input_files, for_model=True
-    )
-    input_agg = "".join(open(i).read() for i in input_paths)
-    return ModelApp(input_agg, default_out_dir=output_dir)
+    if extra_input_files is not None:
+        for fname in extra_input_files:
+            with open(fname, 'r') as f:
+                input_content += '\n'
+                input_content += f.read()
+
+    config = Config(input_content, 'yaml')
+    return ModelApp(config, output_dir, 'timeloop-model')

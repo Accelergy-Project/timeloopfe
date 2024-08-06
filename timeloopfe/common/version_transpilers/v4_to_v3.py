@@ -3,6 +3,7 @@ import ruamel.yaml
 from ...v4.specification import Specification
 from ...v4 import arch, constraints
 from ...v4.arch import Attributes, Nothing, Spatial
+from ..nodes import isempty
 import logging
 
 
@@ -196,4 +197,8 @@ def transpile(spec: Specification, for_model: bool = False):
         rval["mapspace"] = spec.mapspace
     if spec.get("globals", None):
         rval["globals"] = spec.globals
+    if not isempty(spec.get("ART", None)):
+        rval["ART"] = spec.ART
+    if not isempty(spec.get("ART", None)):
+        rval["ERT"] = spec.ERT
     return rval

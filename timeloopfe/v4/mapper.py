@@ -42,8 +42,10 @@ class Mapper(DictNode):
         super().add_attr("victory_condition", int, None)
         super().add_attr("sync_interval", int, None)
         super().add_attr("log_interval", int, 1)
-        super().add_attr("log_oaves", bool, False)
-        super().add_attr("log_oaves_mappings", bool, False)
+        super().add_attr("log_oave_mappings", bool, False)
+        super().add_attr("log_all_mappings", bool, False)
+        super().add_attr("log_mappings_yaml", bool, False)
+        super().add_attr("log_mappings_verbose", bool, False)
         super().add_attr("log_stats", bool, False)
         super().add_attr("log_suboptimal", bool, False)
         super().add_attr("live_status", bool, False)
@@ -76,8 +78,10 @@ class Mapper(DictNode):
         self.victory_condition: int = self["victory_condition"]
         self.sync_interval: int = self["sync_interval"]
         self.log_interval: int = self["log_interval"]
-        self.log_oaves: bool = self["log_oaves"]
-        self.log_oaves_mappings: bool = self["log_oaves_mappings"]
+        self.log_oave_mappings: bool = self["log_oave_mappings"]
+        self.log_all_mappings: bool = self["log_all_mappings"]
+        self.log_mappings_yaml: bool = self["log_mappings_yaml"]
+        self.log_mappings_verbose: bool = self["log_mappings_verbose"]
         self.log_stats: bool = self["log_stats"]
         self.log_suboptimal: bool = self["log_suboptimal"]
         self.live_status: bool = self["live_status"]

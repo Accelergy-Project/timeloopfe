@@ -1,15 +1,12 @@
 <map id="timeloopfe.common.nodes copy.Node" name="timeloopfe.common.nodes copy.Node">
-<area shape="rect" id="Node000001" title="Base class for all nodes in the hierarchy." alt="" coords="46,213,218,253"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,54,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="38,45,58,112,74,151,93,187,112,210,108,214,89,190,69,153,53,114,33,47"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="162,109,334,150"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="68,36,210,106,207,111,66,41"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,162,156,214,153,210,213,158"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="351,121,361,129,353,137,335,141,334,136,351,133,356,129,348,125"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="140,5,194,31"/>
-<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="142,43,114,73,93,110,89,137,95,164,106,189,119,211,115,213,102,192,90,166,84,137,88,108,110,70,138,40"/>
-<area shape="poly" id="edge5_Node000003_Node000004" title=" " alt="" coords="183,43,210,83,230,107,226,110,206,87,179,46"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="384,5,440,31"/>
-<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="452,39,464,54,467,80,461,112,446,151,430,163,408,174,351,194,219,221,218,216,349,188,406,169,427,159,442,148,456,110,462,80,459,56,448,42"/>
-<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="376,41,348,57,274,111,271,106,345,53,373,36"/>
+<area shape="rect" id="Node000001" title="Base class for all nodes in the hierarchy." alt="" coords="24,213,196,253"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="35,5,83,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="41,45,26,67,14,94,8,122,14,149,25,167,40,184,75,210,71,214,37,188,21,171,9,151,3,122,9,92,22,65,37,42"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="24,109,196,150"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="74,44,103,107,98,110,69,46"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="113,165,113,212,107,212,107,165"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="213,121,223,129,215,137,197,141,196,136,212,133,217,129,210,125"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="132,5,187,31"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="203,26,233,37,262,53,289,74,310,96,318,122,315,136,308,151,286,176,258,196,228,210,197,221,195,215,226,205,256,191,282,172,304,148,310,135,312,122,305,99,286,77,259,57,231,42,201,31"/>
+<area shape="poly" id="edge5_Node000003_Node000004" title=" " alt="" coords="150,46,121,110,116,108,145,44"/>
 </map>

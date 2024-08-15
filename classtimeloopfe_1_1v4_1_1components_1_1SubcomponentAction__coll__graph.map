@@ -1,18 +1,16 @@
 <map id="timeloopfe.v4.components.SubcomponentAction" name="timeloopfe.v4.components.SubcomponentAction">
-<area shape="rect" id="Node000001" title="A subcomponent action." alt="" coords="285,301,460,342"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="201,198,376,238"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="342,246,356,261,366,280,372,300,367,302,362,282,352,264,338,250"/>
-<area shape="poly" id="edge8_Node000001_Node000002" title=" " alt="" coords="282,253,283,265,287,276,297,289,311,299,308,303,294,292,282,279,277,266,277,253"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="5,109,212,135"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="146,140,252,195,249,199,144,145"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="229,114,238,122,230,129,213,132,212,127,228,124,233,122,226,119"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="124,5,173,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="145,47,132,86,119,110,115,107,127,84,140,45"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="43,5,96,31"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="68,46,69,65,73,84,81,96,92,107,89,110,77,100,68,86,63,66,63,46"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="276,5,331,31"/>
-<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="339,38,357,53,379,78,391,108,399,163,397,217,390,266,381,302,376,301,384,264,392,217,394,163,386,110,374,81,353,57,336,42"/>
-<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="268,41,133,111,130,106,265,36"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="334,109,376,135"/>
-<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="340,149,305,199,300,196,336,146"/>
+<area shape="rect" id="Node000001" title="A subcomponent action." alt="" coords="5,301,181,342"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="88,198,263,238"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,254,160,279,134,303,131,299,156,276,167,252"/>
+<area shape="poly" id="edge7_Node000001_Node000002" title=" " alt="" coords="104,249,91,264,87,282,89,301,84,302,81,281,87,261,100,246"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="172,109,379,135"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="254,147,198,199,195,195,250,143"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="396,114,405,122,397,129,380,132,379,127,395,124,400,122,393,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="252,5,300,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="278,47,278,109,273,109,273,47"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="64,5,119,31"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="86,47,74,99,63,159,63,198,69,238,88,300,83,302,64,239,58,199,58,158,68,97,81,46"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="111,41,132,63,157,83,184,96,213,106,212,111,182,101,154,87,128,67,108,45"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="106,109,149,135"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="143,147,168,196,163,198,138,149"/>
 </map>

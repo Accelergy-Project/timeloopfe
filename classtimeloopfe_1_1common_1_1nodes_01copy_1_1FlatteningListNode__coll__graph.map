@@ -1,16 +1,14 @@
 <map id="timeloopfe.common.nodes copy.FlatteningListNode" name="timeloopfe.common.nodes copy.FlatteningListNode">
-<area shape="rect" id="Node000001" title="A list node that flattens lists of lists." alt="" coords="131,289,304,330"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="131,199,304,240"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,255,220,289,215,289,215,255"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="18,109,190,150"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="143,157,194,196,190,200,140,161"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="207,122,217,129,209,137,191,140,191,134,207,132,212,129,204,126"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,5,54,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="48,42,93,107,89,110,44,45"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="78,5,131,31"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="107,47,107,109,102,109,102,47"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="166,5,221,31"/>
-<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="188,47,179,67,166,87,140,110,136,106,162,83,174,65,183,45"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="313,116,351,142"/>
-<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="306,154,245,201,241,196,303,150"/>
+<area shape="rect" id="Node000001" title="A list node that flattens lists of lists." alt="" coords="119,289,291,330"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="119,199,291,240"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,255,208,289,202,289,202,255"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="5,109,178,150"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,157,181,196,178,200,127,161"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="195,122,204,129,196,137,179,140,178,134,194,132,199,129,192,126"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="30,5,78,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="66,45,87,108,82,109,61,47"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="102,5,158,31"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="123,47,101,110,96,108,118,45"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="300,116,339,142"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="293,154,232,201,229,196,290,150"/>
 </map>

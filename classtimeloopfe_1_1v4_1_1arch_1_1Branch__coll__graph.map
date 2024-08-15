@@ -1,28 +1,26 @@
 <map id="timeloopfe.v4.arch.Branch" name="timeloopfe.v4.arch.Branch">
-<area shape="rect" id="Node000001" title="A branch in the architecture." alt="" coords="996,62,1167,88"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1v4_1_1arch_1_1ArchNode.html" title="A node in the architecture hierarchy." alt="" coords="479,54,667,80"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="682,66,996,71,996,76,682,71"/>
-<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1arch_1_1ArchNodes.html" title="A collection of architectural nodes." alt="" coords="716,95,910,121"/>
-<area shape="poly" id="edge12_Node000009_Node000002" title=" " alt="" coords="666,80,735,92,734,97,666,85"/>
+<area shape="rect" id="Node000001" title="A branch in the architecture." alt="" coords="996,60,1167,86"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1v4_1_1arch_1_1ArchNode.html" title="A node in the architecture hierarchy." alt="" coords="479,48,667,74"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="682,61,996,69,996,74,682,67"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1arch_1_1ArchNodes.html" title="A collection of architectural nodes." alt="" coords="716,94,910,120"/>
+<area shape="poly" id="edge11_Node000008_Node000002" title=" " alt="" coords="660,75,742,91,741,96,659,80"/>
 <area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="224,82,430,108"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="445,79,479,75,479,80,446,84"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="441,76,479,71,479,77,442,82"/>
 <area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="302,65,311,58,327,55,342,57,351,64,353,73,349,83,344,80,348,73,347,67,340,62,327,60,313,63,306,69"/>
-<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="485,169,661,210"/>
-<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="417,110,431,116,457,135,481,154,507,166,505,171,478,158,453,139,429,121,415,115"/>
-<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="485,104,661,144"/>
-<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="446,106,485,111,484,116,445,111"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="9,12,57,38"/>
-<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="72,18,186,8,325,3,815,3,882,9,947,23,1006,42,1051,59,1049,64,1004,47,946,28,881,14,814,8,326,8,186,14,73,24"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="73,30,200,57,280,79,279,84,199,63,72,35"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="6,130,60,156"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="74,133,243,106,244,111,75,139"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="5,80,61,106"/>
-<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="76,91,223,92,223,97,76,96"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="676,174,789,156,910,131,983,108,1046,86,1048,91,985,114,911,136,790,162,676,180"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="306,196,348,222"/>
-<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="363,204,485,194,485,199,364,209"/>
-<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="926,94,972,88,996,85,996,90,973,94,926,99"/>
-<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="676,114,716,112,716,117,676,120"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="308,131,346,157"/>
-<area shape="poly" id="edge15_Node000010_Node000011" title=" " alt="" coords="362,139,485,128,485,134,362,144"/>
+<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="485,165,661,206"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="378,111,480,150,514,162,513,167,478,154,376,116"/>
+<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="485,100,661,140"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="446,104,485,108,484,114,445,110"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="9,11,57,37"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="72,17,186,8,325,3,815,3,881,8,947,23,1005,40,1050,57,1048,62,1003,46,945,28,881,14,814,8,326,8,186,13,73,23"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="73,29,200,57,280,79,278,84,199,63,71,34"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,82,61,108"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="76,92,223,92,223,97,76,97"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="676,171,789,154,910,129,983,107,1046,84,1048,89,985,112,911,135,790,160,676,177"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="306,198,348,224"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="363,204,485,192,485,197,364,210"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="926,93,972,87,996,84,996,89,973,92,926,98"/>
+<area shape="poly" id="edge12_Node000008_Node000009" title=" " alt="" coords="676,112,716,109,716,115,676,117"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="308,148,346,174"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="361,153,484,132,485,137,362,158"/>
 </map>

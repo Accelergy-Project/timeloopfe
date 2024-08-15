@@ -1,14 +1,12 @@
 <map id="timeloopfe.common.nodes copy.DictNode" name="timeloopfe.common.nodes copy.DictNode">
-<area shape="rect" id="Node000001" title="A node that is a dictionary of other nodes." alt="" coords="133,199,305,240"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="18,109,190,150"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,157,195,196,191,200,140,161"/>
-<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="207,122,217,129,209,137,191,140,191,134,207,132,212,129,204,126"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,54,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="48,42,93,107,89,110,44,45"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="78,5,131,31"/>
-<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="107,47,107,109,102,109,102,47"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="166,5,221,31"/>
-<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="188,47,179,67,166,87,140,110,136,106,162,83,174,65,183,45"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="312,116,355,142"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="307,154,246,201,243,196,304,150"/>
+<area shape="rect" id="Node000001" title="A node that is a dictionary of other nodes." alt="" coords="120,199,292,240"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="5,109,178,150"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,157,182,196,179,200,127,161"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="195,122,204,129,196,137,179,140,178,134,194,132,199,129,192,126"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="30,5,78,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="66,45,87,108,82,109,61,47"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="102,5,158,31"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="123,47,101,110,96,108,118,45"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="300,116,342,142"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="295,154,233,201,230,196,291,150"/>
 </map>

@@ -1,7 +1,7 @@
 <map id="timeloopfe.v4.components.SubcomponentActionGroup" name="timeloopfe.v4.components.SubcomponentActionGroup">
 <area shape="rect" id="Node000001" title="A group of subactions taken by a particular subcomponent." alt="" coords="131,378,311,418"/>
 <area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="205,184,381,225"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,240,243,355,233,378,228,376,239,353,280,238"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="284,240,242,355,232,378,227,376,237,353,279,238"/>
 <area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="76,109,283,135"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="211,142,267,181,264,186,208,146"/>
 <area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="300,115,309,122,301,128,284,131,283,125,300,123,304,122,297,120"/>

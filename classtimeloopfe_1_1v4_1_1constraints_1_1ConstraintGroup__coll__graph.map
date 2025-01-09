@@ -1,49 +1,40 @@
 <map id="timeloopfe.v4.constraints.ConstraintGroup" name="timeloopfe.v4.constraints.ConstraintGroup">
-<area shape="rect" id="Node000001" title="A group of constraints." alt="" coords="2026,223,2194,264"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="704,223,879,264"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="838,270,902,308,985,347,1031,364,1080,378,1129,388,1179,391,1832,391,1871,387,1910,377,1947,361,1982,342,2043,300,2086,262,2089,266,2046,304,1985,347,1950,366,1912,382,1872,393,1832,397,1178,397,1128,393,1078,384,1030,370,983,352,899,312,835,275"/>
-<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Constraint.html" title="A constraint in the system." alt="" coords="1096,204,1264,245"/>
-<area shape="poly" id="edge10_Node000009_Node000002" title=" " alt="" coords="895,236,1095,226,1095,231,895,241"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="224,181,430,207"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="446,198,655,217,704,224,703,229,654,222,445,203"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="302,164,311,157,327,154,342,157,351,163,353,172,349,182,344,180,348,172,347,166,340,162,327,160,313,162,306,168"/>
-<area shape="rect" id="Node000012" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="479,92,655,133"/>
-<area shape="poly" id="edge14_Node000012_Node000003" title=" " alt="" coords="381,173,504,131,505,136,383,178"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="9,156,57,181"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="73,169,224,182,223,188,72,175"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="5,206,61,232"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="77,219,135,219,199,216,268,205,269,210,200,221,135,225,76,224"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="546,232,588,257"/>
-<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="604,242,703,241,704,246,604,247"/>
-<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Spatial.html" title="A spatial iteration constraint." alt="" coords="1746,122,1915,162"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="1904,165,2052,220,2050,225,1902,170"/>
-<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Iteration.html" title="An iteration (spatial or temporal) constraint." alt="" coords="1428,55,1596,96"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1576,47,1612,38,1650,34,1688,38,1724,53,1735,66,1738,80,1740,94,1748,107,1765,119,1761,123,1744,110,1735,96,1733,81,1730,68,1721,57,1687,43,1650,40,1613,44,1577,52"/>
-<area shape="rect" id="Node000017" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Temporal.html" title="A temporal iteration constraint." alt="" coords="1746,56,1915,97"/>
-<area shape="poly" id="edge21_Node000017_Node000008" title=" " alt="" coords="1552,44,1585,25,1623,11,1673,3,1723,11,1767,30,1804,53,1801,58,1765,35,1722,16,1673,8,1624,16,1588,30,1555,49"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="1270,197,1346,172,1399,146,1411,131,1423,113,1454,94,1457,98,1427,117,1415,134,1403,151,1348,177,1272,202"/>
-<area shape="rect" id="Node000018" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Dataspace.html" title="A constraint class for specifying dataspace properties." alt="" coords="1746,223,1915,264"/>
-<area shape="poly" id="edge24_Node000018_Node000009" title=" " alt="" coords="1280,225,1746,238,1746,243,1280,230"/>
-<area shape="rect" id="Node000019" href="$classtimeloopfe_1_1v4_1_1constraints_1_1MaxOverbookedProportion.html" title="A constraint that defines the maximum overbooked proportion." alt="" coords="1425,295,1599,336"/>
-<area shape="poly" id="edge27_Node000019_Node000009" title=" " alt="" coords="1217,252,1251,275,1289,294,1357,310,1425,315,1424,321,1356,315,1287,299,1248,280,1214,257"/>
-<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Factors.html" title="A list of factors used to describe loop bounds." alt="" coords="1096,50,1264,90"/>
-<area shape="poly" id="edge11_Node000008_Node000010" title=" " alt="" coords="1279,69,1428,71,1428,77,1279,74"/>
-<area shape="rect" id="Node000011" href="$classtimeloopfe_1_1common_1_1nodes_1_1CombinableListNode.html" title="A list node that can be combined with others by extending." alt="" coords="704,51,879,92"/>
-<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="895,68,1095,67,1095,73,895,74"/>
-<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="669,91,703,85,704,90,670,96"/>
-<area shape="rect" id="Node000014" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Permutation.html" title="A permutation of ranks." alt="" coords="903,110,1072,150"/>
-<area shape="poly" id="edge17_Node000014_Node000012" title=" " alt="" coords="670,114,903,124,903,129,670,119"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="308,92,346,117"/>
-<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="362,103,479,107,479,112,361,108"/>
-<area shape="poly" id="edge16_Node000008_Node000014" title=" " alt="" coords="1087,125,1264,114,1427,89,1428,94,1264,120,1087,131"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="1145,300,1214,325"/>
-<area shape="poly" id="edge18_Node000008_Node000015" title=" " alt="" coords="1229,305,1271,296,1317,281,1362,258,1399,226,1408,212,1412,199,1411,172,1410,144,1414,129,1423,113,1446,94,1449,98,1427,117,1419,131,1415,145,1416,172,1417,200,1413,215,1403,230,1365,263,1319,286,1272,301,1230,310"/>
-<area shape="poly" id="edge28_Node000019_Node000015" title=" " alt="" coords="1227,329,1289,346,1344,352,1401,346,1453,334,1455,339,1401,351,1344,357,1287,351,1225,334"/>
-<area shape="rect" id="Node000016" title=" " alt="" coords="1490,128,1534,153"/>
-<area shape="poly" id="edge19_Node000007_Node000016" title=" " alt="" coords="1549,138,1746,139,1746,144,1549,143"/>
-<area shape="poly" id="edge22_Node000017_Node000016" title=" " alt="" coords="1548,126,1623,106,1746,84,1747,90,1624,111,1549,132"/>
-<area shape="poly" id="edge25_Node000018_Node000016" title=" " alt="" coords="1549,156,1624,190,1686,209,1747,224,1745,229,1685,214,1622,195,1547,161"/>
-<area shape="poly" id="edge20_Node000001_Node000017" title=" " alt="" coords="1903,101,1916,108,1965,135,2011,165,2085,220,2081,224,2008,170,1962,139,1913,112,1900,106"/>
-<area shape="poly" id="edge23_Node000001_Node000018" title=" " alt="" coords="1930,241,2025,241,2025,246,1930,246"/>
-<area shape="poly" id="edge26_Node000001_Node000019" title=" " alt="" coords="1615,311,1757,304,1914,288,2035,262,2036,267,1915,293,1758,310,1615,316"/>
+<area shape="rect" id="Node000001" title="A group of constraints." alt="" coords="1894,100,2063,140"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="583,76,759,116"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="739,68,805,46,884,25,970,9,1058,3,1711,3,1746,5,1782,13,1849,37,1907,68,1951,97,1948,101,1904,73,1847,42,1780,18,1745,11,1710,8,1058,8,971,14,885,30,806,51,741,73"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Constraint.html" title="A constraint in the system." alt="" coords="975,88,1143,128"/>
+<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="775,97,975,103,974,108,774,102"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="103,119,309,145"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="325,120,358,117,583,100,583,105,359,123,325,125"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="182,102,190,95,206,93,221,95,230,101,233,110,229,120,224,118,227,110,226,104,219,100,206,98,192,100,185,106"/>
+<area shape="rect" id="Node000011" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="359,182,534,223"/>
+<area shape="poly" id="edge13_Node000011_Node000003" title=" " alt="" coords="268,147,375,179,374,184,266,152"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,119,54,145"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="69,129,102,129,102,135,69,135"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="425,132,468,158"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="482,135,582,113,583,118,484,140"/>
+<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Spatial.html" title="A spatial iteration constraint." alt="" coords="1625,233,1793,274"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="1776,224,1792,218,1831,202,1869,185,1945,139,1948,143,1872,189,1833,207,1794,222,1778,229"/>
+<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Iteration.html" title="An iteration (spatial or temporal) constraint." alt="" coords="1234,168,1403,208"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="1418,202,1625,237,1624,242,1418,207"/>
+<area shape="rect" id="Node000014" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Temporal.html" title="A temporal iteration constraint." alt="" coords="1625,168,1793,208"/>
+<area shape="poly" id="edge18_Node000014_Node000007" title=" " alt="" coords="1418,185,1624,185,1624,191,1418,191"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1143,131,1251,165,1249,170,1141,136"/>
+<area shape="rect" id="Node000015" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Dataspace.html" title="A constraint class for specifying dataspace properties." alt="" coords="1430,96,1598,136"/>
+<area shape="poly" id="edge20_Node000015_Node000008" title=" " alt="" coords="1159,107,1429,112,1429,117,1159,112"/>
+<area shape="rect" id="Node000016" href="$classtimeloopfe_1_1v4_1_1constraints_1_1MaxOverbookedProportion.html" title="A constraint that defines the maximum overbooked proportion." alt="" coords="1427,37,1601,78"/>
+<area shape="poly" id="edge22_Node000016_Node000008" title=" " alt="" coords="1159,90,1167,89,1426,62,1426,67,1168,95,1159,96"/>
+<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Factors.html" title="A list of factors used to describe loop bounds." alt="" coords="975,158,1143,199"/>
+<area shape="poly" id="edge10_Node000007_Node000009" title=" " alt="" coords="1159,180,1234,182,1234,188,1159,185"/>
+<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1common_1_1nodes_1_1CombinableListNode.html" title="A list node that can be combined with others by extending." alt="" coords="583,160,759,200"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="774,177,974,176,974,182,774,182"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="549,190,582,186,583,192,550,195"/>
+<area shape="rect" id="Node000013" href="$classtimeloopfe_1_1v4_1_1constraints_1_1Permutation.html" title="A permutation of ranks." alt="" coords="783,217,951,258"/>
+<area shape="poly" id="edge16_Node000013_Node000011" title=" " alt="" coords="549,208,782,228,782,233,549,214"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="187,190,225,216"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="241,200,358,200,358,205,241,205"/>
+<area shape="poly" id="edge15_Node000007_Node000013" title=" " alt="" coords="967,235,1053,231,1143,223,1234,206,1235,212,1144,228,1053,237,967,240"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="1808,166,1870,151,1913,138,1915,143,1871,156,1809,171"/>
+<area shape="poly" id="edge19_Node000001_Node000015" title=" " alt="" coords="1613,114,1894,117,1894,122,1613,120"/>
+<area shape="poly" id="edge21_Node000001_Node000016" title=" " alt="" coords="1617,65,1871,97,1894,101,1893,106,1870,103,1616,70"/>
 </map>

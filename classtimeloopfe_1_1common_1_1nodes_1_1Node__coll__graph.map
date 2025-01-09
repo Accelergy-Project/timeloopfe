@@ -1,12 +1,9 @@
 <map id="timeloopfe.common.nodes.Node" name="timeloopfe.common.nodes.Node">
-<area shape="rect" id="Node000001" title="Base class for all nodes in the hierarchy." alt="" coords="23,202,229,228"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="47,5,95,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="48,44,30,64,15,88,8,113,9,126,13,138,29,158,49,175,92,199,89,204,46,180,25,162,9,140,4,127,3,113,11,86,26,61,44,40"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="23,111,229,137"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="87,43,122,110,117,112,82,46"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="128,152,128,202,123,202,123,152"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="246,116,256,124,248,131,230,134,229,129,245,126,250,124,243,121"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="151,5,207,31"/>
-<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="223,29,271,46,318,71,335,85,347,102,350,121,341,140,319,165,291,183,261,196,230,206,229,200,259,191,289,178,315,161,337,138,344,120,342,104,331,89,315,75,269,51,221,34"/>
-<area shape="poly" id="edge5_Node000003_Node000004" title=" " alt="" coords="169,46,134,112,129,110,164,43"/>
+<area shape="rect" id="Node000001" title="Base class for all nodes in the hierarchy." alt="" coords="5,169,212,195"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="79,5,127,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,47,111,169,105,169,101,47"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="124,80,330,106"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="138,37,208,78,205,82,135,41"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,118,127,171,124,166,197,113"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="347,86,357,93,349,100,331,102,331,97,347,95,352,93,345,91"/>
 </map>

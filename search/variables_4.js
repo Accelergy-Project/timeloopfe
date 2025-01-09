@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['data_5fspaces_0',['data_spaces',['../classtimeloopfe_1_1v4_1_1problem_1_1Shape.html#a259c10d54b54d2ead1d584a449dc8970',1,'timeloopfe.v4.problem.Shape.data_spaces'],['../classtimeloopfe_1_1v4_1_1problem_1_1Shape.html#a09ab3486b13a0f013b38e34f48d6cf66',1,'timeloopfe.v4.problem.Shape.data_spaces'],['../classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1RepresentationFormat.html#a8ef6b021cb8d3a520c923addff8fdbee',1,'timeloopfe.v4.sparse_optimizations.RepresentationFormat.data_spaces']]],
+  ['data_5fspaces_0',['data_spaces',['../classtimeloopfe_1_1v4_1_1problem_1_1Shape.html#a259c10d54b54d2ead1d584a449dc8970',1,'timeloopfe.v4.problem.Shape.data_spaces'],['../classtimeloopfe_1_1v4_1_1sparse__optimizations_1_1RepresentationFormat.html#a8ef6b021cb8d3a520c923addff8fdbee',1,'timeloopfe.v4.sparse_optimizations.RepresentationFormat.data_spaces']]],
   ['dataspace_1',['dataspace',['../classtimeloopfe_1_1v4_1_1constraints_1_1ConstraintGroup.html#a215d968cd19d52621a8a5c4b61434fa8',1,'timeloopfe::v4::constraints::ConstraintGroup']]],
   ['dataspace2branchprocessor_2',['Dataspace2BranchProcessor',['../namespacetimeloopfe_1_1v4_1_1processors.html#a3d4f11069b93d8173fd5e0a912c2d7c2',1,'timeloopfe::v4::processors']]],
   ['datawidth_3',['datawidth',['../classtimeloopfe_1_1v4_1_1arch_1_1StorageAttributes.html#acb818dc672ebf9591043818ba8f382f6',1,'timeloopfe::v4::arch::StorageAttributes']]],

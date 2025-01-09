@@ -1,14 +1,12 @@
 <map id="timeloopfe.common.nodes copy.CombinableListNode" name="timeloopfe.common.nodes copy.CombinableListNode">
-<area shape="rect" id="Node000001" title="A list node that can be combined with others by extending." alt="" coords="117,289,292,330"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="119,199,291,240"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,255,208,289,202,289,202,255"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="5,109,178,150"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,157,181,196,178,200,127,161"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="195,122,204,129,196,137,179,140,178,134,194,132,199,129,192,126"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="30,5,78,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="66,45,87,108,82,109,61,47"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="102,5,158,31"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="123,47,101,110,96,108,118,45"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="300,116,339,142"/>
-<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="293,154,232,201,229,196,290,150"/>
+<area shape="rect" id="Node000001" title="A list node that can be combined with others by extending." alt="" coords="117,260,292,301"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="119,170,291,211"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,227,208,260,202,260,202,227"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_01copy_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="5,80,178,121"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,129,181,168,178,172,127,133"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="195,93,204,101,196,108,179,111,178,106,194,103,199,101,192,97"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="67,5,116,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="94,47,94,80,89,80,89,47"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="300,88,339,114"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="293,125,232,172,229,168,290,121"/>
 </map>

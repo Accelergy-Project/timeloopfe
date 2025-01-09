@@ -1,27 +1,25 @@
 <map id="timeloopfe.v4.components.CompoundComponent" name="timeloopfe.v4.components.CompoundComponent">
-<area shape="rect" id="Node000001" title="Represents a compound component." alt="" coords="1022,107,1198,147"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="479,161,655,202"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="670,169,1022,133,1022,138,671,174"/>
-<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1components_1_1ComponentAttributes.html" title="Represents the attributes of a component." alt="" coords="704,185,879,226"/>
-<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="670,190,704,194,703,199,670,195"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="224,132,430,157"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="429,158,479,165,478,171,429,163"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="302,114,311,108,327,105,342,107,351,113,353,123,349,132,344,130,348,122,347,117,340,112,327,110,313,112,306,118"/>
-<area shape="rect" id="Node000009" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="479,56,655,97"/>
-<area shape="poly" id="edge11_Node000009_Node000003" title=" " alt="" coords="389,124,492,95,493,100,390,129"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="9,106,57,132"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="73,120,224,133,223,138,72,125"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="5,157,61,182"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="77,169,135,170,199,166,268,155,269,160,200,172,135,175,76,174"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="306,181,348,206"/>
-<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="364,189,479,183,479,189,364,195"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="894,198,946,191,998,179,1038,164,1073,145,1076,150,1040,169,999,185,947,196,895,204"/>
-<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1v4_1_1components_1_1SubcomponentList.html" title="A list of subcomponents." alt="" coords="704,5,879,46"/>
-<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="891,48,999,80,1061,104,1059,109,997,86,889,53"/>
-<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="669,51,703,43,704,48,670,56"/>
-<area shape="rect" id="Node000011" href="$classtimeloopfe_1_1v4_1_1components_1_1ActionsList.html" title="A list of actions for a component." alt="" coords="704,71,879,111"/>
-<area shape="poly" id="edge14_Node000011_Node000009" title=" " alt="" coords="670,80,704,83,703,88,670,86"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="308,42,346,68"/>
-<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="362,55,479,66,479,71,361,61"/>
-<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="895,100,1022,114,1022,120,894,105"/>
+<area shape="rect" id="Node000001" title="Represents a compound component." alt="" coords="902,107,1077,147"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="359,161,534,202"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="549,169,901,133,902,138,550,174"/>
+<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1v4_1_1components_1_1ComponentAttributes.html" title="Represents the attributes of a component." alt="" coords="583,185,759,226"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="550,190,583,194,582,199,549,195"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="103,126,309,152"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="298,153,359,163,358,169,297,158"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="182,109,190,102,206,100,221,102,230,108,233,117,229,127,224,125,227,117,226,111,219,107,206,105,192,107,185,113"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="359,53,534,94"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="270,119,368,92,370,97,272,124"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,126,54,152"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="69,136,102,136,102,142,69,142"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="185,176,227,201"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="243,185,358,181,359,187,243,190"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="774,198,826,191,877,179,917,164,953,145,955,150,919,169,878,185,827,196,775,204"/>
+<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1components_1_1SubcomponentList.html" title="A list of subcomponents." alt="" coords="583,5,759,46"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="770,48,879,80,940,104,938,109,877,86,769,53"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="548,49,582,42,583,47,549,54"/>
+<area shape="rect" id="Node000010" href="$classtimeloopfe_1_1v4_1_1components_1_1ActionsList.html" title="A list of actions for a component." alt="" coords="583,71,759,111"/>
+<area shape="poly" id="edge13_Node000010_Node000008" title=" " alt="" coords="549,79,583,82,582,87,549,84"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="187,37,225,62"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="241,50,359,62,358,68,241,56"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="774,100,902,114,901,120,774,105"/>
 </map>

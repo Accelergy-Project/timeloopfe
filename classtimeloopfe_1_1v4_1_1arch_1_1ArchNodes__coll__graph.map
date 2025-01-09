@@ -1,17 +1,15 @@
 <map id="timeloopfe.v4.arch.ArchNodes" name="timeloopfe.v4.arch.ArchNodes">
-<area shape="rect" id="Node000001" title="A collection of architectural nodes." alt="" coords="97,274,292,300"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1v4_1_1arch_1_1ArchNode.html" title="A node in the architecture hierarchy." alt="" coords="205,192,392,217"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="272,229,212,276,208,271,269,225"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="166,109,372,135"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="281,149,297,190,292,192,276,151"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="389,115,399,122,391,128,373,131,372,125,389,123,394,122,386,120"/>
-<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="5,184,181,225"/>
-<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="229,144,137,186,135,181,227,139"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="206,5,254,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="243,44,267,108,262,109,238,46"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="279,5,334,31"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="299,46,276,109,271,108,294,44"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="131,232,181,271,177,276,128,236"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="74,109,112,135"/>
-<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="96,150,96,184,90,184,90,150"/>
+<area shape="rect" id="Node000001" title="A collection of architectural nodes." alt="" coords="97,245,292,271"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1v4_1_1arch_1_1ArchNode.html" title="A node in the architecture hierarchy." alt="" coords="205,163,392,188"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="272,200,212,247,208,243,269,196"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="166,80,372,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="281,120,297,162,292,164,276,122"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="389,86,399,93,391,100,373,102,372,97,389,95,394,93,386,91"/>
+<area shape="rect" id="Node000005" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="5,155,181,196"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="229,115,137,157,135,152,227,111"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="245,5,293,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="272,46,272,80,266,80,266,46"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="131,204,181,243,177,247,128,208"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="74,80,112,106"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="96,122,96,155,90,155,90,122"/>
 </map>

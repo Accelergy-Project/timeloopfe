@@ -1,21 +1,19 @@
 <map id="timeloopfe.v4.mapper.Mapper" name="timeloopfe.v4.mapper.Mapper">
-<area shape="rect" id="Node000001" title="A mapper object that holds various attributes and settings for mapping operations in Timeloop." alt="" coords="118,378,308,403"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="205,184,381,225"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="297,241,292,297,284,327,270,355,257,369,242,379,239,375,254,365,265,352,279,325,287,296,292,240"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="76,109,283,135"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="211,142,267,181,264,186,208,146"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="300,115,309,122,301,128,284,131,283,125,300,123,304,122,297,120"/>
-<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="5,184,181,225"/>
-<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="157,147,116,186,112,182,154,143"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="117,5,165,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="153,44,178,108,173,109,148,46"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="189,5,245,31"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="210,46,187,109,182,108,205,44"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="405,109,448,135"/>
-<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="395,145,327,186,324,181,392,141"/>
-<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1v4_1_1mapper_1_1OptimizationMetrics.html" title="A list of optimization metrics including delay, energy, EDP, and last level accesses." alt="" coords="23,274,243,315"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="142,328,155,352,169,365,185,375,182,379,165,369,151,355,138,331"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="111,238,127,273,122,275,106,240"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="14,109,52,135"/>
-<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="53,146,81,182,77,186,49,149"/>
+<area shape="rect" id="Node000001" title="A mapper object that holds various attributes and settings for mapping operations in Timeloop." alt="" coords="118,349,308,375"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="205,155,381,196"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="297,212,292,268,284,298,270,327,257,340,242,351,239,346,254,336,265,323,279,297,287,267,292,211"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="76,80,283,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="211,113,267,153,264,157,208,117"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="300,86,309,93,301,100,284,102,283,97,300,95,304,93,297,91"/>
+<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="5,155,181,196"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="157,119,116,157,112,153,154,115"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="156,5,204,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="182,46,182,80,177,80,177,46"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="405,80,448,106"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="395,116,327,157,324,153,392,112"/>
+<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1v4_1_1mapper_1_1OptimizationMetrics.html" title="A list of optimization metrics including delay, energy, EDP, and last level accesses." alt="" coords="23,245,243,286"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="142,300,155,323,169,336,185,346,182,351,165,340,151,327,138,302"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="111,209,127,244,122,246,106,211"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="14,80,52,106"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="53,117,81,154,77,157,49,120"/>
 </map>

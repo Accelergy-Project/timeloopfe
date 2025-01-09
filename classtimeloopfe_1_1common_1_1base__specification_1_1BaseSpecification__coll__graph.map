@@ -1,22 +1,21 @@
 <map id="timeloopfe.common.base_specification.BaseSpecification" name="timeloopfe.common.base_specification.BaseSpecification">
-<area shape="rect" id="Node000001" title="Base class for specifications in the Timeloop framework." alt="" coords="189,318,397,358"/>
-<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="205,184,381,225"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="288,240,289,317,284,317,282,240"/>
-<area shape="poly" id="edge7_Node000001_Node000002" title=" " alt="" coords="304,240,302,317,297,317,298,240"/>
-<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="99,109,306,135"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="229,143,273,182,269,186,226,147"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="322,115,332,122,324,128,306,131,306,125,322,123,327,122,320,120"/>
-<area shape="rect" id="Node000007" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="5,184,181,225"/>
-<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="175,146,121,186,118,181,172,142"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="140,5,188,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="176,44,200,108,195,109,171,46"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="212,5,267,31"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="233,46,209,109,204,108,228,44"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="428,109,470,135"/>
-<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="415,143,333,186,330,181,413,139"/>
-<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="113,236,135,266,162,291,208,315,206,320,159,296,131,269,109,240"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="36,109,75,135"/>
-<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="70,148,86,183,82,185,65,150"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="405,192,448,217"/>
-<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="405,230,315,319,311,315,401,227"/>
+<area shape="rect" id="Node000001" title="Base class for specifications in the Timeloop framework." alt="" coords="905,98,1112,138"/>
+<area shape="rect" id="Node000002" href="$classtimeloopfe_1_1common_1_1nodes_1_1DictNode.html" title="A node that is a dictionary of other nodes." alt="" coords="555,98,730,138"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="745,124,905,124,905,129,745,129"/>
+<area shape="poly" id="edge6_Node000001_Node000002" title=" " alt="" coords="745,107,905,107,905,113,745,113"/>
+<area shape="rect" id="Node000003" href="$classtimeloopfe_1_1common_1_1nodes_1_1Node.html" title="Base class for all nodes in the hierarchy." alt="" coords="103,95,309,120"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="325,108,554,113,554,119,325,113"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="182,77,190,71,206,68,221,70,230,77,233,86,229,95,224,93,227,86,226,80,219,75,206,73,192,76,185,82"/>
+<area shape="rect" id="Node000006" href="$classtimeloopfe_1_1common_1_1nodes_1_1ListNode.html" title="A node that is a list of other nodes." alt="" coords="555,32,730,73"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="324,90,554,61,554,66,325,95"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,179,54,204"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="52,166,75,146,102,129,129,118,131,123,104,134,78,151,55,170"/>
+<area shape="rect" id="Node000008" href="$classtimeloopfe_1_1common_1_1processor_1_1Processor.html" title="Base class for all processors, which are used to modify the specification before it is passed to Acce..." alt="" coords="333,187,531,228"/>
+<area shape="poly" id="edge11_Node000008_Node000004" title=" " alt="" coords="69,190,333,201,333,206,69,196"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="185,144,227,170"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="243,151,554,123,555,129,243,156"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="746,63,881,85,926,95,925,100,881,90,745,68"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="187,5,225,31"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="241,18,555,43,554,49,240,23"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="546,206,636,203,730,193,846,167,947,136,948,142,847,172,730,198,637,208,547,212"/>
 </map>

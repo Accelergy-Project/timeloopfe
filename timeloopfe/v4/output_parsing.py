@@ -24,7 +24,7 @@ def parse_stats_file(path: str) -> Tuple[int, int, float, dict]:
         if "Cycles: " in l:
             cycles = int(l.split()[-1])
         if "Utilization" in l:
-            util = float(l.split()[-1][:-1]) / 100
+            util = float(l.split()[-1][:-1])
 
     assert cycles is not None, f"Could not find cycles in stats at {path}."
     assert computes is not None, f"Could not find computes in stats at {path}."
